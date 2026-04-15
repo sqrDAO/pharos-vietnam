@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hướng Dẫn Tham Gia | Pharos Vietnam</title>
+  <meta name="description" content="Hướng dẫn chi tiết bằng tiếng Việt cách tham gia Pharos Network: cài đặt ví, tham gia testnet, chạy validator node và trở thành developer trên Pharos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">⚡</div>
+        <span class="logo-text">Pharos <span class="logo-vn">Vietnam</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
+        <li><a href="about.html" class="nav-link">Về Pharos</a></li>
+        <li><a href="ecosystem.html" class="nav-link">Hệ Sinh Thái</a></li>
+        <li><a href="technology.html" class="nav-link">Công Nghệ</a></li>
+        <li><a href="guide.html" class="nav-link active">Hướng Dẫn</a></li>
+        <li><a href="news.html" class="nav-link">Tin Tức</a></li>
+        <li><a href="community.html" class="nav-link">Cộng Đồng</a></li>
+      </ul>
+      <a href="https://testnet.pharosnetwork.xyz/" target="_blank" class="btn btn-primary nav-cta">Tham Gia Testnet</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb-1"></div>
+      <div class="page-hero-orb page-hero-orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="section-label">Hướng Dẫn</div>
+        <h1>Bắt Đầu Với <span class="gradient-text">Pharos Network</span></h1>
+        <p>Hướng dẫn từng bước bằng tiếng Việt để bạn tham gia testnet, cài đặt ví, chạy node và bắt đầu xây dựng trên Pharos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start Guides -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Bắt Đầu Nhanh</div>
+      <h2 class="section-title">Hướng Dẫn Cơ Bản</h2>
+      <p class="section-subtitle">Dành cho người mới bắt đầu — chỉ cần 15 phút để tham gia Pharos testnet</p>
+
+      <div class="guide-steps">
+        <!-- Step 1 -->
+        <div class="guide-step" data-aos="fade-up">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Cài Đặt Ví MetaMask</h3>
+            <p>MetaMask là ví crypto phổ biến nhất, hỗ trợ tất cả các mạng EVM bao gồm Pharos. Bạn cần cài đặt MetaMask trên trình duyệt Chrome, Firefox hoặc Brave trước khi tham gia testnet.</p>
+            <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:20px; margin:16px 0;">
+              <div style="font-weight:600; font-size:0.9rem; margin-bottom:12px; color:var(--pharos-gold);">📋 Các bước thực hiện:</div>
+              <ol style="color:var(--text-secondary); font-size:0.875rem; padding-left:20px; display:flex; flex-direction:column; gap:8px; line-height:1.6;">
+                <li>Truy cập <a href="https://metamask.io" target="_blank" style="color:var(--pharos-gold);">metamask.io</a> và tải extension cho trình duyệt</li>
+                <li>Nhấn "Create a new wallet" và tạo mật khẩu mạnh</li>
+                <li>Sao lưu <strong style="color:var(--text-primary);">Secret Recovery Phrase</strong> (12 từ) ở nơi an toàn — <em>TUYỆT ĐỐI KHÔNG chia sẻ cho bất kỳ ai</em></li>
+                <li>Hoàn thành xác nhận recovery phrase để kích hoạt ví</li>
+              </ol>
+            </div>
+            <div class="step-actions">
+              <a href="https://metamask.io" target="_blank" class="btn btn-primary">Tải MetaMask ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="guide-step" data-aos="fade-up" data-delay="100">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Thêm Mạng Pharos Testnet Vào MetaMask</h3>
+            <p>Sau khi cài MetaMask, bạn cần thêm cấu hình mạng Pharos Testnet để ví có thể kết nối đúng mạng lưới. Bạn có thể thêm tự động hoặc thủ công.</p>
+            <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:20px; margin:16px 0;">
+              <div style="font-weight:600; font-size:0.9rem; margin-bottom:12px; color:var(--pharos-gold);">🔧 Cách thêm thủ công:</div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.85rem;">
+                <div style="background:var(--bg-card); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+                  <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:4px;">Network Name</div>
+                  <div style="color:var(--text-primary); font-weight:500;">Pharos Testnet</div>
+                </div>
+                <div style="background:var(--bg-card); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+                  <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:4px;">Chain ID</div>
+                  <div style="color:var(--text-primary); font-weight:500;">Xem tại trang testnet</div>
+                </div>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted); margin-top:12px;">💡 Hoặc truy cập trang testnet Pharos và nhấn nút "Add to MetaMask" để tự động cấu hình.</div>
+            </div>
+            <div class="step-actions">
+              <a href="https://testnet.pharosnetwork.xyz/" target="_blank" class="btn btn-primary">Trang Testnet ↗</a>
+              <a href="https://pharosnetwork.xyz/blog/pharos-testnet-onboarding-guide" target="_blank" class="btn btn-secondary">Hướng Dẫn Onboarding ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="guide-step" data-aos="fade-up" data-delay="200">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Tham Gia Testnet & Hoàn Thành Nhiệm Vụ</h3>
+            <p>Truy cập trang testnet chính thức của Pharos, kết nối ví MetaMask và bắt đầu hoàn thành các nhiệm vụ testnet. Các nhiệm vụ giúp bạn làm quen với hệ sinh thái Pharos và có cơ hội nhận phần thưởng.</p>
+            <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:20px; margin:16px 0;">
+              <div style="font-weight:600; font-size:0.9rem; margin-bottom:12px; color:var(--pharos-gold);">🎯 Các loại nhiệm vụ:</div>
+              <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--bg-card); border-radius:var(--radius-sm); border:1px solid var(--border-subtle); font-size:0.85rem;">
+                  <span>🔄</span> Giao dịch trên testnet
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--bg-card); border-radius:var(--radius-sm); border:1px solid var(--border-subtle); font-size:0.85rem;">
+                  <span>🌐</span> Tương tác smart contract
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--bg-card); border-radius:var(--radius-sm); border:1px solid var(--border-subtle); font-size:0.85rem;">
+                  <span>📤</span> Chia sẻ trên mạng xã hội
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--bg-card); border-radius:var(--radius-sm); border:1px solid var(--border-subtle); font-size:0.85rem;">
+                  <span>🏆</span> Hoàn thành thử thách đặc biệt
+                </div>
+              </div>
+            </div>
+            <div class="step-actions">
+              <a href="https://testnet.pharosnetwork.xyz/" target="_blank" class="btn btn-primary">Bắt Đầu Testnet ↗</a>
+              <a href="https://pharosnetwork.xyz/blog/pharos-testnet-faqs" target="_blank" class="btn btn-secondary">FAQ Testnet ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advanced Guide: Run Node -->
+  <section class="section" style="background:var(--bg-surface);">
+    <div class="container">
+      <div class="section-label">Nâng Cao</div>
+      <h2 class="section-title">Chạy Validator Node</h2>
+      <p class="section-subtitle">Dành cho người dùng có kinh nghiệm kỹ thuật — đóng góp vào bảo mật mạng lưới Pharos</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:40px;" class="node-grid">
+        <div class="tech-card">
+          <div class="tech-header">
+            <div class="tech-icon">🖥️</div>
+            <div>
+              <h3>Yêu Cầu Hệ Thống</h3>
+              <div class="tech-label">System Requirements</div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; padding:12px; background:var(--bg-surface); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <span style="color:var(--text-secondary); font-size:0.875rem;">CPU</span>
+              <span style="font-weight:600; font-size:0.875rem;">4+ cores</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:12px; background:var(--bg-surface); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <span style="color:var(--text-secondary); font-size:0.875rem;">RAM</span>
+              <span style="font-weight:600; font-size:0.875rem;">8+ GB</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:12px; background:var(--bg-surface); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <span style="color:var(--text-secondary); font-size:0.875rem;">Storage</span>
+              <span style="font-weight:600; font-size:0.875rem;">100+ GB SSD</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:12px; background:var(--bg-surface); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <span style="color:var(--text-secondary); font-size:0.875rem;">Network</span>
+              <span style="font-weight:600; font-size:0.875rem;">100+ Mbps</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:12px; background:var(--bg-surface); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <span style="color:var(--text-secondary); font-size:0.875rem;">OS</span>
+              <span style="font-weight:600; font-size:0.875rem;">Ubuntu 20.04+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-header">
+            <div class="tech-icon">⚙️</div>
+            <div>
+              <h3>Quy Trình Triển Khai</h3>
+              <div class="tech-label">Deployment Process</div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:28px; height:28px; background:var(--gradient-gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:hsl(30,60%,10%); flex-shrink:0;">1</div>
+              <div>
+                <div style="font-weight:600; font-size:0.9rem;">Chuẩn Bị Server</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">Thuê VPS hoặc sử dụng server riêng đạt yêu cầu</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:28px; height:28px; background:var(--gradient-gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:hsl(30,60%,10%); flex-shrink:0;">2</div>
+              <div>
+                <div style="font-weight:600; font-size:0.9rem;">Cài Đặt Dependencies</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">Cài đặt Docker, Go, và các phần mềm cần thiết</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:28px; height:28px; background:var(--gradient-gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:hsl(30,60%,10%); flex-shrink:0;">3</div>
+              <div>
+                <div style="font-weight:600; font-size:0.9rem;">Deploy Pharos Node</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">Tải và cấu hình node software theo hướng dẫn</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:28px; height:28px; background:var(--gradient-gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:hsl(30,60%,10%); flex-shrink:0;">4</div>
+              <div>
+                <div style="font-weight:600; font-size:0.9rem;">Stake & Activate</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">Stake tokens và bắt đầu validate giao dịch</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:28px; height:28px; background:var(--gradient-gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:hsl(30,60%,10%); flex-shrink:0;">5</div>
+              <div>
+                <div style="font-weight:600; font-size:0.9rem;">Monitor & Maintain</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">Thiết lập monitoring và duy trì uptime cao</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="https://docs.pharosnetwork.xyz/node-and-validator-guide/validator-requirements" target="_blank" class="btn btn-primary">📋 Yêu Cầu Validator ↗</a>
+        <a href="https://docs.pharosnetwork.xyz/node-and-validator-guide/validator-node-deployment" target="_blank" class="btn btn-secondary">🚀 Hướng Dẫn Deploy ↗</a>
+        <a href="https://docs.pharosnetwork.xyz/node-and-validator-guide/node-monitoring-setup" target="_blank" class="btn btn-ghost">📊 Setup Monitoring ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Guide -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Dành Cho Developer</div>
+      <h2 class="section-title">Xây Dựng Trên Pharos</h2>
+      <p class="section-subtitle">Tài nguyên và hướng dẫn cho developer muốn build dApp trên Pharos Network</p>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:40px;" class="dev-grid">
+        <div class="tech-card" style="text-align:center; padding:32px;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">🔨</div>
+          <h3 style="margin-bottom:8px;">Foundry</h3>
+          <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:20px;">Framework phát triển smart contract mạnh mẽ với testing toolkit tích hợp. Hỗ trợ đầy đủ trên Pharos.</p>
+          <a href="https://docs.pharosnetwork.xyz/developer-guide/foundry" target="_blank" class="btn btn-ghost" style="width:100%; justify-content:center;">Hướng Dẫn ↗</a>
+        </div>
+        <div class="tech-card" style="text-align:center; padding:32px;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">👷</div>
+          <h3 style="margin-bottom:8px;">Hardhat</h3>
+          <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:20px;">Development environment phổ biến nhất cho Ethereum. Deploy smart contract lên Pharos chỉ với vài dòng config.</p>
+          <a href="https://docs.pharosnetwork.xyz/developer-guide/hardhat" target="_blank" class="btn btn-ghost" style="width:100%; justify-content:center;">Hướng Dẫn ↗</a>
+        </div>
+        <div class="tech-card" style="text-align:center; padding:32px;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">🦀</div>
+          <h3 style="margin-bottom:8px;">Rust SDK</h3>
+          <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:20px;">Viết smart contract bằng Rust để chạy trên WASM VM của Pharos. Hiệu suất cao hơn và kiểm soát bộ nhớ tốt hơn.</p>
+          <a href="https://docs.pharosnetwork.xyz/developer-guide/rust" target="_blank" class="btn btn-ghost" style="width:100%; justify-content:center;">Hướng Dẫn ↗</a>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="https://pharosnetwork.xyz/devhub" target="_blank" class="btn btn-primary btn-lg">🛠️ Developer Hub Đầy Đủ ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background:var(--bg-surface);">
+    <div class="container">
+      <div class="section-label">Câu Hỏi Thường Gặp</div>
+      <h2 class="section-title">FAQ</h2>
+
+      <div style="max-width:800px; display:flex; flex-direction:column; gap:16px;" id="faqContainer">
+        <div class="tech-card faq-item" style="cursor:pointer;" onclick="toggleFaq(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size:1rem;">Pharos testnet có miễn phí tham gia không?</h3>
+            <span class="faq-arrow" style="color:var(--pharos-gold); font-size:1.2rem; transition:transform 0.3s;">▼</span>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Có, Pharos testnet hoàn toàn miễn phí. Bạn chỉ cần ví MetaMask và kết nối với mạng testnet. Token testnet cũng được cung cấp miễn phí qua faucet.</p>
+          </div>
+        </div>
+
+        <div class="tech-card faq-item" style="cursor:pointer;" onclick="toggleFaq(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size:1rem;">Tham gia testnet có cơ hội nhận airdrop không?</h3>
+            <span class="faq-arrow" style="color:var(--pharos-gold); font-size:1.2rem; transition:transform 0.3s;">▼</span>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Pharos chưa công bố chính sách airdrop chính thức. Tuy nhiên, tham gia testnet sớm và hoàn thành nhiều nhiệm vụ thường là cách tốt nhất để tích lũy điểm và có cơ hội nhận phần thưởng trong tương lai. Luôn cập nhật thông tin từ kênh chính thức.</p>
+          </div>
+        </div>
+
+        <div class="tech-card faq-item" style="cursor:pointer;" onclick="toggleFaq(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size:1rem;">Pharos khác gì so với Ethereum và Solana?</h3>
+            <span class="faq-arrow" style="color:var(--pharos-gold); font-size:1.2rem; transition:transform 0.3s;">▼</span>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Pharos kết hợp ưu điểm của cả hai: tương thích EVM như Ethereum (dễ dàng cho developer) nhưng với hiệu suất cao hơn nhiều. Dual VM (EVM+WASM), AsyncBFT consensus, và kiến trúc SPNs cho phép Pharos đạt finality dưới 1 giây và mở rộng linh hoạt — điều mà cả Ethereum và Solana hiện chưa đạt được đồng thời.</p>
+          </div>
+        </div>
+
+        <div class="tech-card faq-item" style="cursor:pointer;" onclick="toggleFaq(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size:1rem;">Làm sao để trở thành developer trên Pharos?</h3>
+            <span class="faq-arrow" style="color:var(--pharos-gold); font-size:1.2rem; transition:transform 0.3s;">▼</span>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Nếu bạn đã biết viết smart contract Solidity cho Ethereum, bạn có thể deploy trực tiếp lên Pharos vì Pharos tương thích EVM hoàn toàn. Sử dụng Foundry hoặc Hardhat, kết nối với RPC testnet của Pharos, và bắt đầu build. Developer Hub và Docs cung cấp đầy đủ hướng dẫn.</p>
+          </div>
+        </div>
+
+        <div class="tech-card faq-item" style="cursor:pointer;" onclick="toggleFaq(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size:1rem;">Khi nào Pharos mainnet ra mắt?</h3>
+            <span class="faq-arrow" style="color:var(--pharos-gold); font-size:1.2rem; transition:transform 0.3s;">▼</span>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
+            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Pharos Network chưa công bố ngày ra mắt mainnet chính thức. Hiện tại dự án đang trong giai đoạn testnet. Theo dõi kênh chính thức (Discord, Twitter) và trang tin tức Pharos Vietnam để cập nhật thông tin mới nhất.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">⚡</div>
+            <span class="logo-text">Pharos <span class="logo-vn">Vietnam</span></span>
+          </a>
+          <p>Cổng thông tin cộng đồng Pharos Network tại Việt Nam.</p>
+          <div class="footer-social">
+            <a href="https://discord.com/invite/pharos" target="_blank" class="social-link" aria-label="Discord">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.08.114 18.1.13 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+            </a>
+            <a href="https://x.com/pharos_network" target="_blank" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Pharos Network</h4>
+            <ul>
+              <li><a href="about.html">Giới Thiệu</a></li>
+              <li><a href="technology.html">Công Nghệ</a></li>
+              <li><a href="ecosystem.html">Hệ Sinh Thái</a></li>
+              <li><a href="https://docs.pharosnetwork.xyz/" target="_blank">Tài Liệu ↗</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Cộng Đồng</h4>
+            <ul>
+              <li><a href="community.html">Cộng Đồng VN</a></li>
+              <li><a href="guide.html">Hướng Dẫn</a></li>
+              <li><a href="news.html">Tin Tức</a></li>
+              <li><a href="https://testnet.pharosnetwork.xyz/" target="_blank">Testnet ↗</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Tài Nguyên</h4>
+            <ul>
+              <li><a href="https://pharosnetwork.xyz/resources" target="_blank">Blog ↗</a></li>
+              <li><a href="https://pharosnetwork.xyz/devhub" target="_blank">Dev Hub ↗</a></li>
+              <li><a href="https://pharosnetwork.xyz/brandkit" target="_blank">Brand Kit ↗</a></li>
+              <li><a href="https://career.pharosnetwork.xyz/" target="_blank">Careers ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Pharos Vietnam Community. Đây là trang cộng đồng không chính thức.</p>
+        <p>Thông tin từ <a href="https://pharosnetwork.xyz" target="_blank">pharosnetwork.xyz</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function toggleFaq(el) {
+      const answer = el.querySelector('.faq-answer');
+      const arrow = el.querySelector('.faq-arrow');
+      const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.style.maxHeight = '0');
+      document.querySelectorAll('.faq-arrow').forEach(a => a.style.transform = '');
+
+      if (!isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
+  <style>
+    @media (max-width: 768px) {
+      .node-grid, .dev-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</body>
+</html>

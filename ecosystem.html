@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hệ Sinh Thái Pharos | Pharos Vietnam</title>
+  <meta name="description" content="Khám phá toàn bộ hệ sinh thái Pharos Network — các dự án, đối tác, nhà đầu tư đang xây dựng trên nền tảng blockchain L1 EVM nhanh nhất." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">⚡</div>
+        <span class="logo-text">Pharos <span class="logo-vn">Vietnam</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
+        <li><a href="about.html" class="nav-link">Về Pharos</a></li>
+        <li><a href="ecosystem.html" class="nav-link active">Hệ Sinh Thái</a></li>
+        <li><a href="technology.html" class="nav-link">Công Nghệ</a></li>
+        <li><a href="guide.html" class="nav-link">Hướng Dẫn</a></li>
+        <li><a href="news.html" class="nav-link">Tin Tức</a></li>
+        <li><a href="community.html" class="nav-link">Cộng Đồng</a></li>
+      </ul>
+      <a href="https://testnet.pharosnetwork.xyz/" target="_blank" class="btn btn-primary nav-cta">Tham Gia Testnet</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg">
+      <div class="page-hero-orb page-hero-orb-1"></div>
+      <div class="page-hero-orb page-hero-orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="section-label">Hệ Sinh Thái</div>
+        <h1>Ecosystem <span class="gradient-text">Pharos Network</span></h1>
+        <p>Khám phá các dự án, đối tác chiến lược và nhà đầu tư đang xây dựng và hỗ trợ hệ sinh thái Pharos Network toàn cầu.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="section" style="background:var(--bg-surface); padding-bottom:48px;">
+    <div class="container">
+      <div class="section-label">Chương Trình</div>
+      <h2 class="section-title">Tham Gia Xây Dựng Pharos</h2>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;" class="programs-grid">
+        <div class="tech-card" style="text-align:center; padding:40px 28px;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">🚀</div>
+          <h3 style="margin-bottom:12px;">Pharos Incubator</h3>
+          <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:24px;">Chương trình ươm mầm dành cho các startup và dự án muốn xây dựng trên Pharos Network với sự hỗ trợ kỹ thuật và kinh doanh.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeAH2AU2xSUMbU5bic8XQwlcszD8Gs6to7M0HTAImrhdcpH-g/viewform" target="_blank" class="btn btn-primary" style="width:100%; justify-content:center;">Đăng Ký Ngay ↗</a>
+        </div>
+        <div class="tech-card" style="text-align:center; padding:40px 28px;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">💰</div>
+          <h3 style="margin-bottom:12px;">Developer Grants</h3>
+          <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:24px;">Chương trình grant tài trợ cho các developer xây dựng dApp, infrastructure và công cụ trên Pharos Network.</p>
+          <a href="https://pharosnetwork.xyz/ecosystem" target="_blank" class="btn btn-secondary" style="width:100%; justify-content:center;">Tìm Hiểu Thêm ↗</a>
+        </div>
+        <div class="tech-card" style="text-align:center; padding:40px 28px;">
+          <div style="font-size:2.5rem; margin-bottom:16px;">🤝</div>
+          <h3 style="margin-bottom:12px;">Ecosystem Partner</h3>
+          <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:24px;">Trở thành đối tác hệ sinh thái của Pharos, tích hợp sản phẩm và dịch vụ của bạn với mạng lưới blockchain tốc độ cao nhất.</p>
+          <a href="mailto:ecosystem@pharosnetwork.xyz" class="btn btn-ghost" style="width:100%; justify-content:center;">Liên Hệ →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ecosystem Filter & Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Dự Án & Đối Tác</div>
+      <h2 class="section-title">Tất Cả Trong Hệ Sinh Thái</h2>
+
+      <!-- Filter -->
+      <div class="eco-filter" id="ecoFilter">
+        <button class="filter-btn active" data-filter="all">Tất Cả</button>
+        <button class="filter-btn" data-filter="RWA / DeFi">RWA / DeFi</button>
+        <button class="filter-btn" data-filter="Restaking / Security">Restaking</button>
+        <button class="filter-btn" data-filter="Infrastructure">Infrastructure</button>
+        <button class="filter-btn" data-filter="Đầu Tư">Nhà Đầu Tư</button>
+        <button class="filter-btn" data-filter="DeFi / RWA">RealFi</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="eco-full-grid" id="ecoFullGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RealFi Alliance Section -->
+  <section class="section" style="background:var(--bg-surface);">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;" class="realfi-grid">
+        <div data-aos="fade-up">
+          <div class="section-label">RealFi Alliance</div>
+          <h2 class="section-title">Tài Chính Onchain Cho Tất Cả</h2>
+          <p style="color:var(--text-secondary); margin-bottom:20px; line-height:1.8;">RealFi Alliance của Pharos là một liên minh tập trung vào việc mở rộng tài chính onchain cho các cộng đồng chưa được phục vụ đầy đủ — đặc biệt là ở các thị trường mới nổi như Đông Nam Á, Châu Phi và Mỹ Latinh.</p>
+          <p style="color:var(--text-secondary); margin-bottom:28px; line-height:1.8;">Thông qua RealFi Alliance, Pharos kết nối tài chính truyền thống với DeFi, cho phép tokenize tài sản thực (RWA) và cung cấp thanh khoản cực cao cho các thị trường tài chính toàn cầu.</p>
+          <a href="https://pharosnetwork.xyz/realfi-alliance" target="_blank" class="btn btn-primary">Tìm Hiểu RealFi Alliance ↗</a>
+        </div>
+        <div class="info-visual" data-aos="fade-up" data-delay="150">
+          <div style="margin-bottom:20px;">
+            <div class="section-label" style="margin-bottom:16px;">Ant Digital × Pharos</div>
+            <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Đối tác chiến lược nổi bật nhất của Pharos</p>
+          </div>
+          <div style="background:var(--bg-surface); border-radius:var(--radius-md); padding:24px; border:1px solid var(--border-subtle); margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <span style="font-weight:600;">Pipeline RWA Exchange</span>
+              <span style="color:var(--pharos-gold); font-weight:700;">$1.5B USD</span>
+            </div>
+            <div style="height:4px; background:var(--bg-card); border-radius:2px; overflow:hidden;">
+              <div style="width:65%; height:100%; background:var(--gradient-gold); border-radius:2px;"></div>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px;">Đang trong giai đoạn phát triển</div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:var(--bg-surface); border-radius:var(--radius-sm); padding:16px; border:1px solid var(--border-subtle); text-align:center;">
+              <div style="font-size:1.5rem; font-weight:800; color:var(--pharos-gold);">RWA</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary);">Real World Assets</div>
+            </div>
+            <div style="background:var(--bg-surface); border-radius:var(--radius-sm); padding:16px; border:1px solid var(--border-subtle); text-align:center;">
+              <div style="font-size:1.5rem; font-weight:800; color:var(--pharos-gold);">DeFi</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary);">Liquidity Markets</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Build -->
+  <section class="section community-cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-orb cta-orb-1"></div>
+        <div class="cta-orb cta-orb-2"></div>
+        <div class="cta-content">
+          <div class="section-label">Dành Cho Builder</div>
+          <h2>Xây Dựng Dự Án Của Bạn Trên Pharos</h2>
+          <p>Tham gia hệ sinh thái Pharos ngay hôm nay. Từ DeFi, NFT, GameFi đến AI và HFT — Pharos hỗ trợ mọi loại ứng dụng với hiệu suất vượt trội.</p>
+          <div class="cta-buttons">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeAH2AU2xSUMbU5bic8XQwlcszD8Gs6to7M0HTAImrhdcpH-g/viewform" target="_blank" class="btn btn-primary btn-lg">🚀 Đăng Ký Incubator</a>
+            <a href="https://pharosnetwork.xyz/devhub" target="_blank" class="btn btn-secondary btn-lg">⚙️ Developer Hub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">⚡</div>
+            <span class="logo-text">Pharos <span class="logo-vn">Vietnam</span></span>
+          </a>
+          <p>Cổng thông tin cộng đồng Pharos Network tại Việt Nam. Không phải trang chính thức của Pharos Network.</p>
+          <div class="footer-social">
+            <a href="https://discord.com/invite/pharos" target="_blank" class="social-link" aria-label="Discord">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.08.114 18.1.13 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+            </a>
+            <a href="https://x.com/pharos_network" target="_blank" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Pharos Network</h4>
+            <ul>
+              <li><a href="about.html">Giới Thiệu</a></li>
+              <li><a href="technology.html">Công Nghệ</a></li>
+              <li><a href="ecosystem.html">Hệ Sinh Thái</a></li>
+              <li><a href="https://docs.pharosnetwork.xyz/" target="_blank">Tài Liệu ↗</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Cộng Đồng</h4>
+            <ul>
+              <li><a href="community.html">Cộng Đồng VN</a></li>
+              <li><a href="guide.html">Hướng Dẫn</a></li>
+              <li><a href="news.html">Tin Tức</a></li>
+              <li><a href="https://testnet.pharosnetwork.xyz/" target="_blank">Testnet ↗</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Tài Nguyên</h4>
+            <ul>
+              <li><a href="https://pharosnetwork.xyz/resources" target="_blank">Blog ↗</a></li>
+              <li><a href="https://pharosnetwork.xyz/devhub" target="_blank">Dev Hub ↗</a></li>
+              <li><a href="https://pharosnetwork.xyz/realfi-alliance" target="_blank">RealFi ↗</a></li>
+              <li><a href="https://career.pharosnetwork.xyz/" target="_blank">Careers ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Pharos Vietnam Community. Đây là trang cộng đồng không chính thức.</p>
+        <p>Thông tin từ <a href="https://pharosnetwork.xyz" target="_blank">pharosnetwork.xyz</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ecosystem.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .programs-grid, .realfi-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</body>
+</html>
