@@ -23,3 +23,10 @@ npm-debug.log*
 
 # Dependencies
 node_modules/
+
+# Build output
+dist/
+
+# Vercel
+.vercel/
+.vercel

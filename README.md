@@ -14,19 +14,37 @@ community: its technology, ecosystem, roadmap, guides, and news.
 - Vanilla JavaScript (ES6+) — no framework
 - CSS3 with a custom design-token system
 - Google Fonts: Inter (body) and Space Grotesk (headings) via CDN
+- [Vite](https://vite.dev) for the dev server and production build
+- Deployed on [Vercel](https://vercel.com)
 
-No build step, bundler, or package manager — the site is served as static files.
+The JavaScript is plain global scripts (not ES modules); Vite serves and ships
+them as-is from `public/js/`, and processes the CSS and HTML at build time.
 
 ## Local Development
 
-Serve the repo root with any static file server, then open the site in a browser:
-
 ```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
+npm install      # once
+npm run dev      # dev server with HMR → http://localhost:5173
 ```
 
-There is no `npm install`, build, lint, or test step.
+Other scripts:
+
+```bash
+npm run build    # production build → dist/
+npm run preview  # serve the built dist/ locally
+```
+
+There is no lint or test step.
+
+## Deployment
+
+Hosted on Vercel (framework preset `vite`, output `dist/`, configured in
+[`vercel.json`](./vercel.json)). Deploy from the repo root with the Vercel CLI:
+
+```bash
+vercel          # preview deployment
+vercel --prod   # production deployment
+```
 
 ## Project Structure
 
@@ -39,17 +57,20 @@ pharos-vietnam/
 ├── guide.html          # Getting-started & testnet guides
 ├── news.html           # News and updates
 ├── community.html      # Community resources
+├── vite.config.js      # Vite multi-page config (declares each HTML entry)
+├── vercel.json         # Vercel deployment config
 ├── css/
 │   └── style.css       # Design-token system + all components
-└── js/
-    ├── data.js         # All site content (window.PharosData)
-    ├── ecosystem.js    # Ecosystem filter & rendering logic
-    └── main.js         # Navbar, mobile menu, animations, content rendering
+└── public/
+    └── js/             # Copied verbatim into the build (plain global scripts)
+        ├── data.js     # All site content (window.PharosData)
+        ├── ecosystem.js # Ecosystem filter & rendering logic
+        └── main.js     # Navbar, mobile menu, animations, content rendering
 ```
 
 ## Content / Editing
 
-All site content lives in [`js/data.js`](./js/data.js) under the global
+All site content lives in [`public/js/data.js`](./public/js/data.js) under the global
 `window.PharosData` object (ecosystem projects, news items, etc.). Edit content
 there rather than in the HTML. When updating content, bump `meta.version` and
 `meta.lastUpdated`, and keep `meta.sources` accurate.

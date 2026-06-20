@@ -1,0 +1,15 @@
+{
+  "name": "pharos-vietnam",
+  "version": "1.0.0",
+  "description": "Vietnamese-language community portal for Pharos Network",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
