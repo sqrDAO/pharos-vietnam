@@ -18,7 +18,7 @@
       <div class="page-hero-content">
         <div class="section-label">Công Nghệ</div>
         <h1><span class="gradient-text">Core Technology</span><br/>Của Pharos</h1>
-        <p>Kiến trúc kỹ thuật tiên tiến giúp Pharos trở thành blockchain EVM L1 nhanh nhất, hiệu quả nhất trên thế giới hiện nay.</p>
+        <p>Kiến trúc modular, thực thi song song và dual VM giúp Pharos hướng đến hạ tầng RealFi thời gian thực ở quy mô lớn.</p>
       </div>
     </div>
   </section>
@@ -41,7 +41,7 @@
         <p>Pharos sử dụng cơ chế đồng thuận <strong>AsyncBFT (Asynchronous Byzantine Fault Tolerance)</strong> — cho phép đạt được sự đồng thuận ngay cả khi mạng không hoàn toàn đồng bộ. Cơ chế này mang lại:</p>
         <ul style="color:var(--text-secondary); margin:16px 0 20px; padding-left:20px; display:flex; flex-direction:column; gap:8px;">
           <li><strong style="color:var(--text-primary);">Sub-second finality:</strong> Giao dịch được xác nhận trong chưa đầy 1 giây</li>
-          <li><strong style="color:var(--text-primary);">High throughput:</strong> Xử lý hàng chục nghìn TPS (giao dịch/giây)</li>
+          <li><strong style="color:var(--text-primary);">High throughput:</strong> Hiệu năng công bố 30.000 TPS và 2 Gigagas/giây</li>
           <li><strong style="color:var(--text-primary);">Fault tolerance:</strong> Hoạt động ổn định dù có đến 1/3 validator bị lỗi</li>
           <li><strong style="color:var(--text-primary);">Decentralized security:</strong> Phân tán hoàn toàn trên global validator set</li>
         </ul>
@@ -169,33 +169,33 @@
   <section class="section" style="background:var(--bg-surface);">
     <div class="container">
       <div class="section-label">Bảo Mật Nâng Cao</div>
-      <h2 class="section-title">Tích Hợp Restaking</h2>
-      <p class="section-subtitle">Pharos hỗ trợ multi-asset protocol để tăng cường bảo mật và thanh khoản thông qua tích hợp với các giao thức restaking hàng đầu</p>
+      <h2 class="section-title">Native Restaking Cho SPNs</h2>
+      <p class="section-subtitle">Mô hình staking của Pharos cho phép mở rộng shared security từ Primary Network sang các Special Processing Network</p>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
         <div class="tech-card">
           <div class="tech-header">
             <div class="tech-icon">₿</div>
             <div>
-              <h3>Babylon Integration</h3>
-              <div class="tech-label">Bitcoin Restaking</div>
+              <h3>Chứng Chỉ stP</h3>
+              <div class="tech-label">Native Restaking</div>
             </div>
           </div>
-          <p>Tích hợp với Babylon cho phép stBTC (Bitcoin đã stake) lưu hành trong hệ sinh thái DeFi của Pharos. Bitcoin holders có thể tham gia bảo mật mạng Pharos và nhận phần thưởng.</p>
+          <p>Mỗi token được validator stake trên Primary Network tạo ra chứng chỉ stP. Validator có thể restake stP vào SPN để cung cấp bảo mật và nhận thêm phần thưởng, đồng thời chấp nhận rủi ro slashing tương ứng.</p>
           <div class="tech-features">
-            <span>stBTC</span><span>Bitcoin Security</span><span>DeFi Yield</span>
+            <span>stP</span><span>Shared Security</span><span>SPN Rewards</span>
           </div>
         </div>
         <div class="tech-card">
           <div class="tech-header">
             <div class="tech-icon">Ξ</div>
             <div>
-              <h3>EigenLayer Integration</h3>
-              <div class="tech-label">Ethereum Restaking</div>
+              <h3>Multi-asset Mở Rộng</h3>
+              <div class="tech-label">Adaptive Restaking</div>
             </div>
           </div>
-          <p>Tích hợp với EigenLayer cho phép stETH tham gia hệ sinh thái Pharos DeFi. Ethereum stakers có thêm cơ hội kiếm lợi nhuận trong khi đóng góp vào bảo mật của Pharos.</p>
+          <p>Tài liệu kiến trúc mô tả khả năng kết nối các giao thức restaking như Babylon và EigenLayer để đưa tài sản như stBTC, stETH vào hệ sinh thái. Đây là hướng hỗ trợ của giao thức, không nên hiểu là cam kết lợi nhuận.</p>
           <div class="tech-features">
-            <span>stETH</span><span>Shared Security</span><span>Extra Yield</span>
+            <span>Multi-asset</span><span>Babylon</span><span>EigenLayer</span>
           </div>
         </div>
       </div>
@@ -215,7 +215,7 @@
           <p style="color:var(--text-secondary); font-size:1.0625rem; line-height:1.8; margin-bottom:24px;">
             Performance benchmarks đã được thử nghiệm trên Geth, và các hợp tác trong tương lai với đối tác hệ sinh thái sẽ giúp thúc đẩy phát triển cơ sở hạ tầng Web3.
           </p>
-          <a href="https://pharosnetwork.xyz/devhub" target="_blank" class="btn btn-primary">Bắt Đầu Xây Dựng ↗</a>
+          <a href="https://www.pharos.xyz/devhub" target="_blank" class="btn btn-primary">Bắt Đầu Xây Dựng ↗</a>
         </div>
         <div data-aos="fade-up" data-delay="150">
           <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:32px;">

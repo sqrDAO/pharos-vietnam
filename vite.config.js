@@ -10,7 +10,7 @@ const pageMeta = {
   'index.html': {
     page: 'index',
     title: 'Pharos Vietnam | Cộng Đồng Pharos Network Việt Nam',
-    description: 'Cộng đồng Pharos Network tại Việt Nam - Khám phá hệ sinh thái blockchain L1 nhanh nhất, thông tin về dự án, hướng dẫn tham gia testnet và cập nhật tin tức mới nhất bằng tiếng Việt.',
+    description: 'Cộng đồng Pharos Network tại Việt Nam - Khám phá Mainnet Layer-1 RealFi, hệ sinh thái RWA, Atlantic Testnet và tin tức mới nhất bằng tiếng Việt.',
     og: true,
     keywords: 'Pharos Network, Pharos Vietnam, blockchain, EVM, L1, Web3, DeFi, RWA, crypto, tiếng Việt',
     ogDescription: 'Cổng thông tin cộng đồng Pharos Network tại Việt Nam - thông tin hệ sinh thái, hướng dẫn tham gia và tin tức mới nhất.',
@@ -18,12 +18,12 @@ const pageMeta = {
   'about.html': {
     page: 'about',
     title: 'Về Pharos Network | Pharos Vietnam',
-    description: 'Tìm hiểu về Pharos Network — blockchain L1 EVM nhanh nhất, kiến trúc modular 3 lớp, tầm nhìn và sứ mệnh kết nối tài chính toàn cầu.',
+    description: 'Tìm hiểu về Pharos Network — blockchain Layer-1 RealFi, kiến trúc modular 3 lớp và hạ tầng tài chính onchain hiệu suất cao.',
   },
   'ecosystem.html': {
     page: 'ecosystem',
     title: 'Hệ Sinh Thái Pharos | Pharos Vietnam',
-    description: 'Khám phá toàn bộ hệ sinh thái Pharos Network — các dự án, đối tác, nhà đầu tư đang xây dựng trên nền tảng blockchain L1 EVM nhanh nhất.',
+    description: 'Khám phá hệ sinh thái Pharos Network — RealFi Alliance, đối tác RWA, ứng dụng DeFi và hạ tầng đang xây dựng trên Pharos.',
   },
   'technology.html': {
     page: 'technology',
@@ -34,7 +34,7 @@ const pageMeta = {
   'guide.html': {
     page: 'guide',
     title: 'Hướng Dẫn Tham Gia | Pharos Vietnam',
-    description: 'Hướng dẫn chi tiết bằng tiếng Việt cách tham gia Pharos Network: cài đặt ví, tham gia testnet, chạy validator node và trở thành developer trên Pharos.',
+    description: 'Hướng dẫn chi tiết bằng tiếng Việt cách cài đặt ví, tham gia Atlantic Testnet, chạy validator node và xây dựng trên Pharos.',
   },
   'news.html': {
     page: 'news',
