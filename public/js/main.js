@@ -145,15 +145,15 @@ function renderNewsPreview() {
 }
 
 // ---- HIGHLIGHT ACTIVE NAV ----
+// Prefer the page identity declared on <body data-page="...">; fall back to the
+// URL filename so it still works if the attribute is missing.
 function highlightActiveNav() {
-  const path = window.location.pathname.split('/').pop() || 'index.html';
+  const page = document.body.dataset.page
+    || (window.location.pathname.split('/').pop() || 'index').replace(/\.html$/, '')
+    || 'index';
   document.querySelectorAll('.nav-link').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === path || (path === '' && href === 'index.html')) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
+    link.classList.toggle('active', href === `${page}.html`);
   });
 }
 

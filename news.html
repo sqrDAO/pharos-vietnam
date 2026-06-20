@@ -1,57 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tin Tức Pharos | Pharos Vietnam</title>
-  <meta name="description" content="Tin tức và cập nhật mới nhất về Pharos Network bằng tiếng Việt — thông báo, hợp tác, cập nhật công nghệ và sự kiện cộng đồng." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
-  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
-  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="msapplication-TileColor" content="#0a0c10" />
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-  <meta name="theme-color" content="#0a0c10" />
-  <link rel="stylesheet" href="css/style.css" />
+  {{> head}}
 </head>
-<body>
+<body data-page="news">
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <div class="logo-icon">⚡</div>
-        <span class="logo-text">Pharos <span class="logo-vn">Vietnam</span></span>
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
-        <li><a href="about.html" class="nav-link">Về Pharos</a></li>
-        <li><a href="ecosystem.html" class="nav-link">Hệ Sinh Thái</a></li>
-        <li><a href="technology.html" class="nav-link">Công Nghệ</a></li>
-        <li><a href="guide.html" class="nav-link">Hướng Dẫn</a></li>
-        <li><a href="news.html" class="nav-link active">Tin Tức</a></li>
-        <li><a href="community.html" class="nav-link">Cộng Đồng</a></li>
-      </ul>
-      <a href="https://testnet.pharosnetwork.xyz/" target="_blank" class="btn btn-primary nav-cta">Tham Gia Testnet</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+  {{> navbar}}
 
   <!-- Page Hero -->
   <section class="page-hero">
@@ -144,129 +98,10 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="index.html" class="nav-logo">
-            <div class="logo-icon">⚡</div>
-            <span class="logo-text">Pharos <span class="logo-vn">Vietnam</span></span>
-          </a>
-          <p>Cổng thông tin cộng đồng Pharos Network tại Việt Nam.</p>
-          <div class="footer-social">
-            <a href="https://discord.com/invite/pharos" target="_blank" class="social-link" aria-label="Discord">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.08.114 18.1.13 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-            </a>
-            <a href="https://x.com/pharos_network" target="_blank" class="social-link" aria-label="Twitter">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-links-grid">
-          <div class="footer-col">
-            <h4>Pharos Network</h4>
-            <ul>
-              <li><a href="about.html">Giới Thiệu</a></li>
-              <li><a href="technology.html">Công Nghệ</a></li>
-              <li><a href="ecosystem.html">Hệ Sinh Thái</a></li>
-              <li><a href="https://docs.pharosnetwork.xyz/" target="_blank">Tài Liệu ↗</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Cộng Đồng</h4>
-            <ul>
-              <li><a href="community.html">Cộng Đồng VN</a></li>
-              <li><a href="guide.html">Hướng Dẫn</a></li>
-              <li><a href="news.html">Tin Tức</a></li>
-              <li><a href="https://testnet.pharosnetwork.xyz/" target="_blank">Testnet ↗</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Tài Nguyên</h4>
-            <ul>
-              <li><a href="https://pharosnetwork.xyz/resources" target="_blank">Blog ↗</a></li>
-              <li><a href="https://pharosnetwork.xyz/devhub" target="_blank">Dev Hub ↗</a></li>
-              <li><a href="https://pharosnetwork.xyz/research" target="_blank">Research ↗</a></li>
-              <li><a href="https://career.pharosnetwork.xyz/" target="_blank">Careers ↗</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Pharos Vietnam Community. Đây là trang cộng đồng không chính thức.</p>
-        <p>Thông tin từ <a href="https://pharosnetwork.xyz" target="_blank">pharosnetwork.xyz</a></p>
-      </div>
-    </div>
-  </footer>
+  {{> footer}}
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      renderNewsFull();
-      initNewsFilter();
-      showLastUpdate();
-    });
-
-    function renderNewsFull() {
-      const grid = document.getElementById('newsFullGrid');
-      if (!grid || !window.PharosData) return;
-
-      const news = window.PharosData.news;
-      grid.innerHTML = news.map(item => `
-        <article class="news-full-card" data-category="${item.category}" data-aos="fade-up">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span class="news-category">${item.category}</span>
-            <span class="news-date">${item.date}</span>
-          </div>
-          <h3>${item.title}</h3>
-          <p>${item.content || item.summary}</p>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto;">
-            <span style="font-size:0.8rem; color:var(--text-muted);">${item.source}</span>
-            <a href="${item.link}" target="_blank" style="color:var(--pharos-gold); font-size:0.85rem; font-weight:500;">Đọc thêm →</a>
-          </div>
-        </article>
-      `).join('');
-
-      if (typeof initAOS === 'function') initAOS();
-    }
-
-    function initNewsFilter() {
-      const filterContainer = document.getElementById('newsFilter');
-      if (!filterContainer) return;
-
-      filterContainer.addEventListener('click', (e) => {
-        const btn = e.target.closest('.filter-btn');
-        if (!btn) return;
-
-        filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
-        document.querySelectorAll('.news-full-card').forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.style.display = '';
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(10px)';
-            setTimeout(() => {
-              card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            }, 50);
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    }
-
-    function showLastUpdate() {
-      const el = document.getElementById('lastUpdateDate');
-      if (el && window.PharosData) {
-        el.textContent = window.PharosData.meta.lastUpdated;
-      }
-    }
-  </script>
+  <script src="js/news.js"></script>
 </body>
 </html>

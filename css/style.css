@@ -1578,3 +1578,28 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--pharos-cyan);
   border-radius: 50%;
 }
+
+/* =============================================
+   PAGE RESPONSIVE OVERRIDES
+   (extracted from per-page inline <style> blocks)
+   ============================================= */
+@media (max-width: 768px) {
+  /* about.html */
+  .vision-grid { grid-template-columns: 1fr !important; }
+  .specs-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  /* ecosystem.html */
+  .programs-grid, .realfi-grid { grid-template-columns: 1fr !important; }
+  /* guide.html */
+  .node-grid, .dev-grid { grid-template-columns: 1fr !important; }
+  /* community.html */
+  .contribute-grid, .about-site-grid { grid-template-columns: 1fr !important; display: grid !important; }
+  /* technology.html */
+  .info-grid,
+  section .container > div[style*="grid-template-columns:1fr 1fr"] { display: block !important; }
+  .spec-card { margin-bottom: 16px; }
+}
+
+@media (max-width: 480px) {
+  /* about.html */
+  .specs-grid { grid-template-columns: 1fr !important; }
+}
