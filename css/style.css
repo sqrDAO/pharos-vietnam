@@ -3,6 +3,52 @@
    Premium Dark Web3 Design
    ============================================= */
 
+/* ---------- BRAND FONT: PP Neue Montreal ----------
+   Self-hosted from public/fonts/ (served at /fonts/...). One family, mapped
+   by weight so `font-weight` rules resolve correctly. */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  font-style: normal;
+  font-weight: 100 300;
+  font-display: swap;
+  src: url('/fonts/pp-neue-montreal/ppneuemontreal-thin.woff') format('woff');
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/pp-neue-montreal/ppneuemontreal-book.woff') format('woff');
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/pp-neue-montreal/ppneuemontreal-italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/pp-neue-montreal/ppneuemontreal-medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/pp-neue-montreal/ppneuemontreal-semibolditalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+  src: url('/fonts/pp-neue-montreal/ppneuemontreal-bold.woff') format('woff');
+}
+
 /* ---------- ROOT DESIGN TOKENS ---------- */
 :root {
   /* Pharos brand — blue is the single chromatic accent (#0113B7) */
@@ -48,7 +94,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: var(--bg-base);
   color: var(--text-primary);
   line-height: 1.7;
@@ -66,7 +112,7 @@ ul { list-style: none; }
 
 /* ---------- TYPOGRAPHY ---------- */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.2;
   font-weight: 700;
 }
@@ -144,7 +190,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-md);
   font-size: 0.9375rem;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   cursor: pointer;
   border: none;
   transition: all var(--transition);
@@ -219,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
   flex-shrink: 0;
@@ -426,7 +472,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .stat-value {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--pharos-blue);
@@ -1112,7 +1158,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .layer-num {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--pharos-blue);
@@ -1152,7 +1198,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .spec-value {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--pharos-blue);
@@ -1361,7 +1407,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.25rem;
   font-weight: 800;
   color: #fff;
