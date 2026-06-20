@@ -12,7 +12,7 @@
 //
 // Env:
 //   GEMINI_API_KEY  (required) — Gemini API key
-//   GEMINI_MODEL    (optional) — model id, default "gemini-flash-latest"
+//   GEMINI_MODEL    (optional) — model id, default "gemini-2.5-flash"
 //
 // Outputs:
 //   - Edits public/js/data.js in place (only when there is verified new content)
@@ -163,6 +163,8 @@ JSON shape:
 
 Rules:
 - Only include items that are genuinely new and backed by a source URL from the research.
+- Every "link"/"website"/"sources" URL MUST be the canonical article URL on the publisher's own site
+  (e.g. pharos.xyz, the exchange, the news outlet). NEVER use a search-engine, vertexaisearch, or redirect URL.
 - Do NOT reuse any of these existing news ids: ${JSON.stringify(existingNewsIds)}.
 - Do NOT reuse any of these existing ecosystem ids: ${JSON.stringify(existingEcoIds)}.
 - techSpecs may ONLY use these existing keys (and only if the value genuinely changed): ${JSON.stringify(techKeys)}.
@@ -199,13 +201,56 @@ function parseJsonLoose(text) {
   }
 }
 
-// --- Validation ---------------------------------------------------------------
+// --- URL resolution -----------------------------------------------------------
 function nonEmptyStr(v) {
   return typeof v === "string" && v.trim().length > 0;
 }
 function isHttpUrl(v) {
   return nonEmptyStr(v) && /^https?:\/\//i.test(v.trim());
 }
+
+// Gemini grounding citations come back as temporary redirect links that expire
+// and don't point at the real publisher. Detect and resolve them to the final URL.
+function isGroundingRedirect(url) {
+  return /vertexaisearch\.cloud\.google\.com\/grounding-api-redirect\//i.test(url || "");
+}
+
+async function resolveRedirect(url) {
+  if (!isHttpUrl(url)) return null;
+  if (!isGroundingRedirect(url)) return url.trim();
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 10000);
+    const res = await fetch(url, { method: "GET", redirect: "follow", signal: ctrl.signal });
+    clearTimeout(timer);
+    const final = res.url || url;
+    // If it still points at the redirect host, treat as unresolved.
+    return isGroundingRedirect(final) ? null : final;
+  } catch {
+    return null;
+  }
+}
+
+// Resolve every outward link in the payload to a real source URL, dropping any
+// that can't be resolved (those items then fail validation and are skipped).
+async function resolveLinks(payload) {
+  for (const n of payload.news ?? []) {
+    if (nonEmptyStr(n.link)) n.link = (await resolveRedirect(n.link)) || "";
+  }
+  for (const e of payload.ecosystem ?? []) {
+    if (nonEmptyStr(e.website)) e.website = (await resolveRedirect(e.website)) || "";
+  }
+  if (Array.isArray(payload.sources)) {
+    const out = [];
+    for (const s of payload.sources) {
+      const r = await resolveRedirect(s);
+      if (r && !isGroundingRedirect(r)) out.push(r);
+    }
+    payload.sources = out;
+  }
+}
+
+// --- Validation ---------------------------------------------------------------
 
 function validate(payload, existing) {
   const existingNewsIds = new Set(existing.news.map((n) => n.id));
@@ -226,6 +271,7 @@ function validate(payload, existing) {
       nonEmptyStr(n.summary) &&
       nonEmptyStr(n.content) &&
       isHttpUrl(n.link) &&
+      !isGroundingRedirect(n.link) &&
       nonEmptyStr(n.source);
     if (ok) seenNews.add(n.id);
     else console.warn(`[skip news] ${n?.id ?? "(no id)"} — failed validation`);
@@ -247,6 +293,7 @@ function validate(payload, existing) {
       Array.isArray(e.tags) &&
       e.tags.every(nonEmptyStr) &&
       isHttpUrl(e.website) &&
+      !isGroundingRedirect(e.website) &&
       nonEmptyStr(e.status);
     if (ok) seenEco.add(e.id);
     else console.warn(`[skip ecosystem] ${e?.id ?? "(no id)"} — failed validation`);
@@ -413,6 +460,7 @@ async function main() {
   }
 
   const payload = await structureToJson(research, current);
+  await resolveLinks(payload); // turn Gemini grounding redirects into real source URLs
   const changes = validate(payload, current);
 
   const total =

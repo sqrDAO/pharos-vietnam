@@ -9,8 +9,9 @@ window.PharosData = {
   // ---- METADATA ----
   meta: {
     lastUpdated: "2026-06-20",
-    version: "2.0.1",
+    version: "2.0.2",
     sources: [
+      "https://coinmarketcap.com/cmc-ai/pharos/latest-updates/",
       "https://www.pharos.xyz",
       "https://docs.pharosnetwork.xyz",
       "https://www.pharos.xyz/ecosystem",
@@ -104,6 +105,36 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-bitrue-listing-agent-carnival",
+      title: "Pharos (PROS) niêm yết trên Bitrue và ra mắt chiến dịch Agent Carnival",
+      category: "Thông Báo",
+      date: "2026-06-13",
+      summary: "Pharos (PROS) đã chính thức niêm yết trên sàn giao dịch Bitrue, đồng thời Mạng lưới Pharos ra mắt chiến dịch Agent Carnival toàn cầu với tổng giải thưởng 150.000 PROS.",
+      content: "Pharos (PROS) đã được niêm yết chính thức trên sàn giao dịch Bitrue, cho phép giao dịch giao ngay PROS/USDT. Song song đó, Mạng lưới Pharos đã khởi động chương trình 'Agent Carnival', một chiến dịch dành cho nhà phát triển toàn cầu với tổng giải thưởng 150.000 PROS, nhằm khuyến khích phát triển các tác nhân AI trên chuỗi.",
+      link: "https://coinmarketcap.com/cmc-ai/pharos/latest-updates/",
+      source: "CoinMarketCap"
+    },
+    {
+      id: "pharos-series-a-funding",
+      title: "Pharos Network hoàn thành vòng gọi vốn Series A trị giá 44 triệu USD",
+      category: "Thông Báo",
+      date: "2026-06-16",
+      summary: "Pharos Network đã hoàn thành vòng gọi vốn Series A trị giá 44 triệu USD, nâng tổng số vốn huy động lên 52 triệu USD, với sự tham gia của các quỹ đầu tư lớn và đối tác chiến lược.",
+      content: "Mạng lưới Pharos đã hoàn tất thành công vòng gọi vốn Series A trị giá 44 triệu USD, nâng tổng số vốn huy động lên 52 triệu USD. Vòng này được đồng dẫn dắt bởi một quỹ đầu tư tư nhân lớn của châu Á, một công ty năng lượng mới niêm yết và một công ty tài chính tuân thủ quy định của Hồng Kông, cùng với các khoản đầu tư chiến lược từ Sumitomo Corporation, SNZ, Chainlink và Flow Traders. Số vốn này sẽ được sử dụng để hỗ trợ mở rộng cơ sở hạ tầng tài sản thế giới thực (RWA) trên toàn cầu.",
+      link: "https://www.pharos.xyz/resources",
+      source: "Pharos Resources"
+    },
+    {
+      id: "pharos-ai-maas-payments-zan-partnership",
+      title: "Pharos Network mở rộng tùy chọn thanh toán AI MaaS và hợp tác với ZAN",
+      category: "Cập Nhật",
+      date: "2026-06-16",
+      summary: "Pharos Network đã mở rộng tùy chọn thanh toán cho nền tảng AI MaaS bao gồm token $PROS và USDC, thông qua hợp tác với ZAN để tích hợp giao thức x402.",
+      content: "Mạng lưới Pharos đã mở rộng các tùy chọn thanh toán cho nền tảng AI Model-as-a-Service (MaaS) của mình để bao gồm cả token $PROS gốc và stablecoin USDC. Sự phát triển này, thông qua hợp tác với ZAN, tích hợp giao thức x402 nhằm tạo điều kiện thuận lợi cho các khoản thanh toán tự động giữa các tác nhân AI.",
+      link: "https://www.pharos.xyz/resources",
+      source: "Pharos Resources"
+    },
     {
       id: "mainnet-usdc-cctp",
       title: "Pharos Mainnet Tích Hợp Chính Thức USDC Và CCTP",
@@ -236,6 +267,6 @@ window.PharosData = {
     interop: "Cross-SPN + Chainlink CCIP + Circle CCTP",
     restaking: "Tái đặt cược nội tại cho SPN",
     throughput: "30.000 giao dịch/giây / 2 Gigagas",
-    funding: "8 triệu USD"
+    funding: "52 triệu USD"
   }
 };
