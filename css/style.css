@@ -1522,6 +1522,12 @@ h1, h2, h3, h4, h5, h6 {
 /* =============================================
    RESPONSIVE
    ============================================= */
+/* Hide the bottom scroll hint when the viewport is too short for the tall
+   hero content — otherwise it overlaps the CTA buttons. */
+@media (max-height: 820px) {
+  .hero-scroll { display: none; }
+}
+
 @media (max-width: 1024px) {
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
