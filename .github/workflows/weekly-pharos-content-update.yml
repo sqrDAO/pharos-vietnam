@@ -1,0 +1,60 @@
+name: Weekly Pharos content update
+
+# Runs every Sunday at 13:00 UTC (= 20:00 Asia/Saigon). Researches the latest
+# Pharos Network news/developments/stats via the Gemini API, updates the site
+# content in public/js/data.js, and opens a PR for review. Never pushes to main.
+on:
+  schedule:
+    - cron: "0 13 * * 0"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: weekly-pharos-content-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Research and update content (Gemini)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
+        run: node scripts/update-pharos-content.js
+
+      - name: Read change flag
+        id: flag
+        run: echo "changed=$(cat has-changes.txt 2>/dev/null || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Verify build
+        if: steps.flag.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Create pull request
+        if: steps.flag.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: public/js/data.js
+          branch: content/weekly-update
+          delete-branch: true
+          commit-message: "chore(content): weekly Pharos content refresh"
+          title: "Cập nhật nội dung Pharos hàng tuần"
+          body-path: pr-body.md
+          labels: |
+            content
+            automated
