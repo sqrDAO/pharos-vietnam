@@ -9,7 +9,7 @@ window.PharosData = {
   // ---- METADATA ----
   meta: {
     lastUpdated: "2026-06-20",
-    version: "2.0.0",
+    version: "2.0.1",
     sources: [
       "https://www.pharos.xyz",
       "https://docs.pharosnetwork.xyz",
@@ -25,17 +25,17 @@ window.PharosData = {
       name: "Ant Digital Technologies",
       category: "RWA / DeFi",
       icon: "🏦",
-      description: "Đối tác chiến lược cùng Pharos phát triển hạ tầng tài sản thực (RWA). Pharos công bố hai bên đang ươm tạo pipeline sàn giao dịch RWA trị giá 1,5 tỷ USD.",
-      tags: ["RWA", "Exchange", "Partner"],
+      description: "Đối tác chiến lược cùng Pharos phát triển hạ tầng tài sản thực (RWA). Pharos công bố hai bên đang ươm tạo danh mục sàn giao dịch RWA trị giá 1,5 tỷ USD.",
+      tags: ["RWA", "Sàn giao dịch", "Đối tác"],
       website: "https://www.antdigital.com/",
       status: "Đang phát triển"
     },
     {
       id: "chainlink",
       name: "Chainlink",
-      category: "Infrastructure",
+      category: "Hạ tầng",
       icon: "🔗",
-      description: "Pharos chọn Chainlink CCIP làm hạ tầng cross-chain chuẩn và tích hợp Data Streams để cung cấp dữ liệu thị trường độ trễ thấp cho các sản phẩm RWA được token hóa.",
+      description: "Pharos chọn Chainlink CCIP làm hạ tầng liên chuỗi chuẩn và tích hợp Data Streams để cung cấp dữ liệu thị trường độ trễ thấp cho các sản phẩm RWA được mã hóa.",
       tags: ["CCIP", "Data Streams", "RWA"],
       website: "https://chain.link/",
       status: "Tích hợp"
@@ -45,7 +45,7 @@ window.PharosData = {
       name: "Centrifuge",
       category: "RWA / DeFi",
       icon: "🏛️",
-      description: "Centrifuge và Pharos hợp tác mở rộng hạ tầng phân phối onchain cho tài sản cấp tổ chức, kết nối quy trình phát hành RWA với thanh khoản RealFi.",
+      description: "Centrifuge và Pharos hợp tác mở rộng hạ tầng phân phối trên chuỗi cho tài sản cấp tổ chức, kết nối quy trình phát hành RWA với thanh khoản RealFi.",
       tags: ["RWA", "Institutional", "Tokenization"],
       website: "https://centrifuge.io/",
       status: "Đối tác"
@@ -53,19 +53,19 @@ window.PharosData = {
     {
       id: "goldsky",
       name: "Goldsky",
-      category: "Infrastructure",
+      category: "Hạ tầng",
       icon: "📊",
-      description: "Infrastructure partner cung cấp dịch vụ indexing và data streaming cho Pharos Network. Cho phép developer truy cập dữ liệu blockchain Pharos theo thời gian thực.",
-      tags: ["Indexing", "Data", "Infrastructure"],
+      description: "Đối tác hạ tầng cung cấp dịch vụ lập chỉ mục và truyền dữ liệu cho Pharos Network, giúp nhà phát triển truy cập dữ liệu blockchain theo thời gian thực.",
+      tags: ["Lập chỉ mục", "Dữ liệu", "Hạ tầng"],
       website: "https://goldsky.com/",
       status: "Hoạt động"
     },
     {
       id: "concero",
       name: "Concero",
-      category: "Infrastructure",
+      category: "Hạ tầng",
       icon: "🌉",
-      description: "Tích hợp Concero mang đến khả năng kết hợp cross-chain cho RWA, hỗ trợ luân chuyển tài sản và thông điệp giữa Pharos với các hệ sinh thái khác.",
+      description: "Tích hợp Concero mang đến khả năng kết hợp liên chuỗi cho RWA, hỗ trợ luân chuyển tài sản và thông điệp giữa Pharos với các hệ sinh thái khác.",
       tags: ["Cross-chain", "Interoperability", "RWA"],
       website: "https://concero.io/",
       status: "Tích hợp"
@@ -75,7 +75,7 @@ window.PharosData = {
       name: "Pharos Foundation",
       category: "RWA / DeFi",
       icon: "🧭",
-      description: "Tổ chức thúc đẩy hệ sinh thái RealFi của Pharos, hỗ trợ tiêu chuẩn, quan hệ đối tác và các sáng kiến đưa tài sản thực lên onchain.",
+      description: "Tổ chức thúc đẩy hệ sinh thái RealFi của Pharos, hỗ trợ tiêu chuẩn, quan hệ đối tác và các sáng kiến đưa tài sản thực lên chuỗi.",
       tags: ["RealFi", "Ecosystem", "Foundation"],
       website: "https://www.pharos.xyz/resources",
       status: "Hoạt động"
@@ -85,17 +85,17 @@ window.PharosData = {
       name: "Circle",
       category: "RWA / DeFi",
       icon: "💵",
-      description: "USDC và Cross-Chain Transfer Protocol (CCTP) đã hoạt động trên Pharos Mainnet từ tháng 4/2026, cung cấp thanh khoản stablecoin gốc và chuyển USDC cross-chain theo cơ chế burn-and-mint.",
-      tags: ["USDC", "CCTP", "Payments"],
+      description: "USDC và Giao thức Chuyển tiền Liên chuỗi (CCTP) đã hoạt động trên mạng chính Pharos từ tháng 4/2026, cung cấp thanh khoản stablecoin gốc và chuyển USDC liên chuỗi theo cơ chế đốt và đúc.",
+      tags: ["USDC", "CCTP", "Thanh toán"],
       website: "https://www.circle.com/",
-      status: "Mainnet Live"
+      status: "Mạng chính hoạt động"
     },
     {
       id: "realfi-alliance",
       name: "RealFi Alliance",
       category: "DeFi / RWA",
       icon: "🌍",
-      description: "Liên minh RealFi của Pharos tập trung vào việc mở rộng tài chính onchain cho các cộng đồng chưa được phục vụ, kết nối tài chính truyền thống và DeFi.",
+      description: "Liên minh RealFi của Pharos tập trung mở rộng tài chính trên chuỗi cho các cộng đồng chưa được phục vụ, kết nối tài chính truyền thống và DeFi.",
       tags: ["RealFi", "DeFi", "Financial Inclusion"],
       website: "https://www.pharos.xyz/realfi-alliance",
       status: "Hoạt động"
@@ -157,7 +157,7 @@ window.PharosData = {
     {
       id: "realfi-incubator",
       title: "Pharos Ra Mắt Quỹ Ươm Tạo RealFi Hơn 10 Triệu USD",
-      category: "Developer",
+      category: "Nhà phát triển",
       date: "2026-02-03",
       summary: "Pharos công bố chương trình ươm tạo RealFi trị giá hơn 10 triệu USD cùng Dragon Draper và Lightspeed, hỗ trợ các dự án RWA, thanh toán, DeFi và hạ tầng.",
       content: "Chương trình cung cấp vốn, cố vấn kỹ thuật, hỗ trợ go-to-market, kết nối gọi vốn và tư vấn pháp lý cho đội ngũ xây dựng trên Pharos.",
@@ -234,8 +234,8 @@ window.PharosData = {
     finality: "< 1 giây",
     storage: "Giảm 80% (Delta-Encoded MVMMT)",
     interop: "Cross-SPN + Chainlink CCIP + Circle CCTP",
-    restaking: "Native Restaking cho SPNs",
-    throughput: "30.000 TPS / 2 Gigagas",
-    funding: "$8M USD"
+    restaking: "Tái đặt cược nội tại cho SPN",
+    throughput: "30.000 giao dịch/giây / 2 Gigagas",
+    funding: "8 triệu USD"
   }
 };

@@ -79,7 +79,10 @@ function animateCounter(el) {
     const progress = Math.min(elapsed / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
     const value = target * eased;
-    el.textContent = isDecimal ? value.toFixed(1) : Math.floor(value);
+    el.textContent = value.toLocaleString('vi-VN', {
+      minimumFractionDigits: isDecimal ? 1 : 0,
+      maximumFractionDigits: isDecimal ? 1 : 0
+    });
     if (progress < 1) requestAnimationFrame(update);
   };
 
