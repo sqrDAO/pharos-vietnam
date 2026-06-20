@@ -56,28 +56,29 @@
   --pharos-blue-bright: hsl(234, 95%, 52%); /* hover / glow brighter blue */
   --pharos-blue-dim: hsl(234, 80%, 28%);
 
-  --bg-base: hsl(0, 0%, 4%);                /* #0B0B0B */
-  --bg-surface: hsl(0, 0%, 7%);
-  --bg-card: hsl(0, 0%, 9%);
-  --bg-card-hover: hsl(0, 0%, 12%);
-  --bg-glass: hsla(0, 0%, 13%, 0.6);
+  /* Light theme — light-gray page, white surfaces, near-black text */
+  --bg-base: hsl(200, 16%, 92%);            /* light gray page (#E6EBED) */
+  --bg-surface: hsl(0, 0%, 100%);           /* white */
+  --bg-card: hsl(0, 0%, 100%);              /* white */
+  --bg-card-hover: hsl(200, 24%, 97%);
+  --bg-glass: hsla(0, 0%, 100%, 0.72);
 
-  --border-subtle: hsla(0, 0%, 100%, 0.1);  /* neutral hairline */
+  --border-subtle: hsla(220, 14%, 40%, 0.16); /* soft gray hairline */
   --border-glow: hsla(234, 90%, 55%, 0.35);
 
-  --text-primary: hsl(0, 0%, 100%);         /* #FFFFFF */
-  --text-secondary: hsl(200, 10%, 89%);     /* #DFE3E5 */
-  --text-muted: hsl(0, 0%, 45%);
+  --text-primary: hsl(0, 0%, 7%);           /* #0B0B0B near-black */
+  --text-secondary: hsl(0, 0%, 25%);        /* dark gray */
+  --text-muted: hsl(0, 0%, 48%);
 
   --gradient-blue: linear-gradient(135deg, hsl(234,99%,36%), hsl(234,95%,52%));
-  --gradient-hero: linear-gradient(135deg, hsl(0,0%,4%) 0%, hsl(234,40%,8%) 50%, hsl(0,0%,4%) 100%);
+  --gradient-hero: linear-gradient(180deg, hsl(200,18%,95%) 0%, hsl(200,15%,90%) 100%);
 
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-xl: 32px;
 
-  --shadow-card: 0 4px 24px hsla(0, 0%, 0%, 0.6);
+  --shadow-card: 0 8px 28px hsla(220, 35%, 25%, 0.10);
   --shadow-glow: 0 0 40px hsla(234, 90%, 55%, 0.18);
 
   --nav-height: 72px;
@@ -94,7 +95,7 @@ html {
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: var(--bg-base);
   color: var(--text-primary);
   line-height: 1.7;
@@ -114,7 +115,7 @@ ul { list-style: none; }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .gradient-text {
@@ -158,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
+  font-weight: 600;
   margin-bottom: 20px;
   color: var(--text-primary);
 }
@@ -246,7 +247,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar.scrolled {
-  background: hsla(0, 0%, 4%, 0.9);
+  background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -353,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
+  opacity: 0.12;
   animation: float 6s ease-in-out infinite;
 }
 
@@ -393,8 +394,8 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(hsla(0, 0%, 100%, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, hsla(0, 0%, 100%, 0.04) 1px, transparent 1px);
+    linear-gradient(hsla(220, 20%, 30%, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsla(220, 20%, 30%, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -411,9 +412,9 @@ h1, h2, h3, h4, h5, h6 {
   gap: 8px;
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--pharos-blue);
-  background: hsla(234, 90%, 55%, 0.08);
-  border: 1px solid hsla(234, 90%, 55%, 0.2);
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 10%);
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
   padding: 8px 18px;
   border-radius: 100px;
   margin-bottom: 28px;
@@ -435,7 +436,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-title {
   font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.1;
   margin-bottom: 24px;
   letter-spacing: -0.02em;
@@ -473,7 +474,7 @@ h1, h2, h3, h4, h5, h6 {
 .stat-value {
   font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--pharos-blue);
   line-height: 1;
   display: inline;
@@ -915,7 +916,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.2;
+  opacity: 0.12;
 }
 
 .cta-orb-1 {
@@ -1071,7 +1072,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.2;
+  opacity: 0.12;
 }
 
 .page-hero-orb-1 {
@@ -1098,7 +1099,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-hero h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
@@ -1159,7 +1160,7 @@ h1, h2, h3, h4, h5, h6 {
 .layer-num {
   font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--pharos-blue);
   min-width: 40px;
 }
@@ -1408,7 +1409,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   font-family: 'PP Neue Montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #fff;
   flex-shrink: 0;
   counter-increment: step;
