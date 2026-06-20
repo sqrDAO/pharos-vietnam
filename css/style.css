@@ -271,16 +271,15 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-.logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--gradient-blue);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
+.logo-mark {
+  height: 30px;
+  width: auto;
+  flex-shrink: 0;
+  color: var(--pharos-blue-bright); /* brand blue mark */
+  transition: color var(--transition);
 }
+
+.nav-logo:hover .logo-mark { color: var(--text-primary); }
 
 .logo-vn {
   color: var(--pharos-blue);
