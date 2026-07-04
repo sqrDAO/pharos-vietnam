@@ -8,9 +8,11 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-06-20",
-    version: "2.0.2",
+    lastUpdated: "2026-06-28",
+    version: "2.0.3",
     sources: [
+      "https://coinmarketcap.com/currencies/pharos/news/",
+      "https://thedefiant.io/pharos-network-partners-with-licensed-payments-provider-kun-to-tokenize-supply-chain-credit-and-enable-real-cross-border-payments-on-chain",
       "https://coinmarketcap.com/cmc-ai/pharos/latest-updates/",
       "https://www.pharos.xyz",
       "https://docs.pharosnetwork.xyz",
@@ -105,6 +107,76 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-pros-htx-listing",
+      title: "PROS được niêm yết trên HTX Global",
+      category: "Thông Báo",
+      date: "2026-06-22",
+      summary: "Token PROS đã được niêm yết trên sàn giao dịch lớn HTX Global, mở giao dịch giao ngay cặp PROS/USDT, nhằm tăng cường khả năng tiếp cận thị trường và thanh khoản.",
+      content: "Token PROS của Pharos Network đã chính thức được niêm yết trên sàn giao dịch hàng đầu HTX Global. Giao dịch giao ngay cho cặp PROS/USDT đã bắt đầu, đánh dấu một bước tiến quan trọng trong việc mở rộng khả năng tiếp cận thị trường và cải thiện thanh khoản cho token PROS.",
+      link: "https://coinmarketcap.com/currencies/pharos/news/",
+      source: "CoinMarketCap"
+    },
+    {
+      id: "pharos-mainnet-hardfork-korean-exchanges",
+      title: "Các sàn giao dịch Hàn Quốc hỗ trợ nâng cấp Mainnet Hard Fork của Pharos",
+      category: "Cập Nhật",
+      date: "2026-06-27",
+      summary: "Các sàn giao dịch lớn của Hàn Quốc như Upbit và Bithumb đã thông báo tạm ngừng gửi/rút PROS để hỗ trợ nâng cấp hard fork mạng chính của Pharos, dự kiến vào ngày 25 tháng 6 năm 2026, nhằm cải thiện bảo mật và khả năng mở rộng.",
+      content: "Các sàn giao dịch hàng đầu Hàn Quốc, bao gồm Upbit và Bithumb, đã thông báo tạm ngừng các hoạt động gửi và rút token PROS bắt đầu từ ngày 25 tháng 6 năm 2026. Động thái này nhằm hỗ trợ quá trình nâng cấp hard fork mạng chính sắp tới của Pharos Network. Bản nâng cấp giao thức quan trọng này, dự kiến diễn ra vào ngày 25 tháng 6 năm 2026, được thiết kế để tăng cường bảo mật, khả năng mở rộng và các tính năng mạng.",
+      link: "https://coinmarketcap.com/currencies/pharos/news/",
+      source: "CoinMarketCap"
+    },
+    {
+      id: "pharos-kun-partnership",
+      title: "Pharos Network hợp tác với KUN về thanh toán chuỗi cung ứng",
+      category: "Hợp Tác",
+      date: "2026-06-24",
+      summary: "Pharos Network đã công bố hợp tác chiến lược với KUN, một chuyên gia thanh toán kỹ thuật số doanh nghiệp được cấp phép, nhằm mã hóa tài sản tín dụng chuỗi cung ứng và xây dựng hệ thống thanh toán xuyên biên giới hiệu quả.",
+      content: "Pharos Network đã công bố quan hệ đối tác chiến lược với KUN, một nhà cung cấp dịch vụ thanh toán kỹ thuật số doanh nghiệp được cấp phép hoạt động tại Châu Á, Châu Phi, Châu Mỹ Latinh và Trung Đông. Sự hợp tác này nhằm mục đích mã hóa các tài sản tín dụng chuỗi cung ứng, như hóa đơn thương mại và khoản phải thu, cũng như xây dựng các kênh thanh toán xuyên biên giới trên chuỗi hiệu quả để giải quyết các vấn đề trong tài chính thương mại toàn cầu.",
+      link: "https://thedefiant.io/pharos-network-partners-with-licensed-payments-provider-kun-to-tokenize-supply-chain-credit-and-enable-real-cross-border-payments-on-chain",
+      source: "The Defiant"
+    },
+    {
+      id: "pharos-japan-blockchain-week",
+      title: "Pharos Network tham gia Japan Blockchain Week",
+      category: "Thông Báo",
+      date: "2026-06-27",
+      summary: "Pharos Network sẽ tham gia Japan Blockchain Week từ ngày 1 đến 15 tháng 7 năm 2026 để giới thiệu tầm nhìn RealFi và kết nối với cộng đồng nhà phát triển khu vực Châu Á-Thái Bình Dương.",
+      content: "Pharos Network sẽ tham gia Japan Blockchain Week, diễn ra từ ngày 1 đến ngày 15 tháng 7 năm 2026. Tại sự kiện này, Pharos sẽ giới thiệu tầm nhìn RealFi của mình và tương tác với cộng đồng nhà phát triển trong khu vực Châu Á-Thái Bình Dương.",
+      link: "https://coinmarketcap.com/currencies/pharos/news/",
+      source: "CoinMarketCap"
+    },
+    {
+      id: "agent-carnival-campaign-conclusion",
+      title: "Chiến dịch Agent Carnival sẽ kết thúc vào ngày 21 tháng 7",
+      category: "Thông Báo",
+      date: "2026-06-27",
+      summary: "Chiến dịch Agent Carnival, một hackathon kéo dài sáu tuần nhằm thúc đẩy nền kinh tế tác nhân AI trên chuỗi, dự kiến kết thúc vào ngày 21 tháng 7 năm 2026.",
+      content: "Chiến dịch Agent Carnival, một cuộc thi hackathon kéo dài sáu tuần được thiết kế để khởi động nền kinh tế tác nhân AI trên chuỗi, dự kiến sẽ kết thúc vào ngày 21 tháng 7 năm 2026.",
+      link: "https://coinmarketcap.com/currencies/pharos/news/",
+      source: "CoinMarketCap"
+    },
+    {
+      id: "palpha-vault-withdrawal-processing",
+      title: "Xử lý rút tiền từ pALPHA Vault dự kiến vào ngày 23 tháng 7",
+      category: "Cập Nhật",
+      date: "2026-06-27",
+      summary: "Việc xử lý rút tiền từ pALPHA Vault, một kho RealFi quan trọng, dự kiến vào ngày 23 tháng 7 năm 2026, sẽ ảnh hưởng đến dòng vốn trong hệ sinh thái.",
+      content: "Việc xử lý rút tiền từ pALPHA Vault, một kho RealFi chủ chốt, được nhắm mục tiêu vào ngày 23 tháng 7 năm 2026. Sự kiện này dự kiến sẽ có tác động đến dòng vốn trong hệ sinh thái.",
+      link: "https://coinmarketcap.com/currencies/pharos/news/",
+      source: "CoinMarketCap"
+    },
+    {
+      id: "pros-q2-airdrop-valuation-decline",
+      title: "Giá trị PROS giảm sau Airdrop Quý 2",
+      category: "Cập Nhật",
+      date: "2026-06-27",
+      summary: "Dữ liệu từ CryptoRank cho thấy PROS giảm 37.5% giá trị sau đợt airdrop Quý 2 năm 2026, phản ánh áp lực bán đáng kể từ người nhận airdrop.",
+      content: "Theo dữ liệu từ CryptoRank, token PROS của Pharos đã trải qua mức giảm 37.5% về giá trị sau đợt airdrop Quý 2 năm 2026. Hiệu suất này cho thấy những thách thức trong việc duy trì giá trị token và phản ánh áp lực bán đáng kể từ những người nhận airdrop.",
+      link: "https://coinmarketcap.com/currencies/pharos/news/",
+      source: "CoinMarketCap"
+    },
     {
       id: "pharos-bitrue-listing-agent-carnival",
       title: "Pharos (PROS) niêm yết trên Bitrue và ra mắt chiến dịch Agent Carnival",
