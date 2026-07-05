@@ -11,6 +11,9 @@ window.PharosData = {
     lastUpdated: "2026-07-05",
     version: "2.0.5",
     sources: [
+      "https://cryptonews.com/news/pharos-network-incubation-program-selects-faroo-as-first-investment-unlocks-rwa-staking-rewards.htm",
+      "https://www.barchart.com/story/news/28608460/pharos-network-expands-realfi-alliance-with-circle-avalon-labs-termmax-finance-primus-tulipa-capital-to-scale-productive-capital-across-onchain-finance",
+      "https://gov.uniswap.org/t/rfc-four-for-v4/28701",
       "https://coinmarketcap.com/currencies/pharos/news/",
       "https://thedefiant.io/pharos-network-partners-with-licensed-payments-provider-kun-to-tokenize-supply-chain-credit-and-enable-real-cross-border-payments-on-chain",
       "https://coinmarketcap.com/cmc-ai/pharos/latest-updates/",
@@ -107,6 +110,36 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-incubation-faroo-investment",
+      title: "Chương trình ươm tạo của Pharos Network chọn Faroo làm khoản đầu tư đầu tiên",
+      category: "Hợp Tác",
+      date: "2026-07-02",
+      summary: "Pharos Network đã công bố Faroo, một dự án phát triển kho tiền lai RWA, là khoản đầu tư đầu tiên của chương trình ươm tạo, cung cấp tài trợ và hỗ trợ hệ sinh thái.",
+      content: "Pharos Network đã công bố Faroo, một dự án đang phát triển kho tiền lai RWA, là khoản đầu tư đầu tiên của chương trình ươm tạo của mình. Faroo sẽ nhận được tài trợ và hỗ trợ hệ sinh thái với định giá 10 triệu đô la. Kho tiền lai của Faroo sẽ cung cấp phần thưởng staking và lợi nhuận dựa trên RWA cho những người nắm giữ token $PROS.",
+      link: "https://cryptonews.com/news/pharos-network-incubation-program-selects-faroo-as-first-investment-unlocks-rwa-staking-rewards.htm",
+      source: "Cryptonews"
+    },
+    {
+      id: "pharos-realfi-alliance-expansion-new-partners",
+      title: "Pharos Network mở rộng Liên minh RealFi với các đối tác chiến lược mới",
+      category: "Hợp Tác",
+      date: "2026-06-24",
+      summary: "Pharos Network đã mở rộng Liên minh RealFi bằng cách chào đón các đối tác chiến lược mới như Circle, Avalon Labs, TermMax Finance, Primus và Tulipa Capital.",
+      content: "Pharos Network đã mở rộng Liên minh RealFi bằng cách chào đón các đối tác chiến lược mới bao gồm Circle, Avalon Labs, TermMax Finance, Primus và Tulipa Capital. Việc mở rộng này nhằm mục đích mở rộng quy mô vốn sản xuất trong tài chính on-chain, tập trung vào việc tích hợp thanh khoản stablecoin, Bitcoin làm vốn lưu động, các sản phẩm thu nhập cố định, các lớp tin cậy có thể kiểm chứng và phân bổ vốn tổ chức.",
+      link: "https://www.barchart.com/story/news/28608460/pharos-network-expands-realfi-alliance-with-circle-avalon-labs-termmax-finance-primus-tulipa-capital-to-scale-productive-capital-across-onchain-finance",
+      source: "Barchart"
+    },
+    {
+      id: "uniswap-v4-pharos-deployment-proposal",
+      title: "Đề xuất triển khai Uniswap V4 trên Pharos Network",
+      category: "Công Nghệ",
+      date: "2026-06-29",
+      summary: "GFX Labs/Oku Trade đã đề xuất triển khai Uniswap V4 trên Pharos Network, nhấn mạnh Pharos là Layer 1 EVM chuyên về RWA và DeFi thông lượng cao.",
+      content: "GFX Labs/Oku Trade đã đề xuất triển khai Uniswap V4 trên Pharos Network, cùng với Sei, Etherlink và 0G. Pharos được nhấn mạnh là một Layer 1 EVM chuyên về token hóa RWA, DeFi thông lượng cao và cơ sở hạ tầng cấp tổ chức, với hơn 100 triệu đô la cam kết cho RWA trên mạng lưới.",
+      link: "https://gov.uniswap.org/t/rfc-four-for-v4/28701",
+      source: "Uniswap Governance"
+    },
     {
       id: "pharos-pros-htx-listing",
       title: "PROS được niêm yết trên HTX Global",
