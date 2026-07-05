@@ -460,7 +460,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-glass);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 24px 40px;
+  padding: 24px 28px;
   margin-bottom: 48px;
   backdrop-filter: blur(20px);
   flex-wrap: wrap;
@@ -468,7 +468,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .stat-item {
   text-align: center;
-  padding: 0 32px;
+  padding: 0 16px;
+  white-space: nowrap;
 }
 
 .stat-value {
@@ -806,6 +807,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-item.active .timeline-phase { color: var(--pharos-blue-bright); }
+
+.timeline-content p a {
+  color: var(--pharos-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.timeline-content p a:hover { color: var(--pharos-blue-bright); }
 
 .timeline-content h3 {
   font-size: 1.125rem;
@@ -1526,6 +1535,12 @@ h1, h2, h3, h4, h5, h6 {
    hero content — otherwise it overlaps the CTA buttons. */
 @media (max-height: 820px) {
   .hero-scroll { display: none; }
+}
+
+@media (max-width: 1199px) {
+  .stat-item { padding: 0 14px; }
+  .stat-value { font-size: 1.75rem; }
+  .stat-suffix { font-size: 0.875rem; }
 }
 
 @media (max-width: 1024px) {
