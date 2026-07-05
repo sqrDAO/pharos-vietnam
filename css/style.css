@@ -807,6 +807,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .timeline-item.active .timeline-phase { color: var(--pharos-blue-bright); }
 
+.timeline-content p a {
+  color: var(--pharos-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.timeline-content p a:hover { color: var(--pharos-blue-bright); }
+
 .timeline-content h3 {
   font-size: 1.125rem;
   margin-bottom: 8px;
