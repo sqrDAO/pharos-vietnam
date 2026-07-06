@@ -8,9 +8,11 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-07-05",
-    version: "2.0.5",
+    lastUpdated: "2026-07-06",
+    version: "2.1.0",
     sources: [
+      "https://pharosverse.xyz/",
+      "https://port.pharos.xyz/",
       "https://coinmarketcap.com/currencies/pharos/news/",
       "https://thedefiant.io/pharos-network-partners-with-licensed-payments-provider-kun-to-tokenize-supply-chain-credit-and-enable-real-cross-border-payments-on-chain",
       "https://coinmarketcap.com/cmc-ai/pharos/latest-updates/",
@@ -96,11 +98,699 @@ window.PharosData = {
     {
       id: "realfi-alliance",
       name: "RealFi Alliance",
-      category: "DeFi / RWA",
+      category: "RWA / DeFi",
       icon: "🌍",
       description: "Liên minh RealFi của Pharos tập trung mở rộng tài chính trên chuỗi cho các cộng đồng chưa được phục vụ, kết nối tài chính truyền thống và DeFi.",
       tags: ["RealFi", "DeFi", "Financial Inclusion"],
       website: "https://www.pharos.xyz/realfi-alliance",
+      status: "Hoạt động"
+    },
+
+    // --- RWA / DeFi (nguồn: pharosverse.xyz + port.pharos.xyz) ---
+    {
+      id: "bitverse",
+      name: "Bitverse",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/bitverse.png" alt="Bitverse" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Sàn perp DEX tất-cả-trong-một cho RWA, đưa tài sản thực và hợp đồng tương lai cổ phiếu Mỹ lên một nền tảng giao dịch tích hợp AI.",
+      tags: ["Perp DEX", "RWA", "Cổ phiếu Mỹ"],
+      website: "https://www.bitverse.zone/",
+      status: "Hoạt động"
+    },
+    {
+      id: "faroswap",
+      name: "FaroSwap",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/faroswap.png" alt="FaroSwap" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Sàn DEX gốc của Pharos, cung cấp thanh khoản chính xác và sâu cho hệ sinh thái RWA-Fi.",
+      tags: ["DEX", "AMM", "RWA-Fi"],
+      website: "https://faroswap.xyz/",
+      status: "Hoạt động"
+    },
+    {
+      id: "open-fi",
+      name: "OpenFi",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/openfi.png" alt="OpenFi" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao thức cho vay thế chấp bằng RWA, hỗ trợ cổ phiếu Mỹ, vàng và quỹ thị trường tiền tệ được mã hóa làm tài sản thế chấp để vay stablecoin.",
+      tags: ["Lending", "RWA", "Stablecoin"],
+      website: "https://app.open-fi.xyz/",
+      status: "Testnet"
+    },
+    {
+      id: "brokex",
+      name: "Brokex",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/brokex.png" alt="Brokex" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao dịch CFD phi tập trung cho cổ phiếu, ngoại hối, hàng hóa và crypto — vận hành trên Pharos.",
+      tags: ["CFD", "DEX", "RWA"],
+      website: "https://brokex.trade/",
+      status: "Testnet"
+    },
+    {
+      id: "zentrafi",
+      name: "ZentraFi",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/zentrafi.png" alt="ZentraFi" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng DeFi tổng hợp cho phát hành token, giao dịch và quản lý thanh khoản trên Pharos.",
+      tags: ["DeFi", "Launchpad", "Thanh khoản"],
+      website: "https://www.zentrafi.xyz/",
+      status: "Testnet"
+    },
+    {
+      id: "aquaflux",
+      name: "AquaFlux",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/aquaflux.png" alt="AquaFlux" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Mở khóa lợi suất và thanh khoản RWA với mô hình ba token, cho phép tùy chỉnh rủi ro và lợi nhuận trên chuỗi.",
+      tags: ["RWA", "RWAfi", "Yield"],
+      website: "https://www.aquaflux.pro/",
+      status: "Hoạt động"
+    },
+    {
+      id: "spout",
+      name: "Spout Finance",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/spout.jpg" alt="Spout Finance" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Cải tiến tài sản thế chấp trong DeFi bằng các tài sản thực sinh lợi suất ổn định, dễ dự đoán cùng cơ chế quy đổi liền mạch.",
+      tags: ["RWAfi", "Yield"],
+      website: "https://www.spout.finance/",
+      status: "Testnet"
+    },
+    {
+      id: "r2-finance",
+      name: "R2 Finance",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/r2-finance.png" alt="R2 Finance" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Đưa lợi suất cấp tổ chức đến mọi người — được bảo chứng bởi tín phiếu kho bạc Mỹ (T-bills) và tín dụng tư nhân.",
+      tags: ["RWAfi", "T-bills", "Yield"],
+      website: "https://www.r2.money/",
+      status: "Testnet"
+    },
+    {
+      id: "r25",
+      name: "R25",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/r25.png" alt="R25" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao thức mã hóa RWA ứng dụng IoT và AI để biến tài sản điện mặt trời và xe điện thành sản phẩm đầu tư trên chuỗi.",
+      tags: ["RWA", "Tokenization", "IoT"],
+      website: "https://www.r25.xyz/",
+      status: "Hoạt động"
+    },
+    {
+      id: "asseto",
+      name: "Asseto",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/asseto.png" alt="Asseto" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng công nghệ mã hóa RWA hàng đầu, kết nối tài chính truyền thống và DeFi để xây dựng nền tảng tài sản trên chuỗi thế hệ mới.",
+      tags: ["RWA", "Tokenization"],
+      website: "https://asseto.finance/",
+      status: "Hoạt động"
+    },
+    {
+      id: "porto",
+      name: "Porto",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/porto.jpeg" alt="Porto" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Launchpad cho tài sản sinh lợi suất thanh khoản (LYA) được bảo chứng bởi RWA bảo toàn vốn như trái phiếu kho bạc Mỹ và quỹ thị trường tiền tệ.",
+      tags: ["RWA", "Yield", "Launchpad"],
+      website: "https://porto.capital/",
+      status: "Testnet"
+    },
+    {
+      id: "oku",
+      name: "OKU",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/oku.png" alt="OKU" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng giao dịch và cho vay đa chuỗi cấp chuyên nghiệp, tích hợp thanh khoản từ nhiều giao thức DeFi lớn trên Pharos.",
+      tags: ["Lending", "DEX"],
+      website: "https://oku.trade/",
+      status: "Hoạt động"
+    },
+    {
+      id: "morpho",
+      name: "Morpho",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/morpho.png" alt="Morpho" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao thức cho vay phi tập trung hàng đầu với hạ tầng vault mở, giúp tối ưu lợi suất cho tài sản gửi trên Pharos.",
+      tags: ["Lending", "Vault"],
+      website: "https://morpho.org/",
+      status: "Hoạt động"
+    },
+    {
+      id: "termmax",
+      name: "TermMax",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/termmax.png" alt="TermMax" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao thức lợi suất kỳ hạn cố định, đơn giản hóa các chiến lược earn và vay có đòn bẩy trên chuỗi.",
+      tags: ["Yield", "Fixed-rate"],
+      website: "https://app.termmax.ts.finance/earn",
+      status: "Hoạt động"
+    },
+    {
+      id: "agra",
+      name: "Agra",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/agra.png" alt="Agra" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Sàn DEX giao dịch trái phiếu (bonds) trên chuỗi trong hệ sinh thái Pharos.",
+      tags: ["DEX", "Bonds"],
+      website: "https://bonds.agra.gg/",
+      status: "Hoạt động"
+    },
+    {
+      id: "zona",
+      name: "Zona",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/zona.png" alt="Zona" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng mã hóa và giao dịch tài sản thực trên chuỗi thuộc hệ sinh thái Pharos.",
+      tags: ["RWA", "Tokenization"],
+      website: "https://www.zona.finance/",
+      status: "Hoạt động"
+    },
+    {
+      id: "faroo",
+      name: "Faroo",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/faroo.png" alt="Faroo" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao thức cho vay và thanh khoản trên Pharos.",
+      tags: ["Lending"],
+      website: "https://app.faroo.xyz/",
+      status: "Hoạt động"
+    },
+    {
+      id: "ember",
+      name: "Ember",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/ember.png" alt="Ember" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Vault lợi suất giúp người dùng earn trên stablecoin và các tài sản chính với chiến lược được quản lý.",
+      tags: ["Vault", "Yield"],
+      website: "https://ember.so/earn",
+      status: "Hoạt động"
+    },
+    {
+      id: "zenith",
+      name: "Zenith",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/zenith.png" alt="Zenith" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Sàn DEX an toàn, nhanh và thân thiện với người dùng, kết hợp giao dịch và cho vay trên Pharos.",
+      tags: ["DEX", "Lending"],
+      website: "https://testnet.zenithswap.xyz/home",
+      status: "Testnet"
+    },
+    {
+      id: "autostaking",
+      name: "Autostaking",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/autostaking.png" alt="Autostaking" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Công cụ tổng hợp lợi suất stablecoin DeFi vận hành bằng AI.",
+      tags: ["Yield", "AI", "Stablecoin"],
+      website: "https://autostaking.pro/?env=pharos",
+      status: "Testnet"
+    },
+    {
+      id: "fufuture",
+      name: "FuFuture",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/fufuture.png" alt="FuFuture" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Quyền chọn vĩnh viễn (perpetual options) với 0 trượt giá, không bị thanh lý, mô hình hai pool.",
+      tags: ["Perp Options", "DEX"],
+      website: "https://www.fufuture.io/#/",
+      status: "Testnet"
+    },
+    {
+      id: "turing-finance",
+      name: "Turing Finance",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/turing-finance.png" alt="Turing Finance" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao thức staking thanh khoản (LSD) đầu tiên trên Pharos.",
+      tags: ["LSD", "Staking"],
+      website: "https://turing.finance/",
+      status: "Testnet"
+    },
+    {
+      id: "euclid",
+      name: "Euclid",
+      category: "RWA / DeFi",
+      icon: '<img src="images/ecosystem/euclid.jpg" alt="Euclid" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Lớp đồng thuận thanh khoản đầu tiên hợp nhất thanh khoản phân mảnh trên hơn 50 mạng mà không cần cầu nối.",
+      tags: ["Liquidity", "Cross-chain"],
+      website: "https://www.euclidprotocol.io/",
+      status: "Testnet"
+    },
+
+    // --- Hạ tầng (nguồn: pharosverse.xyz + port.pharos.xyz) ---
+    {
+      id: "layerzero",
+      name: "LayerZero",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/layerzero.png" alt="LayerZero" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giao thức tương tác liên chuỗi phổ biến hàng đầu, kết nối Pharos với hàng chục blockchain khác.",
+      tags: ["Bridge", "Interoperability"],
+      website: "https://layerzero.network/",
+      status: "Hoạt động"
+    },
+    {
+      id: "li-fi",
+      name: "LI.FI",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/li-fi.png" alt="LI.FI" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Công cụ tổng hợp cầu nối và DEX, định tuyến tài sản đa chuỗi vào Pharos.",
+      tags: ["Bridge", "Aggregator"],
+      website: "https://li.fi/",
+      status: "Hoạt động"
+    },
+    {
+      id: "jumper",
+      name: "Jumper",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/jumper.png" alt="Jumper" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ứng dụng bridge và swap đa chuỗi xây dựng trên hạ tầng LI.FI, hỗ trợ Pharos.",
+      tags: ["Bridge", "Swap"],
+      website: "https://jumper.exchange/",
+      status: "Hoạt động"
+    },
+    {
+      id: "interport",
+      name: "InterPort",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/interport.png" alt="InterPort" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Cầu nối cross-chain swap tức thời giữa Pharos và các mạng blockchain lớn.",
+      tags: ["Bridge", "Swap"],
+      website: "https://interport.fi/",
+      status: "Hoạt động"
+    },
+    {
+      id: "fiamma",
+      name: "Fiamma",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/fiamma.png" alt="Fiamma" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Cổng Bitcoin an toàn và dễ dùng, vận hành bởi BitVM và công nghệ ZK, đưa BTC vào hệ sinh thái Pharos.",
+      tags: ["Bitcoin", "Bridge", "ZK"],
+      website: "https://www.fiammalabs.io/",
+      status: "Testnet"
+    },
+    {
+      id: "supra",
+      name: "Supra",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/supra.png" alt="Supra" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Oracle đa chuỗi tốc độ cao, cung cấp dữ liệu giá cho các dApp trên Pharos.",
+      tags: ["Oracle"],
+      website: "https://supra.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "blocksense",
+      name: "Blocksense",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/blocksense.png" alt="Blocksense" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Lớp xác minh phổ quát cho phép triển khai oracle feed tùy chỉnh trên mọi chuỗi — từ oracle giá DeFi đến suy luận AI có thể xác minh.",
+      tags: ["Oracle", "Hạ tầng"],
+      website: "https://blocksense.network/",
+      status: "Testnet"
+    },
+    {
+      id: "zan",
+      name: "ZAN",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/zan.png" alt="ZAN" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Bộ công cụ và dịch vụ plug-and-play cho phát triển Web3, cung cấp dịch vụ RPC cho Pharos.",
+      tags: ["RPC", "Dev Tools"],
+      website: "https://zan.top/",
+      status: "Hoạt động"
+    },
+    {
+      id: "nirvana",
+      name: "Nirvana",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/nirvana.png" alt="Nirvana" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Hạ tầng đám mây tối ưu cho blockchain, cung cấp node và RPC hiệu năng cao.",
+      tags: ["RPC", "Node"],
+      website: "https://nirvanalabs.io/",
+      status: "Hoạt động"
+    },
+    {
+      id: "alchemy",
+      name: "Alchemy",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/alchemy.png" alt="Alchemy" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng hạ tầng Web3 hàng đầu, cung cấp RPC và dịch vụ validator cấp doanh nghiệp cho Pharos.",
+      tags: ["RPC", "Validator"],
+      website: "https://www.alchemy.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "hemera",
+      name: "Hemera",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/hemera.png" alt="Hemera" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Mạng lập chỉ mục lấy tài khoản làm trung tâm, cung cấp block explorer cho Pharos.",
+      tags: ["Explorer", "Indexer"],
+      website: "https://www.thehemera.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "pns",
+      name: "PNS",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/pns.jpeg" alt="PNS" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Pharos Name Service — danh tính phi tập trung (DID) chính thức trên Pharos, đồng thời là cổng vào thế giới RWA với trải nghiệm KYC hợp nhất.",
+      tags: ["DID", "Domain"],
+      website: "https://pharosname.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "zns-connect",
+      name: "ZNS Connect",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/zns-connect.png" alt="ZNS Connect" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Dịch vụ tên miền phi tập trung đa chuỗi, hỗ trợ danh tính số trên Pharos.",
+      tags: ["DID", "Domain"],
+      website: "https://zns.bio/",
+      status: "Hoạt động"
+    },
+    {
+      id: "trusta-labs",
+      name: "Trusta Labs",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/trusta-labs.png" alt="Trusta Labs" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng phân tích dữ liệu on-chain và đánh giá uy tín ví.",
+      tags: ["Analytics", "Dữ liệu"],
+      website: "https://www.trustalabs.ai/",
+      status: "Hoạt động"
+    },
+    {
+      id: "hypernative",
+      name: "Hypernative",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/hypernative.png" alt="Hypernative" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng bảo mật chủ động, giám sát và ngăn chặn tấn công theo thời gian thực cho hệ sinh thái.",
+      tags: ["Bảo mật", "Giám sát"],
+      website: "https://www.hypernative.io/",
+      status: "Hoạt động"
+    },
+    {
+      id: "zellic",
+      name: "Zellic",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/zellic.png" alt="Zellic" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Công ty kiểm toán bảo mật smart contract hàng đầu, đối tác bảo mật của Pharos.",
+      tags: ["Bảo mật", "Kiểm toán"],
+      website: "https://www.zellic.io/",
+      status: "Hoạt động"
+    },
+    {
+      id: "exvul",
+      name: "ExVul Security",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/exvul.png" alt="ExVul Security" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Công ty bảo mật Web3 cung cấp dịch vụ kiểm toán và giám sát lỗ hổng.",
+      tags: ["Bảo mật", "Kiểm toán"],
+      website: "https://exvul.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "openzeppelin",
+      name: "OpenZeppelin",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/openzeppelin.png" alt="OpenZeppelin" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Tiêu chuẩn vàng về bảo mật smart contract — thư viện hợp đồng mã nguồn mở và dịch vụ kiểm toán.",
+      tags: ["Bảo mật", "Kiểm toán"],
+      website: "https://www.openzeppelin.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "trm-labs",
+      name: "TRM Labs",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/trm-labs.png" alt="TRM Labs" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng tuân thủ và phân tích giao dịch blockchain (KYT) dành cho tổ chức.",
+      tags: ["KYT", "Tuân thủ"],
+      website: "https://www.trmlabs.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "certik",
+      name: "CertiK",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/certik.png" alt="CertiK" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Kiểm toán smart contract, KYC và giám sát on-chain; đồng thời là validator của mạng Pharos.",
+      tags: ["Bảo mật", "Validator"],
+      website: "https://www.certik.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "primus",
+      name: "Primus",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/primus.png" alt="Primus" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Mạng zkTLS/FHE xác minh dữ liệu Web2 và cho phép tính toán mã hóa trên chuỗi.",
+      tags: ["zkTLS", "KYC"],
+      website: "https://www.primuslabs.xyz/",
+      status: "Testnet"
+    },
+    {
+      id: "cloud-faucet",
+      name: "Cloud Faucet",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/cloud-faucet.jpg" alt="Cloud Faucet" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Hạ tầng faucet testnet đa chuỗi, giúp nhà phát triển và người dùng nhận token testnet dễ dàng.",
+      tags: ["Faucet", "Testnet"],
+      website: "https://cloudfaucet.xyz/",
+      status: "Testnet"
+    },
+    {
+      id: "neoweave",
+      name: "NeoWeave",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/neoweave.png" alt="NeoWeave" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng gắn bounty crypto cho GitHub issues, giúp các dự án mã nguồn mở thu hút đóng góp nhanh hơn.",
+      tags: ["Dev Tools", "Bounty"],
+      website: "https://neoweave.tech/",
+      status: "Testnet"
+    },
+    {
+      id: "hashkey-cloud",
+      name: "HashKey Cloud",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/hashkey-cloud.png" alt="HashKey Cloud" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nhà cung cấp dịch vụ staking blockchain hàng đầu thế giới, validator của Pharos.",
+      tags: ["Validator", "Staking"],
+      website: "https://group.hashkey.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "ruby-nodes",
+      name: "Ruby Nodes",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/ruby-nodes.png" alt="Ruby Nodes" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nhà cung cấp hạ tầng và validator giàu kinh nghiệm trên nhiều mạng blockchain.",
+      tags: ["Validator"],
+      website: "https://rubynodes.io/",
+      status: "Hoạt động"
+    },
+    {
+      id: "snz",
+      name: "SNZ",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/snz.png" alt="SNZ" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Công ty đầu tư crypto-native định hướng nghiên cứu, vừa là nhà đầu tư vừa là validator của Pharos.",
+      tags: ["Validator", "Nhà đầu tư"],
+      website: "https://snzholding.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "staking4all",
+      name: "Staking4All",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/staking4all.png" alt="Staking4All" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Validator cho các blockchain Proof of Stake.",
+      tags: ["Validator"],
+      website: "https://www.staking4all.org/",
+      status: "Hoạt động"
+    },
+    {
+      id: "bcw",
+      name: "BCW",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/bcw.png" alt="BCW" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Validator blockchain cấp doanh nghiệp đáng tin cậy.",
+      tags: ["Validator"],
+      website: "https://www.bcw.group/",
+      status: "Hoạt động"
+    },
+    {
+      id: "allnodes",
+      name: "Allnodes",
+      category: "Hạ tầng",
+      icon: '<img src="images/ecosystem/allnodes.png" alt="Allnodes" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Dịch vụ hosting node và staking non-custodial uy tín.",
+      tags: ["Validator", "Staking"],
+      website: "https://www.allnodes.com/",
+      status: "Hoạt động"
+    },
+
+    // --- Ví & Thanh toán (nguồn: pharosverse.xyz + port.pharos.xyz) ---
+    {
+      id: "okx-wallet",
+      name: "OKX Wallet",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/okx-wallet.png" alt="OKX Wallet" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ví crypto cho mọi hoạt động onchain, hỗ trợ đầy đủ mạng Pharos.",
+      tags: ["Ví"],
+      website: "https://web3.okx.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "bitget-wallet",
+      name: "Bitget Wallet",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/bitget-wallet.png" alt="Bitget Wallet" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ví Web3 giao dịch của tương lai, hỗ trợ mạng Pharos.",
+      tags: ["Ví"],
+      website: "https://web3.bitget.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "onekey",
+      name: "OneKey",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/onekey.png" alt="OneKey" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ví phần cứng và phần mềm mã nguồn mở hỗ trợ Pharos.",
+      tags: ["Ví", "Phần cứng"],
+      website: "https://onekey.so/",
+      status: "Hoạt động"
+    },
+    {
+      id: "kucoin-wallet",
+      name: "KuCoin Wallet",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/kucoin-wallet.png" alt="KuCoin Wallet" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ví Web3 từ hệ sinh thái sàn giao dịch KuCoin.",
+      tags: ["Ví"],
+      website: "https://www.kucoin.com/web3",
+      status: "Hoạt động"
+    },
+    {
+      id: "topnod",
+      name: "TopNod",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/topnod.jpeg" alt="TopNod" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ví tự lưu ký đơn giản, an toàn để quản lý RWA và các tài sản số khác.",
+      tags: ["Ví", "RWA"],
+      website: "https://topnod.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "fordefi",
+      name: "Fordefi",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/fordefi.png" alt="Fordefi" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ví MPC cấp tổ chức dành cho DeFi.",
+      tags: ["MPC", "Tổ chức"],
+      website: "https://fordefi.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "safe",
+      name: "Safe",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/safe.png" alt="Safe" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Chuẩn ví đa chữ ký (multisig) hàng đầu cho quản lý tài sản tập thể và kho bạc.",
+      tags: ["Multisig"],
+      website: "https://app.safe.global/",
+      status: "Hoạt động"
+    },
+    {
+      id: "anchorage",
+      name: "Anchorage Digital",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/anchorage.png" alt="Anchorage Digital" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Ngân hàng lưu ký tài sản số được cấp phép liên bang đầu tiên tại Mỹ, hỗ trợ lưu ký cho hệ Pharos.",
+      tags: ["Lưu ký", "Tổ chức"],
+      website: "https://www.anchorage.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "alchemy-pay",
+      name: "Alchemy Pay",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/alchemy-pay.png" alt="Alchemy Pay" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Cổng thanh toán hai chiều fiat–crypto (on/off ramp) toàn cầu.",
+      tags: ["Thanh toán", "Ramp"],
+      website: "https://alchemypay.org/",
+      status: "Hoạt động"
+    },
+    {
+      id: "intuipay",
+      name: "IntuiPay",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/intuipay.png" alt="IntuiPay" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng thanh toán thế hệ mới dành cho giáo dục toàn cầu.",
+      tags: ["Thanh toán"],
+      website: "https://intuipay.xyz/",
+      status: "Testnet"
+    },
+    {
+      id: "moveflow",
+      name: "MoveFlow",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/moveflow.png" alt="MoveFlow" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Hạ tầng thanh toán cho vesting/airdrop và PayFi cho mô hình mua trước trả sau (BNPL).",
+      tags: ["Thanh toán", "PayFi"],
+      website: "https://www.moveflow.xyz/",
+      status: "Testnet"
+    },
+    {
+      id: "payzoll",
+      name: "PayZoll",
+      category: "Ví & Thanh toán",
+      icon: '<img src="images/ecosystem/payzoll.jpg" alt="PayZoll" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Giải pháp tài chính cấp doanh nghiệp cho trả lương và thanh toán hiện đại.",
+      tags: ["Thanh toán", "Payroll"],
+      website: "https://payzoll.xyz/",
+      status: "Testnet"
+    },
+
+    // --- NFT & Cộng đồng (nguồn: pharosverse.xyz + port.pharos.xyz) ---
+    {
+      id: "grandline",
+      name: "Grandline",
+      category: "NFT & Cộng đồng",
+      icon: '<img src="images/ecosystem/grandline.png" alt="Grandline" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Nền tảng native để phát hành và giao dịch NFT trên Pharos.",
+      tags: ["NFT", "Launchpad"],
+      website: "https://app.grandline.world/",
+      status: "Hoạt động"
+    },
+    {
+      id: "gotchipus",
+      name: "Gotchipus",
+      category: "NFT & Cộng đồng",
+      icon: '<img src="images/ecosystem/gotchipus.png" alt="Gotchipus" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Thú cưng NFT động (dNFT) tích hợp AI trên Pharos, kết hợp logic DeFi và cơ chế 'linh hồn' on-chain.",
+      tags: ["NFT", "AI", "dNFT"],
+      website: "https://gotchipus.com/",
+      status: "Testnet"
+    },
+    {
+      id: "infinity-ground",
+      name: "Infinity Ground",
+      category: "NFT & Cộng đồng",
+      icon: '<img src="images/ecosystem/infinity-ground.png" alt="Infinity Ground" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "IDE agentic phi tập trung đầu tiên trên thế giới, biến ngôn ngữ tự nhiên thành mã để bất kỳ ai cũng xây dựng được dApp.",
+      tags: ["AI", "Dev Tools"],
+      website: "https://www.infinityg.ai/ide",
+      status: "Testnet"
+    },
+    {
+      id: "pharosverse",
+      name: "Pharosverse",
+      category: "NFT & Cộng đồng",
+      icon: '<img src="images/ecosystem/pharosverse.jpg" alt="Pharosverse" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;border-radius:6px;">',
+      description: "Trạm dừng một-cửa cho các nhà thám hiểm Pharos: công cụ, hướng dẫn và hoạt động tương tác để khám phá hệ sinh thái.",
+      tags: ["Cộng đồng", "Công cụ"],
+      website: "https://pharosverse.xyz/",
       status: "Hoạt động"
     }
   ],
