@@ -8,9 +8,10 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-07-06",
-    version: "2.1.0",
+    lastUpdated: "2026-07-12",
+    version: "2.1.1",
     sources: [
+      "https://docs.pharos.xyz",
       "https://pharosverse.xyz/",
       "https://port.pharos.xyz/",
       "https://cryptonews.com/news/pharos-network-incubation-program-selects-faroo-as-first-investment-unlocks-rwa-staking-rewards.htm",
@@ -800,6 +801,16 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-mainnet-snapshot-update",
+      title: "Cập nhật Snapshot Node Mainnet Full Cache",
+      category: "Cập Nhật",
+      date: "2026-07-02",
+      summary: "Pharos Network đã cập nhật Snapshot Node Mainnet Full Cache vào ngày 01 tháng 7 năm 2026, cung cấp dữ liệu snapshot mới nhất để đồng bộ hóa và khởi động node nhanh chóng.",
+      content: "Snapshot Node Mainnet Full Cache của Pharos Network đã được cập nhật vào ngày 01 tháng 7 năm 2026 (mainnet-snapshot-2026-07-01-03.tar.gz). Bản cập nhật này cung cấp dữ liệu snapshot mới nhất cho môi trường mạng Mainnet, giúp việc đồng bộ hóa và khởi động các node trở nên nhanh chóng và hiệu quả hơn.",
+      link: "https://docs.pharos.xyz",
+      source: "Pharos Docs"
+    },
     {
       id: "pharos-incubation-faroo-investment",
       title: "Chương trình ươm tạo của Pharos Network chọn Faroo làm khoản đầu tư đầu tiên",
