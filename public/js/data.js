@@ -9,7 +9,7 @@ window.PharosData = {
   // ---- METADATA ----
   meta: {
     lastUpdated: "2026-07-14",
-    version: "2.1.2",
+    version: "2.1.3",
     sources: [
       "https://docs.pharos.xyz",
       "https://pharosverse.xyz/",
@@ -29,6 +29,56 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "gcl-new-energy",
+      name: "GCL New Energy",
+      category: "RWA / Năng lượng",
+      icon: "⚡️",
+      description: "GCL New Energy là đối tác chiến lược và nhà cung cấp tài sản trong lĩnh vực năng lượng thực tế (RWA). Họ đang hợp tác với Pharos Network trong một dự án thí điểm RWA được hỗ trợ bởi tài sản năng lượng.",
+      tags: ["RWA", "Năng lượng"],
+      website: "https://www.gclnewenergy.com/",
+      status: "Đối tác"
+    },
+    {
+      id: "flow-traders",
+      name: "Flow Traders",
+      category: "Thị trường vốn / TradFi",
+      icon: "📈",
+      description: "Flow Traders là nhà đầu tư chiến lược và đối tác của Pharos Network. Họ là nhà cung cấp thanh khoản và nhà tạo lập thị trường toàn cầu, tập trung vào việc mang lại sự minh bạch và hiệu quả cho các thị trường tài chính.",
+      tags: ["Thị trường vốn", "TradFi", "Cung cấp thanh khoản"],
+      website: "https://www.flowtraders.com/",
+      status: "Đối tác"
+    },
+    {
+      id: "sumitomo-corporation",
+      name: "Sumitomo Corporation",
+      category: "Tập đoàn / TradFi",
+      icon: "🏢",
+      description: "Sumitomo Corporation là nhà đầu tư chiến lược và đối tác của Pharos Network. Đây là một tập đoàn đa ngành Fortune 500 toàn cầu.",
+      tags: ["Tập đoàn", "TradFi"],
+      website: "https://www.sumitomocorp.com/",
+      status: "Đối tác"
+    },
+    {
+      id: "hack-vc",
+      name: "Hack VC",
+      category: "Đầu tư mạo hiểm",
+      icon: "💻",
+      description: "Hack VC là nhà đầu tư và đối tác của Pharos Network, là một công ty đầu tư mạo hiểm tập trung vào Web3 và AI.",
+      tags: ["Đầu tư mạo hiểm", "Web3", "AI"],
+      website: "https://www.hack.vc/",
+      status: "Đối tác"
+    },
+    {
+      id: "binance-wallet",
+      name: "Binance Wallet",
+      category: "Ví",
+      icon: "👛",
+      description: "Binance Wallet là một ví tiền điện tử tự quản lý được tích hợp vào ứng dụng Binance và có sẵn dưới dạng phiên bản web. Nó đóng vai trò là đối tác phân phối cho các sản phẩm như Axil Prime Credit Vault trên Pharos Network.",
+      tags: ["Ví", "Web3"],
+      website: "https://www.binance.com/en/web3wallet",
+      status: "Đối tác"
+    },
     {
       id: "elfi-protocol",
       name: "ELFi Protocol",
