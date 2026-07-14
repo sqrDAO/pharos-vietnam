@@ -8,8 +8,8 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-07-12",
-    version: "2.1.1",
+    lastUpdated: "2026-07-14",
+    version: "2.1.2",
     sources: [
       "https://docs.pharos.xyz",
       "https://pharosverse.xyz/",
@@ -29,6 +29,16 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "elfi-protocol",
+      name: "ELFi Protocol",
+      category: "DeFi, Phái Sinh, Thanh Khoản",
+      icon: "📈",
+      description: "ELFi Protocol là nền tảng giao dịch phái sinh phi tập trung, hỗ trợ các mô hình margin cô lập và chéo, cung cấp giao dịch đòn bẩy qua pool đa tài sản. Nền tảng này cho phép nhà cung cấp thanh khoản kiếm phí giao dịch và phí cho vay, đồng thời có chế độ margin danh mục đầu tư sáng tạo cùng các pool thanh khoản stablecoin không rủi ro và pool thanh khoản LSD tái thế chấp. Đây là một dự án hệ sinh thái sớm trên Pharos.",
+      tags: ["DeFi", "Phái Sinh", "Thanh Khoản"],
+      website: "https://elfi.xyz/",
+      status: "Hoạt động"
+    },
     {
       id: "ant-digital",
       name: "Ant Digital Technologies",
