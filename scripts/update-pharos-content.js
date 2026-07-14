@@ -123,6 +123,20 @@ If you find nothing new and verifiable, say exactly "NO NEW UPDATES". Do not inv
   });
 }
 
+// Match a "nothing to report" sentinel as the WHOLE reply, tolerating markdown
+// and trailing punctuation. The previous check ("contains the phrase" AND under
+// 200 chars) mislabelled a verbose "nothing new, because ..." reply as a real
+// find, which then logged news=found and structured to zero items.
+function saysNothingNew(text, sentinel) {
+  const normalized = String(text ?? "")
+    .replace(/[`*_#>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/[.!]+$/, "")
+    .toUpperCase();
+  return normalized === sentinel;
+}
+
 // Cap directory-discovered partners per run to keep PRs reviewable; the rest
 // get picked up on the following weekly runs.
 const MAX_NEW_PARTNERS_PER_RUN = 10;
@@ -547,8 +561,8 @@ async function main() {
     researchEcosystemDirectory(current),
   ]);
 
-  const hasNews = !(/NO NEW UPDATES/i.test(newsResearch) && newsResearch.length < 200);
-  const hasPartners = !(/NO NEW PARTNERS/i.test(ecoResearch) && ecoResearch.length < 200);
+  const hasNews = !saysNothingNew(newsResearch, "NO NEW UPDATES");
+  const hasPartners = !saysNothingNew(ecoResearch, "NO NEW PARTNERS");
   console.log(`[update-pharos-content] research: news=${hasNews ? "found" : "none"}, ecosystem partners=${hasPartners ? "found" : "none"}`);
 
   if (!hasNews && !hasPartners) {
