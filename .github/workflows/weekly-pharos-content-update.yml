@@ -1,8 +1,10 @@
 name: Weekly Pharos content update
 
 # Runs every Sunday at 13:00 UTC (= 20:00 Asia/Saigon). Researches the latest
-# Pharos Network news/developments/stats via the Gemini API, updates the site
-# content in public/js/data.js, and opens a PR for review. Never pushes to main.
+# Pharos Network news/developments/stats via the Gemini API, checks the official
+# ecosystem sources for partners/projects missing from our directory, updates
+# the site content in public/js/data.js, and opens a PR for review. Never
+# pushes to main.
 on:
   schedule:
     - cron: "0 13 * * 0"

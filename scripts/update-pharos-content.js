@@ -3,8 +3,10 @@
 //
 // Researches the latest Pharos Network news/developments/stats with the Gemini
 // API (Google Search grounding) and appends them to the site's single content
-// store, public/js/data.js. Designed to run in GitHub Actions on a weekly cron;
-// the workflow then opens a PR with whatever this script changed.
+// store, public/js/data.js. Also diffs the official Pharos ecosystem sources
+// against our ecosystem directory and proposes missing partners/projects.
+// Designed to run in GitHub Actions on a weekly cron; the workflow then opens
+// a PR with whatever this script changed.
 //
 // All reasoning + Vietnamese writing is done by Gemini ("everything via Gemini").
 // This script only orchestrates the API calls, validates the output, and edits
@@ -46,7 +48,6 @@ const NEWS_CATEGORIES = [
 
 const SOURCES_TO_RESEARCH = [
   "https://www.pharos.xyz",
-  "https://www.pharos.xyz/blog",
   "https://www.pharos.xyz/resources",
   "https://www.pharos.xyz/ecosystem",
   "https://docs.pharosnetwork.xyz",
@@ -122,9 +123,43 @@ If you find nothing new and verifiable, say exactly "NO NEW UPDATES". Do not inv
   });
 }
 
+// Cap directory-discovered partners per run to keep PRs reviewable; the rest
+// get picked up on the following weekly runs.
+const MAX_NEW_PARTNERS_PER_RUN = 10;
+
+async function researchEcosystemDirectory(existing) {
+  const knownProjects = existing.ecosystem
+    .map((e) => `- ${e.id} | ${e.name}`)
+    .join("\n");
+  const prompt = `You are a research assistant for a Vietnamese community website about the Pharos Network blockchain.
+
+Check the OFFICIAL Pharos ecosystem sources for partners/projects that are listed there but MISSING from our directory. This is a directory diff, NOT a news search — there is no recency requirement; include projects regardless of when they were added. Sources to check, in priority order:
+- https://www.pharos.xyz/ecosystem (the official ecosystem directory)
+- https://docs.pharosnetwork.xyz
+- https://www.pharos.xyz/resources and https://x.com/pharos_network (partner/integration announcements)
+
+Our directory ALREADY contains the following projects. Skip them, including renames, sub-brands, and near-duplicates of the same project:
+${knownProjects}
+
+For each missing project, give:
+- The project name.
+- What it does and its role on Pharos (integration, partner, dApp, infrastructure, ...).
+- A category hint (e.g. DeFi, RWA, Infrastructure, NFT, Gaming, Wallet, Oracle).
+- The project's real official website URL (its own site — not a listing or aggregator page).
+
+Report at most ${MAX_NEW_PARTNERS_PER_RUN} projects; prefer the most significant ones.
+If everything in the sources is already covered, say exactly "NO NEW PARTNERS". Do not invent projects or URLs.`;
+
+  return geminiCall({
+    contents: [{ role: "user", parts: [{ text: prompt }]}],
+    tools: [{ google_search: {} }],
+  });
+}
+
 async function structureToJson(research, existing) {
   const existingNewsIds = existing.news.map((n) => n.id);
   const existingEcoIds = existing.ecosystem.map((e) => e.id);
+  const existingEcoNames = existing.ecosystem.map((e) => e.name);
   const techKeys = Object.keys(existing.techSpecs || {});
 
   const prompt = `Convert the research notes below into STRICT JSON for a Vietnamese website. Respond with ONLY a JSON object, no prose, no markdown fences.
@@ -167,6 +202,7 @@ Rules:
   (e.g. pharos.xyz, the exchange, the news outlet). NEVER use a search-engine, vertexaisearch, or redirect URL.
 - Do NOT reuse any of these existing news ids: ${JSON.stringify(existingNewsIds)}.
 - Do NOT reuse any of these existing ecosystem ids: ${JSON.stringify(existingEcoIds)}.
+- Do NOT add an ecosystem project that is the same as (or a rename/sub-brand of) any of these existing projects: ${JSON.stringify(existingEcoNames)}.
 - techSpecs may ONLY use these existing keys (and only if the value genuinely changed): ${JSON.stringify(techKeys)}.
 - If a section has nothing, use an empty array (or empty object for techSpecs).
 - If there is nothing at all, return {"news":[],"ecosystem":[],"techSpecs":{},"sources":[]}.
@@ -209,6 +245,29 @@ function isHttpUrl(v) {
   return nonEmptyStr(v) && /^https?:\/\//i.test(v.trim());
 }
 
+const FETCH_TIMEOUT_MS = 15000;
+const USER_AGENT =
+  "Mozilla/5.0 (compatible; pharos-vietnam-content-bot/1.0; +https://github.com/sqrDAO/pharos-vietnam)";
+
+// Statuses that mean "this page exists but refuses an automated request".
+// Bot protection is common on crypto sites, so these are NOT proof of a bad link.
+const BOT_BLOCK_STATUS = new Set([401, 403, 405, 406, 429]);
+
+async function fetchFollow(url) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
+  try {
+    return await fetch(url, {
+      method: "GET",
+      redirect: "follow",
+      signal: ctrl.signal,
+      headers: { "user-agent": USER_AGENT },
+    });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 // Gemini grounding citations come back as temporary redirect links that expire
 // and don't point at the real publisher. Detect and resolve them to the final URL.
 function isGroundingRedirect(url) {
@@ -219,10 +278,7 @@ async function resolveRedirect(url) {
   if (!isHttpUrl(url)) return null;
   if (!isGroundingRedirect(url)) return url.trim();
   try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 10000);
-    const res = await fetch(url, { method: "GET", redirect: "follow", signal: ctrl.signal });
-    clearTimeout(timer);
+    const res = await fetchFollow(url);
     const final = res.url || url;
     // If it still points at the redirect host, treat as unresolved.
     return isGroundingRedirect(final) ? null : final;
@@ -231,19 +287,48 @@ async function resolveRedirect(url) {
   }
 }
 
-// Resolve every outward link in the payload to a real source URL, dropping any
-// that can't be resolved (those items then fail validation and are skipped).
+// Parsing as an http(s) URL is not evidence the page exists: Gemini regularly
+// emits a plausible-but-wrong domain for a real project. Fetch each link and
+// drop the clearly-dead ones so the item fails validation instead of shipping.
+// This cannot catch a live domain that simply isn't the project's (a human
+// still reviews the PR) — it only removes links that resolve to nothing.
+async function isReachable(url) {
+  try {
+    const res = await fetchFollow(url);
+    if (res.status < 400) return true;
+    if (BOT_BLOCK_STATUS.has(res.status)) {
+      console.warn(`[unverified url] ${url} — HTTP ${res.status} (bot protection?), keeping`);
+      return true;
+    }
+    console.warn(`[dead url] ${url} — HTTP ${res.status}`);
+    return false;
+  } catch (e) {
+    const why = e?.name === "AbortError" ? "timeout" : e?.message || String(e);
+    console.warn(`[dead url] ${url} — ${why}`);
+    return false;
+  }
+}
+
+async function resolveAndVerify(url) {
+  const resolved = await resolveRedirect(url);
+  if (!resolved) return null;
+  return (await isReachable(resolved)) ? resolved : null;
+}
+
+// Resolve every outward link in the payload to a real source URL and verify it
+// actually loads, dropping any that can't be resolved or reached (those items
+// then fail validation and are skipped).
 async function resolveLinks(payload) {
   for (const n of payload.news ?? []) {
-    if (nonEmptyStr(n.link)) n.link = (await resolveRedirect(n.link)) || "";
+    if (nonEmptyStr(n.link)) n.link = (await resolveAndVerify(n.link)) || "";
   }
   for (const e of payload.ecosystem ?? []) {
-    if (nonEmptyStr(e.website)) e.website = (await resolveRedirect(e.website)) || "";
+    if (nonEmptyStr(e.website)) e.website = (await resolveAndVerify(e.website)) || "";
   }
   if (Array.isArray(payload.sources)) {
     const out = [];
     for (const s of payload.sources) {
-      const r = await resolveRedirect(s);
+      const r = await resolveAndVerify(s);
       if (r && !isGroundingRedirect(r)) out.push(r);
     }
     payload.sources = out;
@@ -299,6 +384,10 @@ function validate(payload, existing) {
     else console.warn(`[skip ecosystem] ${e?.id ?? "(no id)"} — failed validation`);
     return ok;
   });
+  if (ecosystem.length > MAX_NEW_PARTNERS_PER_RUN) {
+    console.warn(`[cap ecosystem] ${ecosystem.length} new projects, keeping first ${MAX_NEW_PARTNERS_PER_RUN}; the rest will be picked up next run`);
+    ecosystem.length = MAX_NEW_PARTNERS_PER_RUN;
+  }
 
   const techSpecs = {};
   const incomingTech = payload.techSpecs && typeof payload.techSpecs === "object" ? payload.techSpecs : {};
@@ -425,7 +514,7 @@ function buildPrBody(changes, newVersion) {
   if (changes.ecosystem.length) {
     lines.push(`### 🧩 Dự án hệ sinh thái mới (${changes.ecosystem.length})`);
     for (const e of changes.ecosystem) lines.push(`- **${e.name}** (${e.category}) — ${e.website}`);
-    lines.push("");
+    lines.push("", "_Mục mới dùng icon emoji; có thể thay bằng logo trong `public/images/partners/` sau khi merge._", "");
   }
   if (Object.keys(changes.techSpecs).length) {
     lines.push("### ⚙️ Cập nhật thông số kỹ thuật");
@@ -453,11 +542,24 @@ async function main() {
 
   console.log(`[update-pharos-content] model=${GEMINI_MODEL}, existing news=${current.news.length}, ecosystem=${current.ecosystem.length}`);
 
-  const research = await researchLatestNews(current);
-  if (/NO NEW UPDATES/i.test(research) && research.length < 200) {
-    console.log("[update-pharos-content] Gemini reported no new updates.");
+  const [newsResearch, ecoResearch] = await Promise.all([
+    researchLatestNews(current),
+    researchEcosystemDirectory(current),
+  ]);
+
+  const hasNews = !(/NO NEW UPDATES/i.test(newsResearch) && newsResearch.length < 200);
+  const hasPartners = !(/NO NEW PARTNERS/i.test(ecoResearch) && ecoResearch.length < 200);
+  console.log(`[update-pharos-content] research: news=${hasNews ? "found" : "none"}, ecosystem partners=${hasPartners ? "found" : "none"}`);
+
+  if (!hasNews && !hasPartners) {
+    console.log("[update-pharos-content] Gemini reported no new updates or partners.");
     return finishNoChanges();
   }
+
+  const research = [
+    hasNews ? `## Latest news\n\n${newsResearch}` : "",
+    hasPartners ? `## Ecosystem directory — projects missing from our site\n\n${ecoResearch}` : "",
+  ].filter(Boolean).join("\n\n");
 
   const payload = await structureToJson(research, current);
   await resolveLinks(payload); // turn Gemini grounding redirects into real source URLs
