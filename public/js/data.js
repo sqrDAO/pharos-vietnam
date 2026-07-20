@@ -8,9 +8,17 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-07-14",
-    version: "2.1.3",
+    lastUpdated: "2026-07-19",
+    version: "2.1.4",
     sources: [
+      "https://www.ambergroup.io/",
+      "https://babylonchain.io/",
+      "https://dune.com/",
+      "https://www.eigenlayer.xyz/",
+      "https://encapsulate.xyz/",
+      "https://4pillars.io/",
+      "https://hackquest.io/",
+      "https://www.kun.global/",
       "https://docs.pharos.xyz",
       "https://pharosverse.xyz/",
       "https://port.pharos.xyz/",
@@ -29,6 +37,86 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "amber-group",
+      name: "Amber Group",
+      category: "Dịch vụ tài chính",
+      icon: "💰",
+      description: "Amber Group là một nền tảng dịch vụ tài chính tiền điện tử hàng đầu, chuyên về quản lý tài sản kỹ thuật số và các giải pháp thanh khoản tập trung vào tiền điện tử. Họ là thành viên của Liên minh RealFi của Pharos.",
+      tags: ["Dịch vụ tài chính", "Thanh khoản", "Quản lý tài sản"],
+      website: "https://www.ambergroup.io/",
+      status: "Đối tác"
+    },
+    {
+      id: "babylon",
+      name: "Babylon",
+      category: "Staking",
+      icon: "⛓️",
+      description: "Babylon xây dựng cơ sở hạ tầng tài sản thế chấp Bitcoin, cho phép sử dụng Bitcoin nguyên bản làm tài sản thế chấp trên bất kỳ chuỗi nào. Dự án này cho phép staking Bitcoin nguyên bản để bảo mật các chuỗi PoS và dApp. Pharos tích hợp với Babylon để restaking nhằm tăng cường bảo mật và thanh khoản.",
+      tags: ["Staking", "Cơ sở hạ tầng Bitcoin", "Restaking"],
+      website: "https://babylonchain.io/",
+      status: "Tích hợp"
+    },
+    {
+      id: "dune-analytics",
+      name: "Dune Analytics",
+      category: "Dữ liệu & Phân tích",
+      icon: "📊",
+      description: "Dune Analytics là một nền tảng dữ liệu tiền điện tử để truy vấn, trực quan hóa và chia sẻ dữ liệu on-chain trên nhiều blockchain. Dự án này sẽ xây dựng các bảng điều khiển thời gian thực để theo dõi dòng vốn trong hệ sinh thái Pharos với tư cách là một \"Đối tác Tình báo\" trong Liên minh RealFi.",
+      tags: ["Dữ liệu & Phân tích", "Cơ sở hạ tầng"],
+      website: "https://dune.com/",
+      status: "Đối tác"
+    },
+    {
+      id: "eigenlayer",
+      name: "EigenLayer",
+      category: "Staking",
+      icon: "🔄",
+      description: "EigenLayer là một giao thức được xây dựng trên Ethereum giới thiệu \"Restaking\", cho phép ETH đã stake được sử dụng để bảo mật các mạng khác (AVS) để nhận thêm lợi nhuận. Pharos tích hợp với EigenLayer để restaking nhằm tăng cường bảo mật và thanh khoản.",
+      tags: ["Staking", "Restaking", "Cơ sở hạ tầng"],
+      website: "https://www.eigenlayer.xyz/",
+      status: "Tích hợp"
+    },
+    {
+      id: "encapsulate",
+      name: "Encapsulate",
+      category: "Cơ sở hạ tầng",
+      icon: "🛡️",
+      description: "Encapsulate cung cấp cơ sở hạ tầng staking blockchain, hoạt động như một trình xác thực. Dự án này là một phần của hệ sinh thái Pharos với vai trò là một trình xác thực.",
+      tags: ["Cơ sở hạ tầng", "Trình xác thực", "Staking"],
+      website: "https://encapsulate.xyz/",
+      status: "Hoạt động"
+    },
+    {
+      id: "four-pillars",
+      name: "Four Pillars",
+      category: "Nghiên cứu",
+      icon: "📚",
+      description: "Four Pillars là một doanh nghiệp tập trung vào nghiên cứu, cung cấp nghiên cứu blockchain chuyên nghiệp, vận hành trình xác thực (FP Validated) và tư vấn Web3 cho các tổ chức (FP Institution). Đây là đối tác \"nghiên cứu\" trong Liên minh RealFi của Pharos.",
+      tags: ["Nghiên cứu", "Trình xác thực", "Dịch vụ tổ chức", "Cơ sở hạ tầng"],
+      website: "https://4pillars.io/",
+      status: "Đối tác"
+    },
+    {
+      id: "hackquest",
+      name: "Hackquest",
+      category: "Giáo dục",
+      icon: "🎓",
+      description: "Hackquest là một nền tảng dành cho nhà phát triển và người sáng lập Web3, cung cấp giáo dục, sự kiện cộng đồng, hackathon và các chương trình tăng tốc, tập trung vào an ninh mạng và phát triển blockchain. Pharos đã hợp tác với Hackquest để ra mắt chương trình tài trợ hệ sinh thái Builder Base Camp.",
+      tags: ["Giáo dục", "Công cụ phát triển", "Cộng đồng", "Cơ sở hạ tầng"],
+      website: "https://hackquest.io/",
+      status: "Đối tác"
+    },
+    {
+      id: "kun",
+      name: "KUN",
+      category: "Thanh toán",
+      icon: "💳",
+      description: "KUN là một nhà cung cấp dịch vụ thanh toán kỹ thuật số toàn cầu tập trung vào thanh toán kỹ thuật số và tài chính nhúng, kết nối Châu Á với các thị trường mới nổi. KUN có quan hệ đối tác chiến lược với Pharos để thúc đẩy việc token hóa tài sản, thanh toán on-chain và các giải pháp thanh toán xuyên biên giới, đặc biệt là các tài sản tín dụng chuỗi cung ứng.",
+      tags: ["Thanh toán", "RWA", "Thanh toán xuyên biên giới", "Cơ sở hạ tầng tài chính"],
+      website: "https://www.kun.global/",
+      status: "Đối tác"
+    },
     {
       id: "gcl-new-energy",
       name: "GCL New Energy",
