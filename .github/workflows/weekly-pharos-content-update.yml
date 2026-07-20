@@ -1,10 +1,11 @@
 name: Weekly Pharos content update
 
 # Runs every Sunday at 13:00 UTC (= 20:00 Asia/Saigon). Researches the latest
-# Pharos Network news/developments/stats via the Gemini API, checks the official
-# ecosystem sources for partners/projects missing from our directory, updates
-# the site content in public/js/data.js, and opens a PR for review. Never
-# pushes to main.
+# Pharos Network news/developments/stats via the Gemini API (web) and, when the
+# XAI_API_KEY secret is set, via Grok's x_search tool (X posts — where most
+# Pharos updates are announced first). Also checks the official ecosystem
+# sources for partners/projects missing from our directory, updates the site
+# content in public/js/data.js, and opens a PR for review. Never pushes to main.
 on:
   schedule:
     - cron: "0 13 * * 0"
@@ -33,10 +34,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Research and update content (Gemini)
+      - name: Research and update content (Gemini + Grok)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-2.5-flash
+          # Optional: enables the Grok X-search news pass when the secret exists.
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_MODEL: grok-4.5
         run: node scripts/update-pharos-content.js
 
       - name: Read change flag

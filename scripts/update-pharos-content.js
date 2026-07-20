@@ -2,9 +2,10 @@
 // Weekly Pharos content updater
 //
 // Researches the latest Pharos Network news/developments/stats with the Gemini
-// API (Google Search grounding) and appends them to the site's single content
-// store, public/js/data.js. Also diffs the official Pharos ecosystem sources
-// against our ecosystem directory and proposes missing partners/projects.
+// API (Google Search grounding) — plus, when XAI_API_KEY is set, a Grok pass
+// that searches X directly (x_search) — and appends them to the site's single
+// content store, public/js/data.js. Also diffs the official Pharos ecosystem
+// sources against our ecosystem directory and proposes missing partners/projects.
 // Designed to run in GitHub Actions on a weekly cron; the workflow then opens
 // a PR with whatever this script changed.
 //
@@ -15,6 +16,10 @@
 // Env:
 //   GEMINI_API_KEY  (required) — Gemini API key
 //   GEMINI_MODEL    (optional) — model id, default "gemini-2.5-flash"
+//   XAI_API_KEY     (optional) — xAI API key; when set, a Grok pass searches X
+//                    directly (most Pharos updates are announced on X first,
+//                    where Google Search grounding has poor coverage)
+//   XAI_MODEL       (optional) — xAI model id, default "grok-4.5"
 //
 // Outputs:
 //   - Edits public/js/data.js in place (only when there is verified new content)
@@ -36,6 +41,10 @@ const HAS_CHANGES_FILE = join(REPO_ROOT, "has-changes.txt");
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const API_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
+
+const XAI_API_KEY = process.env.XAI_API_KEY;
+const XAI_MODEL = process.env.XAI_MODEL || "grok-4.5";
+const XAI_RESPONSES_URL = "https://api.x.ai/v1/responses";
 
 // Allowed news categories (must match the filter buttons on the news page).
 const NEWS_CATEGORIES = [
@@ -123,6 +132,84 @@ If you find nothing new and verifiable, say exactly "NO NEW UPDATES". Do not inv
   });
 }
 
+// --- xAI (Grok) X search -----------------------------------------------------
+// Most Pharos updates are announced on X (@pharos_network) before they reach
+// the web sources Gemini's Google Search grounding can see, so this pass asks
+// Grok to search X directly via the server-side x_search tool. Optional: it
+// runs only when XAI_API_KEY is set, and a failure degrades to Gemini-only
+// research instead of killing the weekly run.
+
+const NEWS_LOOKBACK_DAYS = 14;
+
+function daysAgoIso(n) {
+  return new Date(Date.now() - n * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
+async function xaiCall(prompt) {
+  const res = await fetch(XAI_RESPONSES_URL, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${XAI_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: XAI_MODEL,
+      input: [{ role: "user", content: prompt }],
+      tools: [
+        {
+          type: "x_search",
+          from_date: daysAgoIso(NEWS_LOOKBACK_DAYS),
+          to_date: today(),
+        },
+      ],
+      // Inline citations are on by default for the Responses API; keep them so
+      // every claim in the notes carries its x.com/article URL in place.
+    }),
+  });
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`xAI API ${res.status}: ${errText.slice(0, 1000)}`);
+  }
+  const data = await res.json();
+  const text = (data.output ?? [])
+    .filter((item) => item.type === "message")
+    .flatMap((item) => item.content ?? [])
+    .filter((c) => c.type === "output_text" && c.text)
+    .map((c) => c.text)
+    .join("\n")
+    .trim();
+  // Full source list the agent touched; not everything here is cited inline.
+  const citations = Array.isArray(data.citations) ? data.citations.filter(isHttpUrl) : [];
+  return { text, citations };
+}
+
+async function researchXNews(existing) {
+  const knownTitles = existing.news
+    .map((n) => `- ${n.date} | ${n.id} | ${n.title}`)
+    .join("\n");
+  const prompt = `You are a research assistant for a Vietnamese community website about the Pharos Network blockchain (pharos.xyz, @pharos_network on X).
+
+Search X for genuinely NEW Pharos Network news from the last ${NEWS_LOOKBACK_DAYS} days: announcements, partnerships, ecosystem project launches/integrations, mainnet/testnet updates, campaigns, and network statistics. Prioritise posts from the official @pharos_network account, then posts by ecosystem projects announcing Pharos integrations. Ignore price talk, giveaways/airdrop farming threads, and unofficial speculation.
+
+We ALREADY have the following content, so DO NOT report these again (skip anything substantially overlapping):
+${knownTitles}
+
+For each new item, give:
+- A short factual summary in English.
+- The exact source URL — the x.com post URL, or the official article the post links to if there is one.
+- The publication date (YYYY-MM-DD).
+- Whether it is: news/announcement, an ecosystem partner/project, or an updated network statistic (TPS, total transactions, wallet count, TVL, funding, etc.).
+
+If you find nothing new and verifiable, say exactly "NO NEW UPDATES". Do not invent anything.`;
+
+  const { text, citations } = await xaiCall(prompt);
+  if (!text) throw new Error("xAI returned an empty response");
+  if (saysNothingNew(text, "NO NEW UPDATES") || !citations.length) return text;
+  return `${text}\n\nAll X search sources encountered (not all are cited above):\n${citations
+    .map((c) => `- ${c}`)
+    .join("\n")}`;
+}
+
 // Match a "nothing to report" sentinel as the WHOLE reply, tolerating markdown
 // and trailing punctuation. The previous check ("contains the phrase" AND under
 // 200 chars) mislabelled a verbose "nothing new, because ..." reply as a real
@@ -191,7 +278,7 @@ JSON shape:
       "summary": "Tóm tắt một câu",
       "content": "Một đoạn nội dung đầy đủ",
       "link": "https://real-source-url",
-      "source": "e.g. Pharos Blog / Pharos Resources / Pharos Docs / Pharos Ecosystem"
+      "source": "e.g. Pharos Blog / Pharos Resources / Pharos Docs / Pharos Ecosystem / X (@pharos_network)"
     }
   ],
   "ecosystem": [
@@ -213,7 +300,9 @@ JSON shape:
 Rules:
 - Only include items that are genuinely new and backed by a source URL from the research.
 - Every "link"/"website"/"sources" URL MUST be the canonical article URL on the publisher's own site
-  (e.g. pharos.xyz, the exchange, the news outlet). NEVER use a search-engine, vertexaisearch, or redirect URL.
+  (e.g. pharos.xyz, the exchange, the news outlet). For announcements made on X, a direct
+  https://x.com/<handle>/status/<id> post URL is acceptable. NEVER use a search-engine,
+  vertexaisearch, or redirect URL.
 - Do NOT reuse any of these existing news ids: ${JSON.stringify(existingNewsIds)}.
 - Do NOT reuse any of these existing ecosystem ids: ${JSON.stringify(existingEcoIds)}.
 - Do NOT add an ecosystem project that is the same as (or a rename/sub-brand of) any of these existing projects: ${JSON.stringify(existingEcoNames)}.
@@ -516,7 +605,7 @@ function buildPrBody(changes, newVersion) {
   const lines = [
     "## Cập nhật nội dung Pharos hàng tuần",
     "",
-    `Tự động tạo bởi Gemini (\`${GEMINI_MODEL}\`) qua GitHub Actions.`,
+    `Tự động tạo bởi Gemini (\`${GEMINI_MODEL}\`)${XAI_API_KEY ? ` + Grok (\`${XAI_MODEL}\`, tìm kiếm trên X)` : ""} qua GitHub Actions.`,
     `Phiên bản nội dung: \`${newVersion}\` · Ngày: \`${today()}\``,
     "",
   ];
@@ -556,22 +645,34 @@ async function main() {
 
   console.log(`[update-pharos-content] model=${GEMINI_MODEL}, existing news=${current.news.length}, ecosystem=${current.ecosystem.length}`);
 
-  const [newsResearch, ecoResearch] = await Promise.all([
+  if (!XAI_API_KEY) {
+    console.log("[update-pharos-content] XAI_API_KEY not set — skipping the Grok X-search pass.");
+  }
+
+  const [newsResearch, ecoResearch, xNewsResearch] = await Promise.all([
     researchLatestNews(current),
     researchEcosystemDirectory(current),
+    XAI_API_KEY
+      ? researchXNews(current).catch((e) => {
+          console.warn(`[update-pharos-content] Grok X-search pass failed, continuing with Gemini only: ${e.message}`);
+          return "";
+        })
+      : Promise.resolve(""),
   ]);
 
   const hasNews = !saysNothingNew(newsResearch, "NO NEW UPDATES");
   const hasPartners = !saysNothingNew(ecoResearch, "NO NEW PARTNERS");
-  console.log(`[update-pharos-content] research: news=${hasNews ? "found" : "none"}, ecosystem partners=${hasPartners ? "found" : "none"}`);
+  const hasXNews = Boolean(xNewsResearch) && !saysNothingNew(xNewsResearch, "NO NEW UPDATES");
+  console.log(`[update-pharos-content] research: news=${hasNews ? "found" : "none"}, X news=${hasXNews ? "found" : "none"}, ecosystem partners=${hasPartners ? "found" : "none"}`);
 
-  if (!hasNews && !hasPartners) {
-    console.log("[update-pharos-content] Gemini reported no new updates or partners.");
+  if (!hasNews && !hasPartners && !hasXNews) {
+    console.log("[update-pharos-content] No new updates or partners reported.");
     return finishNoChanges();
   }
 
   const research = [
-    hasNews ? `## Latest news\n\n${newsResearch}` : "",
+    hasNews ? `## Latest news (web research)\n\n${newsResearch}` : "",
+    hasXNews ? `## Latest news from X (Grok x_search)\n\nNote: items here may overlap with the web research above — merge duplicates into a single news item, preferring the earliest date and the most canonical URL.\n\n${xNewsResearch}` : "",
     hasPartners ? `## Ecosystem directory — projects missing from our site\n\n${ecoResearch}` : "",
   ].filter(Boolean).join("\n\n");
 
