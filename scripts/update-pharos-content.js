@@ -19,7 +19,7 @@
 //   XAI_API_KEY     (optional) — xAI API key; when set, a Grok pass searches X
 //                    directly (most Pharos updates are announced on X first,
 //                    where Google Search grounding has poor coverage)
-//   XAI_MODEL       (optional) — xAI model id, default "grok-4.5"
+//   XAI_MODEL       (optional) — xAI model id, default "grok-4.3"
 //
 // Outputs:
 //   - Edits public/js/data.js in place (only when there is verified new content)
@@ -43,7 +43,9 @@ const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const API_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
 
 const XAI_API_KEY = process.env.XAI_API_KEY;
-const XAI_MODEL = process.env.XAI_MODEL || "grok-4.5";
+// grok-4.3: supports the server-side x_search tool at ~40% of grok-4.5's token
+// price — plenty for a weekly "find and summarize recent posts" pass.
+const XAI_MODEL = process.env.XAI_MODEL || "grok-4.3";
 const XAI_RESPONSES_URL = "https://api.x.ai/v1/responses";
 
 // Allowed news categories (must match the filter buttons on the news page).
