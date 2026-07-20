@@ -8,9 +8,17 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-07-19",
-    version: "2.1.4",
+    lastUpdated: "2026-07-20",
+    version: "2.1.5",
     sources: [
+      "https://x.com/pharos_network/status/2077604156035264625",
+      "https://x.com/pharos_network/status/2077347065664000474",
+      "https://x.com/pharos_network/status/2076976788115538217",
+      "https://x.com/pharos_network/status/2078876268251222386",
+      "https://x.com/EmberProtocol/status/2074825980590305313",
+      "https://x.com/pharos_network/status/2074818837565055270",
+      "https://www.tulipacapital.com/",
+      "https://avalonlabs.xyz/",
       "https://www.ambergroup.io/",
       "https://babylonchain.io/",
       "https://dune.com/",
@@ -37,6 +45,26 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "tulipa-capital",
+      name: "Tulipa Capital",
+      category: "DeFi / Đầu tư / RealFi",
+      icon: "💰",
+      description: "Tulipa Capital là một người quản lý rủi ro DeFi và một quỹ đầu cơ chuyên về các chiến lược delta-neutral cho BTC, ETH và stablecoin. Nó tập trung vào quản lý rủi ro, minh bạch và bảo vệ vốn cho các nhà đầu tư tổ chức, cho phép họ triển khai vốn ở quy mô lớn. Đây là một đối tác chiến lược trong Liên minh RealFi.",
+      tags: ["DeFi", "Đầu tư", "Quản lý rủi ro", "RealFi"],
+      website: "https://www.tulipacapital.com/",
+      status: "Đối tác"
+    },
+    {
+      id: "avalon-labs",
+      name: "Avalon Labs",
+      category: "DeFi / RWA / Bitcoin / AI",
+      icon: "₿",
+      description: "Avalon Labs đang xây dựng một hệ sinh thái tài chính gốc Bitcoin, cung cấp các giải pháp thanh khoản và tín dụng cấp tổ chức thông qua mô hình kết hợp CeDeFi (Tài chính Tập trung-Phi tập trung). Các dịch vụ của nó bao gồm cho vay được hỗ trợ bởi BTC, một stablecoin được hỗ trợ bởi Bitcoin (USDa), tài khoản tạo lợi nhuận và thị trường tài sản thế giới thực được hỗ trợ bởi AI. Đây là một đối tác chiến lược trong Liên minh RealFi.",
+      tags: ["DeFi", "RWA", "Hệ sinh thái Bitcoin", "Cho vay", "Stablecoin", "AI"],
+      website: "https://avalonlabs.xyz/",
+      status: "Đối tác"
+    },
     {
       id: "amber-group",
       name: "Amber Group",
@@ -949,6 +977,66 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-harbor-rwa-aggregator-ra-mat",
+      title: "Pharos Harbor RWA Aggregator Ra Mắt",
+      category: "Công Nghệ",
+      date: "2026-07-16",
+      summary: "Pharos Network đã ra mắt Pharos Harbor, một công cụ tổng hợp tài sản thế giới thực (RWA) tuân thủ quy định, giúp người dùng khám phá và so sánh các loại tài sản tạo lợi suất thực với số liệu minh bạch.",
+      content: "Pharos Network đã ra mắt Pharos Harbor, một công cụ tổng hợp tài sản thế giới thực (RWA) tuân thủ quy định, được thiết kế để giúp người dùng khám phá và so sánh các loại tài sản tạo lợi suất thực thông qua các số liệu APY và Total Value Locked (TVL) minh bạch. Nền tảng này nhằm mục đích giảm thiểu khó khăn trong việc tìm kiếm và đánh giá tài sản trong lĩnh vực RealFi đang phát triển. Pharos Harbor là một công cụ tổng hợp RWA được tuyển chọn, sẵn sàng tuân thủ trên nền tảng của Pharos. Người dùng có thể khám phá các loại tài sản tạo lợi suất thực đa dạng, so sánh các số liệu thời gian thực (APY, TVL) và truy cập chúng một cách liền mạch cho tài chính onchain toàn diện.",
+      link: "https://x.com/pharos_network/status/2077604156035264625",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "axil-prime-credit-vault-hoat-dong",
+      title: "Axil Prime Credit Vault Chính Thức Hoạt Động trên Pharos",
+      category: "Hợp Tác",
+      date: "2026-07-15",
+      summary: "Axil Prime Credit Vault, một chiến lược tín dụng tư nhân tổ chức hoàn toàn trên chuỗi, đã ra mắt trên Pharos, cung cấp lợi suất mục tiêu lên đến 14,3% APY với khoản tiền gửi USDC 100 triệu USD.",
+      content: "Axil Prime Credit Vault, một chiến lược tín dụng tư nhân tổ chức hoàn toàn trên chuỗi, đã chính thức ra mắt trên mạng Pharos. Khoản tiền gửi USDC trị giá 100 triệu USD này cung cấp lợi suất mục tiêu lên đến 14,3% APY, bao gồm 3,5% bằng USDC cộng với token PROS, và có thể truy cập thông qua các ví lớn như Binance Wallet, OKX Wallet, TopNod và KuCoin Wallet. Mục tiêu của nó là mở ra một loại tài sản mà trước đây chỉ dành cho các tổ chức cho một lượng lớn người gửi tiền trên chuỗi. Axil Prime Credit Vault đã ra mắt trên Mạng lưới Pharos, được quản lý bởi Official_Axil, và được hỗ trợ bởi cơ sở hạ tầng R25Official. Nó cung cấp tín dụng tư nhân tổ chức (dòng tiền thực từ các khoản vay) với ~14%+ APY (bao gồm USDC + ưu đãi PROS), giới hạn cứng 100 triệu USD USDC, có thể truy cập qua Binance Wallet, TopNod, KuCoin Web3 và Pharos Port.",
+      link: "https://x.com/pharos_network/status/2077347065664000474",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "binance-wallet-tich-hop-pharos-chain",
+      title: "Ví Binance Tích Hợp Chuỗi Pharos",
+      category: "Hợp Tác",
+      date: "2026-07-14",
+      summary: "Ví Binance đã công bố tích hợp Chuỗi Pharos, cho phép người dùng truy cập trực tiếp và mở ra sự hợp tác hệ sinh thái rộng lớn hơn cho trải nghiệm RealFi bản địa.",
+      content: "Ví Binance đã công bố tích hợp Chuỗi Pharos, cho phép người dùng truy cập trực tiếp thông qua ứng dụng và tiện ích mở rộng Ví Binance. Pharos xác nhận đây là khởi đầu của sự hợp tác hệ sinh thái rộng lớn hơn cho trải nghiệm RealFi bản địa.",
+      link: "https://x.com/pharos_network/status/2076976788115538217",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "axil-prime-credit-giai-doan-pre-deposit-mo",
+      title: "Axil Prime Credit Mở Giai Đoạn Tiền Gửi Công Khai Mới",
+      category: "Cập Nhật",
+      date: "2026-07-19",
+      summary: "Giai đoạn tiền gửi công khai cho Axil Prime Credit (APC trên R25) đã mở trên Pharos, cung cấp APY mục tiêu 13% USDC và hỗ trợ nhiều ví.",
+      content: "Giai đoạn tiền gửi công khai cho Axil Prime Credit (APC trên R25) đã mở trên Pharos (20-29 tháng 7), với APY mục tiêu 13% USDC (lên đến 14% được trợ cấp qua các giai đoạn), hỗ trợ nhiều ví (OKX, Binance Wallet, Bitget, KuCoin Web3, TopNod), tiếp nối chiến dịch độc quyền của Binance. Ngày đáo hạn 20 tháng 10 năm 2026.",
+      link: "https://x.com/pharos_network/status/2078876268251222386",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "goblin-private-credit-vault-ra-mat",
+      title: "Goblin Private Credit Vault Ra Mắt trên Pharos với Hơn 16 Triệu USD Tiền Gửi",
+      category: "Hợp Tác",
+      date: "2026-07-08",
+      summary: "Goblin Finance (cùng Ember Protocol) đã ra mắt Goblin Private Credit Vault (GPCI) trên Mạng lưới Pharos, một vault RWA USDC cho lợi suất tín dụng tổ chức, vượt 16 triệu USD tiền gửi trong 24 giờ.",
+      content: "Goblin Finance (cùng Ember Protocol) đã ra mắt Goblin Private Credit Vault (GPCI) trên Mạng lưới Pharos – một vault RWA USDC được cấp phép/thế chấp quá mức dành cho lợi suất tín dụng tổ chức (~12% APY mục tiêu, phí thấp/không có). Nó đã vượt qua 16 triệu USD tiền gửi trong vòng 24 giờ sau khi ra mắt và được giới thiệu trên Pharos Harbor/Port.",
+      link: "https://x.com/EmberProtocol/status/2074825980590305313",
+      source: "X (@EmberProtocol)"
+    },
+    {
+      id: "palpha-vault-giai-doan-2-mo-dang-ky",
+      title: "pAlpha Vault Giai Đoạn 2 Mở Đăng Ký Mới",
+      category: "Cập Nhật",
+      date: "2026-07-08",
+      summary: "Đăng ký mới đã mở cho pAlpha Vault Giai đoạn 2 trên Pharos, cung cấp 14% APY, khóa 3 tháng và tự động chuyển tiếp cho các khoản tiền gửi hiện có.",
+      content: "Đăng ký mới đã mở cho pAlpha Vault Giai đoạn 2 trên Pharos (được hỗ trợ bởi Yield Network, Official_Axil, Ember Protocol), kéo dài đến khoảng ngày 16 tháng 7. Cung cấp 14% APY (trước phí), khóa 3 tháng, tự động chuyển tiếp cho các khoản tiền gửi hiện có, tiếp cận các thị trường đòn bẩy.",
+      link: "https://x.com/pharos_network/status/2074818837565055270",
+      source: "X (@pharos_network)"
+    },
     {
       id: "pharos-mainnet-snapshot-update",
       title: "Cập nhật Snapshot Node Mainnet Full Cache",
