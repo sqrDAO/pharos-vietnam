@@ -8,9 +8,15 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-07-20",
-    version: "2.1.5",
+    lastUpdated: "2026-07-26",
+    version: "2.1.6",
     sources: [
+      "https://x.com/pharos_network/status/2079891726475665633",
+      "https://x.com/pharos_network/status/2080973894102512032",
+      "https://x.com/Farooxyz/status/2080133089632915585",
+      "https://x.com/AnvitaFlow/status/2080607190709342649",
+      "https://x.com/pharos_network/status/2080328115486675423",
+      "https://x.com/pharos_network/status/2080586298935660943",
       "https://x.com/pharos_network/status/2077604156035264625",
       "https://x.com/pharos_network/status/2077347065664000474",
       "https://x.com/pharos_network/status/2076976788115538217",
@@ -45,6 +51,66 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "mexc",
+      name: "MEXC",
+      category: "DeFi",
+      icon: "💰",
+      description: "MEXC là một sàn giao dịch tiền điện tử đã niêm yết token PROS của Pharos Network, qua đó cung cấp thanh khoản và hỗ trợ giao dịch cho token này.",
+      tags: ["Sàn giao dịch", "Thanh khoản"],
+      website: "https://www.mexc.com/",
+      status: "Đối tác"
+    },
+    {
+      id: "alibaba-cloud",
+      name: "Alibaba Cloud",
+      category: "Hạ tầng",
+      icon: "☁️",
+      description: "Alibaba Cloud đã là nhà tài trợ cho hackathon của Pharos Network, đóng vai trò hỗ trợ hạ tầng và đối tác công nghệ.",
+      tags: ["Hạ tầng", "Dịch vụ đám mây"],
+      website: "https://www.alibabacloud.com/",
+      status: "Đối tác"
+    },
+    {
+      id: "goplus",
+      name: "Goplus",
+      category: "Bảo mật",
+      icon: "🔒",
+      description: "Goplus là nhà tài trợ cho hackathon và cung cấp các giải pháp bảo mật cho Web3 và tác nhân AI, đóng vai trò là hạ tầng bảo mật.",
+      tags: ["Bảo mật", "Web3", "AI"],
+      website: "https://gopluslabs.io/",
+      status: "Đối tác"
+    },
+    {
+      id: "stakely",
+      name: "Stakely",
+      category: "Hạ tầng",
+      icon: "⚙️",
+      description: "Stakely hoạt động như một validator (trình xác thực) cho Pharos Network, vận hành các testnet và cung cấp faucet.",
+      tags: ["Validator", "Testnet", "Faucet"],
+      website: "https://stakely.io/",
+      status: "Hoạt động"
+    },
+    {
+      id: "web3caff-research",
+      name: "Web3Caff Research",
+      category: "Nghiên cứu",
+      icon: "🔬",
+      description: "Web3Caff Research là đối tác trong việc xây dựng \"RealFi Research Framework\" của Pharos Network, cung cấp nghiên cứu chuyên sâu và thông tin tình báo cho nền kinh tế Web3 mới.",
+      tags: ["Nghiên cứu", "RealFi", "Web3"],
+      website: "https://www.web3caff.com/research",
+      status: "Đối tác"
+    },
+    {
+      id: "yield-network",
+      name: "Yield Network",
+      category: "DeFi",
+      icon: "📈",
+      description: "Yield Network là đối tác trong việc xây dựng \"RealFi Research Framework\". Họ là một lớp vận hành cho thanh khoản on-chain, hỗ trợ khởi tạo TVL có cấu trúc, các vault pre-deposit và hợp vốn LP.",
+      tags: ["DeFi", "Thanh khoản", "RealFi"],
+      website: "https://yieldnetwork.io/",
+      status: "Đối tác"
+    },
     {
       id: "tulipa-capital",
       name: "Tulipa Capital",
@@ -977,6 +1043,66 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-harbor-tvl-vuot-181m",
+      title: "Pharos Harbor Đạt Hơn 181 Triệu Đô La TVL",
+      category: "Cập Nhật",
+      date: "2026-07-22",
+      summary: "Pharos Harbor, nền tảng tổng hợp RWA, đã chính thức vượt mốc 181 triệu đô la TVL.",
+      content: "Pharos Harbor, nền tảng tổng hợp tài sản thế giới thực (RWA) của Pharos Network, đã chính thức vượt mốc 181 triệu đô la tổng giá trị bị khóa (TVL), đánh dấu một cột mốc quan trọng trong sự phát triển của hệ sinh thái.",
+      link: "https://x.com/pharos_network/status/2079891726475665633",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "pharos-hop-tac-anvita-flow-vishwa-lab-tai-chinh-ai",
+      title: "Pharos Hợp Tác Với Anvita Flow và Vishwa Lab Phát Triển Tài Chính Tích Hợp AI",
+      category: "Hợp Tác",
+      date: "2026-07-25",
+      summary: "Pharos đang xây dựng nền tảng tài chính tích hợp tác nhân AI cùng Anvita Flow (hơn 100.000 tác nhân AI onchain) và Vishwa Lab (lớp kiểm soát thực thi an toàn).",
+      content: "Pharos Network đang đặt nền móng cho tài chính tích hợp tác nhân AI thông qua hợp tác với Anvita Flow, đơn vị mang hơn 100.000 tác nhân AI lên chuỗi, và Vishwa Lab, nhà cung cấp lớp kiểm soát thực thi để vận hành an toàn, thực thi chính sách và thanh toán onchain.",
+      link: "https://x.com/pharos_network/status/2080973894102512032",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "faroo-pre-mint-giai-doan-3-mo",
+      title: "Faroo Mở Giai Đoạn Pre-mint 3 Với 1.5 Triệu stPROS",
+      category: "Cập Nhật",
+      date: "2026-07-23",
+      summary: "Dự án ươm tạo Faroo của Pharos đã mở Giai đoạn Pre-mint 3 với sức chứa 1.5 triệu stPROS, kết thúc vào ngày 26 tháng 7 lúc 09:00 SGT.",
+      content: "Giai đoạn Pre-mint 3 của dự án ươm tạo Faroo thuộc hệ sinh thái Pharos hiện đã hoạt động, với sức chứa 1.5 triệu stPROS. Giai đoạn này sẽ kết thúc vào ngày 26 tháng 7 lúc 09:00 SGT, với khoảng 85% đã được lấp đầy.",
+      link: "https://x.com/Farooxyz/status/2080133089632915585",
+      source: "X (@Farooxyz)"
+    },
+    {
+      id: "ai-agent-carnival-vong-2-sap-ket-thuc",
+      title: "Chiến Dịch AI Agent Carnival Vòng 2 Sắp Kết Thúc",
+      category: "Thông Báo",
+      date: "2026-07-24",
+      summary: "Vòng 2 của chiến dịch AI Agent Carnival với Anvita Flow đang trong những ngày cuối cùng, kết thúc vào ngày 27 tháng 7 năm 2026 lúc 10:59 UTC.",
+      content: "Vòng 2 của chiến dịch AI Agent Carnival, hợp tác với Anvita Flow, đang đi đến những ngày cuối cùng. Người tham gia có thể tạo nghệ thuật AI/NFT và hoàn thành nhiệm vụ để chia sẻ tổng giải thưởng 20.000 $PROS. Chiến dịch sẽ kết thúc vào ngày 27 tháng 7 năm 2026 lúc 10:59 UTC.",
+      link: "https://x.com/AnvitaFlow/status/2080607190709342649",
+      source: "X (@AnvitaFlow)"
+    },
+    {
+      id: "pharos-x-space-thi-truong-cho-vay",
+      title: "Pharos Tổ Chức X Space Về Thị Trường Cho Vay",
+      category: "Thông Báo",
+      date: "2026-07-23",
+      summary: "Pharos thông báo một buổi X Space vào thứ Sáu lúc 12:00 PM EST để thảo luận về Thị trường Cho vay của Pharos, bao gồm lợi suất USDC Supply Vault và cho vay RealFi.",
+      content: "Pharos đã thông báo tổ chức một buổi X Space vào thứ Sáu lúc 12:00 PM EST, tập trung vào Thị trường Cho vay của Pharos. Buổi thảo luận sẽ đề cập đến lợi suất của USDC Supply Vault, khả năng vay bằng PROS mà không cần bán, và các khoản vay RealFi hiệu quả về vốn. Các diễn giả bao gồm CSO David Dai của Pharos, RockawayX và Oku Trade.",
+      link: "https://x.com/pharos_network/status/2080328115486675423",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "axil-prime-credit-phan-phoi-incentive",
+      title: "Phân Phối Ưu Đãi $PROS Cho Giai Đoạn Pre-deposit Axil Prime Credit",
+      category: "Cập Nhật",
+      date: "2026-07-24",
+      summary: "Ưu đãi $PROS cho giai đoạn pre-deposit của Axil Prime Credit (APC) thông qua R25 đã được phân phối, đảm bảo APY 14% cho giai đoạn đó.",
+      content: "Các ưu đãi $PROS cho giai đoạn pre-deposit của Axil Prime Credit (APC) (thông qua R25) đã được phân phối đến các ví, bổ sung để đảm bảo cấu trúc APY 14% cho giai đoạn đó. Giai đoạn hiện tại nhắm mục tiêu APY ròng khoảng 13% bằng USDC.",
+      link: "https://x.com/pharos_network/status/2080586298935660943",
+      source: "X (@pharos_network)"
+    },
     {
       id: "pharos-harbor-rwa-aggregator-ra-mat",
       title: "Pharos Harbor RWA Aggregator Ra Mắt",
