@@ -8,9 +8,10 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-07-26",
-    version: "2.1.6",
+    lastUpdated: "2026-08-02",
+    version: "2.1.7",
     sources: [
+      "https://x.com/pharos_network/status/2083164079108334078",
       "https://x.com/pharos_network/status/2079891726475665633",
       "https://x.com/pharos_network/status/2080973894102512032",
       "https://x.com/Farooxyz/status/2080133089632915585",
@@ -51,6 +52,16 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "vizo-exchange",
+      name: "VIZO Exchange",
+      category: "DeFi",
+      icon: "🔮",
+      description: "VIZO Exchange là thị trường dự đoán đầu tiên trên chuỗi Pharos, cho phép người dùng giao dịch kết quả của các sự kiện trong thế giới thực, tiền điện tử và AI.",
+      tags: ["Thị trường dự đoán", "DeFi", "AI"],
+      website: "https://vizo.exchange/",
+      status: "Tích hợp"
+    },
     {
       id: "mexc",
       name: "MEXC",
@@ -1043,6 +1054,16 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-tich-hop-vizo-exchange",
+      title: "Pharos Network tích hợp VIZO Exchange",
+      category: "Hợp Tác",
+      date: "2026-07-31",
+      summary: "VIZO Exchange trở thành thị trường dự đoán đầu tiên trên chuỗi Pharos, tận dụng thông lượng cao và độ hoàn tất giao dịch nhanh chóng của mạng.",
+      content: "Pharos Network đã công bố tích hợp với VIZO Exchange, đánh dấu VIZO là thị trường dự đoán đầu tiên trên chuỗi Pharos. Sự tích hợp này cho phép giao dịch kết quả trên chuỗi cho các sự kiện tiền điện tử, AI, kinh tế vĩ mô và thế giới thực, tận dụng thông lượng cao và độ hoàn tất giao dịch nhanh chóng của Pharos.",
+      link: "https://x.com/pharos_network/status/2083164079108334078",
+      source: "X (@pharos_network)"
+    },
     {
       id: "pharos-harbor-tvl-vuot-181m",
       title: "Pharos Harbor Đạt Hơn 181 Triệu Đô La TVL",
