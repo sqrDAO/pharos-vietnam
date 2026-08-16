@@ -8,9 +8,14 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-08-02",
-    version: "2.1.7",
+    lastUpdated: "2026-08-16",
+    version: "2.1.8",
     sources: [
+      "https://docs.safe.global/",
+      "https://x.com/pharos_network/status/2087856950977732669",
+      "https://x.com/pharos_network/status/2087373586168520946",
+      "https://x.com/pharos_network/status/2088361295066148871",
+      "https://chorus.one/",
       "https://x.com/pharos_network/status/2083164079108334078",
       "https://x.com/pharos_network/status/2079891726475665633",
       "https://x.com/pharos_network/status/2080973894102512032",
@@ -52,6 +57,16 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "chorus-one",
+      name: "Chorus One",
+      category: "Hạ tầng / Staking",
+      icon: "🔗",
+      description: "Chorus One là nhà cung cấp dịch vụ staking tổ chức hàng đầu, vận hành cơ sở hạ tầng validator cho hơn 50 mạng Proof-of-Stake. Chorus One là nhà đầu tư và đối tác cơ sở hạ tầng quan trọng cho các dịch vụ validator và bảo mật mạng trên Pharos, đặc biệt với việc Pharos sử dụng restaking gốc.",
+      tags: ["Staking", "Validator", "Cơ sở hạ tầng"],
+      website: "https://chorus.one/",
+      status: "Đối tác"
+    },
     {
       id: "vizo-exchange",
       name: "VIZO Exchange",
@@ -1054,6 +1069,46 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "safe-wallet-chinh-thuc-ho-tro-mang-pharos",
+      title: "Safe Wallet Chính Thức Hỗ Trợ Mạng Pharos",
+      category: "Hợp Tác",
+      date: "2026-08-10",
+      summary: "Safe, cơ sở hạ tầng tài khoản thông minh mô-đun hàng đầu, đã chính thức liệt kê Pharos trong tài liệu 'Mạng được hỗ trợ' của mình.",
+      content: "Safe, một cơ sở hạ tầng tài khoản thông minh mô-đun hàng đầu, hiện đã chính thức liệt kê Pharos trong phần 'Mạng được hỗ trợ' trong tài liệu của mình. Sự tích hợp này cho thấy khả năng tương thích nâng cao và tiềm năng tiếp cận dễ dàng hơn cho người dùng quản lý tài sản kỹ thuật số và tài khoản thông minh trên Mạng Pharos thông qua Safe.",
+      link: "https://docs.safe.global/",
+      source: "Safe Docs"
+    },
+    {
+      id: "pharos-agent-center-ra-mat",
+      title: "Pharos Agent Center Ra Mắt",
+      category: "Thông Báo",
+      date: "2026-08-13",
+      summary: "Pharos Agent Center, cổng vào bộ công cụ tác nhân Pharos (bao gồm PharosMCP, Pharos Skill Engine và llms.txt), đã chính thức ra mắt.",
+      content: "Thông báo chính thức về việc ra mắt Pharos Agent Center, cổng vào bộ công cụ tác nhân Pharos, bao gồm PharosMCP, Pharos Skill Engine và llms.txt.",
+      link: "https://x.com/pharos_network/status/2087856950977732669",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "chuong-trinh-pharos-builder-fellowship-mo-dang-ky",
+      title: "Chương Trình Pharos Builder Fellowship Mở Đăng Ký",
+      category: "Thông Báo",
+      date: "2026-08-12",
+      summary: "Chương trình Pharos Builder Fellowship hiện đã mở đăng ký cho các nhà phát triển crypto-native/AI-native.",
+      content: "Bài đăng chính thức thông báo rằng Chương trình Pharos Builder Fellowship hiện đã mở đăng ký cho các nhà phát triển crypto-native/AI-native.",
+      link: "https://x.com/pharos_network/status/2087373586168520946",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "tradathon-s3-ama-hop-tac-vizo-okx-wallet",
+      title: "AMA Tổng Kết Tradathon S3 và Hợp Tác Vizo & OKX Wallet",
+      category: "Hợp Tác",
+      date: "2026-08-14",
+      summary: "Thông báo chính thức về buổi AMA sắp tới thảo luận về những điểm nổi bật của Tradathon S3 và sự hợp tác giữa Pharos, Vizo và OKX Wallet.",
+      content: "Thông báo chính thức về buổi AMA sắp tới thảo luận về những điểm nổi bật của Tradathon S3 và sự hợp tác giữa Pharos, Vizo và OKX Wallet.",
+      link: "https://x.com/pharos_network/status/2088361295066148871",
+      source: "X (@pharos_network)"
+    },
     {
       id: "pharos-tich-hop-vizo-exchange",
       title: "Pharos Network tích hợp VIZO Exchange",
