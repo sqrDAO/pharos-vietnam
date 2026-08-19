@@ -11,11 +11,10 @@ window.PharosData = {
     lastUpdated: "2026-08-16",
     version: "2.1.8",
     sources: [
-      "https://docs.safe.global/",
+      "https://safe.pharosnetwork.xyz/",
       "https://x.com/pharos_network/status/2087856950977732669",
       "https://x.com/pharos_network/status/2087373586168520946",
       "https://x.com/pharos_network/status/2088361295066148871",
-      "https://chorus.one/",
       "https://x.com/pharos_network/status/2083164079108334078",
       "https://x.com/pharos_network/status/2079891726475665633",
       "https://x.com/pharos_network/status/2080973894102512032",
@@ -57,16 +56,6 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
-    {
-      id: "chorus-one",
-      name: "Chorus One",
-      category: "Hạ tầng / Staking",
-      icon: "🔗",
-      description: "Chorus One là nhà cung cấp dịch vụ staking tổ chức hàng đầu, vận hành cơ sở hạ tầng validator cho hơn 50 mạng Proof-of-Stake. Chorus One là nhà đầu tư và đối tác cơ sở hạ tầng quan trọng cho các dịch vụ validator và bảo mật mạng trên Pharos, đặc biệt với việc Pharos sử dụng restaking gốc.",
-      tags: ["Staking", "Validator", "Cơ sở hạ tầng"],
-      website: "https://chorus.one/",
-      status: "Đối tác"
-    },
     {
       id: "vizo-exchange",
       name: "VIZO Exchange",
@@ -1070,14 +1059,14 @@ window.PharosData = {
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
     {
-      id: "safe-wallet-chinh-thuc-ho-tro-mang-pharos",
-      title: "Safe Wallet Chính Thức Hỗ Trợ Mạng Pharos",
+      id: "pharos-safe-ra-mat",
+      title: "Pharos Safe: Ví Multisig Safe Đã Có Trên Mạng Pharos",
       category: "Hợp Tác",
       date: "2026-08-10",
-      summary: "Safe, cơ sở hạ tầng tài khoản thông minh mô-đun hàng đầu, đã chính thức liệt kê Pharos trong tài liệu 'Mạng được hỗ trợ' của mình.",
-      content: "Safe, một cơ sở hạ tầng tài khoản thông minh mô-đun hàng đầu, hiện đã chính thức liệt kê Pharos trong phần 'Mạng được hỗ trợ' trong tài liệu của mình. Sự tích hợp này cho thấy khả năng tương thích nâng cao và tiềm năng tiếp cận dễ dàng hơn cho người dùng quản lý tài sản kỹ thuật số và tài khoản thông minh trên Mạng Pharos thông qua Safe.",
-      link: "https://docs.safe.global/",
-      source: "Safe Docs"
+      summary: "Pharos Safe, bản triển khai Safe dành riêng cho mạng Pharos, đã hoạt động tại safe.pharosnetwork.xyz, cho phép tạo và quản lý tài khoản thông minh multisig trên Pharos.",
+      content: "Safe là chuẩn ví đa chữ ký (multisig) và cơ sở hạ tầng tài khoản thông minh mô-đun hàng đầu. Người dùng Pharos hiện có thể tạo và quản lý tài khoản Safe trực tiếp trên mạng Pharos thông qua Pharos Safe tại safe.pharosnetwork.xyz. Điều này mang đến lựa chọn quản lý kho bạc và tài sản tập thể theo tiêu chuẩn Safe cho các đội ngũ và tổ chức xây dựng trên Pharos.",
+      link: "https://safe.pharosnetwork.xyz/",
+      source: "Pharos Safe"
     },
     {
       id: "pharos-agent-center-ra-mat",
