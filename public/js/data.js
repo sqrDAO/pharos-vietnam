@@ -8,9 +8,13 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-08-02",
-    version: "2.1.7",
+    lastUpdated: "2026-08-16",
+    version: "2.1.8",
     sources: [
+      "https://safe.pharosnetwork.xyz/",
+      "https://x.com/pharos_network/status/2087856950977732669",
+      "https://x.com/pharos_network/status/2087373586168520946",
+      "https://x.com/pharos_network/status/2088361295066148871",
       "https://x.com/pharos_network/status/2083164079108334078",
       "https://x.com/pharos_network/status/2079891726475665633",
       "https://x.com/pharos_network/status/2080973894102512032",
@@ -1054,6 +1058,46 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-safe-ra-mat",
+      title: "Pharos Safe: Ví Multisig Safe Đã Có Trên Mạng Pharos",
+      category: "Hợp Tác",
+      date: "2026-08-10",
+      summary: "Pharos Safe, bản triển khai Safe dành riêng cho mạng Pharos, đã hoạt động tại safe.pharosnetwork.xyz, cho phép tạo và quản lý tài khoản thông minh multisig trên Pharos.",
+      content: "Safe là chuẩn ví đa chữ ký (multisig) và cơ sở hạ tầng tài khoản thông minh mô-đun hàng đầu. Người dùng Pharos hiện có thể tạo và quản lý tài khoản Safe trực tiếp trên mạng Pharos thông qua Pharos Safe tại safe.pharosnetwork.xyz. Điều này mang đến lựa chọn quản lý kho bạc và tài sản tập thể theo tiêu chuẩn Safe cho các đội ngũ và tổ chức xây dựng trên Pharos.",
+      link: "https://safe.pharosnetwork.xyz/",
+      source: "Pharos Safe"
+    },
+    {
+      id: "pharos-agent-center-ra-mat",
+      title: "Pharos Agent Center Ra Mắt",
+      category: "Thông Báo",
+      date: "2026-08-13",
+      summary: "Pharos Agent Center, cổng vào bộ công cụ tác nhân Pharos (bao gồm PharosMCP, Pharos Skill Engine và llms.txt), đã chính thức ra mắt.",
+      content: "Thông báo chính thức về việc ra mắt Pharos Agent Center, cổng vào bộ công cụ tác nhân Pharos, bao gồm PharosMCP, Pharos Skill Engine và llms.txt.",
+      link: "https://x.com/pharos_network/status/2087856950977732669",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "chuong-trinh-pharos-builder-fellowship-mo-dang-ky",
+      title: "Chương Trình Pharos Builder Fellowship Mở Đăng Ký",
+      category: "Thông Báo",
+      date: "2026-08-12",
+      summary: "Chương trình Pharos Builder Fellowship hiện đã mở đăng ký cho các nhà phát triển crypto-native/AI-native.",
+      content: "Bài đăng chính thức thông báo rằng Chương trình Pharos Builder Fellowship hiện đã mở đăng ký cho các nhà phát triển crypto-native/AI-native.",
+      link: "https://x.com/pharos_network/status/2087373586168520946",
+      source: "X (@pharos_network)"
+    },
+    {
+      id: "tradathon-s3-ama-hop-tac-vizo-okx-wallet",
+      title: "AMA Tổng Kết Tradathon S3 và Hợp Tác Vizo & OKX Wallet",
+      category: "Hợp Tác",
+      date: "2026-08-14",
+      summary: "Thông báo chính thức về buổi AMA sắp tới thảo luận về những điểm nổi bật của Tradathon S3 và sự hợp tác giữa Pharos, Vizo và OKX Wallet.",
+      content: "Thông báo chính thức về buổi AMA sắp tới thảo luận về những điểm nổi bật của Tradathon S3 và sự hợp tác giữa Pharos, Vizo và OKX Wallet.",
+      link: "https://x.com/pharos_network/status/2088361295066148871",
+      source: "X (@pharos_network)"
+    },
     {
       id: "pharos-tich-hop-vizo-exchange",
       title: "Pharos Network tích hợp VIZO Exchange",
