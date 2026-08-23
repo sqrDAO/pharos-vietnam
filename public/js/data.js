@@ -8,9 +8,12 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-08-16",
-    version: "2.1.8",
+    lastUpdated: "2026-08-23",
+    version: "2.1.9",
     sources: [
+      "https://faction.vc",
+      "https://nextmate.ai",
+      "https://buzzing.app",
       "https://safe.pharosnetwork.xyz/",
       "https://x.com/pharos_network/status/2087856950977732669",
       "https://x.com/pharos_network/status/2087373586168520946",
@@ -56,6 +59,36 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "faction-vc",
+      name: "Faction VC",
+      category: "Quỹ đầu tư mạo hiểm",
+      icon: "💰",
+      description: "Faction VC (còn được gọi là Lightspeed Faction) là một quỹ đầu tư mạo hiểm blockchain giai đoạn đầu, tập trung vào các dự án tiền mã hóa đột phá. Họ đã đồng dẫn đầu vòng cấp vốn hạt giống cho Pharos Network.",
+      tags: ["Đầu tư", "Quỹ mạo hiểm"],
+      website: "https://faction.vc",
+      status: "Đối tác"
+    },
+    {
+      id: "nextmate-ai",
+      name: "Nextmate.AI",
+      category: "AI / Thị trường dự đoán / dApp",
+      icon: "🤖",
+      description: "Nextmate.AI là một nền tảng thị trường dự đoán phi tập trung, được hỗ trợ bởi AI, kết hợp giải trí, tương tác và cơ hội lợi nhuận. Nền tảng này cho phép tạo thị trường dự đoán cá nhân hóa, cung cấp thông tin chi tiết từ AI và tích hợp memecoin, hoạt động trên testnet của Pharos.",
+      tags: ["AI", "Thị trường dự đoán", "dApp"],
+      website: "https://nextmate.ai",
+      status: "Tích hợp"
+    },
+    {
+      id: "buzzing-club",
+      name: "Buzzing Club",
+      category: "AI / Thị trường dự đoán / SocialFi / dApp",
+      icon: "🐝",
+      description: "Buzzing Club là nền tảng thị trường dự đoán dựa trên AI, xây dựng lớp dự đoán trên các mạng xã hội như X, cho phép người dùng đặt cược vào các chủ đề thịnh hành. Nền tảng này sử dụng tác nhân AI để tạo thị trường và oracle, nhằm tăng cường sự hấp dẫn và chân thực của mạng xã hội, hoạt động trên testnet của Pharos.",
+      tags: ["AI", "Thị trường dự đoán", "SocialFi", "dApp"],
+      website: "https://buzzing.app",
+      status: "Tích hợp"
+    },
     {
       id: "vizo-exchange",
       name: "VIZO Exchange",
