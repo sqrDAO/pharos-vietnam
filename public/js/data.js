@@ -8,9 +8,12 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-08-23",
-    version: "2.1.9",
+    lastUpdated: "2026-09-13",
+    version: "2.1.10",
     sources: [
+      "https://x.com/pharos_network/status/2092623064928555105",
+      "https://x.com/pharos_network/status/2089547853781967127",
+      "https://www.kucoin.com/news/flash/pharos-launches-prnh-vault-with-r25-offering-on-chain-access-to-u-s-high-yield-corporate-bonds",
       "https://faction.vc",
       "https://www.hackquest.io/projects/Pharos-Builder-Base-Camp-NextmateAI",
       "https://buzzing.app",
@@ -1091,6 +1094,36 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-btc-lending-avalon-functionbtc",
+      title: "Thị Trường Cho Vay BTC Đầu Tiên Ra Mắt Trên Pharos",
+      category: "Thông Báo",
+      date: "2026-08-26",
+      summary: "Avalon Labs và FunctionBTC đưa thị trường cho vay BTC đầu tiên lên Pharos, mở thêm ứng dụng tài chính trên chuỗi cho người nắm giữ Bitcoin.",
+      content: "Pharos công bố thị trường cho vay BTC đầu tiên đã đi vào hoạt động trên mạng, với sự tham gia của Avalon Labs và FunctionBTC. Việc triển khai mở rộng các ứng dụng RealFi trên Pharos sang thị trường tín dụng dựa trên Bitcoin, bổ sung một ứng dụng đang hoạt động cho hệ sinh thái bên cạnh các sản phẩm tài sản được token hóa.",
+      link: "https://x.com/pharos_network/status/2092623064928555105",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-r25-prnh-vault-ra-mat",
+      title: "Pharos Và R25 Ra Mắt pRNH Vault Cho Trái Phiếu Doanh Nghiệp Mỹ",
+      category: "Thông Báo",
+      date: "2026-08-24",
+      summary: "pRNH Vault do R25 triển khai mở kênh tiếp cận trên chuỗi với danh mục trái phiếu doanh nghiệp Mỹ lợi suất cao dành cho người dùng đủ điều kiện.",
+      content: "Pharos ra mắt pRNH Vault thông qua giao thức R25, cho phép người dùng đủ điều kiện gửi USDC để nhận pRNH và tiếp cận gián tiếp danh mục NYLIM Anemoy U.S. High Yield Corporate Bond (HYB). Tài sản nền tảng được token hóa bằng hạ tầng Centrifuge. Sản phẩm bổ sung tín dụng doanh nghiệp vào hệ sinh thái RealFi của Pharos, bên cạnh stablecoin và các sản phẩm tương đương tiền được token hóa.",
+      link: "https://www.kucoin.com/news/flash/pharos-launches-prnh-vault-with-r25-offering-on-chain-access-to-u-s-high-yield-corporate-bonds",
+      source: "KuCoin News / Odaily"
+    },
+    {
+      id: "pharos-assetofinance-ngi-plus-ra-mat",
+      title: "NGI+ Mang Tài Sản Hạ Tầng Tư Nhân Lên Pharos",
+      category: "Thông Báo",
+      date: "2026-08-18",
+      summary: "Asseto Finance đưa NGI+ lên Pharos, bổ sung khả năng tiếp cận tài sản hạ tầng tư nhân thông qua sản phẩm gắn với chiến lược Next Generation Infrastructure của Partners Group.",
+      content: "Pharos công bố NGI+ đã có mặt trên mạng thông qua Asseto Finance. Sản phẩm có hiệu quả đầu tư gắn với biến động giá trị tài sản ròng (NAV) của các khoản đầu tư quỹ hạ tầng tư nhân liên quan đến chiến lược Next Generation Infrastructure của Partners Group. Đây là một nhóm tài sản thực cấp tổ chức mới trên Pharos, mở rộng danh mục trên chuỗi bên cạnh các sản phẩm quản lý tiền mặt và tín dụng.",
+      link: "https://x.com/pharos_network/status/2089547853781967127",
+      source: "Pharos Network (X)"
+    },
     {
       id: "pharos-safe-ra-mat",
       title: "Pharos Safe: Ví Multisig Safe Đã Có Trên Mạng Pharos",
