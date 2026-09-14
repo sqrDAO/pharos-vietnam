@@ -88,3 +88,37 @@ The implementation source of truth for tokens is the `:root` block in
 - `sqrDES` (sqrDAO design system): https://github.com/sqrDAO/sqrDES
 - `sqrDAO`: https://www.sqrdao.com/
 - Pharos Network: https://pharosnetwork.xyz
+
+## Weekly content research
+
+GitHub Actions runs the content updater on Sundays at 20:00 Vietnam time and
+opens a review PR. Both `GEMINI_API_KEY` and `XAI_API_KEY` repository secrets are
+required. Gemini researches the web and writes Vietnamese content; three Grok
+searches cover `pharos_network`, `pharos_eco`, and ecosystem partner accounts.
+
+Research returns dated source candidates before deduplication. Each candidate
+must receive an inclusion or an explicit exclusion decision; unexplained
+omissions trigger a retry and then an incomplete run. A partnership and a later
+product launch are separate events. Model decisions still require human review.
+
+The default lookback is 28 days. Manual workflow dispatch accepts `lookback_days`
+(14–365); locally use `CONTENT_LOOKBACK_DAYS`. The updater also looks back to the
+last completed coverage date with an overlap, independently of content metadata.
+Pending news candidates remain in `.content-state/state.json` until excluded or
+present in the checked-out news feed. CI restores this state through its cache,
+with a fallback to the latest retained research artifact if the cache is evicted.
+Artifacts are retained for 90 days; after both stores expire, use a manual backfill.
+
+Every run saves sanitized provider responses, candidates, conversion decisions,
+validation output, URL errors and a summary in `content-artifacts/`. Inspect the
+`content-research-*` Actions artifact and job summary when a run fails. Temporary
+API and URL failures are retried. Failed research or validation remains a failed
+job, even when valid partial content produces a build-verified review PR.
+
+Run the offline regression suite with:
+
+```bash
+node --test scripts/content-pipeline.test.js
+```
+
+These tests use simulated provider responses; they do not spend API credits.
