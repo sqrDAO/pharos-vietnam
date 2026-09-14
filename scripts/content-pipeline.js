@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 
+/** Normalize source URLs for deduplication; reject non-HTTP URLs. */
 export function canonicalUrl(value) {
   const url = new URL(value);
   if (!['https:', 'http:'].includes(url.protocol)) throw new Error('Expected an HTTP source URL');
@@ -11,11 +12,13 @@ export function canonicalUrl(value) {
   return url.toString().replace(/\/$/, '');
 }
 
+/** Accept only real calendar dates in YYYY-MM-DD form. */
 function validDate(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) &&
     Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
 }
 
+/** Choose a backfill start that preserves incomplete coverage and overlap. */
 export function coverageStart(lastCompleted, today, lookback) {
   const days = Number(lookback);
   if (!Number.isInteger(days) || days < 14 || days > 365) throw new Error('CONTENT_LOOKBACK_DAYS must be an integer from 14 to 365');
@@ -25,6 +28,7 @@ export function coverageStart(lastCompleted, today, lookback) {
   return new Date(lastCompleted ? Math.min(baseline, Date.parse(lastCompleted) - 7 * 86400000) : baseline).toISOString().slice(0, 10);
 }
 
+/** Validate dated research candidates and assign stable IDs from their URLs. */
 export function parseCandidates(payload, from, to) {
   if (!payload || !Array.isArray(payload.candidates)) throw new Error('Research must return a candidates array');
   return payload.candidates.map(c => {
@@ -38,6 +42,7 @@ export function parseCandidates(payload, from, to) {
   });
 }
 
+/** Require one traceable decision per candidate without changing source or date. */
 export function reconcileDecisions(candidates, payload, existing) {
   if (!payload || !Array.isArray(payload.decisions)) throw new Error('Missing candidate decisions');
   const expected = new Map(candidates.map(c => [c.id, c]));
@@ -62,6 +67,7 @@ export function reconcileDecisions(candidates, payload, existing) {
   return { items, decisions: payload.decisions };
 }
 
+/** Retry transient provider failures up to three times with a per-attempt timeout. */
 export async function requestJson(url, options, { fetcher = fetch, sleep = ms => new Promise(r => setTimeout(r, ms)), timeout = 120000 } = {}) {
   for (let attempt = 0; attempt < 3; attempt++) {
     let retry = true;

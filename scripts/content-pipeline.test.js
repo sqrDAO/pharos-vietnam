@@ -71,20 +71,23 @@ globalThis.fetch = async (url, options = {}) => {
   if (String(url).includes('api.x.ai')) {
     const request = JSON.parse(options.body);
     if (mode === 'x-failure' && request.tools[0].allowed_x_handles?.[0] === 'pharos_eco') return {ok:false,status:401};
-    const found = request.tools[0].allowed_x_handles?.[0] === 'pharos_network' ? fixtures : [];
+    const found = mode !== 'redirect' && request.tools[0].allowed_x_handles?.[0] === 'pharos_network' ? fixtures : [];
     return { ok:true, json:async () => ({status:'completed', output:[...(mode === 'no-search' ? [] : [{type:'x_search_call',status:'completed'}]), {type:'message',content:[{type:'output_text',text:JSON.stringify({candidates:found})}]}]}) };
   }
   if (String(url).includes('googleapis.com')) {
     const request = JSON.parse(options.body); const prompt = request.contents[0].parts[0].text;
     let text;
-    if (prompt.startsWith('Collect')) text = JSON.stringify({candidates:[]});
+    if (prompt.startsWith('Collect')) text = JSON.stringify({candidates:mode === 'redirect' ? [...fixtures, {...fixtures[0],url:'https://vertexaisearch.cloud.google.com/grounding-api-redirect/broken'}] : []});
     else if (prompt.startsWith('Write Vietnamese')) {
       const items = JSON.parse(prompt.split('Candidates: ')[1].split('\\nPrevious')[0]);
       text = JSON.stringify({decisions: mode === 'drop' ? [] : items.map(c => ({candidateId:c.id,action:'include',item:{id:c.id,title:c.title,summary:c.summary,content:c.summary,link:c.url,date:c.date,category:'Thông Báo',source:'Official announcement'}}))});
     } else if (mode === 'eco-failure') return {ok:false,status:401};
-    else text = 'NO NEW PARTNERS';
+    else if (mode === 'cap' || mode === 'cap-invalid') {
+      text = prompt.startsWith('Convert') ? JSON.stringify({news:[],techSpecs:{},sources:[],ecosystem:Array.from({length:11},(_,i)=>({id:'project-'+i,name:'Project '+i,category:'DeFi',icon:'🌊',description:'Test project',tags:['DeFi'],website:(mode === 'cap-invalid' && i === 10) ? '' : 'https://example.org/'+i,status:'Active'}))}) : 'Eleven ecosystem projects found';
+    } else text = 'NO NEW PARTNERS';
     return {ok:true,json:async () => ({candidates:[{finishReason:'STOP',groundingMetadata:{webSearchQueries:['pharos']},content:{parts:[{text}]}}]})};
   }
+  if (String(url).includes('grounding-api-redirect/broken')) throw new Error('temporary redirect failure');
   return {ok:true,status:200,url:String(url)};
 };
 `);
@@ -113,5 +116,42 @@ globalThis.fetch = async (url, options = {}) => {
       assert.equal(state().lastCompletedDate, undefined);
       assert.equal(readFileSync(join(root, 'has-changes.txt'), 'utf8').trim(), 'false');
     }
+    for (const mode of ['redirect', 'cap', 'cap-invalid', 'invalid-pending', 'invalid-news']) {
+      writeFileSync(join(root, 'public/js/data.js'), mode === 'invalid-news' ? baseline.replace('news: [\n]', 'news: [\n{ id: "bad-news", link: "broken" }]') : baseline);
+      rmSync(join(root, '.content-state'), { recursive:true, force:true });
+      const invalid = {id:'bad-retained',url:'broken',title:'Keep this record'};
+      if (mode === 'invalid-pending') {
+        mkdirSync(join(root, '.content-state'));
+        writeFileSync(join(root, '.content-state/state.json'), JSON.stringify({pending:[invalid]}));
+      }
+      const result = run(mode);
+      assert.equal(result.status, mode === 'cap' ? 0 : 1, mode + result.stderr);
+      assert.equal(Boolean(state().lastCompletedDate), mode === 'cap', mode);
+      if (mode === 'invalid-pending') {
+        assert.deepEqual(state().pending[0], invalid);
+        assert.equal(state().pending.length, 4);
+      } else assert.equal(state().pending.length, 3, mode);
+      if (mode === 'redirect') assert.equal(summary().accepted.news, 3);
+      if (mode === 'cap') assert.equal(summary().accepted.ecosystem, 10);
+      if (mode === 'cap-invalid') assert.ok(summary().errors.some(e => e.candidate === 'project-10'));
+    }
   } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+import { recoverState } from './restore-content-state.js';
+
+test('artifact recovery searches later pages and skips missing, malformed or invalid state', () => {
+  const entry = (id, branch = 'main') => ({ id, name: 'content-research-' + id, created_at: `2026-09-${String(id).padStart(2, '0')}T00:00:00Z`, workflow_run: {head_branch:branch,id} });
+  const pages = [{artifacts:[entry(9,'other'),entry(8),entry(7),entry(6)]},{artifacts:[entry(5),entry(4)]}];
+  const attempted = [];
+  const raw = recoverState(pages, 'main', '8', id => {
+    attempted.push(id);
+    if (id === 7) throw new Error('missing state file');
+    if (id === 6) return '{invalid JSON';
+    if (id === 5) return '{}';
+    return '{"pending":[]}';
+  }, () => {});
+  assert.deepEqual(attempted, [7,6,5,4]);
+  assert.deepEqual(JSON.parse(raw), {pending:[]});
+  assert.equal(recoverState(pages, 'main', '8', () => {throw new Error('unavailable');}, () => {}), null);
 });
