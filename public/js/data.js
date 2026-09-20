@@ -8,10 +8,10 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-09-13",
+    lastUpdated: "2026-09-20",
     version: "2.1.11",
     sources: [
-      "https://medium.com/@lithiumdigital/lithium-digital-ecosystem-roundup-august-2026-highlights-0a6b7d2f9d8a",
+      "https://www.tradingview.com/news/coinmarketcal:ae1171e92094b:0-pharos-halliday-connect-widget-goes-live-in-pharos-port-04-aug-2026/",
       "https://x.com/pharos_network/status/2092623064928555105",
       "https://x.com/pharos_network/status/2089547853781967127",
       "https://www.kucoin.com/news/flash/pharos-launches-prnh-vault-with-r25-offering-on-chain-access-to-u-s-high-yield-corporate-bonds",
@@ -1096,16 +1096,6 @@ window.PharosData = {
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
     {
-      id: "halliday-connect-widget-tich-hop-pharos-port",
-      title: "Widget Connect của Halliday Tích Hợp vào Pharos Port",
-      category: "Hợp Tác",
-      date: "2026-09-03",
-      summary: "Widget Connect của Halliday hiện đã có mặt trên Pharos Port, giúp người dùng dễ dàng mua $PROS qua ví, sàn giao dịch hoặc thẻ ngân hàng.",
-      content: "Widget Connect của Halliday đã chính thức tích hợp vào Pharos Port, mang đến cho người dùng một phương thức đơn giản hóa để sở hữu token $PROS. Giờ đây, người dùng có thể mua $PROS trực tiếp thông qua ví điện tử, sàn giao dịch hoặc thẻ ngân hàng, từ đó nâng cao khả năng tiếp cận và trải nghiệm người dùng trên mạng lưới Pharos.",
-      link: "https://medium.com/@lithiumdigital/lithium-digital-ecosystem-roundup-august-2026-highlights-0a6b7d2f9d8a",
-      source: "Lithium Digital (Medium)"
-    },
-    {
       id: "pharos-btc-lending-avalon-functionbtc",
       title: "Thị Trường Cho Vay BTC Đầu Tiên Ra Mắt Trên Pharos",
       category: "Thông Báo",
@@ -1174,6 +1164,16 @@ window.PharosData = {
       content: "Thông báo chính thức về buổi AMA sắp tới thảo luận về những điểm nổi bật của Tradathon S3 và sự hợp tác giữa Pharos, Vizo và OKX Wallet.",
       link: "https://x.com/pharos_network/status/2088361295066148871",
       source: "X (@pharos_network)"
+    },
+    {
+      id: "halliday-connect-widget-tich-hop-pharos-port",
+      title: "Widget Connect Của Halliday Tích Hợp Vào Pharos Port",
+      category: "Hợp Tác",
+      date: "2026-08-04",
+      summary: "Widget Connect của Halliday hiện đã có mặt trên Pharos Port, giúp người dùng mua $PROS qua ví, sàn giao dịch hoặc thẻ ngân hàng.",
+      content: "Widget Connect của Halliday đã chính thức tích hợp vào Pharos Port, mang đến cho người dùng một phương thức đơn giản hơn để sở hữu token $PROS. Giờ đây, người dùng có thể mua $PROS trực tiếp thông qua ví điện tử, sàn giao dịch hoặc thẻ ngân hàng, qua đó nâng cao khả năng tiếp cận và trải nghiệm người dùng trên mạng lưới Pharos.",
+      link: "https://www.tradingview.com/news/coinmarketcal:ae1171e92094b:0-pharos-halliday-connect-widget-goes-live-in-pharos-port-04-aug-2026/",
+      source: "CoinMarketCal / TradingView"
     },
     {
       id: "pharos-tich-hop-vizo-exchange",
@@ -1572,11 +1572,11 @@ window.PharosData = {
     consensus: "AsyncBFT",
     vm: "Dual VM (EVM + WASM)",
     execution: "Speculative Parallel Execution + SALI",
-    finality: "1 giây",
+    finality: "< 1 giây",
     storage: "Giảm 80% (Delta-Encoded MVMMT)",
     interop: "Cross-SPN + Chainlink CCIP + Circle CCTP",
     restaking: "Tái đặt cược nội tại cho SPN",
-    throughput: "30.000 TPS (mục tiêu 50.000 TPS)",
+    throughput: "30.000 giao dịch/giây / 2 Gigagas (mục tiêu 50.000 giao dịch/giây)",
     funding: "52 triệu USD"
   }
 };
