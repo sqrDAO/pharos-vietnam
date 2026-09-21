@@ -400,8 +400,13 @@ async function resolveRedirect(url) {
 // drop the clearly-dead ones so the item fails validation instead of shipping.
 // This cannot catch a live domain that simply isn't the project's (a human
 // still reviews the PR) — it only removes links that resolve to nothing.
-/** Retry transient link failures and record unresolved or inaccessible sources. */
-async function isReachable(url) {
+/**
+ * Retry transient link failures and record unresolved or inaccessible sources.
+ * Dead news links are errors (news is tracked and must not be lost); dead
+ * ecosystem/source links are rejections, since directory research re-runs weekly.
+ */
+async function isReachable(url, strict = true) {
+  const reject = entry => strict ? report.errors.push(entry) : report.decisions.push({ ...entry, action: "reject" });
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const res = await fetchFollow(url);
@@ -411,11 +416,11 @@ async function isReachable(url) {
         report.decisions.push({ url, warning: `HTTP ${res.status}: source requires human verification` });
         return true;
       }
-      report.errors.push({ url, reason: `HTTP ${res.status}` });
+      reject({ url, reason: `HTTP ${res.status}` });
       return false;
     } catch (error) {
       if (attempt === 2) {
-        report.errors.push({ url, reason: `Unresolved after retries: ${error.message}` });
+        reject({ url, reason: `Unresolved after retries: ${error.message}` });
         return false;
       }
       await new Promise(resolve => setTimeout(resolve, 500 * 2 ** attempt));
@@ -423,10 +428,10 @@ async function isReachable(url) {
   }
 }
 
-async function resolveAndVerify(url) {
+async function resolveAndVerify(url, strict = true) {
   const resolved = await resolveRedirect(url);
   if (!resolved) return null;
-  return (await isReachable(resolved)) ? resolved : null;
+  return (await isReachable(resolved, strict)) ? resolved : null;
 }
 
 // Resolve every outward link in the payload to a real source URL and verify it
@@ -438,12 +443,12 @@ async function resolveLinks(payload) {
     if (nonEmptyStr(n.link)) n.link = (await resolveAndVerify(n.link)) || "";
   }
   for (const e of payload.ecosystem ?? []) {
-    if (nonEmptyStr(e.website)) e.website = (await resolveAndVerify(e.website)) || "";
+    if (nonEmptyStr(e.website)) e.website = (await resolveAndVerify(e.website, false)) || "";
   }
   if (Array.isArray(payload.sources)) {
     const out = [];
     for (const s of payload.sources) {
-      const r = await resolveAndVerify(s);
+      const r = await resolveAndVerify(s, false);
       if (r && !isGroundingRedirect(r)) out.push(r);
     }
     payload.sources = out;
@@ -498,7 +503,7 @@ function validate(payload, existing) {
       !isGroundingRedirect(e.website) &&
       nonEmptyStr(e.status);
     if (ok) seenEco.add(e.id);
-    else report.errors.push({ candidate: e?.id, reason: "Ecosystem schema, website or ID validation failed" });
+    else report.decisions.push({ candidate: e?.id, action: "reject", reason: "Ecosystem schema, website or ID validation failed" });
     return ok;
   });
   if (ecosystem.length > MAX_NEW_PARTNERS_PER_RUN) {
@@ -730,7 +735,7 @@ async function main() {
     artifact("structured.json", payload);
     await resolveLinks(payload);
     const changes = validate(payload, current);
-    if (changes.news.length !== news.length || changes.ecosystem.length !== Math.min(MAX_NEW_PARTNERS_PER_RUN, (payload.ecosystem || []).length)) {
+    if (changes.news.length !== news.length) {
       report.errors.push({ reason: "Some candidates failed validation; inspect structured output and URL errors" });
     }
     artifact("validated.json", changes);

@@ -132,15 +132,19 @@ globalThis.fetch = async (url, options = {}) => {
         writeFileSync(join(root, '.content-state/state.json'), JSON.stringify({pending:[invalid]}));
       }
       const result = run(mode);
-      assert.equal(result.status, mode === 'cap' ? 0 : 1, mode + result.stderr);
-      assert.equal(Boolean(state().lastCompletedDate), mode === 'cap', mode);
+      const passes = mode === 'cap' || mode === 'cap-invalid';
+      assert.equal(result.status, passes ? 0 : 1, mode + result.stderr);
+      assert.equal(Boolean(state().lastCompletedDate), passes, mode);
       if (mode === 'invalid-pending') {
         assert.deepEqual(state().pending[0], invalid);
         assert.equal(state().pending.length, 4);
       } else assert.equal(state().pending.length, 3, mode);
       if (mode === 'redirect') assert.equal(summary().accepted.news, 3);
       if (mode === 'cap') assert.equal(summary().accepted.ecosystem, 10);
-      if (mode === 'cap-invalid') assert.ok(summary().errors.some(e => e.candidate === 'project-10'));
+      if (mode === 'cap-invalid') {
+        assert.ok(summary().decisions.some(d => d.candidate === 'project-10' && d.action === 'reject'));
+        assert.equal(summary().accepted.ecosystem, 10);
+      }
     }
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
