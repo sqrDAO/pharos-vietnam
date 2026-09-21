@@ -177,7 +177,10 @@ async function researchXNews(from, to, handle) {
   });
   artifact(`x-${handle || "partners"}.json`, data);
   if (data.status !== "completed") fail(`X research did not complete: ${data.status}`);
-  const calls = (data.output ?? []).filter(item => item.type === "x_search_call");
+  // xAI reports server-side X searches either as legacy `x_search_call` items or
+  // as `custom_tool_call` items named after the sub-tool (x_keyword_search, ...).
+  const calls = (data.output ?? []).filter(item => item.type === "x_search_call"
+    || (item.type === "custom_tool_call" && /^x_/.test(item.name || "")));
   if (!calls.length || calls.some(c => c.status && c.status !== "completed")) fail("No completed X search evidence in response");
   const text = (data.output ?? []).filter(item => item.type === "message")
     .flatMap(item => item.content ?? []).filter(c => c.type === "output_text").map(c => c.text || "").join("\n");
