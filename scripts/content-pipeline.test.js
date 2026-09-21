@@ -72,7 +72,7 @@ globalThis.fetch = async (url, options = {}) => {
     const request = JSON.parse(options.body);
     if (mode === 'x-failure' && request.tools[0].allowed_x_handles?.[0] === 'pharos_eco') return {ok:false,status:401};
     const found = mode !== 'redirect' && request.tools[0].allowed_x_handles?.[0] === 'pharos_network' ? fixtures : [];
-    return { ok:true, json:async () => ({status:'completed', output:[...(mode === 'no-search' ? [] : [{type:'x_search_call',status:'completed'}]), {type:'message',content:[{type:'output_text',text:JSON.stringify({candidates:found})}]}]}) };
+    return { ok:true, json:async () => ({status:'completed', output:[...({'no-search':[], 'other-tool':[{type:'custom_tool_call',name:'web_search',status:'completed'}], 'legacy-search':[{type:'x_search_call',status:'completed'}]}[mode] ?? [{type:'custom_tool_call',name:'x_keyword_search',status:'completed'}]), {type:'message',content:[{type:'output_text',text:JSON.stringify({candidates:found})}]}]}) };
   }
   if (String(url).includes('googleapis.com')) {
     const request = JSON.parse(options.body); const prompt = request.contents[0].parts[0].text;
@@ -108,7 +108,14 @@ globalThis.fetch = async (url, options = {}) => {
       assert.equal(summary().status, mode === 'drop' ? 'completed_with_updates' : 'completed_no_updates');
       assert.equal(state().pending.length, mode === 'drop' ? 3 : 0);
     }
-    for (const mode of ['missing-key', 'no-search']) {
+    for (const mode of ['legacy-search']) {
+      writeFileSync(join(root, 'public/js/data.js'), baseline);
+      rmSync(join(root, '.content-state'), { recursive:true, force:true });
+      const result = run(mode);
+      assert.equal(result.status, 0, result.stderr);
+      assert.equal(summary().status, 'completed_with_updates');
+    }
+    for (const mode of ['missing-key', 'no-search', 'other-tool']) {
       writeFileSync(join(root, 'public/js/data.js'), baseline);
       rmSync(join(root, '.content-state'), { recursive:true, force:true });
       assert.equal(run(mode).status, 1);
