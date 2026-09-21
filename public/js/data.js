@@ -8,9 +8,18 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-09-20",
-    version: "2.1.11",
+    lastUpdated: "2026-09-21",
+    version: "2.1.12",
     sources: [
+      "https://www.rcade.co",
+      "https://x.com/pharos_network/status/2096195392316837892",
+      "https://x.com/pharos_network/status/2100541256787173513",
+      "https://x.com/pharos_network/status/2100551611093520856",
+      "https://x.com/pharos_eco/status/2095741462260650287",
+      "https://x.com/pharos_eco/status/2095748373664112771",
+      "https://x.com/pharos_eco/status/2100065813868990665",
+      "https://x.com/R25Official/status/2100191133465010485",
+      "https://x.com/ProsperTicker/status/2100556221656994105",
       "https://www.tradingview.com/news/coinmarketcal:ae1171e92094b:0-pharos-halliday-connect-widget-goes-live-in-pharos-port-04-aug-2026/",
       "https://x.com/pharos_network/status/2092623064928555105",
       "https://x.com/pharos_network/status/2089547853781967127",
@@ -63,6 +72,16 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "rcade-co",
+      name: "rcade_co",
+      category: "Gaming",
+      icon: "🎮",
+      description: "rcade_co là một dự án gaming hợp tác với Pharos cho các sự kiện gắn kết cộng đồng. Nền tảng này cung cấp một hệ điều hành tùy chỉnh cho game retro và phát lại media 4K.",
+      tags: ["Gaming", "Giải trí"],
+      website: "https://www.rcade.co",
+      status: "Đối tác"
+    },
     {
       id: "vizo-exchange",
       name: "VIZO Exchange",
@@ -1095,6 +1114,86 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "prosperticker-ra-mat-thi-truong-hieu-suat-thanh-khoan",
+      title: "ProsperTicker Ra Mắt Thị Trường Hiệu Suất Thanh Khoản Trên Pharos",
+      category: "Cập Nhật",
+      date: "2026-09-17",
+      summary: "ProsperTicker đã ra mắt Thị trường Hiệu suất Thanh khoản (Liquid Performance Market) trên Mạng lưới Pharos, cho phép người dùng khám phá và tiếp cận các hiệu suất on-chain có tính thanh khoản cao.",
+      content: "ProsperTicker đã chính thức ra mắt Thị trường Hiệu suất Thanh khoản (Liquid Performance Market) trên Mạng lưới Pharos. Nền tảng này được thiết kế để người dùng có thể dễ dàng khám phá và tiếp cận các chiến lược và hiệu suất on-chain có tính thanh khoản cao, mở ra cơ hội đầu tư mới trong hệ sinh thái RealFi của Pharos.",
+      link: "https://x.com/pharos_network/status/2100541256787173513",
+      source: "Pharos Network"
+    },
+    {
+      id: "cua-so-hanh-dong-palpha-ii-mo-tren-pharos",
+      title: "Cửa Sổ Hành Động pAlpha II Mở Trên Mạng Pharos",
+      category: "Thông Báo",
+      date: "2026-09-17",
+      summary: "Những người nắm giữ pAlpha II hiện có thể chọn rút tiền hoặc chuyển tiếp sang pAlpha III. Cửa sổ rút tiền sẽ mở cho đến ngày 1 tháng 10 năm 2026 (UTC+8).",
+      content: "Mạng lưới Pharos đã thông báo mở cửa sổ hành động cho những người nắm giữ pAlpha II. Theo đó, các nhà đầu tư có thể lựa chọn rút khoản đầu tư của mình hoặc chuyển tiếp sang pAlpha III. Cửa sổ rút tiền sẽ kéo dài đến hết ngày 1 tháng 10 năm 2026 (UTC+8), mang lại sự linh hoạt cho người dùng trong việc quản lý tài sản của họ.",
+      link: "https://x.com/pharos_network/status/2100551611093520856",
+      source: "Pharos Network"
+    },
+    {
+      id: "prosperticker-ra-mat-genesis-vaults",
+      title: "ProsperTicker Ra Mắt Genesis Vaults",
+      category: "Cập Nhật",
+      date: "2026-09-17",
+      summary: "Prosper Genesis Vaults đã được mở trên Pharos, với sự tham gia của các Founding Curators được xác minh danh tính, cung cấp các hồ sơ lợi suất tùy chỉnh và các chiến lược alpha thanh khoản không cần cấp phép.",
+      content: "ProsperTicker đã chính thức ra mắt Prosper Genesis Vaults trên Mạng lưới Pharos. Các vault này được thiết kế để cung cấp các hồ sơ lợi suất tùy chỉnh và các chiến lược alpha thanh khoản không cần cấp phép, với sự tham gia của các Founding Curators đã được xác minh danh tính. Đây là một bước tiến mới trong việc cung cấp các sản phẩm đầu tư linh hoạt và minh bạch trên chuỗi.",
+      link: "https://x.com/ProsperTicker/status/2100556221656994105",
+      source: "ProsperTicker"
+    },
+    {
+      id: "newsight-tradathon-s4-chinh-thuc-ra-mat-tren-pharos",
+      title: "NewSight Tradathon S4 Chính Thức Ra Mắt Trên Pharos",
+      category: "Thông Báo",
+      date: "2026-09-16",
+      summary: "Chiến dịch giao dịch dự đoán kéo dài hai tuần trên NewSight đã chính thức hoạt động trên Pharos, với phần thưởng bảng xếp hạng hàng tuần, điểm hàng ngày và các khoản thưởng bao gồm 20.000 $PROS cùng 10 triệu điểm NewSight. Chiến dịch diễn ra từ ngày 14 đến 27 tháng 9.",
+      content: "Chiến dịch giao dịch dự đoán NewSight Tradathon S4 đã chính thức khởi động trên Mạng lưới Pharos. Sự kiện kéo dài hai tuần này, từ ngày 14 đến 27 tháng 9, mang đến cho người tham gia cơ hội nhận phần thưởng từ bảng xếp hạng hàng tuần, tích lũy điểm hàng ngày và các khoản thưởng đặc biệt, bao gồm 20.000 $PROS và 10 triệu điểm NewSight. Đây là một hoạt động nhằm thúc đẩy sự tương tác và giao dịch trên nền tảng dự đoán của NewSight.",
+      link: "https://x.com/pharos_eco/status/2100065813868990665",
+      source: "Pharos Ecosystem"
+    },
+    {
+      id: "r25-2-0-ra-mat-don-gian-hoa-san-pham-dau-tu-onchain",
+      title: "R25 Ra Mắt R25 2.0, Đơn Giản Hóa Việc Triển Khai Sản Phẩm Đầu Tư On-chain",
+      category: "Cập Nhật",
+      date: "2026-09-16",
+      summary: "R25 đã giới thiệu R25 2.0, một phiên bản mới giúp đơn giản hóa việc ra mắt các sản phẩm đầu tư on-chain xuống cấp độ triển khai hợp đồng thông minh.",
+      content: "R25 đã chính thức công bố R25 2.0, một bản cập nhật quan trọng nhằm cách mạng hóa quy trình ra mắt các sản phẩm đầu tư trên chuỗi. Với R25 2.0, việc triển khai các sản phẩm đầu tư on-chain được đơn giản hóa đáng kể, chỉ còn ở cấp độ triển khai hợp đồng thông minh, giúp các nhà phát triển và tổ chức dễ dàng đưa các giải pháp tài chính mới ra thị trường.",
+      link: "https://x.com/R25Official/status/2100191133465010485",
+      source: "R25 Official"
+    },
+    {
+      id: "axil-san-pham-tin-dung-tieu-dung-tren-pharos",
+      title: "Axil Ra Mắt Sản Phẩm Tín Dụng Tiêu Dùng Trên Pharos",
+      category: "Cập Nhật",
+      date: "2026-09-05",
+      summary: "Axil đã mang cơ sở hạ tầng thẩm định, quản lý rủi ro và thanh khoản cho các danh mục tín dụng tiêu dùng tại các thị trường mới nổi lên mạng lưới Pharos.",
+      content: "Axil đã chính thức ra mắt sản phẩm tín dụng tiêu dùng trên Pharos, cung cấp cơ sở hạ tầng toàn diện bao gồm thẩm định, quản lý rủi ro và thanh khoản. Sản phẩm này tập trung vào các danh mục tín dụng tiêu dùng tại các thị trường mới nổi, mở rộng khả năng tiếp cận tài chính trên chuỗi cho một phân khúc thị trường mới.",
+      link: "https://x.com/pharos_network/status/2096195392316837892",
+      source: "Pharos Network"
+    },
+    {
+      id: "pharos-vizo-prediction-league-tuan-1-ra-mat",
+      title: "Pharos và VIZO Ra Mắt Giải Đấu Dự Đoán Tuần 1",
+      category: "Thông Báo",
+      date: "2026-09-04",
+      summary: "Chiến dịch giao dịch dự đoán on-chain, được hỗ trợ bởi VizoExchange, đã ra mắt trên Pharos, tập trung vào các sự kiện crypto và thế giới thực. Giải đấu diễn ra từ ngày 5 đến 11 tháng 9, với ưu đãi bảo vệ giao dịch đầu tiên lên đến 5 USDT cho người dùng mới.",
+      content: "Pharos và VIZO Exchange đã hợp tác ra mắt Giải đấu Dự đoán Tuần 1, một chiến dịch giao dịch dự đoán on-chain đầy hấp dẫn. Sự kiện này, được hỗ trợ bởi VizoExchange, cho phép người dùng tham gia dự đoán các sự kiện trong thế giới crypto và thực tế. Giải đấu sẽ diễn ra từ ngày 5 đến ngày 11 tháng 9, đồng thời cung cấp ưu đãi bảo vệ giao dịch đầu tiên lên đến 5 USDT cho người dùng mới, khuyến khích sự tham gia của cộng đồng.",
+      link: "https://x.com/pharos_eco/status/2095741462260650287",
+      source: "Pharos Ecosystem"
+    },
+    {
+      id: "digift-kgi-ra-mat-chien-luoc-co-phieu-ktw50-token-hoa",
+      title: "DigiFT và KGI Ra Mắt Chiến Lược Cổ Phiếu kTW50 Token Hóa Trên Pharos",
+      category: "Hợp Tác",
+      date: "2026-09-04",
+      summary: "DigiFT và KGI đã hợp tác đưa câu chuyện phần cứng AI của Đài Loan lên chuỗi thông qua việc token hóa quyền truy cập vào một chiến lược cổ phiếu vốn hóa lớn, thúc đẩy RealFi trong hệ sinh thái Pharos.",
+      content: "DigiFT và KGI đã công bố ra mắt chiến lược cổ phiếu kTW50 được token hóa trên Mạng lưới Pharos. Sự hợp tác này nhằm mục đích mang câu chuyện tăng trưởng của ngành phần cứng AI tại Đài Loan lên chuỗi, cung cấp quyền truy cập token hóa vào một chiến lược cổ phiếu vốn hóa lớn. Đây là một bước tiến quan trọng trong việc phát triển RealFi và mở rộng các loại tài sản thực được token hóa trong hệ sinh thái Pharos.",
+      link: "https://x.com/pharos_eco/status/2095748373664112771",
+      source: "Pharos Ecosystem"
+    },
     {
       id: "pharos-btc-lending-avalon-functionbtc",
       title: "Thị Trường Cho Vay BTC Đầu Tiên Ra Mắt Trên Pharos",
