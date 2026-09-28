@@ -67,6 +67,7 @@ const NativeDate = Date;
 globalThis.Date = class extends NativeDate { constructor(...args) { super(...(args.length ? args : ['2026-09-13T12:00:00Z'])); } static now() { return NativeDate.parse('2026-09-13T12:00:00Z'); } };
 const fixtures = JSON.parse(fs.readFileSync(new URL('./fixture.json', import.meta.url)));
 const mode = process.env.SCENARIO;
+let emptied = 0;
 globalThis.fetch = async (url, options = {}) => {
   if (String(url).includes('api.x.ai')) {
     const request = JSON.parse(options.body);
@@ -76,6 +77,9 @@ globalThis.fetch = async (url, options = {}) => {
   }
   if (String(url).includes('googleapis.com')) {
     const request = JSON.parse(options.body); const prompt = request.contents[0].parts[0].text;
+    if (prompt.startsWith('Collect') && (mode === 'gemini-empty' || (mode === 'gemini-empty-once' && !emptied++))) {
+      return {ok:true,json:async () => ({candidates:[{finishReason:'STOP',groundingMetadata:{webSearchQueries:['pharos']},content:{role:'model'}}]})};
+    }
     let text;
     if (prompt.startsWith('Collect')) text = JSON.stringify({candidates:mode === 'redirect' ? [...fixtures, {...fixtures[0],url:'https://vertexaisearch.cloud.google.com/grounding-api-redirect/broken'}] : []});
     else if (prompt.startsWith('Write Vietnamese')) {
@@ -107,6 +111,15 @@ globalThis.fetch = async (url, options = {}) => {
       assert.equal(recovered.status, 0, recovered.stderr);
       assert.equal(summary().status, mode === 'drop' ? 'completed_with_updates' : 'completed_no_updates');
       assert.equal(state().pending.length, mode === 'drop' ? 3 : 0);
+    }
+    for (const mode of ['gemini-empty-once', 'gemini-empty']) {
+      writeFileSync(join(root, 'public/js/data.js'), baseline);
+      rmSync(join(root, '.content-state'), { recursive:true, force:true });
+      const result = run(mode);
+      const recovers = mode === 'gemini-empty-once';
+      assert.equal(result.status, recovers ? 0 : 1, mode + result.stderr);
+      assert.equal(summary().status, recovers ? 'completed_with_updates' : 'incomplete');
+      assert.equal(summary().errors.some(e => e.reason === 'Gemini returned empty content'), !recovers);
     }
     for (const mode of ['legacy-search']) {
       writeFileSync(join(root, 'public/js/data.js'), baseline);

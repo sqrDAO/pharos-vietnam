@@ -105,22 +105,31 @@ function artifact(name, value) {
   mkdirSync(ARTIFACT_DIR, { recursive: true });
   writeFileSync(join(ARTIFACT_DIR, name), sanitize(value));
 }
-/** Call Gemini and reject unfinished, empty, or ungrounded research responses. */
+/**
+ * Call Gemini and reject unfinished, empty, or ungrounded research responses.
+ * Grounded calls intermittently finish with STOP but no content parts, so a
+ * rejected response is retried before it fails the run. (HTTP failures are
+ * already retried inside requestJson.)
+ */
 async function geminiCall(body) {
-  const data = await requestJson(`${API_BASE}/${encodeURIComponent(GEMINI_MODEL)}:generateContent`, {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
-    body: JSON.stringify(body),
-  });
-  artifact(`gemini-${++sequence}.json`, data);
-  const candidate = data?.candidates?.[0];
-  if (body.tools?.some(t => t.google_search) && !candidate?.groundingMetadata?.webSearchQueries?.length) {
-    fail("Gemini research has no search-query evidence");
+  for (let attempt = 0; ; attempt++) {
+    const data = await requestJson(`${API_BASE}/${encodeURIComponent(GEMINI_MODEL)}:generateContent`, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
+      body: JSON.stringify(body),
+    });
+    artifact(`gemini-${++sequence}.json`, data);
+    const candidate = data?.candidates?.[0];
+    const text = (candidate?.content?.parts ?? []).filter(p => !p.thought).map(p => p.text || "").join("").trim();
+    let problem = null;
+    if (body.tools?.some(t => t.google_search) && !candidate?.groundingMetadata?.webSearchQueries?.length) {
+      problem = "Gemini research has no search-query evidence";
+    } else if (candidate?.finishReason !== "STOP") problem = `Gemini did not finish normally: ${candidate?.finishReason}`;
+    else if (!text) problem = "Gemini returned empty content";
+    if (!problem) return text;
+    if (attempt === 2) fail(problem);
+    await new Promise(resolve => setTimeout(resolve, 1000 * 2 ** attempt));
   }
-  if (candidate?.finishReason !== "STOP") fail(`Gemini did not finish normally: ${candidate?.finishReason}`);
-  const text = (candidate.content?.parts ?? []).filter(p => !p.thought).map(p => p.text || "").join("").trim();
-  if (!text) fail("Gemini returned empty content");
-  return text;
 }
 
 /** Describe a dated discovery pass without suppressing later events from known projects. */
