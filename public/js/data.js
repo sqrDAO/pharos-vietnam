@@ -8,9 +8,13 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-09-21",
-    version: "2.1.12",
+    lastUpdated: "2026-09-28",
+    version: "2.1.13",
     sources: [
+      "https://x.com/pharos_network/status/2103673425881624891",
+      "https://x.com/pharos_network/status/2102948659197567086",
+      "https://x.com/pharos_eco/status/2095714555284652456",
+      "https://x.com/pharos_network/status/2103410627389866044",
       "https://www.rcade.co",
       "https://x.com/pharos_network/status/2096195392316837892",
       "https://x.com/pharos_network/status/2100541256787173513",
@@ -1114,6 +1118,46 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "sharpbyte-usdc-pharos-ecosystem-vault-ra-mat-tren-morpho",
+      title: "SharpByte USDC Pharos Ecosystem Vault Ra Mắt Trên Morpho",
+      category: "Cập Nhật",
+      date: "2026-09-26",
+      summary: "Thị trường cho vay biệt lập trên Morpho Blue kết nối thanh khoản USDC với tài sản thế chấp tín dụng tư nhân được token hóa APC3M. Được quản lý bởi sharpbytexyz sử dụng cơ sở hạ tầng Morpho V2 chính thức; phần thưởng $PROS qua Merkle_Trade. Người cung cấp USDC kiếm được ~7.0–8.5% APY; người nắm giữ APC3M có thể vay với LLTV 86%.",
+      content: "SharpByte đã ra mắt Kho tiền hệ sinh thái Pharos USDC trên Morpho Blue, tạo ra một thị trường cho vay biệt lập. Thị trường này cho phép kết nối thanh khoản USDC với tài sản thế chấp tín dụng tư nhân được token hóa APC3M. Kho tiền được quản lý bởi sharpbytexyz, sử dụng cơ sở hạ tầng Morpho V2 chính thức và cung cấp phần thưởng $PROS thông qua Merkle_Trade. Người cung cấp USDC có thể kiếm được lợi suất hàng năm (APY) khoảng 7.0–8.5%, trong khi người nắm giữ APC3M có thể vay với tỷ lệ giá trị cho vay trên giá trị tài sản thế chấp (LLTV) là 86%.",
+      link: "https://x.com/pharos_network/status/2103673425881624891",
+      source: "Pharos Network"
+    },
+    {
+      id: "mo-rong-tien-ich-pros-thong-qua-faroo-tren-pharos",
+      title: "Mở Rộng Tiện Ích $PROS Thông Qua Faroo Trên Pharos",
+      category: "Cập Nhật",
+      date: "2026-09-25",
+      summary: "Faroo đang phát triển stPROS cho phần thưởng staking và thanh khoản, cùng với tbPROS cho các cơ hội thu nhập cố định có cấu trúc trên Pharos, tích hợp $PROS sâu hơn vào nền kinh tế on-chain.",
+      content: "Faroo đang tích cực phát triển các sản phẩm mới nhằm mở rộng tiện ích của token $PROS trong hệ sinh thái Pharos. Cụ thể, Faroo đang xây dựng stPROS để cung cấp phần thưởng staking và tăng cường thanh khoản, đồng thời phát triển tbPROS để tạo ra các cơ hội thu nhập cố định có cấu trúc. Những sáng kiến này sẽ tích hợp $PROS sâu hơn vào nền kinh tế on-chain, mang lại nhiều lựa chọn hơn cho người dùng và củng cố vai trò của token trong hệ sinh thái Pharos.",
+      link: "https://x.com/pharos_network/status/2103410627389866044",
+      source: "Pharos Network"
+    },
+    {
+      id: "debot-tich-hop-mang-pharos",
+      title: "DeBot Tích Hợp Mạng Pharos, Mở Rộng Giao Dịch Tài Sản Hệ Sinh Thái",
+      category: "Hợp Tác",
+      date: "2026-09-24",
+      summary: "DeBot, nền tảng giao dịch dựa trên tín hiệu AI với hơn 1.5 triệu người dùng, đã tích hợp hệ sinh thái Pharos. Các tài sản của Pharos, bao gồm ProsperTicker, giờ đây có thể giao dịch trên DeBot với tín hiệu AI, giám sát on-chain theo thời gian thực và thực hiện nhanh chóng.",
+      content: "DeBot, một nền tảng giao dịch tiên tiến được điều khiển bởi tín hiệu AI và phục vụ hơn 1.5 triệu người dùng, đã chính thức tích hợp hệ sinh thái Pharos. Sự tích hợp này cho phép các tài sản của Pharos, bao gồm cả ProsperTicker, trở nên có thể giao dịch trên nền tảng DeBot. Người dùng sẽ được hưởng lợi từ các tín hiệu AI, khả năng giám sát on-chain theo thời gian thực và tốc độ thực hiện giao dịch nhanh chóng, mở rộng đáng kể khả năng tiếp cận và tiện ích của các tài sản trong hệ sinh thái Pharos.",
+      link: "https://x.com/pharos_network/status/2102948659197567086",
+      source: "Pharos Network"
+    },
+    {
+      id: "prosper-gioi-thieu-mo-hinh-memerwa-tren-he-sinh-thai-pharos",
+      title: "Prosper Giới Thiệu Mô Hình MemeRWA Trên Hệ Sinh Thái Pharos",
+      category: "Công Nghệ",
+      date: "2026-09-04",
+      summary: "Prosper đã mang giao dịch hiệu suất người quản lý có thể kiểm chứng với tốc độ crypto-native đến hệ sinh thái Pharos thông qua mô hình MemeRWA, được hỗ trợ bởi $PROS.",
+      content: "Prosper đã chính thức giới thiệu mô hình MemeRWA vào hệ sinh thái Pharos, mang đến khả năng giao dịch hiệu suất người quản lý có thể kiểm chứng với tốc độ vốn có của crypto. Mô hình này được hỗ trợ bởi token $PROS, nhằm mục đích tích hợp các tài sản thế giới thực (RWA) vào không gian DeFi một cách sáng tạo, tận dụng tính minh bạch và hiệu quả của công nghệ blockchain trên mạng Pharos.",
+      link: "https://x.com/pharos_eco/status/2095714555284652456",
+      source: "Pharos Eco"
+    },
     {
       id: "prosperticker-ra-mat-thi-truong-hieu-suat-thanh-khoan",
       title: "ProsperTicker Ra Mắt Thị Trường Hiệu Suất Thanh Khoản Trên Pharos",
