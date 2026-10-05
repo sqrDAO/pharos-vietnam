@@ -70,7 +70,7 @@ export function reconcileDecisions(candidates, payload, existing) {
       items.push(d.item);
     } else if (d.action === 'exclude') {
       if (d.reason === 'duplicate') {
-        const target = includedBySlug.get(d.duplicateOf) ?? d.duplicateOf;
+        const target = expected.has(d.duplicateOf) ? d.duplicateOf : (includedBySlug.get(d.duplicateOf) ?? d.duplicateOf);
         if (!existingIds.has(d.duplicateOf) && !(target !== d.candidateId && includedIds.has(target))) throw new Error('Duplicate exclusion must identify existing news or an included candidate');
       } else if (d.reason !== 'out_of_scope' || typeof d.explanation !== 'string' || !d.explanation.trim()) throw new Error('Exclusion requires an explicit supported reason');
     } else throw new Error('Invalid candidate action');

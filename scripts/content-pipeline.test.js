@@ -25,6 +25,11 @@ test('in-batch duplicates may cite the included item slug, but not their own', (
   d[1].item.id = 'prnh-vault-launch';
   d[0] = { candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate', duplicateOf: 'prnh-vault-launch' };
   assert.equal(reconcileDecisions(candidates, { decisions: d }, []).items.length, 2);
+  d[0] = { candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate', duplicateOf: candidates[0].id };
+  assert.throws(() => reconcileDecisions(candidates, { decisions: d }, []), /Duplicate/);
+  d[1].item.id = candidates[0].id; // a slug that collides with the excluded candidate's ID
+  assert.throws(() => reconcileDecisions(candidates, { decisions: d }, []), /Duplicate/);
+  d[1].item.id = 'prnh-vault-launch';
   d[0] = { candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate', duplicateOf: 'unknown-slug' };
   assert.throws(() => reconcileDecisions(candidates, { decisions: d }, []), /Duplicate/);
 });
