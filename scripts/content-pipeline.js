@@ -12,6 +12,14 @@ export function canonicalUrl(value) {
   return url.toString().replace(/\/$/, '');
 }
 
+/** Detect the bare Pharos homepage, which is not a project's own website. */
+export function isPharosHomepage(value) {
+  try {
+    const url = new URL(canonicalUrl(value));
+    return ['pharos.xyz', 'www.pharos.xyz'].includes(url.hostname) && url.pathname === '/';
+  } catch { return false; }
+}
+
 /** Accept only real calendar dates in YYYY-MM-DD form. */
 function validDate(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) &&
@@ -49,7 +57,10 @@ export function reconcileDecisions(candidates, payload, existing) {
   const seen = new Set();
   const items = [];
   const existingIds = new Set(existing.map(n => n.id));
-  const includedIds = new Set(payload.decisions.filter(d => d?.action === 'include').map(d => d.candidateId));
+  const included = payload.decisions.filter(d => d?.action === 'include');
+  const includedIds = new Set(included.map(d => d.candidateId));
+  // Models often cite the included item's slug rather than its candidate ID; map it back.
+  const includedBySlug = new Map(included.filter(d => typeof d.item?.id === 'string').map(d => [d.item.id, d.candidateId]));
   for (const d of payload.decisions) {
     if (!d || !expected.has(d.candidateId) || seen.has(d.candidateId)) throw new Error('Unknown or repeated candidate decision');
     seen.add(d.candidateId);
@@ -59,7 +70,8 @@ export function reconcileDecisions(candidates, payload, existing) {
       items.push(d.item);
     } else if (d.action === 'exclude') {
       if (d.reason === 'duplicate') {
-        if (!existingIds.has(d.duplicateOf) && !(d.duplicateOf !== d.candidateId && includedIds.has(d.duplicateOf))) throw new Error('Duplicate exclusion must identify existing news or an included candidate');
+        const target = includedBySlug.get(d.duplicateOf) ?? d.duplicateOf;
+        if (!existingIds.has(d.duplicateOf) && !(target !== d.candidateId && includedIds.has(target))) throw new Error('Duplicate exclusion must identify existing news or an included candidate');
       } else if (d.reason !== 'out_of_scope' || typeof d.explanation !== 'string' || !d.explanation.trim()) throw new Error('Exclusion requires an explicit supported reason');
     } else throw new Error('Invalid candidate action');
   }
