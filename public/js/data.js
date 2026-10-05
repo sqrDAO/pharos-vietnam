@@ -9,8 +9,12 @@ window.PharosData = {
   // ---- METADATA ----
   meta: {
     lastUpdated: "2026-10-05",
-    version: "2.1.15",
+    version: "2.1.16",
     sources: [
+      "https://x.com/pharos_network/status/2105266581236539547",
+      "https://x.com/pharos_network/status/2105583515475861562",
+      "https://x.com/pharos_network/status/2106263722352116180",
+      "https://x.com/R25Official/status/2105206329459835009",
       "https://x.com/pharos_network/status/2103673425881624891",
       "https://x.com/pharos_network/status/2102948659197567086",
       "https://x.com/pharos_eco/status/2095714555284652456",
@@ -76,6 +80,26 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "functionbtc",
+      name: "FunctionBTC",
+      category: "DeFi, Cho vay, Bitcoin, RWA",
+      icon: "₿",
+      description: "FunctionBTC (FBTC) cung cấp khả năng thanh khoản Bitcoin đáng tin cậy trên các chuỗi và giao thức, hỗ trợ thanh toán hiệu quả, tích hợp vào các thị trường cho vay và tham gia liền mạch vào các chiến lược tạo lợi nhuận và restaking. Nền tảng này biến BTC thụ động thành một tài sản hoạt động, tạo ra lợi nhuận, và là một cơ sở hạ tầng cho vay được hỗ trợ bởi Bitcoin.",
+      tags: ["DeFi", "Cho vay", "Bitcoin", "RWA"],
+      website: "https://www.fxn.xyz/",
+      status: "Hoạt động"
+    },
+    {
+      id: "anvita-flow",
+      name: "Anvita Flow",
+      category: "AI, Hạ tầng, Thanh toán",
+      icon: "🤖",
+      description: "Anvita Flow là một cơ sở hạ tầng và thị trường tác nhân AI, cho phép các tác nhân AI tự chủ tương tác, cộng tác và giao dịch với nhau theo thời gian thực bằng cách sử dụng thanh toán tiền điện tử. Nền tảng này giúp các nhà phát triển chuyển đổi 'Pharos Skills' của họ thành 'Service Agents' có thể khám phá và gọi được, đồng thời tích hợp giao thức x402 để thực hiện các giao dịch nhỏ bằng stablecoin.",
+      tags: ["AI", "Hạ tầng", "Thanh toán"],
+      website: "https://flow.anvita.xyz/home",
+      status: "Hoạt động"
+    },
     {
       id: "rcade-co",
       name: "rcade_co",
@@ -1118,6 +1142,46 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-chao-don-silofinance-de-phat-trien-thi-truong-cho-vay-biet-lap",
+      title: "Pharos Chào Đón SiloFinance Để Phát Triển Thị Trường Cho Vay Biệt Lập",
+      category: "Hợp Tác",
+      date: "2026-10-03",
+      summary: "Pharos đã chào đón SiloFinance trước thềm ra mắt các thị trường cho vay biệt lập trên mạng lưới Pharos. Mỗi thị trường sẽ có tài sản thế chấp, oracle và các thông số rủi ro riêng cho RWA. Các thị trường đầu tiên dự kiến sẽ ra mắt vào tuần tới.",
+      content: "Pharos Network đã chính thức chào đón SiloFinance, một bước chuẩn bị quan trọng cho việc ra mắt các thị trường cho vay biệt lập trên nền tảng của mình. Các thị trường này sẽ được thiết kế để mỗi thị trường có tài sản thế chấp, oracle và các thông số rủi ro riêng biệt, đặc biệt dành cho các Tài sản Thế giới Thực (RWA) được sử dụng làm tài sản thế chấp. Theo thông báo, các thị trường đầu tiên dự kiến sẽ đi vào hoạt động trong tuần tới, hứa hẹn mở rộng đáng kể khả năng cho vay và đi vay trong hệ sinh thái Pharos.",
+      link: "https://x.com/pharos_network/status/2106263722352116180",
+      source: "Pharos Network"
+    },
+    {
+      id: "axil-pot-apt-ra-mat-cung-cap-loi-suat-realfi-thanh-khoan",
+      title: "Axil Pot (APT) Ra Mắt, Cung Cấp Lợi Suất RealFi Thanh Khoản",
+      category: "Cập Nhật",
+      date: "2026-10-01",
+      summary: "Sản phẩm lợi suất RealFi Axil Pot (APT) đã chính thức ra mắt, cung cấp lợi suất RealFi thanh khoản được quản lý chuyên nghiệp bởi Official_Axil thông qua R25Official. Người dùng có thể gửi USDC để tiếp cận chiến lược tín dụng thế giới thực với mục tiêu APY khoảng 8% và khả năng rút tiền tức thì (T+0).",
+      content: "Axil Pot (APT), một sản phẩm lợi suất RealFi mới, đã chính thức đi vào hoạt động. Sản phẩm này cung cấp lợi suất RealFi thanh khoản được quản lý chuyên nghiệp bởi Official_Axil thông qua nền tảng R25Official. Người dùng có thể gửi USDC để tham gia vào một chiến lược tín dụng thế giới thực, với mục tiêu đạt được lợi suất hàng năm (APY) khoảng 8%. Một điểm nổi bật là khả năng rút tiền tức thì (T+0), mang lại sự linh hoạt cao cho các nhà đầu tư.",
+      link: "https://x.com/pharos_network/status/2105583515475861562",
+      source: "Pharos Network"
+    },
+    {
+      id: "pharos-agent-native-ra-mat-voi-loi-realfi-va-cong-cu-moi",
+      title: "Pharos Agent Native Ra Mắt Với Lõi RealFi và Công Cụ Mới",
+      category: "Công Nghệ",
+      date: "2026-09-30",
+      summary: "Pharos Agent Native đã ra mắt, tích hợp lõi RealFi và cung cấp các công cụ mới cho nhà phát triển, cùng với tương tác tác nhân. Phiên bản này bao gồm cổng Pharos AI, tích hợp Pharos Port Agent và Pharos × AnvitaMate. Lộ trình Q4 2026 sẽ có PoS Staking, Gas Sponsorship, DeltaTrie; năm 2027 sẽ có Agent Accounts và State Economy.",
+      content: "Pharos Agent Native đã chính thức ra mắt, mang đến một bước tiến quan trọng trong hệ sinh thái của Pharos với lõi RealFi và một bộ công cụ mới dành cho các nhà phát triển, cùng với khả năng tương tác tác nhân nâng cao. Phiên bản này tích hợp cổng Pharos AI, tính năng Pharos Port Agent và sự hợp tác với AnvitaMate. Theo lộ trình phát triển, quý 4 năm 2026 sẽ chứng kiến sự ra mắt của PoS Staking, Gas Sponsorship và DeltaTrie. Đến năm 2027, Pharos dự kiến giới thiệu Agent Accounts và State Economy, tiếp tục mở rộng khả năng của nền tảng.",
+      link: "https://x.com/pharos_network/status/2105266581236539547",
+      source: "Pharos Network"
+    },
+    {
+      id: "r25-studio-mo-dang-ky-beta-cong-khai",
+      title: "R25 Studio Mở Đăng Ký Beta Công Khai",
+      category: "Nhà phát triển",
+      date: "2026-09-30",
+      summary: "R25 Studio đã ra mắt phiên bản beta công khai, cung cấp cơ sở hạ tầng vault cấp tổ chức cho các nhà quản lý tài sản. Nền tảng này cho phép thiết lập quỹ trong 10 phút, hỗ trợ xây dựng, quản lý, kiếm tiền và phân phối với các tính năng đăng ký/rút tiền on-chain, phí, phân phối qua đối tác, cùng khả năng theo dõi NAV, APY, lợi nhuận và mức sụt giảm.",
+      content: "R25 Studio đã chính thức ra mắt phiên bản beta công khai, mang đến một cơ sở hạ tầng vault cấp tổ chức mạnh mẽ dành cho các nhà quản lý tài sản. Nền tảng này được thiết kế để đơn giản hóa quy trình thiết lập quỹ, cho phép người dùng tạo quỹ chỉ trong 10 phút. R25 Studio hỗ trợ toàn diện các hoạt động xây dựng, quản lý, kiếm tiền và phân phối, với các tính năng như đăng ký và rút tiền on-chain, quản lý phí, phân phối thông qua các đối tác. Ngoài ra, nền tảng còn cung cấp khả năng theo dõi chi tiết các chỉ số quan trọng như NAV (Giá trị tài sản ròng), APY (Lợi suất hàng năm), lợi nhuận và mức sụt giảm, giúp các nhà quản lý có cái nhìn toàn diện về hiệu suất quỹ của mình.",
+      link: "https://x.com/R25Official/status/2105206329459835009",
+      source: "R25 Official"
+    },
     {
       id: "sharpbyte-usdc-pharos-ecosystem-vault-ra-mat-tren-morpho",
       title: "SharpByte USDC Pharos Ecosystem Vault Ra Mắt Trên Morpho",
