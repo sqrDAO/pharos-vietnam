@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, coverageStart, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
+import { canonicalUrl, coverageStart, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -19,6 +19,23 @@ test('duplicates need a traceable target and exclusions need a reason', () => {
   assert.throws(() => reconcileDecisions(candidates, { decisions: [{ candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate' }, ...decisions.slice(1)] }, []), /Duplicate/);
   const d = [{ candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate', duplicateOf: 'existing-ngi-launch' }, ...decisions.slice(1)];
   assert.equal(reconcileDecisions(candidates, { decisions: d }, [{ id: 'existing-ngi-launch' }]).items.length, 2);
+});
+test('in-batch duplicates may cite the included item slug, but not their own', () => {
+  const d = structuredClone(decisions);
+  d[1].item.id = 'prnh-vault-launch';
+  d[0] = { candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate', duplicateOf: 'prnh-vault-launch' };
+  assert.equal(reconcileDecisions(candidates, { decisions: d }, []).items.length, 2);
+  d[0] = { candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate', duplicateOf: candidates[0].id };
+  assert.throws(() => reconcileDecisions(candidates, { decisions: d }, []), /Duplicate/);
+  d[1].item.id = candidates[0].id; // a slug that collides with the excluded candidate's ID
+  assert.throws(() => reconcileDecisions(candidates, { decisions: d }, []), /Duplicate/);
+  d[1].item.id = 'prnh-vault-launch';
+  d[0] = { candidateId: candidates[0].id, action: 'exclude', reason: 'duplicate', duplicateOf: 'unknown-slug' };
+  assert.throws(() => reconcileDecisions(candidates, { decisions: d }, []), /Duplicate/);
+});
+test('the bare Pharos homepage is not a project website', () => {
+  for (const u of ['https://www.pharos.xyz/', 'https://pharos.xyz', 'https://www.pharos.xyz/?utm_source=x']) assert.equal(isPharosHomepage(u), true);
+  for (const u of ['https://www.pharos.xyz/realfi-alliance', 'https://pharosname.com/', 'not a url']) assert.equal(isPharosHomepage(u), false);
 });
 test('source and date cannot be changed by conversion', () => {
   const d = structuredClone(decisions); d[0].item.date = '2026-09-01';
