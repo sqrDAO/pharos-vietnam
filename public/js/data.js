@@ -8,8 +8,8 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-09-28",
-    version: "2.1.13",
+    lastUpdated: "2026-10-04",
+    version: "2.1.14",
     sources: [
       "https://x.com/pharos_network/status/2103673425881624891",
       "https://x.com/pharos_network/status/2102948659197567086",
@@ -76,6 +76,26 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "pharos-research",
+      name: "Pharos Research",
+      category: "Hạ tầng, Nghiên cứu",
+      icon: "🔬",
+      description: "Nhóm nghiên cứu trực thuộc chịu trách nhiệm xuất bản các báo cáo kỹ thuật, bao gồm cả báo cáo chi tiết về giao thức x402, đóng góp vào công nghệ nền tảng và sự hiểu biết về Mạng lưới Pharos.",
+      tags: ["Nghiên cứu", "Giao thức", "Báo cáo kỹ thuật"],
+      website: "https://www.pharos.xyz/",
+      status: "Hoạt động"
+    },
+    {
+      id: "pharos-india",
+      name: "Pharos India",
+      category: "Cộng đồng, Phát triển khu vực",
+      icon: "🇮🇳",
+      description: "Chi nhánh khu vực tập trung vào việc xây dựng cộng đồng và thúc đẩy việc áp dụng Mạng lưới Pharos tại Ấn Độ.",
+      tags: ["Cộng đồng", "Ấn Độ", "Phát triển"],
+      website: "https://www.pharos.xyz/",
+      status: "Hoạt động"
+    },
     {
       id: "rcade-co",
       name: "rcade_co",
