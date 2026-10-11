@@ -8,9 +8,11 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-10-05",
-    version: "2.1.16",
+    lastUpdated: "2026-10-11",
+    version: "2.1.17",
     sources: [
+      "https://x.com/pharos_network/status/2108452449900237282",
+      "https://x.com/pharos_network/status/2108130134113046604",
       "https://x.com/pharos_network/status/2105266581236539547",
       "https://x.com/pharos_network/status/2105583515475861562",
       "https://x.com/pharos_network/status/2106263722352116180",
@@ -80,6 +82,46 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "prosper",
+      name: "Prosper",
+      category: "DeFi, RWA, Nền tảng ra mắt",
+      icon: "🚀",
+      description: "Prosper là nền tảng ra mắt token công khai, không cần cấp phép và không lưu ký trên Pharos, hỗ trợ các chiến lược giao dịch on-chain và token hóa hashrate Bitcoin thành RWA đa chuỗi.",
+      tags: ["DeFi", "RWA", "Launchpad"],
+      website: "https://www.prosper-fi.com/",
+      status: "Hoạt động"
+    },
+    {
+      id: "newsight",
+      name: "NewSight",
+      category: "Thị trường dự đoán, AI, dApp",
+      icon: "🔮",
+      description: "NewSight là nền tảng tin tức và thị trường dự đoán tích hợp AI, chuyển đổi các tiêu đề thành các kết quả on-chain có thể giao dịch. Dự án được ươm tạo bởi Mạng lưới Pharos.",
+      tags: ["Thị trường dự đoán", "AI", "dApp"],
+      website: "https://newsight.market",
+      status: "Hoạt động"
+    },
+    {
+      id: "draper-dragon",
+      name: "Draper Dragon",
+      category: "Quỹ đầu tư mạo hiểm, Nhà đầu tư",
+      icon: "🐉",
+      description: "Draper Dragon là quỹ đầu tư mạo hiểm xuyên biên giới, là đối tác và nhà đầu tư trong chương trình ươm tạo \"Native to Pharos\" của Mạng lưới Pharos, chuyên đầu tư vào Web3 và công nghệ mới nổi.",
+      tags: ["Quỹ đầu tư mạo hiểm", "Nhà đầu tư"],
+      website: "https://www.draperdragon.com",
+      status: "Đối tác"
+    },
+    {
+      id: "htx",
+      name: "HTX",
+      category: "Sàn giao dịch, Hạ tầng",
+      icon: "📈",
+      description: "HTX (trước đây là Huobi Global) là sàn giao dịch tiền điện tử hàng đầu, hỗ trợ nâng cấp mainnet của Mạng lưới Pharos và cung cấp dịch vụ giao dịch cho các tài sản Pharos.",
+      tags: ["Sàn giao dịch", "Hạ tầng"],
+      website: "https://www.htx.com",
+      status: "Đối tác"
+    },
     {
       id: "functionbtc",
       name: "FunctionBTC",
@@ -1142,6 +1184,26 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-mo-quyen-truy-cap-cho-tac-nhan-ai",
+      title: "Pharos Mở Quyền Truy Cập Cho Tác Nhân AI",
+      category: "Cập Nhật",
+      date: "2026-10-09",
+      summary: "Người dùng hiện có thể cấp quyền truy cập cho các tác nhân AI vào mạng lưới Pharos thông qua liên kết khởi động tại https://ai.pharos.xyz/. Điều này đánh dấu một bước tiến quan trọng trong việc tích hợp sâu rộng các tác nhân AI vào hệ sinh thái Pharos.",
+      content: "Pharos Network đã chính thức mở quyền truy cập cho người dùng để kết nối các tác nhân AI của họ với mạng lưới. Với liên kết khởi động được cung cấp tại https://ai.pharos.xyz/, người dùng có thể bắt đầu tận dụng khả năng của AI để tương tác và thực hiện các hoạt động trên chuỗi. Động thái này củng cố cam kết của Pharos trong việc xây dựng một nền kinh tế tác nhân (agentic economy) mạnh mẽ, nơi các tác nhân AI có thể di chuyển giá trị on-chain dựa trên ý định, thúc đẩy sự đổi mới trong lĩnh vực RealFi và tài chính phi tập trung.",
+      link: "https://x.com/pharos_network/status/2108452449900237282",
+      source: "Pharos Network"
+    },
+    {
+      id: "pharos-to-chuc-su-kien-he-sinh-thai-tai-tuan-le-blockchain-han-quoc-2026",
+      title: "Pharos Tổ Chức Sự Kiện Hệ Sinh Thái Tại Tuần Lễ Blockchain Hàn Quốc 2026",
+      category: "Thông Báo",
+      date: "2026-10-08",
+      summary: "Pharos đã tổ chức một buổi gặp gỡ các đối tác hệ sinh thái, bao gồm R25Official và Farooxyz, tại Tuần lễ Blockchain Hàn Quốc 2026 ở Seoul. Sự kiện tập trung vào các cuộc thảo luận về RealFi và Agent Native, các hoạt động cộng đồng và các sáng kiến giá trị on-chain.",
+      content: "Trong khuôn khổ Tuần lễ Blockchain Hàn Quốc (KBW) 2026 diễn ra tại Seoul, Pharos Network đã tổ chức một buổi gặp gỡ đặc biệt dành cho các đối tác trong hệ sinh thái của mình. Sự kiện có sự tham gia của các dự án quan trọng như R25Official và Farooxyz, cùng nhiều đối tác khác. Các cuộc thảo luận chính xoay quanh các chủ đề nóng như RealFi và Agent Native, đồng thời tổ chức các sự kiện cộng đồng và giới thiệu các sáng kiến nhằm thúc đẩy giá trị on-chain. Buổi gặp gỡ này nhấn mạnh cam kết của Pharos trong việc tăng cường hợp tác và phát triển cộng đồng trong không gian blockchain và tài chính phi tập trung.",
+      link: "https://x.com/pharos_network/status/2108130134113046604",
+      source: "Pharos Network"
+    },
     {
       id: "pharos-chao-don-silofinance-de-phat-trien-thi-truong-cho-vay-biet-lap",
       title: "Pharos Chào Đón SiloFinance Để Phát Triển Thị Trường Cho Vay Biệt Lập",
