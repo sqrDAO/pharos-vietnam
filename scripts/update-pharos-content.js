@@ -44,8 +44,8 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const CLAUDE_MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-5-5";
 // Server-side tools: Claude searches, then fetches the official pages it names.
 const WEB_TOOLS = [
-  { type: "web_search_20260209", name: "web_search", max_uses: 15 },
-  { type: "web_fetch_20260209", name: "web_fetch", max_uses: 15 },
+  { type: "web_search_20260209", name: "web_search", max_uses: 5 },
+  { type: "web_fetch_20260209", name: "web_fetch", max_uses: 5 },
 ];
 const MAX_CONTINUATIONS = 5;
 // A hung request is cut off rather than retried for its full timeout.
@@ -189,7 +189,7 @@ Return an empty candidates array only after searching. Do not pre-filter against
 async function researchLatestNews(from, to) {
   const raw = await claudeCall(
     discoveryPrompt(from, to, `Search official sources and reputable news outlets: ${SOURCES_TO_RESEARCH.join(", ")}`),
-    { search: true, effort: "high" },
+    { search: true },
   );
   const payload = parseJsonLoose(raw);
   if (Array.isArray(payload?.candidates)) {
@@ -310,7 +310,7 @@ For each missing project, give:
 Report at most ${MAX_NEW_PARTNERS_PER_RUN} projects; prefer the most significant ones.
 If everything in the sources is already covered, say exactly "NO NEW PARTNERS". Do not invent projects or URLs.`;
 
-  return claudeCall(prompt, { search: true, effort: "high" });
+  return claudeCall(prompt, { search: true });
 }
 
 /** Convert ecosystem research into Vietnamese content with the expected JSON structure. */
