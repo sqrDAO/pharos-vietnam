@@ -48,6 +48,12 @@ const WEB_TOOLS = [
   { type: "web_fetch_20260209", name: "web_fetch", max_uses: 15 },
 ];
 const MAX_CONTINUATIONS = 5;
+// A hung request is cut off rather than retried for its full timeout.
+const REQUEST_TIMEOUT_MS = 8 * 60 * 1000;
+// Finish Claude research inside the workflow's 45-minute job, leaving time for
+// link checks, the build and the PR, so a stuck run still saves state and
+// diagnostics instead of being killed.
+const RESEARCH_DEADLINE = Date.now() + 30 * 60 * 1000;
 
 const XAI_API_KEY = process.env.XAI_API_KEY;
 // grok-4.3: supports the server-side x_search tool at ~40% of grok-4.5's token
@@ -113,39 +119,53 @@ function artifact(name, value) {
 }
 let client;
 /**
- * Call Claude and reject unfinished, empty, declined, or unsearched research
- * responses, retrying a rejected response before it fails the run. HTTP 429/5xx
- * and connection errors are retried by the SDK; authentication errors are not.
- * A long server-side search loop can stop with pause_turn; resend the paused
- * turn so the server resumes it.
+ * Call Claude and reject unfinished, empty, declined, or unresearched
+ * responses, retrying a rejected response before it fails the run. HTTP
+ * 429/5xx, timeouts and connection errors get one SDK retry; authentication
+ * errors fail fast. A long server-side tool loop can stop with pause_turn;
+ * resend the paused turn so the server resumes it.
  */
 async function claudeCall(prompt, { search = false, effort = "medium" } = {}) {
-  // Wrong or missing keys must surface as run errors, not retries.
-  client ??= new Anthropic({ apiKey: ANTHROPIC_API_KEY, maxRetries: 3, timeout: 15 * 60 * 1000 });
+  // An explicit timeout is required: without it the SDK rejects non-streaming
+  // requests whose max_tokens implies more than 10 minutes.
+  client ??= new Anthropic({ apiKey: ANTHROPIC_API_KEY, maxRetries: 1, timeout: REQUEST_TIMEOUT_MS });
   for (let attempt = 0; ; attempt++) {
     const messages = [{ role: "user", content: prompt }];
     let response;
-    let searched = false;
+    let researched = false;
     for (let turn = 0; turn <= MAX_CONTINUATIONS; turn++) {
-      response = await client.beta.messages.create({
-        model: CLAUDE_MODEL,
-        max_tokens: 32000,
-        // Re-run a safety-classifier decline on Anthropic's recommended fallback model.
-        betas: ["server-side-fallback-2026-07-01"],
-        fallbacks: "default",
-        output_config: { effort },
-        messages,
-        ...(search ? { tools: WEB_TOOLS } : {}),
-      });
+      const remaining = RESEARCH_DEADLINE - Date.now();
+      if (remaining <= 0) fail("Claude research exceeded the run time budget");
+      try {
+        response = await client.beta.messages.create({
+          model: CLAUDE_MODEL,
+          max_tokens: 32000,
+          // Re-run a safety-classifier decline on Anthropic's recommended fallback model.
+          betas: ["server-side-fallback-2026-07-01"],
+          fallbacks: "default",
+          output_config: { effort },
+          messages,
+          ...(search ? { tools: WEB_TOOLS } : {}),
+        }, { signal: AbortSignal.timeout(remaining) });
+      } catch (error) {
+        if (error instanceof Anthropic.APIUserAbortError) fail("Claude research exceeded the run time budget");
+        throw error;
+      }
       artifact(`claude-${++sequence}.json`, response);
-      searched ||= response.content.some(b => b.type === "server_tool_use" && b.name === "web_search");
+      // Fetching the official pages named in the prompt is research too.
+      researched ||= response.content.some(b => b.type === "server_tool_use" && (b.name === "web_search" || b.name === "web_fetch"));
       if (response.stop_reason !== "pause_turn") break;
-      messages.push({ role: "assistant", content: response.content });
+      // Keep the paused turn as one assistant message the server can resume.
+      if (messages.length === 1) messages.push({ role: "assistant", content: [...response.content] });
+      else messages[1].content.push(...response.content);
     }
-    const text = response.content.filter(b => b.type === "text").map(b => b.text).join("").trim();
+    // The answer follows the last tool result; earlier text is narration that
+    // can contain stray braces or fences.
+    const lastToolResult = response.content.findLastIndex(b => b.type.endsWith("_tool_result"));
+    const text = response.content.slice(lastToolResult + 1).filter(b => b.type === "text").map(b => b.text).join("").trim();
     let problem = null;
     if (response.stop_reason === "refusal") problem = `Claude declined the request: ${response.stop_details?.category ?? "unknown"}`;
-    else if (search && !searched) problem = "Claude research has no web search evidence";
+    else if (search && !researched) problem = "Claude research has no web search or fetch evidence";
     else if (response.stop_reason !== "end_turn") problem = `Claude did not finish normally: ${response.stop_reason}`;
     else if (!text) problem = "Claude returned empty content";
     if (!problem) return text;
@@ -338,8 +358,8 @@ Rules:
 - Only include items that are genuinely new and backed by a source URL from the research.
 - Every "link"/"website"/"sources" URL MUST be the canonical article URL on the publisher's own site
   (e.g. pharos.xyz, the exchange, the news outlet). For announcements made on X, a direct
-  https://x.com/<handle>/status/<id> post URL is acceptable. NEVER use a search-engine,
-  vertexaisearch, or redirect URL.
+  https://x.com/<handle>/status/<id> post URL is acceptable. NEVER use a search-engine
+  or redirect URL.
 - Do NOT reuse any of these existing news ids: ${JSON.stringify(existingNewsIds)}.
 - Do NOT reuse any of these existing ecosystem ids: ${JSON.stringify(existingEcoIds)}.
 - Do NOT add an ecosystem project that is the same as (or a rename/sub-brand of) any of these existing projects: ${JSON.stringify(existingEcoNames)}.
@@ -408,8 +428,9 @@ async function fetchFollow(url) {
   }
 }
 
-// Search-grounding citations can come back as temporary redirect links that expire
-// and don't point at the real publisher. Detect and resolve them to the final URL.
+// Legacy guard from the Gemini pipeline, whose grounding citations were expiring
+// vertexaisearch redirect links. Claude cites publisher URLs, but candidates
+// retained in state from earlier runs can still hold redirects; resolve them.
 function isGroundingRedirect(url) {
   return /vertexaisearch\.cloud\.google\.com\/grounding-api-redirect\//i.test(url || "");
 }

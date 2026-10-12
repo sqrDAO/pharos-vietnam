@@ -96,11 +96,21 @@ globalThis.fetch = async (url, options = {}) => {
   if (String(url).includes('api.anthropic.com')) {
     const request = JSON.parse(options.body); const prompt = request.messages[0].content;
     const reply = (content, status = 200, stop_reason = 'end_turn') => new Response(JSON.stringify(status === 200
-      ? {id:'msg_test',type:'message',role:'assistant',model:request.model,stop_reason,stop_details:null,usage:{input_tokens:1,output_tokens:1},content}
+      ? {id:'msg_test',type:'message',role:'assistant',model:request.model,stop_reason,stop_details:stop_reason === 'refusal' ? {type:'refusal',category:'cyber'} : null,usage:{input_tokens:1,output_tokens:1},content}
       : {type:'error',error:{type:'authentication_error',message:'invalid x-api-key'}}), {status, headers:{'content-type':'application/json'}});
-    const searched = request.tools ? [{type:'server_tool_use',id:'srvtoolu_test',name:'web_search',input:{query:'pharos'}}] : [];
-    // A paused server-side search must be resumed by resending the paused turn.
-    if (mode === 'paused' && prompt.startsWith('Collect') && request.messages.length === 1) return reply(searched, 200, 'pause_turn');
+    const searched = request.tools ? [{type:'server_tool_use',id:'srvtoolu_test',name:mode === 'fetch-only' ? 'web_fetch' : 'web_search',input:{query:'pharos'}}] : [];
+    // A paused tool loop is resumed with one assistant message holding every paused hop;
+    // research evidence from an earlier hop still counts.
+    if (mode === 'paused' && prompt.startsWith('Collect')) {
+      if (request.messages.length > 2) return reply(null, 400);
+      const hops = request.messages[1]?.content.length ?? 0;
+      if (hops < 2) return reply(hops ? [{type:'text',text:'Still searching'}] : searched, 200, 'pause_turn');
+      return reply([{type:'text',text:JSON.stringify({candidates:[]})}]);
+    }
+    if (mode === 'refusal' && prompt.startsWith('Collect')) return reply([], 200, 'refusal');
+    if (mode === 'narration' && prompt.startsWith('Collect')) {
+      return reply([{type:'text',text:'Searching {pharos} news'}, ...searched, {type:'web_search_tool_result',tool_use_id:'srvtoolu_test',content:[]}, {type:'text',text:JSON.stringify({candidates:[]})}]);
+    }
     if (prompt.startsWith('Collect') && (mode === 'claude-empty' || (mode === 'claude-empty-once' && !emptied++))) return reply(searched);
     let text;
     if (prompt.startsWith('Collect')) text = JSON.stringify({candidates:mode === 'redirect' ? [...fixtures, {...fixtures[0],url:'https://vertexaisearch.cloud.google.com/grounding-api-redirect/broken'}] : []});
@@ -145,12 +155,19 @@ globalThis.fetch = async (url, options = {}) => {
       assert.equal(summary().status, recovers ? 'completed_with_updates' : 'incomplete');
       assert.equal(summary().errors.some(e => e.reason === 'Claude returned empty content'), !recovers);
     }
-    for (const mode of ['legacy-search', 'paused']) {
+    for (const mode of ['legacy-search', 'paused', 'fetch-only', 'narration']) {
       writeFileSync(join(root, 'public/js/data.js'), baseline);
       rmSync(join(root, '.content-state'), { recursive:true, force:true });
       const result = run(mode);
       assert.equal(result.status, 0, result.stderr);
       assert.equal(summary().status, 'completed_with_updates');
+    }
+    for (const mode of ['refusal']) {
+      writeFileSync(join(root, 'public/js/data.js'), baseline);
+      rmSync(join(root, '.content-state'), { recursive:true, force:true });
+      assert.equal(run(mode).status, 1);
+      assert.equal(summary().status, 'incomplete');
+      assert.ok(summary().errors.some(e => e.reason === 'Claude declined the request: cyber'));
     }
     for (const mode of ['missing-key', 'no-search', 'other-tool']) {
       writeFileSync(join(root, 'public/js/data.js'), baseline);
