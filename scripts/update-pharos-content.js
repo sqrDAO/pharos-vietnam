@@ -32,7 +32,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import vm from "node:vm";
 import Anthropic from "@anthropic-ai/sdk";
-import { canonicalUrl, coverageStart, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from "./content-pipeline.js";
+import { canonicalUrl, coverageStart, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from "./content-pipeline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..");
@@ -686,13 +686,25 @@ function applyEdits(text, changes, current) {
 }
 
 // --- PR body ------------------------------------------------------------------
-function buildPrBody(changes, newVersion) {
+/** Markdown section listing likely same-event duplicates for the reviewer to prune. */
+function duplicateSection(flags) {
+  if (!flags.length) return [];
+  return [
+    `### ⚠️ Có thể trùng lặp — kiểm tra trước khi merge (${flags.length})`,
+    "_Cùng dự án/chủ đề trong vòng ±3 ngày. Xóa mục mới khỏi `public/js/data.js` nếu là cùng một sự kiện; giữ lại nếu là sự kiện khác._",
+    ...flags.map(f => `- \`${f.id}\` ↔ \`${f.duplicateOf}\` (${f.date}, ${f.shared.join(", ")})`),
+    "",
+  ];
+}
+
+function buildPrBody(changes, newVersion, flags = []) {
   const lines = [
     "## Cập nhật nội dung Pharos hàng tuần",
     "",
     `Tự động tạo bởi Claude (\`${CLAUDE_MODEL}\`)${XAI_API_KEY ? ` + Grok (\`${XAI_MODEL}\`, tìm kiếm trên X)` : ""} qua GitHub Actions.`,
     `Phiên bản nội dung: \`${newVersion}\` · Ngày: \`${today()}\``,
     "",
+    ...duplicateSection(flags),
   ];
   if (changes.news.length) {
     lines.push(`### 📰 Tin tức mới (${changes.news.length})`);
@@ -730,6 +742,7 @@ async function main() {
   let pending = [];
   let from = "unresolved";
   let stateLoaded = false;
+  const flags = [];
   try {
     state = existsSync(STATE_FILE) ? JSON.parse(readFileSync(STATE_FILE, "utf8")) : state;
     if (!Array.isArray(state.pending)) fail("Invalid retained candidate state");
@@ -807,12 +820,17 @@ async function main() {
     artifact("validated.json", changes);
     const total = changes.news.length + changes.ecosystem.length + Object.keys(changes.techSpecs).length;
     report.accepted = { news: changes.news.length, ecosystem: changes.ecosystem.length, techSpecs: Object.keys(changes.techSpecs).length };
+    // Advisory only: flagged items stay in the PR for a human to keep or delete.
+    for (const f of findSameEventFlags(changes.news, current.news, [...current.ecosystem, ...changes.ecosystem])) {
+      flags.push(f);
+      report.decisions.push({ newsId: f.id, action: "flag", reason: "possible_duplicate", duplicateOf: f.duplicateOf, explanation: f.reason });
+    }
     if (total) {
       changes.news.sort((a, b) => b.date.localeCompare(a.date));
       const { out, newVersion } = applyEdits(text, changes, current);
       loadCurrentData(out);
       writeFileSync(DATA_FILE, out);
-      writeFileSync(PR_BODY_FILE, buildPrBody(changes, newVersion) + (report.errors.length
+      writeFileSync(PR_BODY_FILE, buildPrBody(changes, newVersion, flags) + (report.errors.length
         ? "\n\n⚠️ Nghiên cứu chưa hoàn tất. PR này chỉ chứa các mục đã qua kiểm tra; xem báo cáo GitHub Actions để biết các mục cần xử lý tiếp.\n"
         : ""));
       writeFileSync(HAS_CHANGES_FILE, "true\n");
@@ -830,7 +848,7 @@ async function main() {
   } finally {
     if (stateLoaded) writeFileSync(STATE_FILE, sanitize({ ...state, pending }));
     artifact("summary.json", report);
-    const summary = `## Weekly Pharos content update\n\nStatus: **${report.status}**\n\nCoverage: ${from} through ${today()} (UTC)\n\nCandidates: ${report.candidateCount ?? 0}\n\nAccepted: ${JSON.stringify(report.accepted || {})}\n\nSearches: ${JSON.stringify(report.searches)}\n\nErrors: ${JSON.stringify(report.errors)}\n`;
+    const summary = `## Weekly Pharos content update\n\nStatus: **${report.status}**\n\nCoverage: ${from} through ${today()} (UTC)\n\nCandidates: ${report.candidateCount ?? 0}\n\nAccepted: ${JSON.stringify(report.accepted || {})}\n\nSearches: ${JSON.stringify(report.searches)}\n\nErrors: ${JSON.stringify(report.errors)}\n${flags.length ? "\n" + duplicateSection(flags).join("\n") : ""}`;
     artifact("summary.md", summary);
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, sanitize(summary));
   }

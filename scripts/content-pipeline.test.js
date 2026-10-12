@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, coverageStart, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
+import { canonicalUrl, coverageStart, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -61,6 +61,38 @@ test('transient provider failures retry; authentication failures do not', async 
   await assert.rejects(requestJson('https://example.org', {}, { sleep: async () => {}, fetcher: async () => { calls++; return { ok: false, status: 401 }; } }), /401/);
   assert.equal(calls, 1);
 });
+// Real titles from the PR #38 run and main.
+const ecosystem = [{ id: 'prosper', name: 'Prosper' }, { id: 'r25', name: 'R25' }, { id: 'avalon-labs', name: 'Avalon Labs' }, { id: 'realfi-alliance', name: 'RealFi Alliance' }];
+const news = (id, title, date) => ({ id, title, date });
+const silo = news('pharos-chao-don-silofinance-de-phat-trien-thi-truong-cho-vay-biet-lap', 'Pharos Chào Đón SiloFinance Để Phát Triển Thị Trường Cho Vay Biệt Lập', '2026-10-03');
+const prosper = news('prosperticker-ra-mat-thi-truong-hieu-suat-thanh-khoan', 'ProsperTicker Ra Mắt Thị Trường Hiệu Suất Thanh Khoản Trên Pharos', '2026-09-17');
+const r25 = news('pharos-r25-hop-tac', 'Pharos Hợp Tác Với R25 Mở Rộng RealFi', '2026-10-05');
+const flagPairs = (added, existing) => findSameEventFlags(added, existing, ecosystem).map(f => [f.id, f.duplicateOf]);
+
+test('same-event check flags the same project from another source within ±3 days', () => {
+  const siloSide = news('silofinance-cong-bo-tich-hop-pharos', 'SiloFinance Công Bố Tích Hợp Với Pharos', '2026-10-02');
+  const [flag] = findSameEventFlags([siloSide], [silo], ecosystem);
+  assert.deepEqual([flag.id, flag.duplicateOf, flag.date, flag.shared], [siloSide.id, silo.id, '2026-10-03', ['SiloFinance']]);
+  const outlet = news('prosper-ra-mat-performance-markets', 'PROSPER Ra Mắt Khung Performance Markets Trên Pharos', '2026-09-17');
+  assert.deepEqual(flagPairs([outlet], [prosper]), [[outlet.id, prosper.id]]);
+});
+test('same-event check flags duplicates within one batch', () => {
+  const blog = news('pharos-ra-mat-season-of-ai-agent-arena', 'Pharos Ra Mắt Chương Trình Season of AI Với Agent Arena và 5.000 $PROS', '2026-10-05');
+  const tweet = news('pharos-season-of-ai-28-thu-thach', 'Pharos Season of AI Khởi Động Với 28 Thử Thách', '2026-10-05');
+  assert.deepEqual(flagPairs([blog, tweet], []), [[tweet.id, blog.id]]);
+});
+test('same-event check ignores distant dates, Pharos-only overlap and unrelated projects', () => {
+  const later = news('prosperticker-ra-mat-genesis-vaults', 'ProsperTicker Ra Mắt Genesis Vaults', '2026-09-27');
+  const pharosOnly = news('pharos-mo-quyen-truy-cap-cho-tac-nhan-ai', 'Pharos Mở Quyền Truy Cập Cho Tác Nhân AI Trên RealFi Network', '2026-10-03');
+  const avalon = news('avalon-ra-mat-cho-vay-btc', 'Avalon Ra Mắt Cho Vay BTC Trên Pharos', '2026-10-05');
+  assert.deepEqual(flagPairs([later, pharosOnly, avalon], [silo, prosper, r25]), []);
+});
+test('same-event check matches ecosystem projects by name or ID slug', () => {
+  const byName = news('pharos-don-avalon', 'Avalon Labs Gia Nhập Hệ Sinh Thái', '2026-10-05');
+  const bySlug = news('avalon-labs-mo-vault', 'Mở Vault Mới Cho Người Dùng', '2026-10-06');
+  assert.deepEqual(findSameEventFlags([bySlug], [byName], ecosystem).map(f => f.shared), [['Avalon Labs']]);
+});
+
 test('exhausted X API failures remain errors', async () => {
   await assert.rejects(requestJson('https://api.x.ai/v1/responses', {}, { sleep: async () => {}, fetcher: async () => { throw new Error('network unavailable'); } }), /network unavailable/);
 });
@@ -212,6 +244,15 @@ globalThis.fetch = async (url, options = {}) => {
       assert.equal(state().pending.length, dead ? 2 : 3, mode);
       assert.equal(summary().decisions.some(d => d.action === 'exclude' && d.reason === 'dead_link' && d.candidateId === candidates[1].id), dead);
     }
+    // A same-event match is surfaced for review, not dropped and not fatal.
+    writeFileSync(join(root, 'public/js/data.js'), baseline.replace('news: [\n]', 'news: [\n{ id: "r25-ra-mat-prnh", title: "R25 Ra Mắt pRNH Vault", date: "2026-08-23", link: "https://example.org/prnh" }]'));
+    rmSync(join(root, '.content-state'), { recursive:true, force:true });
+    const flagged = run('success');
+    assert.equal(flagged.status, 0, flagged.stderr);
+    assert.equal(summary().accepted.news, 3);
+    assert.ok(summary().decisions.some(d => d.action === 'flag' && d.newsId === candidates[1].id && d.duplicateOf === 'r25-ra-mat-prnh'));
+    assert.match(readFileSync(join(root, 'pr-body.md'), 'utf8'), new RegExp(`Có thể trùng lặp[^]*\`${candidates[1].id}\` ↔ \`r25-ra-mat-prnh\` \\(2026-08-23, pRNH\\)`));
+    assert.match(readFileSync(join(root, 'content-artifacts/summary.md'), 'utf8'), /Có thể trùng lặp/);
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
 
