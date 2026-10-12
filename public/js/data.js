@@ -8,9 +8,15 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-10-11",
-    version: "2.1.17",
+    lastUpdated: "2026-10-12",
+    version: "2.1.18",
     sources: [
+      "https://pharos.xyz/realfi-alliance",
+      "https://x.com/pharos_network/status/2104843642997461351",
+      "https://x.com/pharos_network/status/2108203306007081053",
+      "https://mpost.io/pharos-unveils-agent-native-upgrade-with-testnet-sponsored-transactions-and-ai-portals-for-realfi",
+      "https://www.pharos.xyz/blog/pharos-agent-native-l1-built-for-agent-era-challenges",
+      "https://www.pharos.xyz/blog/introducing-pharos-season-of-ai-build-for-the-agentic-economy",
       "https://x.com/pharos_network/status/2108452449900237282",
       "https://x.com/pharos_network/status/2108130134113046604",
       "https://x.com/pharos_network/status/2105266581236539547",
@@ -82,6 +88,36 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "yuzu-money",
+      name: "Yuzu Money",
+      category: "DeFi / Lợi suất / Stablecoin",
+      icon: "🍋",
+      description: "Giao thức stablecoin và lợi suất, gói các chiến lược DeFi lợi suất cao vào stablecoin yzUSD. Trên Pharos, Yuzu là thành viên RealFi Alliance thuộc nhóm Tín dụng, Tài sản và Ứng dụng (Credit, Assets & Apps), mang yzUSD và lợi suất DeFi có đòn bẩy vào hệ sinh thái.",
+      tags: ["DeFi", "Lợi suất", "Stablecoin", "RealFi Alliance"],
+      website: "https://yuzu.money",
+      status: "Đối tác"
+    },
+    {
+      id: "pleasing-market",
+      name: "Pleasing Market",
+      category: "RWA / Hàng hóa",
+      icon: "🥇",
+      description: "Nền tảng RWA đưa kim loại quý lên on-chain. Token PGOLD được bảo chứng bằng vàng vật chất đạt chuẩn LBMA, đồng thời cung cấp dịch vụ Tokenization-as-a-Service. Trên Pharos, Pleasing Market là thành viên RealFi Alliance, chuyên về tài sản hàng hóa.",
+      tags: ["RWA", "Vàng token hóa", "PGOLD", "RealFi Alliance"],
+      website: "https://www.pleasingmarket.com",
+      status: "Đối tác"
+    },
+    {
+      id: "vishwa-lab",
+      name: "Vishwa Finance",
+      category: "Hạ tầng / AI Agent / Tín dụng",
+      icon: "🤖",
+      description: "Hạ tầng ngân hàng và tín dụng cho AI agent, cho phép agent chuyển vốn và truy cập tài nguyên tính toán với kiểm soát chính sách, quyền riêng tư và thực thi có thể xác minh. Vishwa định vị là hạ tầng tài chính cho agent tự hành, với các mảng Treasury, Payments, Credit và Vaults. Là thành viên RealFi Alliance thuộc nhóm hạ tầng ngân hàng cho agent.",
+      tags: ["AI Agent", "Tín dụng", "Cho vay", "RealFi Alliance"],
+      website: "https://vishwalab.com",
+      status: "Đối tác"
+    },
     {
       id: "prosper",
       name: "Prosper",
@@ -1185,6 +1221,46 @@ window.PharosData = {
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
     {
+      id: "pharos-ra-mat-trang-agent-native",
+      title: "Pharos Ra Mắt Trang Agent Native",
+      category: "Thông Báo",
+      date: "2026-10-08",
+      summary: "Pharos ra mắt trang Agent Native riêng nhằm hỗ trợ hạ tầng kinh tế tác nhân, chuyển từ thực thi ưu tiên con người sang bản địa tác nhân.",
+      content: "Pharos đã ra mắt trang Agent Native chuyên biệt tại pharos.xyz/agent-native để hỗ trợ hạ tầng kinh tế tác nhân, hướng tới chuyển dịch từ thực thi ưu tiên con người sang thực thi bản địa tác nhân.",
+      link: "https://x.com/pharos_network/status/2108203306007081053",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-ra-mat-season-of-ai-agent-arena",
+      title: "Pharos Ra Mắt Chương Trình Season of AI Với Agent Arena và 5.000 $PROS",
+      category: "Nhà phát triển",
+      date: "2026-10-05",
+      summary: "Pharos công bố Season of AI, chương trình dành cho nhà phát triển với 28 thử thách về quy trình tác nhân, công cụ on-chain và tác nhân thanh toán, kèm workshop, bảng nhiệm vụ theo cấp độ và bảng xếp hạng Agent Arena, quỹ thưởng 5.000 $PROS.",
+      content: "Season of AI gồm workshop trực tiếp (dự kiến hai lần mỗi tuần), bảng nhiệm vụ Dễ/Trung bình/Khó và bảng xếp hạng công khai Pharos Agent Arena. Quỹ thưởng 5.000 $PROS chia cho những người tham gia hàng đầu. Lịch: mở đăng ký 5/10/2026; onboarding và kick-off 9/10; workshop và nhiệm vụ bắt đầu 12/10; tổng kết 12/11. Công cụ từ AI.PHAROS gồm Chain MCP, Developer Docs MCP và SkillEngine; AI Agent Widget của Pharos Port là case study chính.",
+      link: "https://www.pharos.xyz/blog/introducing-pharos-season-of-ai-build-for-the-agentic-economy",
+      source: "Pharos Blog"
+    },
+    {
+      id: "pharos-bai-viet-ky-thuat-agent-native-l1",
+      title: "Pharos Đăng Bài Kỹ Thuật Về Agent-Native L1",
+      category: "Công Nghệ",
+      date: "2026-10-01",
+      summary: "Blog chính thức của Pharos lập luận rằng nền kinh tế tác nhân cần một Layer 1 khác biệt chứ không chỉ nhanh hơn.",
+      content: "Bài viết cho rằng các L1 hiện tại giả định tài khoản tĩnh do chủ sở hữu nắm giữ và gas trả theo từng giao dịch bởi người gửi, trong khi tác nhân hoạt động theo ủy quyền và giao dịch khối lượng lớn. Pharos định vị nền tảng của mình (thực thi hiệu năng cao, lập lịch song song, lưu trữ chi phí thấp, Special Processing Networks) làm cơ sở cho hạ tầng tác nhân toàn diện. Bài viết dẫn x402 (hơn 167 triệu giao dịch, trên 50 triệu USD khối lượng thanh toán tính đến tháng 4/2026) và ERC-8004 (ra mắt trên Ethereum mainnet tháng 2/2026).",
+      link: "https://www.pharos.xyz/blog/pharos-agent-native-l1-built-for-agent-era-challenges",
+      source: "Pharos Blog"
+    },
+    {
+      id: "apc3m-lam-tai-san-the-chap-tren-morpho",
+      title: "APC3M Có Thể Dùng Làm Tài Sản Thế Chấp Trên Morpho",
+      category: "Cập Nhật",
+      date: "2026-09-29",
+      summary: "Tài sản tín dụng tư nhân được token hóa APC3M hiện có thể dùng làm tài sản thế chấp trong thị trường cho vay USDC biệt lập trên Morpho, giúp người dùng tiếp cận thanh khoản USDC mà không cần bán vị thế.",
+      content: "Theo thông báo từ Pharos, APC3M đã có thể được dùng làm tài sản thế chấp trong thị trường cho vay USDC biệt lập trên Morpho. Người dùng có thể tiếp cận thanh khoản USDC mà không phải bán vị thế thông qua SharpByte USDC Pharos Ecosystem Vault.",
+      link: "https://x.com/pharos_network/status/2104843642997461351",
+      source: "Pharos Network (X)"
+    },
+    {
       id: "pharos-mo-quyen-truy-cap-cho-tac-nhan-ai",
       title: "Pharos Mở Quyền Truy Cập Cho Tác Nhân AI",
       category: "Cập Nhật",
@@ -1226,11 +1302,11 @@ window.PharosData = {
     },
     {
       id: "pharos-agent-native-ra-mat-voi-loi-realfi-va-cong-cu-moi",
-      title: "Pharos Agent Native Ra Mắt Với Lõi RealFi và Công Cụ Mới",
+      title: "Pharos Công Bố Nâng Cấp Agent Native Tại Korea Blockchain Week",
       category: "Công Nghệ",
       date: "2026-09-30",
-      summary: "Pharos Agent Native đã ra mắt, tích hợp lõi RealFi và cung cấp các công cụ mới cho nhà phát triển, cùng với tương tác tác nhân. Phiên bản này bao gồm cổng Pharos AI, tích hợp Pharos Port Agent và Pharos × AnvitaMate. Lộ trình Q4 2026 sẽ có PoS Staking, Gas Sponsorship, DeltaTrie; năm 2027 sẽ có Agent Accounts và State Economy.",
-      content: "Pharos Agent Native đã chính thức ra mắt, mang đến một bước tiến quan trọng trong hệ sinh thái của Pharos với lõi RealFi và một bộ công cụ mới dành cho các nhà phát triển, cùng với khả năng tương tác tác nhân nâng cao. Phiên bản này tích hợp cổng Pharos AI, tính năng Pharos Port Agent và sự hợp tác với AnvitaMate. Theo lộ trình phát triển, quý 4 năm 2026 sẽ chứng kiến sự ra mắt của PoS Staking, Gas Sponsorship và DeltaTrie. Đến năm 2027, Pharos dự kiến giới thiệu Agent Accounts và State Economy, tiếp tục mở rộng khả năng của nền tảng.",
+      summary: "Tại Korea Blockchain Week, Pharos giới thiệu nâng cấp Agent Native, Sponsored Transactions trên Testnet, cổng AI và nhận diện thương hiệu mới, triển khai từ 30/9 đến hết Q4.",
+      content: "Trong bài phát biểu tại Korea Blockchain Week, Pharos giới thiệu nâng cấp Agent Native cùng nhận diện thương hiệu mới. Testnet bổ sung Sponsored Transactions, tách người gửi giao dịch khỏi bên trả gas. Pharos Port Agent Widget, xây dựng cùng Anvita Flow, cho phép hỏi bằng ngôn ngữ tự nhiên về vị thế RWA, kỳ hạn vault, lợi suất và cửa sổ rút tiền. Cổng ai.pharos.xyz gom Pharos Chain MCP, Developer Docs MCP và SkillEngine; AnvitaMate x Pharos đóng gói các công cụ này thành môi trường AI cục bộ. Lộ trình: PoS staking dự kiến ra mắt trong Q4 2026; Agent Accounts và State Economy dần triển khai trong 2027; quy trình agent-native đầu-cuối hướng tới 2028.",
       link: "https://x.com/pharos_network/status/2105266581236539547",
       source: "Pharos Network"
     },
