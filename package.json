@@ -13,5 +13,8 @@
   "devDependencies": {
     "vite": "^6.0.0",
     "vite-plugin-handlebars": "^2.0.3"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0"
   }
 }

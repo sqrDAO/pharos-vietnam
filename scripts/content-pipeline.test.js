@@ -65,7 +65,7 @@ test('exhausted X API failures remain errors', async () => {
   await assert.rejects(requestJson('https://api.x.ai/v1/responses', {}, { sleep: async () => {}, fetcher: async () => { throw new Error('network unavailable'); } }), /network unavailable/);
 });
 
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, copyFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, copyFileSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -75,6 +75,7 @@ test('full updater: missed launches, incomplete searches, dropped conversion, an
   try {
     mkdirSync(join(root, 'scripts')); mkdirSync(join(root, 'public/js'), { recursive: true });
     for (const name of ['update-pharos-content.js', 'content-pipeline.js']) copyFileSync(new URL(name, import.meta.url), join(root, 'scripts', name));
+    symlinkSync(new URL('../node_modules', import.meta.url), join(root, 'node_modules'), 'dir');
     writeFileSync(join(root, 'package.json'), '{"type":"module"}');
     const baseline = `window.PharosData = {meta: {version: "1.0.0", lastUpdated: "2026-08-01", sources: [\n]}, news: [\n], ecosystem: [\n], techSpecs: {tps: "30000"}};`;
     writeFileSync(join(root, 'fixture.json'), JSON.stringify(candidates));
@@ -92,21 +93,25 @@ globalThis.fetch = async (url, options = {}) => {
     const found = mode !== 'redirect' && request.tools[0].allowed_x_handles?.[0] === 'pharos_network' ? fixtures : [];
     return { ok:true, json:async () => ({status:'completed', output:[...({'no-search':[], 'other-tool':[{type:'custom_tool_call',name:'web_search',status:'completed'}], 'legacy-search':[{type:'x_search_call',status:'completed'}]}[mode] ?? [{type:'custom_tool_call',name:'x_keyword_search',status:'completed'}]), {type:'message',content:[{type:'output_text',text:JSON.stringify({candidates:found})}]}]}) };
   }
-  if (String(url).includes('googleapis.com')) {
-    const request = JSON.parse(options.body); const prompt = request.contents[0].parts[0].text;
-    if (prompt.startsWith('Collect') && (mode === 'gemini-empty' || (mode === 'gemini-empty-once' && !emptied++))) {
-      return {ok:true,json:async () => ({candidates:[{finishReason:'STOP',groundingMetadata:{webSearchQueries:['pharos']},content:{role:'model'}}]})};
-    }
+  if (String(url).includes('api.anthropic.com')) {
+    const request = JSON.parse(options.body); const prompt = request.messages[0].content;
+    const reply = (content, status = 200, stop_reason = 'end_turn') => new Response(JSON.stringify(status === 200
+      ? {id:'msg_test',type:'message',role:'assistant',model:request.model,stop_reason,stop_details:null,usage:{input_tokens:1,output_tokens:1},content}
+      : {type:'error',error:{type:'authentication_error',message:'invalid x-api-key'}}), {status, headers:{'content-type':'application/json'}});
+    const searched = request.tools ? [{type:'server_tool_use',id:'srvtoolu_test',name:'web_search',input:{query:'pharos'}}] : [];
+    // A paused server-side search must be resumed by resending the paused turn.
+    if (mode === 'paused' && prompt.startsWith('Collect') && request.messages.length === 1) return reply(searched, 200, 'pause_turn');
+    if (prompt.startsWith('Collect') && (mode === 'claude-empty' || (mode === 'claude-empty-once' && !emptied++))) return reply(searched);
     let text;
     if (prompt.startsWith('Collect')) text = JSON.stringify({candidates:mode === 'redirect' ? [...fixtures, {...fixtures[0],url:'https://vertexaisearch.cloud.google.com/grounding-api-redirect/broken'}] : []});
     else if (prompt.startsWith('Write Vietnamese')) {
       const items = JSON.parse(prompt.split('Candidates: ')[1].split('\\nPrevious')[0]);
       text = JSON.stringify({decisions: mode === 'drop' ? [] : items.map(c => ({candidateId:c.id,action:'include',item:{id:c.id,title:c.title,summary:c.summary,content:c.summary,link:c.url,date:c.date,category:'Thông Báo',source:'Official announcement'}}))});
-    } else if (mode === 'eco-failure') return {ok:false,status:401};
+    } else if (mode === 'eco-failure') return reply(null, 401);
     else if (mode === 'cap' || mode === 'cap-invalid') {
       text = prompt.startsWith('Convert') ? JSON.stringify({news:[],techSpecs:{},sources:[],ecosystem:Array.from({length:11},(_,i)=>({id:'project-'+i,name:'Project '+i,category:'DeFi',icon:'🌊',description:'Test project',tags:['DeFi'],website:(mode === 'cap-invalid' && i === 10) ? '' : 'https://example.org/'+i,status:'Active'}))}) : 'Eleven ecosystem projects found';
     } else text = 'NO NEW PARTNERS';
-    return {ok:true,json:async () => ({candidates:[{finishReason:'STOP',groundingMetadata:{webSearchQueries:['pharos']},content:{parts:[{text}]}}]})};
+    return reply([...searched, {type:'text',text}]);
   }
   if (String(url).includes('grounding-api-redirect/broken')) throw new Error('temporary redirect failure');
   if (mode === 'dead-link' && String(url).includes('kucoin.com')) return {ok:false,status:404,url:String(url)};
@@ -114,7 +119,7 @@ globalThis.fetch = async (url, options = {}) => {
   return {ok:true,status:200,url:String(url)};
 };
 `);
-    const run = mode => spawnSync(process.execPath, ['--import', './mock.mjs', 'scripts/update-pharos-content.js'], { cwd: root, encoding: 'utf8', env: { ...process.env, GEMINI_API_KEY: 'fake-gemini-test-secret', XAI_API_KEY: mode === 'missing-key' ? '' : 'fake-x-test-secret', CONTENT_LOOKBACK_DAYS: '28', GITHUB_STEP_SUMMARY: '', SCENARIO: mode } });
+    const run = mode => spawnSync(process.execPath, ['--import', './mock.mjs', 'scripts/update-pharos-content.js'], { cwd: root, encoding: 'utf8', env: { ...process.env, ANTHROPIC_API_KEY: 'fake-claude-test-secret', XAI_API_KEY: mode === 'missing-key' ? '' : 'fake-x-test-secret', CONTENT_LOOKBACK_DAYS: '28', GITHUB_STEP_SUMMARY: '', SCENARIO: mode } });
     const state = () => JSON.parse(readFileSync(join(root, '.content-state/state.json')));
     const summary = () => JSON.parse(readFileSync(join(root, 'content-artifacts/summary.json')));
     for (const mode of ['drop', 'x-failure', 'eco-failure', 'success']) {
@@ -131,16 +136,16 @@ globalThis.fetch = async (url, options = {}) => {
       assert.equal(summary().status, mode === 'drop' ? 'completed_with_updates' : 'completed_no_updates');
       assert.equal(state().pending.length, mode === 'drop' ? 3 : 0);
     }
-    for (const mode of ['gemini-empty-once', 'gemini-empty']) {
+    for (const mode of ['claude-empty-once', 'claude-empty']) {
       writeFileSync(join(root, 'public/js/data.js'), baseline);
       rmSync(join(root, '.content-state'), { recursive:true, force:true });
       const result = run(mode);
-      const recovers = mode === 'gemini-empty-once';
+      const recovers = mode === 'claude-empty-once';
       assert.equal(result.status, recovers ? 0 : 1, mode + result.stderr);
       assert.equal(summary().status, recovers ? 'completed_with_updates' : 'incomplete');
-      assert.equal(summary().errors.some(e => e.reason === 'Gemini returned empty content'), !recovers);
+      assert.equal(summary().errors.some(e => e.reason === 'Claude returned empty content'), !recovers);
     }
-    for (const mode of ['legacy-search']) {
+    for (const mode of ['legacy-search', 'paused']) {
       writeFileSync(join(root, 'public/js/data.js'), baseline);
       rmSync(join(root, '.content-state'), { recursive:true, force:true });
       const result = run(mode);

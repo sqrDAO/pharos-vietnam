@@ -92,8 +92,9 @@ The implementation source of truth for tokens is the `:root` block in
 ## Weekly content research
 
 GitHub Actions runs the content updater on Sundays at 20:00 Vietnam time and
-opens a review PR. Both `GEMINI_API_KEY` and `XAI_API_KEY` repository secrets are
-required. Gemini researches the web and writes Vietnamese content; three Grok
+opens a review PR. Both `ANTHROPIC_API_KEY` and `XAI_API_KEY` repository secrets
+are required. Claude (`claude-sonnet-5-5`, server-side web search and fetch)
+researches the web and writes Vietnamese content; three Grok
 searches cover `pharos_network`, `pharos_eco`, and ecosystem partner accounts.
 
 Research returns dated source candidates before deduplication. Each candidate
