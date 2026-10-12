@@ -1,24 +1,24 @@
 // =============================================================================
 // Weekly Pharos content updater
 //
-// Researches the latest Pharos Network news/developments/stats with the Gemini
-// API (Google Search grounding) — plus a required Grok pass
+// Researches the latest Pharos Network news/developments/stats with Claude
+// (server-side web search/fetch) — plus a required Grok pass
 // that searches X directly (x_search) — and appends them to the site's single
 // content store, public/js/data.js. Also diffs the official Pharos ecosystem
 // sources against our ecosystem directory and proposes missing partners/projects.
 // Designed to run in GitHub Actions on a weekly cron; the workflow then opens
 // a PR with whatever this script changed.
 //
-// All reasoning + Vietnamese writing is done by Gemini ("everything via Gemini").
+// All web research, reasoning and Vietnamese writing is done by Claude.
 // This script only orchestrates the API calls, validates the output, and edits
 // data.js with low-risk, append-only text surgery.
 //
 // Env:
-//   GEMINI_API_KEY  (required) — Gemini API key
-//   GEMINI_MODEL    (optional) — model id, default "gemini-2.5-flash"
+//   ANTHROPIC_API_KEY (required) — Claude API key
+//   CLAUDE_MODEL    (optional) — model id, default "claude-sonnet-5-5"
 //   XAI_API_KEY     (required) — xAI API key; a Grok pass searches X
 //                    directly (most Pharos updates are announced on X first,
-//                    where Google Search grounding has poor coverage)
+//                    where general web search has poor coverage)
 //   XAI_MODEL       (optional) — xAI model id, default "grok-4.3"
 //
 // Outputs:
@@ -31,6 +31,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, appendFileSync } fr
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import vm from "node:vm";
+import Anthropic from "@anthropic-ai/sdk";
 import { canonicalUrl, coverageStart, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from "./content-pipeline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -39,9 +40,20 @@ const DATA_FILE = join(REPO_ROOT, "public", "js", "data.js");
 const PR_BODY_FILE = join(REPO_ROOT, "pr-body.md");
 const HAS_CHANGES_FILE = join(REPO_ROOT, "has-changes.txt");
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-const API_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const CLAUDE_MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-5-5";
+// Server-side tools: Claude searches, then fetches the official pages it names.
+const WEB_TOOLS = [
+  { type: "web_search_20260209", name: "web_search", max_uses: 15 },
+  { type: "web_fetch_20260209", name: "web_fetch", max_uses: 15 },
+];
+const MAX_CONTINUATIONS = 5;
+// A hung request is cut off rather than retried for its full timeout.
+const REQUEST_TIMEOUT_MS = 8 * 60 * 1000;
+// Finish Claude research inside the workflow's 45-minute job, leaving time for
+// link checks, the build and the PR, so a stuck run still saves state and
+// diagnostics instead of being killed.
+const RESEARCH_DEADLINE = Date.now() + 30 * 60 * 1000;
 
 const XAI_API_KEY = process.env.XAI_API_KEY;
 // grok-4.3: supports the server-side x_search tool at ~40% of grok-4.5's token
@@ -89,7 +101,7 @@ function loadCurrentData(text) {
   return data;
 }
 
-// --- Gemini REST helpers ------------------------------------------------------
+// --- Claude helpers -----------------------------------------------------------
 const ARTIFACT_DIR = join(REPO_ROOT, "content-artifacts");
 const STATE_FILE = join(REPO_ROOT, ".content-state", "state.json");
 let sequence = 0;
@@ -97,7 +109,7 @@ const report = { status: "incomplete", searches: [], decisions: [], errors: [] }
 /** Serialize diagnostic data and redact configured provider secrets. */
 function sanitize(value) {
   let text = typeof value === "string" ? value : JSON.stringify(value, null, 2);
-  for (const key of [GEMINI_API_KEY, XAI_API_KEY].filter(Boolean)) text = text.split(key).join("[REDACTED]");
+  for (const key of [ANTHROPIC_API_KEY, XAI_API_KEY].filter(Boolean)) text = text.split(key).join("[REDACTED]");
   return text;
 }
 /** Write a sanitized diagnostic file into the run artifact directory. */
@@ -105,27 +117,57 @@ function artifact(name, value) {
   mkdirSync(ARTIFACT_DIR, { recursive: true });
   writeFileSync(join(ARTIFACT_DIR, name), sanitize(value));
 }
+let client;
 /**
- * Call Gemini and reject unfinished, empty, or ungrounded research responses.
- * Grounded calls intermittently finish with STOP but no content parts, so a
- * rejected response is retried before it fails the run. (HTTP failures are
- * already retried inside requestJson.)
+ * Call Claude and reject unfinished, empty, declined, or unresearched
+ * responses, retrying a rejected response before it fails the run. HTTP
+ * 429/5xx, timeouts and connection errors get one SDK retry; authentication
+ * errors fail fast. A long server-side tool loop can stop with pause_turn;
+ * resend the paused turn so the server resumes it.
  */
-async function geminiCall(body) {
+async function claudeCall(prompt, { search = false, effort = "medium" } = {}) {
+  // An explicit timeout is required: without it the SDK rejects non-streaming
+  // requests whose max_tokens implies more than 10 minutes.
+  client ??= new Anthropic({ apiKey: ANTHROPIC_API_KEY, maxRetries: 1, timeout: REQUEST_TIMEOUT_MS });
   for (let attempt = 0; ; attempt++) {
-    const data = await requestJson(`${API_BASE}/${encodeURIComponent(GEMINI_MODEL)}:generateContent`, {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
-      body: JSON.stringify(body),
-    });
-    artifact(`gemini-${++sequence}.json`, data);
-    const candidate = data?.candidates?.[0];
-    const text = (candidate?.content?.parts ?? []).filter(p => !p.thought).map(p => p.text || "").join("").trim();
+    const messages = [{ role: "user", content: prompt }];
+    let response;
+    let researched = false;
+    for (let turn = 0; turn <= MAX_CONTINUATIONS; turn++) {
+      const remaining = RESEARCH_DEADLINE - Date.now();
+      if (remaining <= 0) fail("Claude research exceeded the run time budget");
+      try {
+        response = await client.beta.messages.create({
+          model: CLAUDE_MODEL,
+          max_tokens: 32000,
+          // Re-run a safety-classifier decline on Anthropic's recommended fallback model.
+          betas: ["server-side-fallback-2026-07-01"],
+          fallbacks: "default",
+          output_config: { effort },
+          messages,
+          ...(search ? { tools: WEB_TOOLS } : {}),
+        }, { signal: AbortSignal.timeout(remaining) });
+      } catch (error) {
+        if (error instanceof Anthropic.APIUserAbortError) fail("Claude research exceeded the run time budget");
+        throw error;
+      }
+      artifact(`claude-${++sequence}.json`, response);
+      // Fetching the official pages named in the prompt is research too.
+      researched ||= response.content.some(b => b.type === "server_tool_use" && (b.name === "web_search" || b.name === "web_fetch"));
+      if (response.stop_reason !== "pause_turn") break;
+      // Keep the paused turn as one assistant message the server can resume.
+      if (messages.length === 1) messages.push({ role: "assistant", content: [...response.content] });
+      else messages[1].content.push(...response.content);
+    }
+    // The answer follows the last tool result; earlier text is narration that
+    // can contain stray braces or fences.
+    const lastToolResult = response.content.findLastIndex(b => b.type.endsWith("_tool_result"));
+    const text = response.content.slice(lastToolResult + 1).filter(b => b.type === "text").map(b => b.text).join("").trim();
     let problem = null;
-    if (body.tools?.some(t => t.google_search) && !candidate?.groundingMetadata?.webSearchQueries?.length) {
-      problem = "Gemini research has no search-query evidence";
-    } else if (candidate?.finishReason !== "STOP") problem = `Gemini did not finish normally: ${candidate?.finishReason}`;
-    else if (!text) problem = "Gemini returned empty content";
+    if (response.stop_reason === "refusal") problem = `Claude declined the request: ${response.stop_details?.category ?? "unknown"}`;
+    else if (search && !researched) problem = "Claude research has no web search or fetch evidence";
+    else if (response.stop_reason !== "end_turn") problem = `Claude did not finish normally: ${response.stop_reason}`;
+    else if (!text) problem = "Claude returned empty content";
     if (!problem) return text;
     if (attempt === 2) fail(problem);
     await new Promise(resolve => setTimeout(resolve, 1000 * 2 ** attempt));
@@ -145,10 +187,10 @@ Return an empty candidates array only after searching. Do not pre-filter against
 }
 /** Collect web candidates while isolating unresolved source redirects as run errors. */
 async function researchLatestNews(from, to) {
-  const raw = await geminiCall({
-    contents: [{ role: "user", parts: [{ text: discoveryPrompt(from, to, `Search official sources and reputable news outlets: ${SOURCES_TO_RESEARCH.join(", ")}`) }] }],
-    tools: [{ google_search: {} }],
-  });
+  const raw = await claudeCall(
+    discoveryPrompt(from, to, `Search official sources and reputable news outlets: ${SOURCES_TO_RESEARCH.join(", ")}`),
+    { search: true, effort: "high" },
+  );
   const payload = parseJsonLoose(raw);
   if (Array.isArray(payload?.candidates)) {
     const resolved = [];
@@ -164,7 +206,7 @@ async function researchLatestNews(from, to) {
 
 // --- xAI (Grok) X search -----------------------------------------------------
 // Most Pharos updates are announced on X (@pharos_network) before they reach
-// the web sources Gemini's Google Search grounding can see, so this pass asks
+// the web sources Claude's web search can see, so this pass asks
 // Grok to search X directly via the server-side x_search tool. Missing or failed
 // X coverage marks the run incomplete instead of reporting no news.
 
@@ -209,7 +251,7 @@ Existing news: ${JSON.stringify(existing.news.map(n => ({ id:n.id, title:n.title
 Candidates: ${JSON.stringify(candidates)}`;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const raw = await geminiCall({ contents: [{ role: "user", parts: [{ text: prompt + (attempt ? "\nPrevious response failed accounting checks. Account for EVERY candidate explicitly." : "") }] }], generationConfig: { responseMimeType: "application/json", temperature: 0.1 } });
+      const raw = await claudeCall(prompt + (attempt ? "\nPrevious response failed accounting checks. Account for EVERY candidate explicitly." : ""));
       const result = reconcileDecisions(candidates, parseJsonLoose(raw), existing.news);
       report.decisions = result.decisions;
       return result.items;
@@ -268,10 +310,7 @@ For each missing project, give:
 Report at most ${MAX_NEW_PARTNERS_PER_RUN} projects; prefer the most significant ones.
 If everything in the sources is already covered, say exactly "NO NEW PARTNERS". Do not invent projects or URLs.`;
 
-  return geminiCall({
-    contents: [{ role: "user", parts: [{ text: prompt }]}],
-    tools: [{ google_search: {} }],
-  });
+  return claudeCall(prompt, { search: true, effort: "high" });
 }
 
 /** Convert ecosystem research into Vietnamese content with the expected JSON structure. */
@@ -319,8 +358,8 @@ Rules:
 - Only include items that are genuinely new and backed by a source URL from the research.
 - Every "link"/"website"/"sources" URL MUST be the canonical article URL on the publisher's own site
   (e.g. pharos.xyz, the exchange, the news outlet). For announcements made on X, a direct
-  https://x.com/<handle>/status/<id> post URL is acceptable. NEVER use a search-engine,
-  vertexaisearch, or redirect URL.
+  https://x.com/<handle>/status/<id> post URL is acceptable. NEVER use a search-engine
+  or redirect URL.
 - Do NOT reuse any of these existing news ids: ${JSON.stringify(existingNewsIds)}.
 - Do NOT reuse any of these existing ecosystem ids: ${JSON.stringify(existingEcoIds)}.
 - Do NOT add an ecosystem project that is the same as (or a rename/sub-brand of) any of these existing projects: ${JSON.stringify(existingEcoNames)}.
@@ -334,10 +373,7 @@ Research notes:
 ${research}
 """`;
 
-  const raw = await geminiCall({
-    contents: [{ role: "user", parts: [{ text: prompt }]}],
-    generationConfig: { responseMimeType: "application/json", temperature: 0.3 },
-  });
+  const raw = await claudeCall(prompt);
   return parseJsonLoose(raw);
 }
 
@@ -356,7 +392,7 @@ function parseJsonLoose(text) {
   try {
     return JSON.parse(t);
   } catch (e) {
-    fail(`Could not parse Gemini JSON: ${e.message}\n---\n${text.slice(0, 1000)}`);
+    fail(`Could not parse Claude JSON: ${e.message}\n---\n${text.slice(0, 1000)}`);
   }
 }
 
@@ -392,8 +428,9 @@ async function fetchFollow(url) {
   }
 }
 
-// Gemini grounding citations come back as temporary redirect links that expire
-// and don't point at the real publisher. Detect and resolve them to the final URL.
+// Legacy guard from the Gemini pipeline, whose grounding citations were expiring
+// vertexaisearch redirect links. Claude cites publisher URLs, but candidates
+// retained in state from earlier runs can still hold redirects; resolve them.
 function isGroundingRedirect(url) {
   return /vertexaisearch\.cloud\.google\.com\/grounding-api-redirect\//i.test(url || "");
 }
@@ -412,7 +449,7 @@ async function resolveRedirect(url) {
   }
 }
 
-// Parsing as an http(s) URL is not evidence the page exists: Gemini regularly
+// Parsing as an http(s) URL is not evidence the page exists: models regularly
 // emits a plausible-but-wrong domain for a real project. Fetch each link and
 // drop the clearly-dead ones so the item fails validation instead of shipping.
 // This cannot catch a live domain that simply isn't the project's (a human
@@ -653,7 +690,7 @@ function buildPrBody(changes, newVersion) {
   const lines = [
     "## Cập nhật nội dung Pharos hàng tuần",
     "",
-    `Tự động tạo bởi Gemini (\`${GEMINI_MODEL}\`)${XAI_API_KEY ? ` + Grok (\`${XAI_MODEL}\`, tìm kiếm trên X)` : ""} qua GitHub Actions.`,
+    `Tự động tạo bởi Claude (\`${CLAUDE_MODEL}\`)${XAI_API_KEY ? ` + Grok (\`${XAI_MODEL}\`, tìm kiếm trên X)` : ""} qua GitHub Actions.`,
     `Phiên bản nội dung: \`${newVersion}\` · Ngày: \`${today()}\``,
     "",
   ];
@@ -700,7 +737,7 @@ async function main() {
     stateLoaded = true;
     from = coverageStart(state.lastCompletedDate, today(), process.env.CONTENT_LOOKBACK_DAYS || 28);
     report.window = { from, to: today() };
-    if (!GEMINI_API_KEY) fail("GEMINI_API_KEY is required");
+    if (!ANTHROPIC_API_KEY) fail("ANTHROPIC_API_KEY is required");
     if (!XAI_API_KEY) fail("XAI_API_KEY is required: X coverage cannot be silently skipped");
     const text = readFileSync(DATA_FILE, "utf8");
     const current = loadCurrentData(text);

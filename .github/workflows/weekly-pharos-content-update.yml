@@ -1,7 +1,7 @@
 name: Weekly Pharos content update
 
 # Runs every Sunday at 13:00 UTC (= 20:00 Asia/Saigon). Researches the latest
-# Pharos Network news/developments/stats via the Gemini API (web) and
+# Pharos Network news/developments/stats via Claude (web search/fetch) and
 # Grok's x_search tool (X posts — where most
 # Pharos updates are announced first). Also checks the official ecosystem
 # sources for partners/projects missing from our directory, updates the site
@@ -29,7 +29,8 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    # Claude web research runs several multi-minute searches.
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -63,11 +64,11 @@ jobs:
           gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/actions/artifacts?per_page=100" > /tmp/content-artifacts.json
           node scripts/restore-content-state.js
 
-      - name: Research and update content (Gemini + Grok)
+      - name: Research and update content (Claude + Grok)
         id: research
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-2.5-flash
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: claude-sonnet-5-5
           CONTENT_LOOKBACK_DAYS: ${{ inputs.lookback_days || '28' }}
           # Required: failed X coverage must not look like a quiet news week.
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
