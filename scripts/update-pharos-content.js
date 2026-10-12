@@ -418,54 +418,64 @@ async function resolveRedirect(url) {
 // This cannot catch a live domain that simply isn't the project's (a human
 // still reviews the PR) — it only removes links that resolve to nothing.
 /**
- * Retry transient link failures and record unresolved or inaccessible sources.
- * Dead news links are errors (news is tracked and must not be lost); dead
- * ecosystem/source links are rejections, since directory research re-runs weekly.
+ * Retry transient link failures and classify the result. A definitive 4xx is
+ * `dead`: the source itself is gone, so retrying next week cannot help.
+ * Network errors and 5xx after retries are unresolved, not dead.
  */
-async function isReachable(url, strict = true) {
-  const reject = entry => strict ? report.errors.push(entry) : report.decisions.push({ ...entry, action: "reject" });
+async function checkLink(url) {
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const res = await fetchFollow(url);
       if (res.status === 429 || res.status >= 500) throw new Error(`HTTP ${res.status}`);
-      if (res.status < 400) return true;
+      if (res.status < 400) return { ok: true };
       if (BOT_BLOCK_STATUS.has(res.status)) {
         report.decisions.push({ url, warning: `HTTP ${res.status}: source requires human verification` });
-        return true;
+        return { ok: true };
       }
-      reject({ url, reason: `HTTP ${res.status}` });
-      return false;
+      return { ok: false, dead: true, reason: `HTTP ${res.status}` };
     } catch (error) {
-      if (attempt === 2) {
-        reject({ url, reason: `Unresolved after retries: ${error.message}` });
-        return false;
-      }
+      if (attempt === 2) return { ok: false, dead: false, reason: `Unresolved after retries: ${error.message}` };
       await new Promise(resolve => setTimeout(resolve, 500 * 2 ** attempt));
     }
   }
 }
 
-async function resolveAndVerify(url, strict = true) {
+/** Record failed ecosystem/source links as rejections; directory research re-runs weekly. */
+async function resolveAndVerify(url) {
   const resolved = await resolveRedirect(url);
   if (!resolved) return null;
-  return (await isReachable(resolved, strict)) ? resolved : null;
+  const check = await checkLink(resolved);
+  if (!check.ok) report.decisions.push({ url: resolved, reason: check.reason, action: "reject" });
+  return check.ok ? resolved : null;
 }
 
 // Resolve every outward link in the payload to a real source URL and verify it
-// actually loads, dropping any that can't be resolved or reached (those items
-// then fail validation and are skipped).
+// actually loads. A news item whose source is definitively dead is excluded
+// (its candidate is dropped from pending, so it is not retried forever); an
+// unresolved news link stays an error so the candidate is retried next run.
 /** Resolve and check outward links before validating generated entries. */
-async function resolveLinks(payload) {
+async function resolveLinks(payload, candidates) {
+  const idByUrl = new Map(candidates.map(c => [canonicalUrl(c.url), c.id]));
+  const news = [];
   for (const n of payload.news ?? []) {
-    if (nonEmptyStr(n.link)) n.link = (await resolveAndVerify(n.link)) || "";
+    const resolved = nonEmptyStr(n.link) ? await resolveRedirect(n.link) : null;
+    const check = resolved ? await checkLink(resolved) : { ok: false, dead: false, reason: "Unresolved source URL" };
+    if (check.ok) news.push({ ...n, link: resolved });
+    else if (check.dead) {
+      report.decisions.push({ candidateId: idByUrl.get(canonicalUrl(n.link)), url: n.link, action: "exclude", reason: "dead_link", explanation: check.reason });
+    } else {
+      report.errors.push({ url: n.link, reason: check.reason });
+      news.push({ ...n, link: "" });
+    }
   }
+  payload.news = news;
   for (const e of payload.ecosystem ?? []) {
-    if (nonEmptyStr(e.website)) e.website = (await resolveAndVerify(e.website, false)) || "";
+    if (nonEmptyStr(e.website)) e.website = (await resolveAndVerify(e.website)) || "";
   }
   if (Array.isArray(payload.sources)) {
     const out = [];
     for (const s of payload.sources) {
-      const r = await resolveAndVerify(s, false);
+      const r = await resolveAndVerify(s);
       if (r && !isGroundingRedirect(r)) out.push(r);
     }
     payload.sources = out;
@@ -752,9 +762,9 @@ async function main() {
     payload.news = news;
     payload.sources = [...new Set([...(payload.sources || []), ...news.map(n => n.link)])];
     artifact("structured.json", payload);
-    await resolveLinks(payload);
+    await resolveLinks(payload, pending);
     const changes = validate(payload, current);
-    if (changes.news.length !== news.length) {
+    if (changes.news.length !== payload.news.length) {
       report.errors.push({ reason: "Some candidates failed validation; inspect structured output and URL errors" });
     }
     artifact("validated.json", changes);

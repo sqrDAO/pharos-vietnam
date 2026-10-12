@@ -109,6 +109,8 @@ globalThis.fetch = async (url, options = {}) => {
     return {ok:true,json:async () => ({candidates:[{finishReason:'STOP',groundingMetadata:{webSearchQueries:['pharos']},content:{parts:[{text}]}}]})};
   }
   if (String(url).includes('grounding-api-redirect/broken')) throw new Error('temporary redirect failure');
+  if (mode === 'dead-link' && String(url).includes('kucoin.com')) return {ok:false,status:404,url:String(url)};
+  if (mode === 'unreachable-link' && String(url).includes('kucoin.com')) throw new Error('connection reset');
   return {ok:true,status:200,url:String(url)};
 };
 `);
@@ -175,6 +177,18 @@ globalThis.fetch = async (url, options = {}) => {
         assert.ok(summary().decisions.some(d => d.candidate === 'project-10' && d.action === 'reject'));
         assert.equal(summary().accepted.ecosystem, 10);
       }
+    }
+    for (const mode of ['dead-link', 'unreachable-link']) {
+      writeFileSync(join(root, 'public/js/data.js'), baseline);
+      rmSync(join(root, '.content-state'), { recursive:true, force:true });
+      const result = run(mode);
+      const dead = mode === 'dead-link';
+      // A 404 source is excluded and dropped from pending; a network failure stays fatal and is retried.
+      assert.equal(result.status, dead ? 0 : 1, mode + result.stderr);
+      assert.equal(summary().status, dead ? 'completed_with_updates' : 'incomplete');
+      assert.equal(summary().accepted.news, 2, mode);
+      assert.equal(state().pending.length, dead ? 2 : 3, mode);
+      assert.equal(summary().decisions.some(d => d.action === 'exclude' && d.reason === 'dead_link' && d.candidateId === candidates[1].id), dead);
     }
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
