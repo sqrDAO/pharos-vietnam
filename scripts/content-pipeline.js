@@ -79,6 +79,67 @@ export function reconcileDecisions(candidates, payload, existing) {
   return { items, decisions: payload.decisions };
 }
 
+// Words that recur across unrelated Pharos news (English, plus unaccented
+// Vietnamese words that would otherwise pass the brand heuristic below).
+const GENERIC_WORDS = new Set(`pharos network realfi rwa ai defi cefi l1 l2 evm testnet mainnet devnet web3 crypto blockchain
+onchain chain token tokens pros vault vaults agent agents native ecosystem foundation alliance protocol finance labs
+launch launches live update updates weekly week recap news official partner partners partnership market markets
+yield lending staking bridge wallet program campaign event summit community developer developers build builder builders
+sinh minh kinh gian giai trong thanh tranh nhanh chung tham khai cung hang tinh chinh nhan quan thong trien
+khong nhung trinh hoat dong mang thuc dung phat chuong truong nguoi trang truy giao doanh trung
+usd usdc usdt btc eth credit prime private exchange global energy beta airdrop snapshot node full cross series
+space center connect korea japan`.split(/\s+/));
+
+const compact = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/** Distinctive subjects of a news item, as compact key → display label. */
+function subjects(item, ecosystem) {
+  const title = String(item.title ?? '');
+  const slug = `-${item.id ?? ''}-`;
+  const keys = new Map();
+  for (const e of ecosystem) {
+    if (typeof e?.name !== 'string' || e.name.split(/\s+/).every(w => GENERIC_WORDS.has(compact(w)))) continue;
+    const byName = new RegExp(`(^|[^\\p{L}\\p{N}])${escapeRe(e.name)}($|[^\\p{L}\\p{N}])`, 'iu').test(title);
+    if (byName || (typeof e.id === 'string' && slug.includes(`-${e.id}-`))) keys.set(compact(e.name), e.name);
+  }
+  // Vietnamese titles are Title Case, so "capitalized" alone means nothing; keep only
+  // brand-shaped words: CamelCase, letters+digits, ACRONYMS, $TICKERS, or long ASCII names.
+  for (const raw of title.split(/[\s,.:;!?()[\]"“”‘’'/&–—-]+/)) {
+    const w = raw.replace(/^\$/, '');
+    const key = compact(w);
+    if (key.length < 2 || GENERIC_WORDS.has(key) || !/^[A-Za-z0-9+]+$/.test(w)) continue;
+    if (raw.startsWith('$') || /[a-z][A-Z]/.test(w) || (/\d/.test(w) && /[a-z]/i.test(w)) ||
+      /^[A-Z]{2,}\+?$/.test(w) || /^[A-Z][a-z]{3,}$/.test(w)) keys.set(key, keys.get(key) ?? w);
+  }
+  return keys;
+}
+
+// "Silo" ~ "SiloFinance", "Prosper" ~ "ProsperTicker"; short keys must match exactly.
+const sameSubject = (a, b) => a === b || (Math.min(a.length, b.length) >= 4 && (a.startsWith(b) || b.startsWith(a)));
+
+/**
+ * Flag new news items that name the same distinctive project/subject as an existing
+ * item, or an earlier item in the same batch, dated within ±windowDays. Flags are
+ * advisory: a partnership and a later launch can legitimately share both.
+ */
+export function findSameEventFlags(newItems, existingItems, ecosystem = [], windowDays = 3) {
+  const keyed = items => items.map(item => ({ item, keys: subjects(item, ecosystem) }));
+  const existing = keyed(existingItems);
+  const added = keyed(newItems);
+  const flags = [];
+  added.forEach(({ item, keys }, i) => {
+    for (const other of [...existing, ...added.slice(0, i)]) {
+      // Written as !(<=) so an unparseable date (NaN) is skipped, not treated as in-window.
+      if (!(Math.abs(Date.parse(item.date) - Date.parse(other.item.date)) <= windowDays * 86400000)) continue;
+      const shared = [...keys].filter(([k]) => [...other.keys.keys()].some(o => sameSubject(k, o))).map(([, label]) => label);
+      if (shared.length) flags.push({ id: item.id, duplicateOf: other.item.id, date: other.item.date, shared,
+        reason: `Same subject (${shared.join(', ')}) within ±${windowDays} days` });
+    }
+  });
+  return flags;
+}
+
 /** Retry transient provider failures up to three times with a per-attempt timeout. */
 export async function requestJson(url, options, { fetcher = fetch, sleep = ms => new Promise(r => setTimeout(r, ms)), timeout = 120000 } = {}) {
   for (let attempt = 0; attempt < 3; attempt++) {
