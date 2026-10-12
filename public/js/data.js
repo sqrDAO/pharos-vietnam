@@ -8,9 +8,21 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-10-11",
-    version: "2.1.17",
+    lastUpdated: "2026-10-12",
+    version: "2.1.18",
     sources: [
+      "https://pharos.xyz/realfi-alliance",
+      "https://x.com/pharos_network/status/2104843642997461351",
+      "https://x.com/pharos_network/status/2105900605147586821",
+      "https://x.com/R25Official/status/2100794945338818828",
+      "https://x.com/pharos_network/status/2106761323283669127",
+      "https://x.com/SiloFinance/status/2106021441678524799",
+      "https://x.com/pharos_network/status/2108203306007081053",
+      "https://mpost.io/pharos-unveils-agent-native-upgrade-with-testnet-sponsored-transactions-and-ai-portals-for-realfi",
+      "https://www.pharos.xyz/blog/pharos-agent-native-l1-built-for-agent-era-challenges",
+      "https://www.pharos.xyz/blog/introducing-pharos-season-of-ai-build-for-the-agentic-economy",
+      "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
+      "https://x.com/pharos_network/status/2107101088763789599",
       "https://x.com/pharos_network/status/2108452449900237282",
       "https://x.com/pharos_network/status/2108130134113046604",
       "https://x.com/pharos_network/status/2105266581236539547",
@@ -82,6 +94,36 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "yuzu-money",
+      name: "Yuzu Money",
+      category: "DeFi / Lợi suất / Stablecoin",
+      icon: "🍋",
+      description: "Giao thức stablecoin và lợi suất, gói các chiến lược DeFi lợi suất cao vào stablecoin yzUSD. Trên Pharos, Yuzu là thành viên RealFi Alliance, đóng vai trò cổng người dùng cuối để tiếp cận các sản phẩm lợi suất RealFi.",
+      tags: ["DeFi", "Lợi suất", "Stablecoin", "RealFi Alliance"],
+      website: "https://yuzu.money",
+      status: "Đối tác"
+    },
+    {
+      id: "pleasing-market",
+      name: "Pleasing Market",
+      category: "RWA / Hàng hóa",
+      icon: "🥇",
+      description: "Nền tảng RWA đưa kim loại quý lên on-chain. Token PGOLD được bảo chứng bằng vàng vật chất đạt chuẩn LBMA, đồng thời cung cấp dịch vụ Tokenization-as-a-Service. Trên Pharos, Pleasing Market là thành viên RealFi Alliance, chuyên về tài sản hàng hóa.",
+      tags: ["RWA", "Vàng token hóa", "PGOLD", "RealFi Alliance"],
+      website: "https://www.pleasingmarket.com",
+      status: "Đối tác"
+    },
+    {
+      id: "vishwa-lab",
+      name: "Vishwa",
+      category: "Hạ tầng / AI Agent / Tín dụng",
+      icon: "🤖",
+      description: "Hạ tầng ngân hàng và tín dụng cho AI agent, cho phép agent chuyển vốn và truy cập tài nguyên tính toán với kiểm soát chính sách, quyền riêng tư và thực thi có thể xác minh. Vishwa cũng cung cấp khung cho vay và tín dụng để mở thanh khoản trên tài sản thực đã token hóa. Là thành viên RealFi Alliance thuộc nhóm hạ tầng ngân hàng cho agent.",
+      tags: ["AI Agent", "Tín dụng", "Cho vay", "RealFi Alliance"],
+      website: "https://vishwalab.com",
+      status: "Đối tác"
+    },
     {
       id: "prosper",
       name: "Prosper",
@@ -1184,6 +1226,116 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-ra-mat-trang-agent-native",
+      title: "Pharos Ra Mắt Trang Agent Native",
+      category: "Thông Báo",
+      date: "2026-10-08",
+      summary: "Pharos ra mắt trang Agent Native riêng nhằm hỗ trợ hạ tầng kinh tế tác nhân, chuyển từ thực thi ưu tiên con người sang bản địa tác nhân.",
+      content: "Pharos đã ra mắt trang Agent Native chuyên biệt tại pharos.xyz/agent-native để hỗ trợ hạ tầng kinh tế tác nhân, hướng tới chuyển dịch từ thực thi ưu tiên con người sang thực thi bản địa tác nhân.",
+      link: "https://x.com/pharos_network/status/2108203306007081053",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-ra-mat-season-of-ai-agent-arena",
+      title: "Pharos Ra Mắt Chương Trình Season of AI Với Agent Arena và 5.000 $PROS",
+      category: "Nhà phát triển",
+      date: "2026-10-05",
+      summary: "Pharos công bố Season of AI, chương trình dành cho nhà phát triển với workshop, bảng nhiệm vụ theo cấp độ và bảng xếp hạng Agent Arena, quỹ thưởng 5.000 $PROS.",
+      content: "Season of AI gồm workshop trực tiếp (dự kiến hai lần mỗi tuần), bảng nhiệm vụ Dễ/Trung bình/Khó và bảng xếp hạng công khai Pharos Agent Arena. Quỹ thưởng 5.000 $PROS chia cho những người tham gia hàng đầu. Lịch: mở đăng ký 5/10/2026; onboarding và kick-off 9/10; workshop và nhiệm vụ bắt đầu 12/10; tổng kết 12/11. Công cụ từ AI.PHAROS gồm Chain MCP, Developer Docs MCP và SkillEngine; AI Agent Widget của Pharos Port là case study chính.",
+      link: "https://www.pharos.xyz/blog/introducing-pharos-season-of-ai-build-for-the-agentic-economy",
+      source: "Pharos Blog"
+    },
+    {
+      id: "pharos-season-of-ai-28-thu-thach",
+      title: "Pharos Season of AI Khởi Động Với 28 Thử Thách",
+      category: "Nhà phát triển",
+      date: "2026-10-05",
+      summary: "Pharos khởi động Season of AI với 28 thử thách về quy trình tác nhân, công cụ on-chain và tác nhân thanh toán; nhà phát triển tích điểm, thăng hạng và tranh 5.000 $PROS.",
+      content: "Pharos đã ra mắt Season of AI với 28 thử thách xoay quanh quy trình tác nhân, công cụ on-chain và tác nhân thanh toán. Nhà phát triển kiếm điểm, thăng hạng và cạnh tranh giải thưởng 5.000 $PROS thông qua biểu mẫu đăng ký.",
+      link: "https://x.com/pharos_network/status/2107101088763789599",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "cap-nhat-hang-tuan-he-sinh-thai-pharos-r25-studio-apt-silo",
+      title: "Cập Nhật Hàng Tuần Hệ Sinh Thái Pharos: R25 Studio, APT Vault và Silo",
+      category: "Cập Nhật",
+      date: "2026-10-04",
+      summary: "Bản tổng hợp hàng tuần của Pharos nêu việc R25 Studio mở beta công khai, APT Vault ra mắt và SiloFinance sắp ra mắt các thị trường cho vay biệt lập.",
+      content: "Theo bản cập nhật hàng tuần của Pharos, R25Official đã mở beta công khai R25 Studio để xây dựng vault với đăng ký và rút tiền on-chain. APT Vault, do Official_Axil quản lý, đã ra mắt với thanh khoản USDC, APY khoảng 8% và khả năng truy cập T+0. SiloFinance cũng chuẩn bị ra mắt các thị trường cho vay biệt lập trên Pharos.",
+      link: "https://x.com/pharos_network/status/2106761323283669127",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "chi-tiet-apt-vault-realfi-r25-axil",
+      title: "Công Bố Chi Tiết Vault Lợi Suất RealFi APT Của R25 và Axil",
+      category: "Thông Báo",
+      date: "2026-10-02",
+      summary: "Pharos công bố chi tiết về APT, vault lợi suất RealFi mở do R25Official và Official_Axil vận hành, nhận tiền gửi USDC, phân bổ vào tín dụng tư nhân và tài sản thanh khoản, hỗ trợ rút tiền T+0.",
+      content: "Pharos đã công bố thông tin chi tiết về APT, một vault lợi suất RealFi dạng mở do R25Official và Official_Axil phối hợp triển khai. Người dùng gửi USDC, khoản tiền được phân bổ giữa tín dụng tư nhân và phần thanh khoản nhằm tạo lợi suất, đồng thời hỗ trợ rút tiền T+0.",
+      link: "https://x.com/pharos_network/status/2105900605147586821",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "silofinance-cong-bo-tich-hop-pharos-tu-phia-silo",
+      title: "SiloFinance Công Bố Tích Hợp Với Pharos",
+      category: "Hợp Tác",
+      date: "2026-10-02",
+      summary: "SiloFinance thông báo sẽ có mặt trên Pharos, mang đến các thị trường biệt lập cho tài sản RWA làm tài sản thế chấp; các thị trường đầu tiên dự kiến ra mắt vào tuần tới.",
+      content: "SiloFinance thông báo đang đến với Pharos, L1 tài chính cho RealFi, với các thị trường biệt lập cho RWA làm tài sản thế chấp. Các thị trường đầu tiên dự kiến ra mắt vào tuần tới. Theo Silo, Pharos có hơn 150 triệu USD TVL và đang ươm tạo một thị trường RWA với danh mục tài sản 1,5 tỷ USD.",
+      link: "https://x.com/SiloFinance/status/2106021441678524799",
+      source: "SiloFinance (X)"
+    },
+    {
+      id: "pharos-bai-viet-ky-thuat-agent-native-l1",
+      title: "Pharos Đăng Bài Kỹ Thuật Về Agent-Native L1",
+      category: "Công Nghệ",
+      date: "2026-10-01",
+      summary: "Blog chính thức của Pharos lập luận rằng nền kinh tế tác nhân cần một Layer 1 khác biệt chứ không chỉ nhanh hơn.",
+      content: "Bài viết cho rằng các L1 hiện tại giả định tài khoản tĩnh do chủ sở hữu nắm giữ và gas trả theo từng giao dịch bởi người gửi, trong khi tác nhân hoạt động theo ủy quyền và giao dịch khối lượng lớn. Pharos định vị nền tảng của mình (thực thi hiệu năng cao, lập lịch song song, lưu trữ chi phí thấp, Special Processing Networks) làm cơ sở cho hạ tầng tác nhân toàn diện. Bài viết dẫn x402 (hơn 167 triệu giao dịch, trên 50 triệu USD khối lượng thanh toán tính đến tháng 4/2026) và ERC-8004 (ra mắt trên Ethereum mainnet tháng 2/2026).",
+      link: "https://www.pharos.xyz/blog/pharos-agent-native-l1-built-for-agent-era-challenges",
+      source: "Pharos Blog"
+    },
+    {
+      id: "pharos-cong-bo-nang-cap-agent-native-tai-korea-blockchain-week",
+      title: "Pharos Công Bố Nâng Cấp Agent Native Tại Korea Blockchain Week",
+      category: "Công Nghệ",
+      date: "2026-09-30",
+      summary: "Tại Korea Blockchain Week, Pharos giới thiệu nâng cấp Agent Native, Sponsored Transactions trên Testnet, cổng AI và nhận diện thương hiệu mới, triển khai từ 30/9 đến hết Q4.",
+      content: "Trong bài phát biểu tại Korea Blockchain Week, Pharos giới thiệu nâng cấp Agent Native cùng nhận diện thương hiệu mới. Testnet bổ sung Sponsored Transactions, tách người gửi giao dịch khỏi bên trả gas. Pharos Port Agent Widget, xây dựng cùng Anvita Flow, cho phép hỏi bằng ngôn ngữ tự nhiên về vị thế RWA, kỳ hạn vault, lợi suất và cửa sổ rút tiền. Cổng ai.pharos.xyz gom Pharos Chain MCP, Developer Docs MCP và SkillEngine; AnvitaMate x Pharos đóng gói các công cụ này thành môi trường AI cục bộ. Lộ trình: PoS staking trên mainnet dự kiến Q4 2026; Agent Accounts và State Economy dần triển khai trong 2027; quy trình agent-native đầu-cuối hướng tới 2028.",
+      link: "https://mpost.io/pharos-unveils-agent-native-upgrade-with-testnet-sponsored-transactions-and-ai-portals-for-realfi",
+      source: "MPost"
+    },
+    {
+      id: "apc3m-lam-tai-san-the-chap-tren-morpho",
+      title: "APC3M Có Thể Dùng Làm Tài Sản Thế Chấp Trên Morpho",
+      category: "Cập Nhật",
+      date: "2026-09-29",
+      summary: "Tài sản tín dụng tư nhân được token hóa APC3M hiện có thể dùng làm tài sản thế chấp trong thị trường cho vay USDC biệt lập trên Morpho, giúp người dùng tiếp cận thanh khoản USDC mà không cần bán vị thế.",
+      content: "Theo thông báo từ Pharos, APC3M đã có thể được dùng làm tài sản thế chấp trong thị trường cho vay USDC biệt lập trên Morpho. Người dùng có thể tiếp cận thanh khoản USDC mà không phải bán vị thế thông qua SharpByte USDC Pharos Ecosystem Vault. Thị trường có LLTV 86% và sử dụng oracle NAV on-chain.",
+      link: "https://x.com/pharos_network/status/2104843642997461351",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "prosperticker-gia-nhap-he-sinh-thai-pharos",
+      title: "ProsperTicker Gia Nhập Hệ Sinh Thái Pharos",
+      category: "Hợp Tác",
+      date: "2026-09-18",
+      summary: "R25Official chào đón ProsperTicker gia nhập hệ sinh thái Pharos.",
+      content: "R25Official đã đăng thông báo chào đón ProsperTicker gia nhập hệ sinh thái Pharos. Nguồn tin không cung cấp thêm chi tiết về phạm vi hợp tác.",
+      link: "https://x.com/R25Official/status/2100794945338818828",
+      source: "R25Official (X)"
+    },
+    {
+      id: "prosper-ra-mat-khung-performance-markets-tren-pharos",
+      title: "PROSPER Ra Mắt Khung Performance Markets Trên Pharos",
+      category: "Công Nghệ",
+      date: "2026-09-17",
+      summary: "PROSPER hoạt động trên Pharos với Performance Markets, khung kết nối dữ liệu hiệu suất chiến lược on-chain có thể kiểm chứng với các tài sản crypto được định giá độc lập.",
+      content: "Theo Invezz, PROSPER cho phép các nhà vận hành bên thứ ba chạy Vault với token p{VAULT}. Khi chiến lược vượt ngưỡng high-water mark, một phần phí hiệu suất đủ điều kiện được dùng để mua p{VAULT} trên các DEX bên thứ ba rồi đốt vĩnh viễn. Lưu ý: thông tin dựa trên đoạn trích tìm kiếm, chưa có toàn văn bài.",
+      link: "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
+      source: "Invezz"
+    },
     {
       id: "pharos-mo-quyen-truy-cap-cho-tac-nhan-ai",
       title: "Pharos Mở Quyền Truy Cập Cho Tác Nhân AI",
