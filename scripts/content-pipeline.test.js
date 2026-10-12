@@ -86,6 +86,12 @@ test('same-event check ignores distant dates, Pharos-only overlap and unrelated 
   const pharosOnly = news('pharos-mo-quyen-truy-cap-cho-tac-nhan-ai', 'Pharos Mở Quyền Truy Cập Cho Tác Nhân AI Trên RealFi Network', '2026-10-03');
   const avalon = news('avalon-ra-mat-cho-vay-btc', 'Avalon Ra Mắt Cho Vay BTC Trên Pharos', '2026-10-05');
   assert.deepEqual(flagPairs([later, pharosOnly, avalon], [silo, prosper, r25]), []);
+  // Generic finance words and unaccented Vietnamese are not subjects.
+  const usdc = news('pharos-tich-hop-usdc-cctp', 'Pharos Mainnet Tích Hợp Chính Thức USDC Và CCTP', '2026-10-04');
+  const goblin = news('goblin-private-credit-vault', 'Goblin Private Credit Vault Ra Mắt Với 16 Triệu USDC', '2026-10-05');
+  assert.deepEqual(flagPairs([goblin], [usdc]), []);
+  // An unparseable date is never treated as within the window.
+  assert.deepEqual(flagPairs([{ ...silo, id: 'silo-bad-date', date: 'unknown' }], [silo]), []);
 });
 test('same-event check matches ecosystem projects by name or ID slug', () => {
   const byName = news('pharos-don-avalon', 'Avalon Labs Gia Nhập Hệ Sinh Thái', '2026-10-05');

@@ -86,7 +86,9 @@ onchain chain token tokens pros vault vaults agent agents native ecosystem found
 launch launches live update updates weekly week recap news official partner partners partnership market markets
 yield lending staking bridge wallet program campaign event summit community developer developers build builder builders
 sinh minh kinh gian giai trong thanh tranh nhanh chung tham khai cung hang tinh chinh nhan quan thong trien
-khong nhung trinh hoat dong mang thuc dung phat chuong truong nguoi`.split(/\s+/));
+khong nhung trinh hoat dong mang thuc dung phat chuong truong nguoi trang truy giao doanh trung
+usd usdc usdt btc eth credit prime private exchange global energy beta airdrop snapshot node full cross series
+space center connect korea japan`.split(/\s+/));
 
 const compact = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -128,7 +130,8 @@ export function findSameEventFlags(newItems, existingItems, ecosystem = [], wind
   const flags = [];
   added.forEach(({ item, keys }, i) => {
     for (const other of [...existing, ...added.slice(0, i)]) {
-      if (Math.abs(Date.parse(item.date) - Date.parse(other.item.date)) > windowDays * 86400000) continue;
+      // Written as !(<=) so an unparseable date (NaN) is skipped, not treated as in-window.
+      if (!(Math.abs(Date.parse(item.date) - Date.parse(other.item.date)) <= windowDays * 86400000)) continue;
       const shared = [...keys].filter(([k]) => [...other.keys.keys()].some(o => sameSubject(k, o))).map(([, label]) => label);
       if (shared.length) flags.push({ id: item.id, duplicateOf: other.item.id, date: other.item.date, shared,
         reason: `Same subject (${shared.join(', ')}) within ±${windowDays} days` });
