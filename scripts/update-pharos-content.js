@@ -105,7 +105,11 @@ function loadCurrentData(text) {
 const ARTIFACT_DIR = join(REPO_ROOT, "content-artifacts");
 const STATE_FILE = join(REPO_ROOT, ".content-state", "state.json");
 let sequence = 0;
-const report = { status: "incomplete", searches: [], decisions: [], errors: [] };
+const report = {
+  status: "incomplete", searches: [], decisions: [], errors: [],
+  // Summed over every Claude response; cache reads show the research loop reusing its prefix.
+  usage: { input_tokens: 0, cache_creation_input_tokens: 0, cache_read_input_tokens: 0, output_tokens: 0 },
+};
 /** Serialize diagnostic data and redact configured provider secrets. */
 function sanitize(value) {
   let text = typeof value === "string" ? value : JSON.stringify(value, null, 2);
@@ -145,13 +149,19 @@ async function claudeCall(prompt, { search = false, effort = "medium" } = {}) {
           fallbacks: "default",
           output_config: { effort },
           messages,
-          ...(search ? { tools: WEB_TOOLS } : {}),
+          // A research request re-reads its growing transcript (fetched pages, search
+          // results) on every server-side tool iteration and pause_turn continuation;
+          // automatic caching turns those re-reads into cache hits. Single-shot calls
+          // have a unique prompt that is never re-read, so caching would only add the
+          // write premium.
+          ...(search ? { tools: WEB_TOOLS, cache_control: { type: "ephemeral" } } : {}),
         }, { signal: AbortSignal.timeout(remaining) });
       } catch (error) {
         if (error instanceof Anthropic.APIUserAbortError) fail("Claude research exceeded the run time budget");
         throw error;
       }
       artifact(`claude-${++sequence}.json`, response);
+      for (const key of Object.keys(report.usage)) report.usage[key] += response.usage?.[key] ?? 0;
       // Fetching the official pages named in the prompt is research too.
       researched ||= response.content.some(b => b.type === "server_tool_use" && (b.name === "web_search" || b.name === "web_fetch"));
       if (response.stop_reason !== "pause_turn") break;
@@ -848,7 +858,7 @@ async function main() {
   } finally {
     if (stateLoaded) writeFileSync(STATE_FILE, sanitize({ ...state, pending }));
     artifact("summary.json", report);
-    const summary = `## Weekly Pharos content update\n\nStatus: **${report.status}**\n\nCoverage: ${from} through ${today()} (UTC)\n\nCandidates: ${report.candidateCount ?? 0}\n\nAccepted: ${JSON.stringify(report.accepted || {})}\n\nSearches: ${JSON.stringify(report.searches)}\n\nErrors: ${JSON.stringify(report.errors)}\n${flags.length ? "\n" + duplicateSection(flags).join("\n") : ""}`;
+    const summary = `## Weekly Pharos content update\n\nStatus: **${report.status}**\n\nCoverage: ${from} through ${today()} (UTC)\n\nCandidates: ${report.candidateCount ?? 0}\n\nAccepted: ${JSON.stringify(report.accepted || {})}\n\nSearches: ${JSON.stringify(report.searches)}\n\nClaude tokens: ${JSON.stringify(report.usage)}\n\nErrors: ${JSON.stringify(report.errors)}\n${flags.length ? "\n" + duplicateSection(flags).join("\n") : ""}`;
     artifact("summary.md", summary);
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, sanitize(summary));
   }
