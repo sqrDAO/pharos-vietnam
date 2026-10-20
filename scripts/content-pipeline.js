@@ -166,14 +166,14 @@ const META_COMMENTARY = [
   ['search-snippet', /đoạn trích/iu],
   // "chưa có toàn văn bài viết": admits the full article was not read.
   ['no-full-text', /chưa có toàn văn/iu],
-  // A trailing "Lưu ý: …" sentence is the model's caveat slot; mid-sentence use is fine.
-  ['trailing-caveat', /(?:^|[.!?]\s+)lưu ý\s*:[^.!?]*[.!?]?\s*$/iu],
-  // "Nguồn tin không cung cấp thêm chi tiết": comments on source coverage.
-  ['source-gap', /không cung cấp thêm/iu],
+  // A trailing "Lưu ý: …" sentence about the source is the model's caveat slot.
+  // A trailing notice about the event itself ("Lưu ý: hạn chót là 30/10.") is fine.
+  ['trailing-caveat', /(?:^|[.!?]\s+)lưu ý\s*:[^.!?]*\b(?:nguồn|thông tin|bài viết|toàn văn|tìm kiếm)[^.!?]*[.!?]?\s*$/iu],
+  // "Nguồn tin không cung cấp thêm chi tiết": comments on source coverage. Anchored
+  // on "nguồn" so "Pharos không cung cấp thêm phần thưởng" stays publishable.
+  ['source-gap', /nguồn(?: tin)? không cung cấp thêm/iu],
   // "theo kết quả tìm kiếm": cites the search step rather than the publisher.
   ['search-results', /theo kết quả tìm kiếm/iu],
-  // English leak of the same idea.
-  ['snippet-en', /\bsnippets?\b/iu],
 ];
 
 /** Return the name of the first meta-commentary pattern a published text matches, or null. */

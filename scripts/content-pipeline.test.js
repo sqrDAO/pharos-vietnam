@@ -286,15 +286,18 @@ test('research meta-commentary in published copy is detected', () => {
     'trailing-caveat': 'Prosper ra mắt Performance Markets trên Pharos. Lưu ý: thông tin dựa trên nguồn hạn chế.',
     'source-gap': 'ProsperTicker gia nhập hệ sinh thái Pharos. Nguồn tin không cung cấp thêm chi tiết về phạm vi hợp tác.',
     'search-results': 'Theo kết quả tìm kiếm, dự án đã ra mắt mainnet.',
-    'snippet-en': 'Dự án công bố tích hợp (theo snippet từ X).',
   };
   for (const [name, text] of Object.entries(cases)) assert.equal(findMetaCommentary(text), name, text);
   assert.equal(findMetaCommentary('Prosper ra mắt khung Performance Markets. Lưu ý: thông tin dựa trên đoạn trích tìm kiếm, chưa có toàn văn bài viết.') !== null, true);
+  assert.equal(findMetaCommentary('Prosper ra mắt Performance Markets. Lưu ý: bài viết gốc chỉ nêu tên đối tác.'), 'trailing-caveat');
 });
-test('legitimate copy mentioning "Lưu ý" mid-sentence is not rejected', () => {
+test('legitimate copy using "Lưu ý", "không cung cấp thêm" or "Snippet" is not rejected', () => {
   for (const text of [
     'Người dùng cần lưu ý: hạn chót đăng ký là ngày 30/10, sau đó cổng sẽ đóng.',
     'Pharos khuyến nghị người dùng Lưu ý bảo mật ví khi tham gia testnet.',
     'Mainnet Pharos chính thức ra mắt với hơn 50 đối tác.',
+    'Pharos mở đăng ký airdrop. Lưu ý: hạn chót là 30/10.',
+    'Pharos không cung cấp thêm phần thưởng cho ví bot.',
+    'Dự án Snippet gia nhập Pharos.',
   ]) assert.equal(findMetaCommentary(text), null, text);
 });

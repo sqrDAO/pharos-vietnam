@@ -531,16 +531,26 @@ async function resolveLinks(payload, candidates) {
 }
 
 // Drop news whose copy leaks research-process notes (e.g. "Lưu ý: … đoạn trích
-// tìm kiếm"). The candidate is not excluded, so it stays pending and is
-// regenerated next run instead of being lost or shipped.
+// tìm kiếm"). The first time, the candidate stays pending and is regenerated
+// next run; if the regenerated copy leaks again it is excluded, so a candidate
+// the check keeps rejecting is reported once instead of retried forever.
 /** Remove news entries whose summary/content contain research meta-commentary. */
-function dropMetaCommentary(payload) {
+function dropMetaCommentary(payload, candidates) {
+  const byUrl = new Map(candidates.map(c => [canonicalUrl(c.url), c]));
   payload.news = (payload.news ?? []).filter(n => {
     for (const field of ["summary", "content"]) {
       const pattern = findMetaCommentary(n?.[field]);
       if (!pattern) continue;
-      console.error(sanitize(`[update-pharos-content] DROPPED news "${n.id}": ${field} matches meta-commentary pattern "${pattern}"`));
-      report.errors.push({ candidate: n.id, url: n.link, reason: `Meta-commentary in ${field} (${pattern}); entry dropped, candidate retried next run` });
+      let candidate;
+      try { candidate = byUrl.get(canonicalUrl(n.link)); } catch {}
+      const retry = !candidate || !candidate.metaRetries;
+      console.error(sanitize(`[update-pharos-content] DROPPED news "${n.id}": ${field} matches meta-commentary pattern "${pattern}"${retry ? "; retrying next run" : "; excluded after retry"}`));
+      if (retry) {
+        if (candidate) candidate.metaRetries = 1;
+        report.errors.push({ candidate: n.id, url: n.link, reason: `Meta-commentary in ${field} (${pattern}); entry dropped, candidate retried next run` });
+      } else {
+        report.decisions.push({ candidateId: candidate.id, url: n.link, action: "exclude", reason: "meta_commentary", explanation: `${field} matched "${pattern}" again after regeneration` });
+      }
       return false;
     }
     return true;
@@ -840,7 +850,7 @@ async function main() {
     payload.news = news;
     payload.sources = [...new Set([...(payload.sources || []), ...news.map(n => n.link)])];
     artifact("structured.json", payload);
-    dropMetaCommentary(payload);
+    dropMetaCommentary(payload, pending);
     await resolveLinks(payload, pending);
     const changes = validate(payload, current);
     if (changes.news.length !== payload.news.length) {
