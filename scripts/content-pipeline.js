@@ -158,3 +158,26 @@ export async function requestJson(url, options, { fetcher = fetch, sleep = ms =>
     }
   }
 }
+
+// Research-process meta-commentary that must never reach published copy. news.js
+// renders summary/content verbatim, so each pattern below is a known leak shape.
+const META_COMMENTARY = [
+  // "dựa trên đoạn trích tìm kiếm": admits the copy came from a search snippet.
+  ['search-snippet', /đoạn trích/iu],
+  // "chưa có toàn văn bài viết": admits the full article was not read.
+  ['no-full-text', /chưa có toàn văn/iu],
+  // A trailing "Lưu ý: …" sentence about the source is the model's caveat slot.
+  // A trailing notice about the event itself ("Lưu ý: hạn chót là 30/10.") is fine.
+  ['trailing-caveat', /(?:^|[.!?]\s+)lưu ý\s*:[^.!?]*\b(?:nguồn|thông tin|bài viết|toàn văn|tìm kiếm)[^.!?]*[.!?]?\s*$/iu],
+  // "Nguồn tin không cung cấp thêm chi tiết": comments on source coverage. Anchored
+  // on "nguồn" so "Pharos không cung cấp thêm phần thưởng" stays publishable.
+  ['source-gap', /nguồn(?: tin)? không cung cấp thêm/iu],
+  // "theo kết quả tìm kiếm": cites the search step rather than the publisher.
+  ['search-results', /theo kết quả tìm kiếm/iu],
+];
+
+/** Return the name of the first meta-commentary pattern a published text matches, or null. */
+export function findMetaCommentary(text) {
+  if (typeof text !== 'string') return null;
+  return META_COMMENTARY.find(([, re]) => re.test(text))?.[0] ?? null;
+}

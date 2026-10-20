@@ -32,7 +32,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import vm from "node:vm";
 import Anthropic from "@anthropic-ai/sdk";
-import { canonicalUrl, coverageStart, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from "./content-pipeline.js";
+import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from "./content-pipeline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..");
@@ -257,6 +257,7 @@ Each candidate MUST have exactly one decision. Allowed categories: ${JSON.string
 Alternatively exclude with {"candidateId":"...","action":"exclude","reason":"duplicate","duplicateOf":"an existing news id, or the candidateId of the candidate you included for the same event"}, or reason="out_of_scope" with a nonempty explanation.
 Duplicate means the SAME EVENT, not the same project. An integration going live is new even if a partnership was already covered.
 Preserve source URL and date. Do not invent claims, merge away candidates, or silently omit them.
+"summary" and "content" are published website copy for end readers. They must state only the facts of the event and must NEVER mention the research process, search results or snippets, whether the full article or further details were available, or your own confidence. If a detail is unknown, leave it out silently.
 Existing news: ${JSON.stringify(existing.news.map(n => ({ id:n.id, title:n.title, date:n.date, summary:n.summary, link:n.link })))}
 Candidates: ${JSON.stringify(candidates)}`;
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -527,6 +528,33 @@ async function resolveLinks(payload, candidates) {
     }
     payload.sources = out;
   }
+}
+
+// Drop news whose copy leaks research-process notes (e.g. "Lưu ý: … đoạn trích
+// tìm kiếm"). The first time, the candidate stays pending and is regenerated
+// next run; if the regenerated copy leaks again it is excluded, so a candidate
+// the check keeps rejecting is reported once instead of retried forever.
+/** Remove news entries whose summary/content contain research meta-commentary. */
+function dropMetaCommentary(payload, candidates) {
+  const byUrl = new Map(candidates.map(c => [canonicalUrl(c.url), c]));
+  payload.news = (payload.news ?? []).filter(n => {
+    for (const field of ["summary", "content"]) {
+      const pattern = findMetaCommentary(n?.[field]);
+      if (!pattern) continue;
+      let candidate;
+      try { candidate = byUrl.get(canonicalUrl(n.link)); } catch {}
+      const retry = !candidate || !candidate.metaRetries;
+      console.error(sanitize(`[update-pharos-content] DROPPED news "${n.id}": ${field} matches meta-commentary pattern "${pattern}"${retry ? "; retrying next run" : "; excluded after retry"}`));
+      if (retry) {
+        if (candidate) candidate.metaRetries = 1;
+        report.errors.push({ candidate: n.id, url: n.link, reason: `Meta-commentary in ${field} (${pattern}); entry dropped, candidate retried next run` });
+      } else {
+        report.decisions.push({ candidateId: candidate.id, url: n.link, action: "exclude", reason: "meta_commentary", explanation: `${field} matched "${pattern}" again after regeneration` });
+      }
+      return false;
+    }
+    return true;
+  });
 }
 
 // --- Validation ---------------------------------------------------------------
@@ -822,6 +850,7 @@ async function main() {
     payload.news = news;
     payload.sources = [...new Set([...(payload.sources || []), ...news.map(n => n.link)])];
     artifact("structured.json", payload);
+    dropMetaCommentary(payload, pending);
     await resolveLinks(payload, pending);
     const changes = validate(payload, current);
     if (changes.news.length !== payload.news.length) {
