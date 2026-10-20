@@ -32,7 +32,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import vm from "node:vm";
 import Anthropic from "@anthropic-ai/sdk";
-import { canonicalUrl, coverageStart, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from "./content-pipeline.js";
+import { canonicalUrl, coverageStart, findProcessNotes, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from "./content-pipeline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..");
@@ -257,6 +257,7 @@ Each candidate MUST have exactly one decision. Allowed categories: ${JSON.string
 Alternatively exclude with {"candidateId":"...","action":"exclude","reason":"duplicate","duplicateOf":"an existing news id, or the candidateId of the candidate you included for the same event"}, or reason="out_of_scope" with a nonempty explanation.
 Duplicate means the SAME EVENT, not the same project. An integration going live is new even if a partnership was already covered.
 Preserve source URL and date. Do not invent claims, merge away candidates, or silently omit them.
+title, summary and content are published verbatim to readers: never mention your research process, search snippets, missing full text, what a source did not say, or your own confidence. If the source supports only one sentence, write one sentence.
 Existing news: ${JSON.stringify(existing.news.map(n => ({ id:n.id, title:n.title, date:n.date, summary:n.summary, link:n.link })))}
 Candidates: ${JSON.stringify(candidates)}`;
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -554,9 +555,17 @@ function validate(payload, existing) {
       isHttpUrl(n.link) &&
       !isGroundingRedirect(n.link) &&
       nonEmptyStr(n.source);
-    if (ok) seenNews.add(n.id);
-    else report.errors.push({ candidate: n?.id, reason: "News schema, category, source, date or ID validation failed" });
-    return ok;
+    if (!ok) {
+      report.errors.push({ candidate: n?.id, reason: "News schema, category, source, date or ID validation failed" });
+      return false;
+    }
+    const notes = [...new Set([n.title, n.summary, n.content].flatMap(findProcessNotes))];
+    if (notes.length) {
+      report.errors.push({ candidate: n.id, reason: `Research-process note in published text: ${notes.join(", ")}` });
+      return false;
+    }
+    seenNews.add(n.id);
+    return true;
   });
 
   const seenEco = new Set();

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, coverageStart, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
+import { canonicalUrl, coverageStart, findProcessNotes, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -108,6 +108,17 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
+test('research-process notes in published text are detected', () => {
+  // Verbatim from a weekly update that reached review (PR #41).
+  assert.deepEqual(findProcessNotes('PROSPER đã ra mắt. Lưu ý: thông tin dựa trên đoạn trích tìm kiếm, chưa có toàn văn bài viết.'), ['search snippet', 'no full text']);
+  assert.deepEqual(findProcessNotes('Nguồn tin không cung cấp thêm chi tiết về phạm vi hợp tác.'), ['source gave no detail']);
+  assert.deepEqual(findProcessNotes('Theo kết quả tìm kiếm, vault đã hoạt động.'), ['search results']);
+  assert.deepEqual(findProcessNotes('Based on a search snippet; full article not available.'), ['English process note']);
+});
+test('ordinary reader advice is not mistaken for a process note', () => {
+  for (const s of ['Lưu ý: vault có thời gian khóa 7 ngày.', 'Người dùng cần lưu ý rủi ro thanh khoản.', 'Nguồn vốn được cung cấp bởi R25.', '', undefined])
+    assert.deepEqual(findProcessNotes(s), [], String(s));
+});
 test('full updater: missed launches, incomplete searches, dropped conversion, and recovery', () => {
   const root = mkdtempSync(join(tmpdir(), 'pharos-pipeline-'));
   try {

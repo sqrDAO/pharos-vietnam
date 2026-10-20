@@ -27,6 +27,24 @@ function validDate(value) {
 }
 
 /** Choose a backfill start that preserves incomplete coverage and overlap. */
+// Research-process notes the converter has leaked into published copy, e.g.
+// "Lưu ý: thông tin dựa trên đoạn trích tìm kiếm, chưa có toàn văn bài viết."
+// news.js renders content verbatim, so these must never ship. Kept narrow on
+// purpose: a plain "Lưu ý:" is legitimate reader advice and is not matched.
+const PROCESS_NOTES = [
+  ['search snippet', /đoạn trích/i],
+  ['no full text', /(?:chưa|không) có toàn văn/i],
+  ['source gave no detail', /nguồn(?: tin)? không (?:cung cấp|nêu|đề cập)/i],
+  ['search results', /kết quả tìm kiếm/i],
+  ['English process note', /\bsearch (?:snippet|result)s?\b|\bfull (?:article|text) (?:is )?(?:not |un)available\b/i],
+];
+
+/** Labels of research-process notes found in reader-facing text. */
+export function findProcessNotes(text) {
+  const s = String(text ?? '');
+  return PROCESS_NOTES.filter(([, re]) => re.test(s)).map(([label]) => label);
+}
+
 export function coverageStart(lastCompleted, today, lookback) {
   const days = Number(lookback);
   if (!Number.isInteger(days) || days < 14 || days > 365) throw new Error('CONTENT_LOOKBACK_DAYS must be an integer from 14 to 365');
