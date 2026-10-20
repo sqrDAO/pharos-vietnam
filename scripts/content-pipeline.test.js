@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, coverageStart, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
+import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -278,4 +278,23 @@ test('artifact recovery searches later pages and skips missing, malformed or inv
   assert.deepEqual(attempted, [7,6,5,4]);
   assert.deepEqual(JSON.parse(raw), {pending:[]});
   assert.equal(recoverState(pages, 'main', '8', () => {throw new Error('unavailable');}, () => {}), null);
+});
+test('research meta-commentary in published copy is detected', () => {
+  const cases = {
+    'search-snippet': 'Prosper ra mắt khung Performance Markets, dựa trên đoạn trích bài đăng.',
+    'no-full-text': 'Chi tiết sẽ được cập nhật vì chưa có toàn văn thông báo.',
+    'trailing-caveat': 'Prosper ra mắt Performance Markets trên Pharos. Lưu ý: thông tin dựa trên nguồn hạn chế.',
+    'source-gap': 'ProsperTicker gia nhập hệ sinh thái Pharos. Nguồn tin không cung cấp thêm chi tiết về phạm vi hợp tác.',
+    'search-results': 'Theo kết quả tìm kiếm, dự án đã ra mắt mainnet.',
+    'snippet-en': 'Dự án công bố tích hợp (theo snippet từ X).',
+  };
+  for (const [name, text] of Object.entries(cases)) assert.equal(findMetaCommentary(text), name, text);
+  assert.equal(findMetaCommentary('Prosper ra mắt khung Performance Markets. Lưu ý: thông tin dựa trên đoạn trích tìm kiếm, chưa có toàn văn bài viết.') !== null, true);
+});
+test('legitimate copy mentioning "Lưu ý" mid-sentence is not rejected', () => {
+  for (const text of [
+    'Người dùng cần lưu ý: hạn chót đăng ký là ngày 30/10, sau đó cổng sẽ đóng.',
+    'Pharos khuyến nghị người dùng Lưu ý bảo mật ví khi tham gia testnet.',
+    'Mainnet Pharos chính thức ra mắt với hơn 50 đối tác.',
+  ]) assert.equal(findMetaCommentary(text), null, text);
 });
