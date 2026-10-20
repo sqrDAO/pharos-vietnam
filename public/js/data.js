@@ -11,10 +11,6 @@ window.PharosData = {
     lastUpdated: "2026-10-18",
     version: "2.1.19",
     sources: [
-      "https://x.com/R25Official/status/2100794945338818828",
-      "https://x.com/pharos_network/status/2106761323283669127",
-      "https://x.com/SiloFinance/status/2106021441678524799",
-      "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
       "https://x.com/pharos_network/status/2111298669496750345",
       "https://x.com/pharos_network/status/2109562968862277820",
       "https://x.com/pharos_eco/status/2110727542453964854",
@@ -1256,46 +1252,6 @@ window.PharosData = {
       content: "Hướng dẫn giới thiệu PharosPort Agent AI Widget, vận hành bởi AnvitaFlow, giúp người dùng quản lý vị thế RealFi trên Pharos Harbor thông qua trò chuyện tại ai.pharos.xyz.",
       link: "https://x.com/pharos_network/status/2109562968862277820",
       source: "Pharos Network (X)"
-    },
-    {
-      id: "pharos-cap-nhat-he-sinh-thai-hang-tuan-r25-studio-apt-vault",
-      title: "Cập Nhật Hệ Sinh Thái Pharos Hàng Tuần: R25 Studio Beta, APT Vault và Silo",
-      category: "Cập Nhật",
-      date: "2026-10-04",
-      summary: "Bản tin tuần của Pharos điểm lại việc R25 mở beta công khai R25 Studio, ra mắt APT Vault và SiloFinance chuẩn bị ra mắt thị trường cho vay biệt lập.",
-      content: "Theo bản cập nhật hàng tuần của Pharos, R25 đã mở beta công khai R25 Studio để xây dựng vault với đăng ký và rút tiền on-chain. APT Vault, do Official_Axil quản lý, cung cấp thanh khoản USDC với APY khoảng 8% và truy cập T+0. Ngoài ra, SiloFinance sẽ ra mắt các thị trường cho vay biệt lập trên Pharos.",
-      link: "https://x.com/pharos_network/status/2106761323283669127",
-      source: "Pharos Network (X)"
-    },
-    {
-      id: "silofinance-cong-bo-tich-hop-pharos-network",
-      title: "SiloFinance Công Bố Tích Hợp Với Pharos Network",
-      category: "Hợp Tác",
-      date: "2026-10-02",
-      summary: "Silo thông báo sẽ có mặt trên Pharos, mang các thị trường biệt lập với RWA làm tài sản thế chấp; các thị trường đầu tiên dự kiến ra mắt vào tuần sau.",
-      content: "SiloFinance thông báo đang đến với Pharos, Layer 1 tài chính cho RealFi. Silo mang đến các thị trường biệt lập cho RWA làm tài sản thế chấp, với các thị trường đầu tiên dự kiến vào tuần tới. Theo bài đăng, Pharos có TVL trên 150 triệu USD và đang ươm tạo một marketplace RWA với danh mục tài sản 1,5 tỷ USD.",
-      link: "https://x.com/SiloFinance/status/2106021441678524799",
-      source: "SiloFinance (X)"
-    },
-    {
-      id: "prosperticker-gia-nhap-he-sinh-thai-pharos",
-      title: "ProsperTicker Gia Nhập Hệ Sinh Thái Pharos",
-      category: "Hợp Tác",
-      date: "2026-09-18",
-      summary: "R25 chào đón ProsperTicker gia nhập hệ sinh thái Pharos.",
-      content: "Theo thông báo trên X của R25, ProsperTicker được chào đón gia nhập hệ sinh thái Pharos. Nguồn tin không cung cấp thêm chi tiết về phạm vi hợp tác.",
-      link: "https://x.com/R25Official/status/2100794945338818828",
-      source: "R25 (X)"
-    },
-    {
-      id: "prosper-ra-mat-khung-performance-markets-tren-pharos",
-      title: "PROSPER Ra Mắt Khung Performance Markets Trên Pharos",
-      category: "Công Nghệ",
-      date: "2026-09-17",
-      summary: "PROSPER hoạt động trên Pharos với Performance Markets, khung kết nối dữ liệu hiệu suất chiến lược on-chain có thể kiểm chứng với các tài sản được định giá độc lập.",
-      content: "PROSPER đã ra mắt trên Pharos với Performance Markets, cho phép các nhà vận hành bên thứ ba chạy Vault với token p{VAULT}. Khi chiến lược vượt mốc high-water mark, một phần phí hiệu suất đủ điều kiện được dùng để mua p{VAULT} trên các DEX bên thứ ba rồi đốt vĩnh viễn. Lưu ý: thông tin dựa trên đoạn trích tìm kiếm, chưa có toàn văn bài viết.",
-      link: "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
-      source: "Invezz"
     },
     {
       id: "pharos-ra-mat-trang-agent-native",
