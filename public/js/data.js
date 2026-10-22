@@ -8,9 +8,12 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-10-12",
-    version: "2.1.18",
+    lastUpdated: "2026-10-18",
+    version: "2.1.19",
     sources: [
+      "https://x.com/pharos_network/status/2111298669496750345",
+      "https://x.com/pharos_network/status/2109562968862277820",
+      "https://x.com/pharos_eco/status/2110727542453964854",
       "https://pharos.xyz/realfi-alliance",
       "https://x.com/pharos_network/status/2104843642997461351",
       "https://x.com/pharos_network/status/2108203306007081053",
@@ -1220,6 +1223,36 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "huong-dan-bat-dau-axil-pot-vault-apt",
+      title: "Hướng Dẫn Gửi Và Rút USDC Với Axil Pot Vault (APT)",
+      category: "Nhà phát triển",
+      date: "2026-10-17",
+      summary: "Pharos đăng hướng dẫn gửi và rút USDC cho vault Axil Pot, gồm các bước gửi tiền, hai lộ trình rút và kiểm tra danh mục.",
+      content: "Hướng dẫn mô tả cách gửi USDC qua lp.topnod.com/apt hoặc app.r25.xyz/vaults/APT. Người dùng có thể rút theo T+0 với phí 0,15% hoặc T+7 với phí 0,10%, và kiểm tra danh mục sau khi thao tác.",
+      link: "https://x.com/pharos_network/status/2111298669496750345",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "prosper-genesis-season-ra-mat-tren-pharos",
+      title: "Prosper Genesis Season Ra Mắt Trên Pharos Với 1 Triệu $PROS Phần Thưởng",
+      category: "Thông Báo",
+      date: "2026-10-15",
+      summary: "Prosper Genesis Season đã hoạt động trên Pharos với tổng phần thưởng 1.000.000 $PROS qua 4 vòng giao dịch; Vòng 1 có quỹ thưởng 110K $PROS.",
+      content: "Vòng 1 đang mở với quỹ thưởng 110K $PROS, hệ số nhân 5× cho lệnh mua ròng Inner-Curve, bảng xếp hạng top 200 và kết thúc ngày 29/10 lúc 10:00 UTC.",
+      link: "https://x.com/pharos_eco/status/2110727542453964854",
+      source: "Pharos Ecosystem (X)"
+    },
+    {
+      id: "huong-dan-pharosport-agent-ai-widget",
+      title: "Pharos Phát Hành Hướng Dẫn Widget Agent AI Của PharosPort",
+      category: "Nhà phát triển",
+      date: "2026-10-12",
+      summary: "Pharos phát hành hướng dẫn về PharosPort Agent AI Widget do AnvitaFlow cung cấp, cho phép quản lý vị thế RealFi trên Pharos Harbor bằng hội thoại.",
+      content: "Hướng dẫn giới thiệu PharosPort Agent AI Widget, vận hành bởi AnvitaFlow, giúp người dùng quản lý vị thế RealFi trên Pharos Harbor thông qua trò chuyện tại ai.pharos.xyz.",
+      link: "https://x.com/pharos_network/status/2109562968862277820",
+      source: "Pharos Network (X)"
+    },
     {
       id: "pharos-ra-mat-trang-agent-native",
       title: "Pharos Ra Mắt Trang Agent Native",
