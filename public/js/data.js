@@ -8,9 +8,18 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-10-18",
-    version: "2.1.19",
+    lastUpdated: "2026-10-25",
+    version: "2.1.20",
     sources: [
+      "https://x.com/R25Official/status/2100794945338818828",
+      "https://x.com/pharos_network/status/2106761323283669127",
+      "https://x.com/pharos_network/status/2110264430877618221",
+      "https://x.com/pharos_network/status/2111804761767104689",
+      "https://x.com/pharos_network/status/2112170702912840187",
+      "https://x.com/pharos_network/status/2112521739389514131",
+      "https://x.com/pharos_network/status/2112822573134418387",
+      "https://x.com/pharos_network/status/2113525846422257734",
+      "https://x.com/pharos_network/status/2112170678636118153",
       "https://x.com/pharos_network/status/2111298669496750345",
       "https://x.com/pharos_network/status/2109562968862277820",
       "https://x.com/pharos_eco/status/2110727542453964854",
@@ -1225,6 +1234,116 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "axil-prime-3m-vault-mua-2-binance-wallet",
+      title: "Axil Prime 3M Vault Mùa 2 Đạt 66,13 Triệu USD Qua Binance Wallet",
+      category: "Thông Báo",
+      date: "2026-10-23",
+      summary: "Axil Prime 3M Vault (APC) Mùa 2 bước vào giai đoạn cuối với 66,13 triệu USD tiền gửi, APR gốc tới 13% và quỹ thưởng 200K; cửa sổ gửi đóng ngày 27/10.",
+      content: "Axil Prime 3M Vault (APC) Mùa 2 bước vào giai đoạn cuối với 66,13 triệu USD đã gửi. Người dùng có thể tham gia qua Binance Wallet DeFi để nhận APR gốc tới 13% và chia sẻ tổng quỹ thưởng 200.000 USD. Cửa sổ gửi tiền đóng vào ngày 27 tháng 10.",
+      link: "https://x.com/pharos_network/status/2113525846422257734",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "faroo-stpros-ra-mat-sau-mot-tuan",
+      title: "Token Staking Thanh Khoản stPROS Của Faroo Sắp Ra Mắt Trên Pharos",
+      category: "Thông Báo",
+      date: "2026-10-21",
+      summary: "Pharos thông báo token staking thanh khoản stPROS của Faroo sẽ ra mắt sau một tuần, kèm nhiệm vụ khởi động trên Galxe để nhận điểm.",
+      content: "Pharos thông báo token staking thanh khoản stPROS của Farooxyz sẽ ra mắt trên Pharos Network trong vòng một tuần. Nhiệm vụ khởi động trên Galxe đã mở để người dùng tích lũy điểm.",
+      link: "https://x.com/pharos_network/status/2112822573134418387",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "palpha-iii-mo-chu-ky-tren-pharos",
+      title: "Chu Kỳ pALPHA III Mở Trên Pharos Với APY 13,8%",
+      category: "Thông Báo",
+      date: "2026-10-20",
+      summary: "Chu kỳ pALPHA III đã mở với cửa sổ gửi tiền 7 ngày từ 20 đến 27/10, APY 13,8%.",
+      content: "Pharos thông báo chu kỳ vault pALPHA III đã mở, với cửa sổ gửi tiền kéo dài 7 ngày từ 20 đến 27 tháng 10 và mức APY 13,8%.",
+      link: "https://x.com/pharos_network/status/2112521739389514131",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-anvita-mate-skin-doc-quyen",
+      title: "Người Dùng Pharos Nhận Giao Diện Riêng Trong Anvita Mate",
+      category: "Thông Báo",
+      date: "2026-10-19",
+      summary: "Người dùng Pharos có thể nhận giao diện riêng trong không gian làm việc AI Anvita Mate qua Agent Center hoặc liên kết Anvita Mate của Pharos.",
+      content: "Người dùng Pharos có thể truy cập giao diện riêng trong không gian làm việc AI Anvita Mate qua pharos.xyz/agent-center hoặc ai.pharos.xyz/anvitamate. Mã mời được điền tự động để hệ thống nhận diện người dùng Pharos.",
+      link: "https://x.com/pharos_network/status/2112170702912840187",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-anvita-mate-tich-hop-hoat-dong",
+      title: "Tích Hợp Pharos × Anvita Mate Chính Thức Hoạt Động",
+      category: "Công Nghệ",
+      date: "2026-10-19",
+      summary: "Môi trường AI phiên bản Pharos đã ra mắt với giao diện riêng, hỗ trợ Pharos Skills và MCP, tương thích Apple M-series và thanh toán đăng ký bằng USDC/$PROS.",
+      content: "Môi trường AI phiên bản Pharos trên Anvita Mate đã ra mắt, gồm giao diện Pharos tùy chỉnh, hỗ trợ tích hợp Pharos Skills và MCP, tương thích chip Apple M-series, và cho phép thanh toán đăng ký bằng USDC hoặc $PROS.",
+      link: "https://x.com/pharos_network/status/2112170678636118153",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-cap-nhat-he-sinh-thai-hang-tuan-18-10",
+      title: "Cập Nhật Hệ Sinh Thái Pharos Hằng Tuần: Season of AI, PGNGI+, Vault 2.0 Và stPROS",
+      category: "Cập Nhật",
+      date: "2026-10-18",
+      summary: "Bản tin tuần của Pharos điểm qua Season of AI, PGNGI+ trên Startale App, Vault 2.0 của R25, tỷ giá stPROS của Faroo và cuộc thi Genesis Season của ProsperTicker.",
+      content: "Bản tin hệ sinh thái Pharos ghi nhận tiến triển của Season of AI. AssetoFinance mở rộng khả năng tiếp cận PGNGI+ qua vault fGenesis trên Startale App để cho vay USDC dựa trên tài sản hạ tầng được token hóa. R25Official đang phát triển Vault 2.0 với tính năng tạo vault một cú nhấp và beta chỉ theo lời mời. Farooxyz giải thích tỷ giá stPROS cho phần thưởng staking và lợi suất RWA, còn ProsperTicker ra mắt cuộc thi giao dịch Genesis Season.",
+      link: "https://x.com/pharos_network/status/2111804761767104689",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "season-of-ai-khoi-dong-workshop-28-tac-vu",
+      title: "Pharos Khởi Động Season of AI Với Workshop Và 28 Nhiệm Vụ",
+      category: "Nhà phát triển",
+      date: "2026-10-14",
+      summary: "Pharos khởi động Season of AI với workshop thực hành, 28 nhiệm vụ xây dựng và quỹ thưởng 5.000 $PROS.",
+      content: "Pharos chính thức khởi động Season of AI dành cho nhà phát triển, gồm các workshop thực hành, 28 nhiệm vụ xây dựng và quỹ thưởng 5.000 $PROS.",
+      link: "https://x.com/pharos_network/status/2110264430877618221",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-cap-nhat-hang-tuan-r25-studio-apt-vault-silo",
+      title: "Cập Nhật Hệ Sinh Thái Pharos Tuần: R25 Studio Beta, APT Vault Và SiloFinance",
+      category: "Cập Nhật",
+      date: "2026-10-04",
+      summary: "Bản tin tuần của Pharos nêu R25 Studio mở beta công khai, APT Vault ra mắt và SiloFinance sắp triển khai thị trường cho vay biệt lập.",
+      content: "Theo bản tin hệ sinh thái hằng tuần của Pharos, R25 đã mở beta công khai R25 Studio để xây dựng vault với đăng ký và rút tiền on-chain. APT Vault do Official_Axil quản lý đã ra mắt, hỗ trợ thanh khoản USDC, APY khoảng 8% và truy cập T+0. SiloFinance sẽ ra mắt các thị trường cho vay biệt lập trên Pharos.",
+      link: "https://x.com/pharos_network/status/2106761323283669127",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "silofinance-cong-bo-trien-khai-tren-pharos",
+      title: "SiloFinance Công Bố Triển Khai Trên Pharos",
+      category: "Hợp Tác",
+      date: "2026-10-02",
+      summary: "Silo thông báo sẽ có mặt trên Pharos với các thị trường biệt lập dùng RWA làm tài sản thế chấp; các thị trường đầu tiên dự kiến ra mắt vào tuần sau.",
+      content: "SiloFinance thông báo sẽ triển khai trên Pharos, Layer 1 tài chính cho RealFi. Silo mang đến các thị trường biệt lập cho phép dùng RWA làm tài sản thế chấp, với các thị trường đầu tiên dự kiến ra mắt vào tuần sau. Thông báo nêu Pharos có hơn 150 triệu USD TVL và đang ươm tạo một marketplace RWA với danh mục tài sản 1,5 tỷ USD.",
+      link: "https://x.com/SiloFinance/status/2106021441678524799",
+      source: "SiloFinance (X)"
+    },
+    {
+      id: "prosperticker-gia-nhap-he-sinh-thai-pharos",
+      title: "ProsperTicker Gia Nhập Hệ Sinh Thái Pharos",
+      category: "Thông Báo",
+      date: "2026-09-18",
+      summary: "R25 chào đón ProsperTicker gia nhập hệ sinh thái Pharos.",
+      content: "R25 đã đăng thông báo chào đón ProsperTicker gia nhập hệ sinh thái Pharos.",
+      link: "https://x.com/R25Official/status/2100794945338818828",
+      source: "R25Official (X)"
+    },
+    {
+      id: "prosper-ra-mat-performance-markets-tren-pharos",
+      title: "PROSPER Ra Mắt Khung Performance Markets Trên Pharos",
+      category: "Công Nghệ",
+      date: "2026-09-17",
+      summary: "PROSPER ra mắt Performance Markets trên Pharos, kết nối dữ liệu hiệu suất chiến lược on-chain có thể kiểm chứng với các tài sản crypto-native được định giá độc lập.",
+      content: "PROSPER đã hoạt động trên Pharos với Performance Markets, khung kết nối dữ liệu hiệu suất chiến lược on-chain có thể kiểm chứng với các tài sản crypto-native được định giá độc lập. Các nhà vận hành bên thứ ba có thể chạy Vault với token p{VAULT}. Khi chiến lược của Vault vượt mức high-water mark, một phần phí hiệu suất đủ điều kiện được dùng để mua p{VAULT} trên các DEX bên thứ ba và đốt vĩnh viễn.",
+      link: "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
+      source: "Invezz"
+    },
     {
       id: "huong-dan-bat-dau-axil-pot-vault-apt",
       title: "Hướng Dẫn Gửi Và Rút USDC Với Axil Pot Vault (APT)",
