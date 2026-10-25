@@ -14,6 +14,8 @@ window.PharosData = {
       "https://x.com/pharos_network/status/2111298669496750345",
       "https://x.com/pharos_network/status/2109562968862277820",
       "https://x.com/pharos_eco/status/2110727542453964854",
+      "https://x.com/SiloFinance/status/2106021441678524799",
+      "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
       "https://pharos.xyz/realfi-alliance",
       "https://x.com/pharos_network/status/2104843642997461351",
       "https://x.com/pharos_network/status/2108203306007081053",
@@ -1319,7 +1321,7 @@ window.PharosData = {
       category: "Hợp Tác",
       date: "2026-10-03",
       summary: "Pharos đã chào đón SiloFinance trước thềm ra mắt các thị trường cho vay biệt lập trên mạng lưới Pharos. Mỗi thị trường sẽ có tài sản thế chấp, oracle và các thông số rủi ro riêng cho RWA. Các thị trường đầu tiên dự kiến sẽ ra mắt vào tuần tới.",
-      content: "Pharos Network đã chính thức chào đón SiloFinance, một bước chuẩn bị quan trọng cho việc ra mắt các thị trường cho vay biệt lập trên nền tảng của mình. Các thị trường này sẽ được thiết kế để mỗi thị trường có tài sản thế chấp, oracle và các thông số rủi ro riêng biệt, đặc biệt dành cho các Tài sản Thế giới Thực (RWA) được sử dụng làm tài sản thế chấp. Theo thông báo, các thị trường đầu tiên dự kiến sẽ đi vào hoạt động trong tuần tới, hứa hẹn mở rộng đáng kể khả năng cho vay và đi vay trong hệ sinh thái Pharos.",
+      content: "Pharos Network đã chính thức chào đón SiloFinance, một bước chuẩn bị quan trọng cho việc ra mắt các thị trường cho vay biệt lập trên nền tảng của mình. Các thị trường này sẽ được thiết kế để mỗi thị trường có tài sản thế chấp, oracle và các thông số rủi ro riêng biệt, đặc biệt dành cho các Tài sản Thế giới Thực (RWA) được sử dụng làm tài sản thế chấp. Theo thông báo, các thị trường đầu tiên dự kiến sẽ đi vào hoạt động trong tuần tới, hứa hẹn mở rộng đáng kể khả năng cho vay và đi vay trong hệ sinh thái Pharos. Theo bài đăng của SiloFinance, Pharos có TVL trên 150 triệu USD và đang ươm tạo một marketplace RWA với danh mục tài sản 1,5 tỷ USD.",
       link: "https://x.com/pharos_network/status/2106263722352116180",
       source: "Pharos Network"
     },
@@ -1399,7 +1401,7 @@ window.PharosData = {
       category: "Cập Nhật",
       date: "2026-09-17",
       summary: "ProsperTicker đã ra mắt Thị trường Hiệu suất Thanh khoản (Liquid Performance Market) trên Mạng lưới Pharos, cho phép người dùng khám phá và tiếp cận các hiệu suất on-chain có tính thanh khoản cao.",
-      content: "ProsperTicker đã chính thức ra mắt Thị trường Hiệu suất Thanh khoản (Liquid Performance Market) trên Mạng lưới Pharos. Nền tảng này được thiết kế để người dùng có thể dễ dàng khám phá và tiếp cận các chiến lược và hiệu suất on-chain có tính thanh khoản cao, mở ra cơ hội đầu tư mới trong hệ sinh thái RealFi của Pharos.",
+      content: "ProsperTicker đã chính thức ra mắt Thị trường Hiệu suất Thanh khoản (Liquid Performance Market) trên Mạng lưới Pharos. Nền tảng này được thiết kế để người dùng có thể dễ dàng khám phá và tiếp cận các chiến lược và hiệu suất on-chain có tính thanh khoản cao, mở ra cơ hội đầu tư mới trong hệ sinh thái RealFi của Pharos. Theo Invezz, khung Performance Markets cho phép các nhà vận hành bên thứ ba chạy Vault với token p{VAULT}; khi chiến lược vượt mốc high-water mark, một phần phí hiệu suất đủ điều kiện được dùng để mua p{VAULT} trên các DEX bên thứ ba rồi đốt vĩnh viễn.",
       link: "https://x.com/pharos_network/status/2100541256787173513",
       source: "Pharos Network"
     },
