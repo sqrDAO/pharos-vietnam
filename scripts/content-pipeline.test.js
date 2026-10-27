@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
+import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -300,4 +300,19 @@ test('legitimate copy using "Lưu ý", "không cung cấp thêm" or "Snippet" is
     'Pharos không cung cấp thêm phần thưởng cho ví bot.',
     'Dự án Snippet gia nhập Pharos.',
   ]) assert.equal(findMetaCommentary(text), null, text);
+});
+
+test('drops candidates a reviewer deleted from a merged batch, keeps unmerged and untagged ones', () => {
+  const url = n => `https://x.com/a/status/${n}`;
+  const pending = [
+    { id: 'landed', url: url(1), proposedIn: 'w1' },
+    { id: 'deleted', url: url(2), proposedIn: 'w1' },
+    { id: 'unmerged', url: url(3), proposedIn: 'w2' },
+    { id: 'untagged', url: url(4) },
+  ];
+  const { kept, removed } = splitReviewedOut(pending, new Set([url(1)]));
+  assert.deepEqual(removed.map(c => c.id), ['deleted']);
+  assert.deepEqual(kept.map(c => c.id), ['unmerged', 'untagged']);
+  // A manual version bump on main proves nothing: with nothing landed, keep the batch.
+  assert.deepEqual(splitReviewedOut(pending, new Set()).removed, []);
 });

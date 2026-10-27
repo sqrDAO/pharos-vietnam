@@ -36,6 +36,24 @@ export function coverageStart(lastCompleted, today, lookback) {
   return new Date(lastCompleted ? Math.min(baseline, Date.parse(lastCompleted) - 7 * 86400000) : baseline).toISOString().slice(0, 10);
 }
 
+/**
+ * Split pending candidates against the URLs already on main. Landed ones are
+ * dropped. A candidate whose proposing PR was merged (another candidate from
+ * the same batch landed) but which is itself absent was deleted by the
+ * reviewer; without this it would be re-proposed every week. A batch with
+ * nothing landed is treated as unmerged and kept.
+ */
+export function splitReviewedOut(pending, knownUrls) {
+  const landed = c => knownUrls.has(canonicalUrl(c.url));
+  const merged = new Set(pending.filter(c => c?.proposedIn && landed(c)).map(c => c.proposedIn));
+  const kept = [], removed = [];
+  for (const c of pending) {
+    if (landed(c)) continue;
+    (c?.proposedIn && merged.has(c.proposedIn) ? removed : kept).push(c);
+  }
+  return { kept, removed };
+}
+
 /** Validate dated research candidates and assign stable IDs from their URLs. */
 export function parseCandidates(payload, from, to) {
   if (!payload || !Array.isArray(payload.candidates)) throw new Error('Research must return a candidates array');
