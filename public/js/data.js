@@ -8,9 +8,14 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-10-18",
-    version: "2.1.19",
+    lastUpdated: "2026-10-25",
+    version: "2.1.20",
     sources: [
+      "https://x.com/pharos_network/status/2110264430877618221",
+      "https://x.com/pharos_network/status/2112521739389514131",
+      "https://x.com/pharos_network/status/2112822573134418387",
+      "https://x.com/pharos_network/status/2113525846422257734",
+      "https://x.com/pharos_network/status/2112170678636118153",
       "https://x.com/pharos_network/status/2111298669496750345",
       "https://x.com/pharos_network/status/2109562968862277820",
       "https://x.com/pharos_eco/status/2110727542453964854",
@@ -1225,6 +1230,56 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "axil-prime-3m-vault-mua-2-binance-wallet",
+      title: "Axil Prime 3M Vault Mùa 2 Đạt 66,13 Triệu USD Qua Binance Wallet",
+      category: "Thông Báo",
+      date: "2026-10-23",
+      summary: "Axil Prime 3M Vault (APC) Mùa 2 bước vào giai đoạn cuối với 66,13 triệu USD tiền gửi, APR gốc tới 13% và quỹ thưởng 200K; cửa sổ gửi đóng ngày 27/10.",
+      content: "Axil Prime 3M Vault (APC) Mùa 2 bước vào giai đoạn cuối với 66,13 triệu USD đã gửi. Người dùng có thể tham gia qua Binance Wallet DeFi để nhận APR gốc tới 13% và chia sẻ tổng quỹ thưởng 200.000 USD. Cửa sổ gửi tiền đóng vào ngày 27 tháng 10.",
+      link: "https://x.com/pharos_network/status/2113525846422257734",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "faroo-stpros-ra-mat-sau-mot-tuan",
+      title: "Token Staking Thanh Khoản stPROS Của Faroo Sắp Ra Mắt Trên Pharos",
+      category: "Thông Báo",
+      date: "2026-10-21",
+      summary: "Pharos thông báo token staking thanh khoản stPROS của Faroo sẽ ra mắt sau một tuần, kèm nhiệm vụ khởi động trên Galxe để nhận điểm.",
+      content: "Pharos thông báo token staking thanh khoản stPROS của Farooxyz sẽ ra mắt trên Pharos Network trong vòng một tuần. Nhiệm vụ khởi động trên Galxe đã mở để người dùng tích lũy điểm.",
+      link: "https://x.com/pharos_network/status/2112822573134418387",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "palpha-iii-mo-chu-ky-tren-pharos",
+      title: "Chu Kỳ pALPHA III Mở Trên Pharos Với APY 13,8%",
+      category: "Thông Báo",
+      date: "2026-10-20",
+      summary: "Chu kỳ pALPHA III đã mở với cửa sổ gửi tiền 7 ngày từ 20 đến 27/10, APY 13,8%.",
+      content: "Pharos thông báo chu kỳ vault pALPHA III đã mở, với cửa sổ gửi tiền kéo dài 7 ngày từ 20 đến 27 tháng 10 và mức APY 13,8%.",
+      link: "https://x.com/pharos_network/status/2112521739389514131",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-anvita-mate-tich-hop-hoat-dong",
+      title: "Tích Hợp Pharos × Anvita Mate Chính Thức Hoạt Động",
+      category: "Công Nghệ",
+      date: "2026-10-19",
+      summary: "Môi trường AI phiên bản Pharos đã ra mắt với giao diện riêng, hỗ trợ Pharos Skills và MCP, tương thích Apple M-series và thanh toán đăng ký bằng USDC/$PROS.",
+      content: "Môi trường AI phiên bản Pharos trên Anvita Mate đã ra mắt, gồm giao diện Pharos tùy chỉnh, hỗ trợ tích hợp Pharos Skills và MCP, tương thích chip Apple M-series, và cho phép thanh toán đăng ký bằng USDC hoặc $PROS.",
+      link: "https://x.com/pharos_network/status/2112170678636118153",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "season-of-ai-khoi-dong-workshop-28-tac-vu",
+      title: "Pharos Khởi Động Season of AI Với Workshop Và 28 Nhiệm Vụ",
+      category: "Nhà phát triển",
+      date: "2026-10-14",
+      summary: "Pharos khởi động Season of AI với workshop thực hành, 28 nhiệm vụ xây dựng và quỹ thưởng 5.000 $PROS.",
+      content: "Pharos chính thức khởi động Season of AI dành cho nhà phát triển, gồm các workshop thực hành, 28 nhiệm vụ xây dựng và quỹ thưởng 5.000 $PROS.",
+      link: "https://x.com/pharos_network/status/2110264430877618221",
+      source: "Pharos Network (X)"
+    },
     {
       id: "huong-dan-bat-dau-axil-pot-vault-apt",
       title: "Hướng Dẫn Gửi Và Rút USDC Với Axil Pot Vault (APT)",
