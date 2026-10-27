@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson } from './content-pipeline.js';
+import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -300,4 +300,17 @@ test('legitimate copy using "Lưu ý", "không cung cấp thêm" or "Snippet" is
     'Pharos không cung cấp thêm phần thưởng cho ví bot.',
     'Dự án Snippet gia nhập Pharos.',
   ]) assert.equal(findMetaCommentary(text), null, text);
+});
+
+test('drops candidates a reviewer deleted from a merged PR, keeps unmerged and untagged ones', () => {
+  const pending = [
+    { id: 'a', url: 'https://x.com/a/status/1', proposedVersion: '2.1.20' },
+    { id: 'b', url: 'https://x.com/a/status/2', proposedVersion: '2.1.21' },
+    { id: 'c', url: 'https://x.com/a/status/3' },
+    { id: 'd', url: 'https://x.com/a/status/4', proposedVersion: '2.1.9' },
+  ];
+  const { kept, removed } = splitReviewedOut(pending, '2.1.20');
+  assert.deepEqual(removed.map(c => c.id), ['a', 'd']);
+  assert.deepEqual(kept.map(c => c.id), ['b', 'c']);
+  assert.deepEqual(splitReviewedOut(pending, 'bad').removed, []);
 });

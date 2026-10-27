@@ -36,6 +36,27 @@ export function coverageStart(lastCompleted, today, lookback) {
   return new Date(lastCompleted ? Math.min(baseline, Date.parse(lastCompleted) - 7 * 86400000) : baseline).toISOString().slice(0, 10);
 }
 
+/** Compare "x.y.z" versions; unparseable versions compare as older. */
+function versionAtLeast(version, target) {
+  const parse = v => /^(\d+)\.(\d+)\.(\d+)$/.exec(v || '')?.slice(1).map(Number);
+  const a = parse(version), b = parse(target);
+  if (!a || !b) return false;
+  for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] > b[i];
+  return true;
+}
+
+/**
+ * Split pending candidates into kept and removed-in-review. A candidate tagged
+ * with the content version of the PR that proposed it, still pending once main
+ * has reached that version, was deleted by the reviewer before merge: without
+ * this it would be re-proposed every week.
+ */
+export function splitReviewedOut(pending, mainVersion) {
+  const kept = [], removed = [];
+  for (const c of pending) (c?.proposedVersion && versionAtLeast(mainVersion, c.proposedVersion) ? removed : kept).push(c);
+  return { kept, removed };
+}
+
 /** Validate dated research candidates and assign stable IDs from their URLs. */
 export function parseCandidates(payload, from, to) {
   if (!payload || !Array.isArray(payload.candidates)) throw new Error('Research must return a candidates array');
