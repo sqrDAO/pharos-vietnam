@@ -830,12 +830,11 @@ async function main() {
       }
     }
     if (invalid.length || invalidNews) fail("Invalid candidate or news URLs; records retained for repair");
-    pending = pending.filter(c => !known.has(canonicalUrl(c.url)));
-    const reviewed = splitReviewedOut(pending, current.meta?.version);
+    const reviewed = splitReviewedOut(pending, known);
     pending = reviewed.kept;
     for (const c of reviewed.removed) {
-      console.error(`[update-pharos-content] DROPPED candidate ${c.url}: removed in review of content ${c.proposedVersion}`);
-      report.decisions.push({ candidateId: c.id, url: c.url, action: "exclude", reason: "removed_in_review", explanation: `Proposed in ${c.proposedVersion} but absent from main` });
+      console.error(`[update-pharos-content] DROPPED candidate ${c.url}: removed in review of batch ${c.proposedIn}`);
+      report.decisions.push({ candidateId: c.id, url: c.url, action: "exclude", reason: "removed_in_review", explanation: `Proposed in batch ${c.proposedIn}, which was merged without it` });
     }
     report.candidateCount = pending.length;
     artifact("candidates.json", pending);
@@ -875,9 +874,10 @@ async function main() {
       const { out, newVersion } = applyEdits(text, changes, current);
       loadCurrentData(out);
       writeFileSync(DATA_FILE, out);
-      // Tag what this PR proposes, so a later run can tell a reviewer's deletion from an unmerged PR.
+      // Tag this PR's batch, so a later run can tell a reviewer's deletion from an unmerged PR.
       const proposed = new Set(changes.news.map(n => canonicalUrl(n.link)));
-      for (const c of pending) if (proposed.has(canonicalUrl(c.url))) c.proposedVersion = newVersion;
+      const batch = `${today()}-${newVersion}`;
+      for (const c of pending) if (proposed.has(canonicalUrl(c.url))) c.proposedIn = batch;
       writeFileSync(PR_BODY_FILE, buildPrBody(changes, newVersion, flags) + (report.errors.length
         ? "\n\n⚠️ Nghiên cứu chưa hoàn tất. PR này chỉ chứa các mục đã qua kiểm tra; xem báo cáo GitHub Actions để biết các mục cần xử lý tiếp.\n"
         : ""));

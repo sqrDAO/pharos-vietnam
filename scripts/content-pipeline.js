@@ -36,24 +36,21 @@ export function coverageStart(lastCompleted, today, lookback) {
   return new Date(lastCompleted ? Math.min(baseline, Date.parse(lastCompleted) - 7 * 86400000) : baseline).toISOString().slice(0, 10);
 }
 
-/** Compare "x.y.z" versions; unparseable versions compare as older. */
-function versionAtLeast(version, target) {
-  const parse = v => /^(\d+)\.(\d+)\.(\d+)$/.exec(v || '')?.slice(1).map(Number);
-  const a = parse(version), b = parse(target);
-  if (!a || !b) return false;
-  for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] > b[i];
-  return true;
-}
-
 /**
- * Split pending candidates into kept and removed-in-review. A candidate tagged
- * with the content version of the PR that proposed it, still pending once main
- * has reached that version, was deleted by the reviewer before merge: without
- * this it would be re-proposed every week.
+ * Split pending candidates against the URLs already on main. Landed ones are
+ * dropped. A candidate whose proposing PR was merged (another candidate from
+ * the same batch landed) but which is itself absent was deleted by the
+ * reviewer; without this it would be re-proposed every week. A batch with
+ * nothing landed is treated as unmerged and kept.
  */
-export function splitReviewedOut(pending, mainVersion) {
+export function splitReviewedOut(pending, knownUrls) {
+  const landed = c => knownUrls.has(canonicalUrl(c.url));
+  const merged = new Set(pending.filter(c => c?.proposedIn && landed(c)).map(c => c.proposedIn));
   const kept = [], removed = [];
-  for (const c of pending) (c?.proposedVersion && versionAtLeast(mainVersion, c.proposedVersion) ? removed : kept).push(c);
+  for (const c of pending) {
+    if (landed(c)) continue;
+    (c?.proposedIn && merged.has(c.proposedIn) ? removed : kept).push(c);
+  }
   return { kept, removed };
 }
 

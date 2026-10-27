@@ -302,15 +302,17 @@ test('legitimate copy using "Lưu ý", "không cung cấp thêm" or "Snippet" is
   ]) assert.equal(findMetaCommentary(text), null, text);
 });
 
-test('drops candidates a reviewer deleted from a merged PR, keeps unmerged and untagged ones', () => {
+test('drops candidates a reviewer deleted from a merged batch, keeps unmerged and untagged ones', () => {
+  const url = n => `https://x.com/a/status/${n}`;
   const pending = [
-    { id: 'a', url: 'https://x.com/a/status/1', proposedVersion: '2.1.20' },
-    { id: 'b', url: 'https://x.com/a/status/2', proposedVersion: '2.1.21' },
-    { id: 'c', url: 'https://x.com/a/status/3' },
-    { id: 'd', url: 'https://x.com/a/status/4', proposedVersion: '2.1.9' },
+    { id: 'landed', url: url(1), proposedIn: 'w1' },
+    { id: 'deleted', url: url(2), proposedIn: 'w1' },
+    { id: 'unmerged', url: url(3), proposedIn: 'w2' },
+    { id: 'untagged', url: url(4) },
   ];
-  const { kept, removed } = splitReviewedOut(pending, '2.1.20');
-  assert.deepEqual(removed.map(c => c.id), ['a', 'd']);
-  assert.deepEqual(kept.map(c => c.id), ['b', 'c']);
-  assert.deepEqual(splitReviewedOut(pending, 'bad').removed, []);
+  const { kept, removed } = splitReviewedOut(pending, new Set([url(1)]));
+  assert.deepEqual(removed.map(c => c.id), ['deleted']);
+  assert.deepEqual(kept.map(c => c.id), ['unmerged', 'untagged']);
+  // A manual version bump on main proves nothing: with nothing landed, keep the batch.
+  assert.deepEqual(splitReviewedOut(pending, new Set()).removed, []);
 });
