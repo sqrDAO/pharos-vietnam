@@ -11,19 +11,14 @@ window.PharosData = {
     lastUpdated: "2026-11-01",
     version: "2.1.21",
     sources: [
-      "https://x.com/R25Official/status/2100794945338818828",
-      "https://x.com/pharos_network/status/2106761323283669127",
       "https://x.com/pharos_network/status/2111804761767104689",
       "https://thedefiant.io/news/defi/faroo-launches-stpros-liquid-staking-pharos-ecosystem",
       "https://tokenpost.com/news/technology/42594",
-      "https://x.com/pharos_network/status/2115384752899531026",
-      "https://cryptoticker.io/en/pharos-airdrop-claim-deadline",
       "https://x.com/pharos_network/status/2114276709961007548",
       "https://x.com/pharos_network/status/2114960292824457403",
       "https://x.com/pharos_network/status/2115445990081831230",
       "https://x.com/pharos_network/status/2115715342580502965",
       "https://x.com/pharos_network/status/2116366298418659824",
-      "https://x.com/pharos_network/status/2116349136060776544",
       "https://x.com/pharos_network/status/2116062578933895252",
       "https://x.com/pharos_network/status/2110264430877618221",
       "https://x.com/pharos_network/status/2112521739389514131",
@@ -33,8 +28,6 @@ window.PharosData = {
       "https://x.com/pharos_network/status/2111298669496750345",
       "https://x.com/pharos_network/status/2109562968862277820",
       "https://x.com/pharos_eco/status/2110727542453964854",
-      "https://x.com/SiloFinance/status/2106021441678524799",
-      "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
       "https://pharos.xyz/realfi-alliance",
       "https://x.com/pharos_network/status/2104843642997461351",
       "https://x.com/pharos_network/status/2108203306007081053",
@@ -1249,8 +1242,8 @@ window.PharosData = {
       title: "Faroo Ra Mắt Token Staking Thanh Khoản stPROS Trên Pharos",
       category: "Thông Báo",
       date: "2026-10-31",
-      summary: "Faroo, giao thức staking thanh khoản bản địa của hệ sinh thái Pharos, đã triển khai stPROS với tích hợp ngay ngày đầu trên nhiều ví Web3; mô-đun lợi suất RWA tbPROS dự kiến vào cuối tháng 11.",
-      content: "Faroo, giao thức staking thanh khoản bản địa của hệ sinh thái Pharos, đã triển khai stPROS với các tích hợp ngay ngày đầu trên nhiều ví Web3. Mô-đun lợi suất RWA tbPROS dự kiến ra mắt vào cuối tháng 11.",
+      summary: "Faroo, giao thức staking thanh khoản bản địa của hệ sinh thái Pharos, đã triển khai stPROS với tích hợp ngay ngày đầu trên nhiều ví Web3; 2 triệu $PROS đã được stake trong 48 giờ đầu; mô-đun lợi suất RWA tbPROS dự kiến vào cuối tháng 11.",
+      content: "Faroo, giao thức staking thanh khoản bản địa của hệ sinh thái Pharos, đã triển khai stPROS với các tích hợp ngay ngày đầu trên nhiều ví Web3. Có 2 triệu $PROS đã được stake trong 48 giờ đầu; stPROS cho phép chuyển nhượng vị thế staking và vẫn nhận phần thưởng bản địa. Mô-đun lợi suất RWA tbPROS dự kiến ra mắt vào cuối tháng 11.",
       link: "https://thedefiant.io/news/defi/faroo-launches-stpros-liquid-staking-pharos-ecosystem",
       source: "The Defiant"
     },
@@ -1262,16 +1255,6 @@ window.PharosData = {
       summary: "Vault cho vay USDC Morpho V2 do RockawayX quản lý ra mắt trên Pharos, APY hiện tại 8,5% kèm ưu đãi WPROS.",
       content: "RockawayX quản lý vault cho vay USDC Morpho V2 trên Pharos, với APY hiện tại 8,5% và ưu đãi WPROS.",
       link: "https://x.com/pharos_network/status/2116366298418659824",
-      source: "Pharos Network"
-    },
-    {
-      id: "faroo-stpros-staking-thanh-khoan-2m-pros-48-gio",
-      title: "Faroo Ra Mắt stPROS, 2 Triệu $PROS Được Stake Trong 48 Giờ",
-      category: "Thông Báo",
-      date: "2026-10-31",
-      summary: "stPROS cho phép chuyển nhượng vị thế staking và nhận phần thưởng bản địa; 2 triệu $PROS đã được stake trong 48 giờ.",
-      content: "Faroo ra mắt staking thanh khoản stPROS trên Pharos, cho phép chuyển nhượng vị thế staking và nhận phần thưởng bản địa. Có 2 triệu $PROS đã được stake trong 48 giờ.",
-      link: "https://x.com/pharos_network/status/2116349136060776544",
       source: "Pharos Network"
     },
     {
@@ -1293,16 +1276,6 @@ window.PharosData = {
       content: "Theo TokenPost, giao thức stPROS áp dụng các khoản staking mới vào những yêu cầu rút tiền đang chờ khi chúng phát sinh. Cơ chế này có thể giúp người dùng thoát vị thế mà không phải chờ hết thời gian unbonding tiêu chuẩn, nhưng chỉ khi có khoản gửi mới đổ vào.",
       link: "https://tokenpost.com/news/technology/42594",
       source: "TokenPost"
-    },
-    {
-      id: "faroo-ho-tro-staking-pros-native",
-      title: "Faroo Hỗ Trợ Staking PROS Bản Địa",
-      category: "Cập Nhật",
-      date: "2026-10-30",
-      summary: "Pharos cho biết Faroo cũng hỗ trợ staking PROS bản địa, mang lại thêm lựa chọn tham gia cho người nắm giữ.",
-      content: "Tài khoản X của Pharos cho biết Faroo cũng hỗ trợ staking PROS bản địa, giúp người nắm giữ có thêm lựa chọn trong cách tham gia.",
-      link: "https://x.com/pharos_network/status/2115384752899531026",
-      source: "Pharos Network"
     },
     {
       id: "pharos-anvita-mate-tac-nhan-nhan-biet-ngu-canh",
@@ -1353,56 +1326,6 @@ window.PharosData = {
       content: "Pharos công bố cập nhật hệ sinh thái hằng tuần. AssetoFinance mở rộng quyền truy cập PGNGI+ qua vault fGenesis trên Startale App để vay USDC với tài sản hạ tầng được token hóa. R25 đang phát triển Vault 2.0 với tính năng tạo vault một cú nhấp và beta chỉ dành cho người được mời. Faroo giải thích tỷ giá stPROS cho phần thưởng staking và lợi suất RWA, còn ProsperTicker ra mắt cuộc thi giao dịch Genesis Season.",
       link: "https://x.com/pharos_network/status/2111804761767104689",
       source: "Pharos Network"
-    },
-    {
-      id: "cong-nhan-airdrop-pros-dong-ngay-25-10",
-      title: "Cổng Nhận Airdrop PROS Đóng Vào Ngày 25/10/2026",
-      category: "Thông Báo",
-      date: "2026-10-08",
-      summary: "Airdrop PROS có thể nhận từ ngày 28/4/2026 và cổng nhận sẽ đóng vào ngày 25/10/2026.",
-      content: "Airdrop PROS đã mở để nhận từ ngày 28 tháng 4 năm 2026. Cổng nhận airdrop sẽ đóng vào ngày 25 tháng 10 năm 2026.",
-      link: "https://cryptoticker.io/en/pharos-airdrop-claim-deadline",
-      source: "CryptoTicker"
-    },
-    {
-      id: "pharos-cap-nhat-he-sinh-thai-tuan-r25-studio-apt-vault",
-      title: "Cập Nhật Hệ Sinh Thái Pharos: R25 Studio Beta, APT Vault Và SiloFinance",
-      category: "Cập Nhật",
-      date: "2026-10-04",
-      summary: "R25 mở beta công khai R25 Studio, APT Vault ra mắt với mục tiêu APY khoảng 8% và SiloFinance sắp ra mắt thị trường cho vay biệt lập trên Pharos.",
-      content: "Trong bản cập nhật hệ sinh thái hằng tuần, Pharos cho biết R25 đã mở beta công khai R25 Studio để xây dựng vault với đăng ký và rút tiền on-chain. APT Vault do Axil quản lý đã ra mắt, cung cấp thanh khoản USDC, mục tiêu APY khoảng 8% và khả năng rút T+0. SiloFinance cũng sẽ ra mắt các thị trường cho vay biệt lập trên Pharos.",
-      link: "https://x.com/pharos_network/status/2106761323283669127",
-      source: "Pharos Network"
-    },
-    {
-      id: "silofinance-thong-bao-tich-hop-pharos",
-      title: "SiloFinance Thông Báo Tích Hợp Với Pharos",
-      category: "Hợp Tác",
-      date: "2026-10-02",
-      summary: "Silo sẽ có mặt trên Pharos với các thị trường biệt lập cho RWA làm tài sản thế chấp; các thị trường đầu tiên dự kiến ra mắt vào tuần sau.",
-      content: "SiloFinance thông báo Silo sẽ đến với Pharos, Layer 1 tài chính cho RealFi. Silo mang đến các thị trường biệt lập cho phép dùng RWA làm tài sản thế chấp, với các thị trường đầu tiên dự kiến ra mắt vào tuần tới. Pharos hiện có hơn 150 triệu USD TVL và đang ươm tạo một thị trường RWA với danh mục tài sản 1,5 tỷ USD.",
-      link: "https://x.com/SiloFinance/status/2106021441678524799",
-      source: "SiloFinance"
-    },
-    {
-      id: "prosperticker-gia-nhap-he-sinh-thai-pharos",
-      title: "ProsperTicker Gia Nhập Hệ Sinh Thái Pharos",
-      category: "Thông Báo",
-      date: "2026-09-18",
-      summary: "R25 chào đón ProsperTicker gia nhập hệ sinh thái Pharos.",
-      content: "R25 đã đăng thông báo chào đón ProsperTicker gia nhập hệ sinh thái Pharos.",
-      link: "https://x.com/R25Official/status/2100794945338818828",
-      source: "R25"
-    },
-    {
-      id: "prosper-ra-mat-performance-markets-tren-pharos",
-      title: "PROSPER Ra Mắt Khung Performance Markets Trên Pharos",
-      category: "Công Nghệ",
-      date: "2026-09-17",
-      summary: "PROSPER đã hoạt động trên Pharos với Performance Markets, khung kết nối dữ liệu hiệu suất chiến lược on-chain có thể kiểm chứng với các tài sản crypto được định giá độc lập.",
-      content: "PROSPER đã ra mắt trên Pharos với Performance Markets, khung kết nối dữ liệu hiệu suất chiến lược on-chain có thể kiểm chứng với các tài sản crypto-native được định giá độc lập. Nhà vận hành bên thứ ba có thể chạy các Vault với token p{VAULT}. Khi chiến lược của Vault vượt mức high-water mark, một phần phí hiệu suất đủ điều kiện sẽ được dùng để mua p{VAULT} trên các DEX bên thứ ba và đốt vĩnh viễn.",
-      link: "https://invezz.com/news/2026/09/17/prosper-goes-live-with-new-framework-for-verifiable-onchain-performance-data",
-      source: "Invezz"
     },
     {
       id: "axil-prime-3m-vault-mua-2-binance-wallet",
