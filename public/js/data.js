@@ -8,9 +8,19 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-11-01",
-    version: "2.1.21",
+    lastUpdated: "2026-11-08",
+    version: "2.1.22",
     sources: [
+      "https://x.com/pharos_network/status/2117512127523238290",
+      "https://x.com/pharos_network/status/2117498279865061786",
+      "https://x.com/pharos_network/status/2118644652085801379",
+      "https://x.com/pharos_network/status/2119437296768589911",
+      "https://x.com/pharos_eco/status/2117499195829670234",
+      "https://x.com/pharos_eco/status/2117440545127862388",
+      "https://x.com/pharos_eco/status/2113173546390389201",
+      "https://x.com/pharos_eco/status/2112103729466073140",
+      "https://x.com/pharos_network/status/2119093901512638875",
+      "https://x.com/pharos_network/status/2118678536533975469",
       "https://x.com/pharos_network/status/2111804761767104689",
       "https://thedefiant.io/news/defi/faroo-launches-stpros-liquid-staking-pharos-ecosystem",
       "https://tokenpost.com/news/technology/42594",
@@ -1237,6 +1247,106 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-cap-nhat-he-sinh-thai-tuan-08-11",
+      title: "Cập Nhật Hệ Sinh Thái Pharos Tuần Này: Luganodes, stPROS Vượt 5 Triệu Và ProsperTicker Vòng 2",
+      category: "Cập Nhật",
+      date: "2026-11-08",
+      summary: "Bản cập nhật tuần nêu hướng dẫn staking $PROS, Luganodes tham gia làm validator tổ chức, stPROS vượt 5 triệu đã stake, Asseto tại HK FinTech Week, ProsperTicker Vòng 2 và workshop RWA-AI.",
+      content: "Tài khoản chính thức của Pharos đăng bản tổng hợp các diễn biến trong hệ sinh thái: hướng dẫn staking $PROS được công bố; Luganodes tham gia với vai trò validator tổ chức; stPROS của Farooxyz vượt 5 triệu được stake cùng các tính năng hoán đổi và thanh khoản mới; AssetoFinance thảo luận về token hóa tại Hong Kong FinTech Week; ProsperTicker ra mắt Vòng 2 của Genesis Season; và Pharos cùng AnvitaFlow đồng tổ chức workshop về RWA và AI.",
+      link: "https://x.com/pharos_network/status/2119437296768589911",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-anvitaflow-workshop-rwa-ai-hk-fintech-week",
+      title: "Pharos Và AnvitaFlow Tổ Chức Workshop When RWA Meets AI Tại Hong Kong FinTech Week",
+      category: "Cập Nhật",
+      date: "2026-11-07",
+      summary: "Pharos và AnvitaFlow tổ chức sự kiện ngày 3/11 về khám phá dịch vụ tác nhân, ủy quyền thanh toán và hoàn thành tác vụ trong bối cảnh RWA.",
+      content: "Pharos và AnvitaFlow đã đồng tổ chức sự kiện ngày 3/11 tại Hong Kong FinTech Week, tìm hiểu việc khám phá dịch vụ của tác nhân, ủy quyền thanh toán và hoàn thành tác vụ trong bối cảnh RWA. Chuỗi bài đăng của Pharos trình bày nội dung workshop và luận điểm agent-native.",
+      link: "https://x.com/pharos_network/status/2119093901512638875",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "huong-dan-staking-pros-chinh-thuc",
+      title: "Pharos Công Bố Hướng Dẫn Staking $PROS Chính Thức",
+      category: "Nhà phát triển",
+      date: "2026-11-06",
+      summary: "Pharos phát hành hướng dẫn staking $PROS toàn diện, gồm lạm phát, phần thưởng, hoa hồng validator, staking gốc và thanh khoản, cùng cách chọn validator.",
+      content: "Pharos đã phát hành hướng dẫn toàn diện về staking $PROS. Tài liệu đề cập đến lạm phát, phần thưởng, hoa hồng của validator, sự khác biệt giữa staking gốc và staking thanh khoản, cũng như cách lựa chọn validator.",
+      link: "https://x.com/pharos_network/status/2118644652085801379",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "prosperticker-genesis-season-vong-2",
+      title: "ProsperTicker Genesis Season Vòng 2 Khởi Động Với 400K $PROS Phần Thưởng",
+      category: "Cập Nhật",
+      date: "2026-11-06",
+      summary: "Genesis Season Vòng 2 diễn ra từ 5 đến 19/11 với bảng xếp hạng giao dịch, quà hằng ngày, giới thiệu và huy hiệu, tổng thưởng 400K $PROS.",
+      content: "ProsperTicker công bố Genesis Season Vòng 2, diễn ra từ ngày 5 đến 19/11, gồm bảng xếp hạng giao dịch, quà hằng ngày, chương trình giới thiệu và phần thưởng huy hiệu, với tổng giải thưởng 400K $PROS.",
+      link: "https://x.com/pharos_network/status/2118678536533975469",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "debox-gia-nhap-he-sinh-thai-pharos",
+      title: "DeBox Gia Nhập Hệ Sinh Thái Pharos",
+      category: "Hợp Tác",
+      date: "2026-11-03",
+      summary: "DeBox gia nhập hệ sinh thái Pharos, mang đến kết nối xã hội Web3, giao tiếp mã hóa và công cụ tài sản đa chuỗi.",
+      content: "DeBox đã gia nhập hệ sinh thái Pharos, mang đến kết nối xã hội Web3, giao tiếp được mã hóa và các công cụ quản lý tài sản đa chuỗi. DeBox sẽ hợp tác với ProsperTicker để bổ sung khía cạnh xã hội cho Liquid Performance Market và chiến lược MemeRWA.",
+      link: "https://x.com/pharos_network/status/2117512127523238290",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "stpros-pros-pool-thanh-khoan-faroswap",
+      title: "Pool Thanh Khoản stPROS/PROS Ra Mắt Trên FaroSwap",
+      category: "Cập Nhật",
+      date: "2026-11-03",
+      summary: "Pool thanh khoản stPROS/PROS chuyên biệt đã được thiết lập trên FaroSwap với khoảng 400K $PROS thanh khoản, hỗ trợ hoán đổi tức thì cho người nắm giữ stPROS.",
+      content: "Một pool thanh khoản stPROS/PROS chuyên biệt đã được thiết lập trên FaroSwap với khoảng 400.000 $PROS thanh khoản. Pool này hỗ trợ hoán đổi tức thì cho người nắm giữ stPROS.",
+      link: "https://x.com/pharos_network/status/2117498279865061786",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "faroo-faroswap-hop-tac-thanh-khoan-stpros",
+      title: "Faroo Hợp Tác Với FaroSwap Mở Rộng Thanh Khoản stPROS",
+      category: "Hợp Tác",
+      date: "2026-11-03",
+      summary: "Faroo hợp tác với FaroSwap nhằm mở rộng thanh khoản stPROS và các cơ hội DeFi trên Pharos thông qua DEX AMM và PMM bản địa.",
+      content: "Faroo và FaroSwap công bố hợp tác để mở rộng thanh khoản stPROS và các cơ hội DeFi trên mạng Pharos, thông qua DEX bản địa sử dụng cơ chế AMM và PMM.",
+      link: "https://x.com/pharos_eco/status/2117499195829670234",
+      source: "Pharos Eco (X)"
+    },
+    {
+      id: "strusd-usdc-morpho-ra-mat-tren-pharos",
+      title: "Thị Trường strUSD/USDC Ra Mắt Trên Pharos Qua Morpho",
+      category: "Cập Nhật",
+      date: "2026-11-03",
+      summary: "strUSD đã hoạt động trên Pharos; vault USDC do RockawayX quản lý cấp thanh khoản cho thị trường Morpho với LLTV 86%, thưởng WPROS qua Merkl và vay qua Oku Trade.",
+      content: "strUSD đã hoạt động trên mạng Pharos. Vault USDC do RockawayX quản lý cung cấp thanh khoản cho thị trường Morpho với LLTV 86%, kèm phần thưởng WPROS qua Merkl. Người dùng có thể vay thông qua Oku Trade.",
+      link: "https://x.com/pharos_eco/status/2117440545127862388",
+      source: "Pharos Eco (X)"
+    },
+    {
+      id: "stpros-space-cong-dong-truoc-ra-mat",
+      title: "Pharos Tổ Chức Space Cộng Đồng Trước Thềm Ra Mắt stPROS",
+      category: "Thông Báo",
+      date: "2026-10-22",
+      summary: "Pharos Eco thông báo buổi Space ngày 22/10 cùng Faroo và Pharos DevRel về staking thanh khoản, lợi suất RWA và cơ hội DeFi cho $PROS.",
+      content: "Pharos Eco giới thiệu buổi Space diễn ra ngày 22/10 với Faroo và Pharos DevRel, thảo luận về staking thanh khoản, lợi suất RWA và các cơ hội DeFi dành cho $PROS trước thềm ra mắt stPROS.",
+      link: "https://x.com/pharos_eco/status/2113173546390389201",
+      source: "Pharos Eco (X)"
+    },
+    {
+      id: "faroo-gioi-thieu-staking-thanh-khoan-pharos",
+      title: "Faroo Giới Thiệu Staking Thanh Khoản Trên Pharos",
+      category: "Thông Báo",
+      date: "2026-10-19",
+      summary: "Faroo công bố mang staking thanh khoản đến Pharos: stake PROS để nhận stPROS cho các vị thế staking linh hoạt.",
+      content: "Faroo công bố đưa staking thanh khoản đến Pharos. Người dùng stake PROS để nhận stPROS, qua đó có các vị thế staking linh hoạt.",
+      link: "https://x.com/pharos_eco/status/2112103729466073140",
+      source: "Pharos Eco (X)"
+    },
     {
       id: "faroo-ra-mat-stpros-staking-thanh-khoan-the-defiant",
       title: "Faroo Ra Mắt Token Staking Thanh Khoản stPROS Trên Pharos",
