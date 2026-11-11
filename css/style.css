@@ -89,10 +89,6 @@
 /* ---------- RESET & BASE ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  font-size: 16px;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
@@ -110,9 +106,19 @@ a { color: inherit; text-decoration: none; transition: color var(--transition); 
 ul { list-style: none; }
 
 /* ---------- SCROLLBAR ---------- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-base); }
-::-webkit-scrollbar-thumb { background: var(--pharos-blue-dim); border-radius: 3px; }
+html {
+  --scrollbar-thumb: var(--pharos-blue-dim);
+  --scrollbar-track: var(--bg-base);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+/* Legacy fallback for browsers without scrollbar-color (older Safari) */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+}
 
 /* ---------- TYPOGRAPHY ---------- */
 h1, h2, h3, h4, h5, h6 {
@@ -294,6 +300,16 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 4px;
   flex: 1;
+  /* The list is a popover on mobile; reset the UA popover box so it renders inline here */
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  overflow: visible;
 }
 
 .nav-link {
@@ -334,6 +350,11 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
   transition: all var(--transition);
 }
+
+/* Open state of the icon, drawn from the popover state instead of inline styles */
+.hamburger:has(+ .nav-links:popover-open) span:nth-child(1) { transform: rotate(45deg) translateY(7px); }
+.hamburger:has(+ .nav-links:popover-open) span:nth-child(2) { opacity: 0; }
+.hamburger:has(+ .nav-links:popover-open) span:nth-child(3) { transform: rotate(-45deg) translateY(-7px); }
 
 /* ---------- HERO ---------- */
 .hero {
@@ -1457,6 +1478,61 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
 }
 
+/* FAQ: native <details name="faq"> accordion */
+.faq-list {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-question {
+  list-style: none; /* drop the default disclosure triangle */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-arrow {
+  flex-shrink: 0;
+  color: var(--pharos-blue);
+  font-size: 1.2rem;
+}
+
+.faq-item[open] .faq-arrow { rotate: 180deg; }
+
+.faq-item .faq-answer {
+  padding-top: 16px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.faq-item::details-content {
+  /* Lets block-size transition to and from its intrinsic auto size */
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+}
+
+.faq-item:not([open])::details-content { block-size: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq-arrow { transition: rotate 0.3s; }
+
+  .faq-item::details-content {
+    transition: block-size 0.4s ease, content-visibility 0.4s ease;
+    transition-behavior: allow-discrete;
+  }
+}
+
 /* =============================================
    COMMUNITY PAGE
    ============================================= */
@@ -1600,21 +1676,20 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
 
-  .nav-links.open {
+  .nav-links:popover-open {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
+    inset: var(--nav-height) 0 auto;
+    max-height: calc(100dvh - var(--nav-height));
+    overflow: auto;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-subtle);
     padding: 24px;
     gap: 8px;
-    z-index: 999;
   }
 
-  .nav-links.open .nav-link { padding: 12px 16px; font-size: 1rem; }
+  .nav-links:popover-open .nav-link { padding: 12px 16px; font-size: 1rem; }
 
   .hero-stats {
     flex-direction: column;

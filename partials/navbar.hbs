@@ -1,11 +1,14 @@
   <!-- Navigation -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Điều hướng chính">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
         {{> logomark}}
         <span class="logo-text">Pharos <span class="logo-vn">Vietnam</span></span>
       </a>
-      <ul class="nav-links" id="navLinks">
+      <button class="hamburger" id="hamburger" type="button" popovertarget="navLinks" aria-controls="navLinks" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" popover>
         <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
         <li><a href="about.html" class="nav-link">Về Pharos</a></li>
         <li><a href="ecosystem.html" class="nav-link">Hệ Sinh Thái</a></li>
@@ -15,8 +18,5 @@
         <li><a href="community.html" class="nav-link">Cộng Đồng</a></li>
       </ul>
       <a href="https://port.pharos.xyz/" target="_blank" class="btn btn-primary nav-cta">Khám Phá PharosPort</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </nav>
