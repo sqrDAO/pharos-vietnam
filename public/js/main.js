@@ -127,16 +127,35 @@ function renderEcosystemPreview() {
   initAOS();
 }
 
+// ---- NEWS ORDER & MEDIA (shared with news.js) ----
+// Entries with `pinned: true` lead; everything else keeps data.js order.
+// Pinning lives here, not in the array, because the weekly content pipeline
+// prepends new entries and would otherwise push a hand-placed entry down.
+function orderedNews() {
+  const news = (window.PharosData && window.PharosData.news) || [];
+  return [...news.filter(n => n.pinned), ...news.filter(n => !n.pinned)];
+}
+
+function newsImage(item) {
+  if (!item.image) return '';
+  return `<img class="news-image" src="${item.image}" alt="${item.imageAlt || item.title}" loading="lazy">`;
+}
+
+function newsPinnedBadge(item) {
+  return item.pinned ? '<span class="news-pinned">★ Nổi bật</span>' : '';
+}
+
 // ---- RENDER NEWS PREVIEW (Homepage) ----
 function renderNewsPreview() {
   const container = document.getElementById('newsPreview');
   if (!container || !window.PharosData) return;
 
-  const preview = window.PharosData.news.slice(0, 3);
+  const preview = orderedNews().slice(0, 3);
 
   container.innerHTML = preview.map(item => `
-    <article class="news-card">
-      <div class="news-category">${item.category}</div>
+    <article class="news-card${item.pinned ? ' news-featured' : ''}">
+      ${newsImage(item)}
+      <div class="news-category">${newsPinnedBadge(item)}${item.category}</div>
       <h3>${item.title}</h3>
       <p>${item.summary}</p>
       <div class="news-footer">
