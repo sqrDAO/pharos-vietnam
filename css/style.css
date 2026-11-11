@@ -291,6 +291,16 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 4px;
   flex: 1;
+  /* The list is a popover on mobile; reset the UA popover box so it renders inline here */
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  overflow: visible;
 }
 
 .nav-link {
@@ -331,6 +341,11 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
   transition: all var(--transition);
 }
+
+/* Open state of the icon, drawn from the popover state instead of inline styles */
+.hamburger:has(+ .nav-links:popover-open) span:nth-child(1) { transform: rotate(45deg) translateY(7px); }
+.hamburger:has(+ .nav-links:popover-open) span:nth-child(2) { opacity: 0; }
+.hamburger:has(+ .nav-links:popover-open) span:nth-child(3) { transform: rotate(-45deg) translateY(-7px); }
 
 /* ---------- HERO ---------- */
 .hero {
@@ -1585,21 +1600,20 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
 
-  .nav-links.open {
+  .nav-links:popover-open {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
+    inset: var(--nav-height) 0 auto;
+    max-height: calc(100dvh - var(--nav-height));
+    overflow: auto;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-subtle);
     padding: 24px;
     gap: 8px;
-    z-index: 999;
   }
 
-  .nav-links.open .nav-link { padding: 12px 16px; font-size: 1rem; }
+  .nav-links:popover-open .nav-link { padding: 12px 16px; font-size: 1rem; }
 
   .hero-stats {
     flex-direction: column;

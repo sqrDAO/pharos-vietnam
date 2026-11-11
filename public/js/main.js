@@ -24,30 +24,16 @@ function initNavbar() {
 }
 
 // ---- MOBILE MENU ----
+// The link list is a native popover opened by the hamburger's popovertarget
+// (light-dismiss, Escape and aria-expanded come from the browser). On wider
+// screens CSS shows the same list inline, so close it if the viewport grows
+// while it is open.
 function initMobileMenu() {
-  const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-  if (!hamburger || !navLinks) return;
+  if (!navLinks || typeof navLinks.hidePopover !== 'function') return;
 
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    const spans = hamburger.querySelectorAll('span');
-    const isOpen = navLinks.classList.contains('open');
-    if (isOpen) {
-      spans[0].style.transform = 'rotate(45deg) translateY(7px)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
-    } else {
-      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-    }
-  });
-
-  // Close on nav link click
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-    });
+  window.matchMedia('(max-width: 768px)').addEventListener('change', (e) => {
+    if (!e.matches && navLinks.matches(':popover-open')) navLinks.hidePopover();
   });
 }
 
@@ -174,8 +160,10 @@ function highlightActiveNav() {
     || (window.location.pathname.split('/').pop() || 'index').replace(/\.html$/, '')
     || 'index';
   document.querySelectorAll('.nav-link').forEach(link => {
-    const href = link.getAttribute('href');
-    link.classList.toggle('active', href === `${page}.html`);
+    const isCurrent = link.getAttribute('href') === `${page}.html`;
+    link.classList.toggle('active', isCurrent);
+    if (isCurrent) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
   });
 }
 
