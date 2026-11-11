@@ -89,8 +89,8 @@
 /* ---------- RESET & BASE ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {
@@ -379,7 +379,10 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.12;
-  animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-orb { animation: float 6s ease-in-out infinite; }
 }
 
 .hero-orb-1 {
@@ -450,7 +453,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 8px;
   background: var(--pharos-blue-bright);
   border-radius: 50%;
-  animation: pulse 2s ease infinite;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .badge-dot { animation: pulse 2s ease infinite; }
 }
 
 @keyframes pulse {
@@ -556,7 +562,10 @@ h1, h2, h3, h4, h5, h6 {
   width: 1px;
   height: 40px;
   background: linear-gradient(to bottom, var(--pharos-blue), transparent);
-  animation: scrollLine 2s ease infinite;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-line { animation: scrollLine 2s ease infinite; }
 }
 
 @keyframes scrollLine {
@@ -800,7 +809,10 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--gradient-blue);
   border-color: var(--pharos-blue-bright);
   box-shadow: 0 0 20px hsla(234, 90%, 55%, 0.4);
-  animation: pulseDot 2s ease infinite;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .timeline-item.active .timeline-dot { animation: pulseDot 2s ease infinite; }
 }
 
 @keyframes pulseDot {
@@ -1713,16 +1725,31 @@ h1, h2, h3, h4, h5, h6 {
   animation: fadeInUp 0.6s ease forwards;
 }
 
-[data-aos] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* Scroll reveal. Content is visible by default; the hidden start state applies
+   only once main.js has marked the page (.aos-ready) and only for users who
+   have not asked for reduced motion, so a script failure never hides it. */
+@media (prefers-reduced-motion: no-preference) {
+  .aos-ready [data-aos] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .aos-ready [data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Filtered cards fade back in when re-shown (ecosystem/news filters) */
+  @starting-style {
+    .aos-ready [data-aos].aos-animate:is(.eco-full-card, .news-full-card) {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
 }
 
-[data-aos].aos-animate {
-  opacity: 1;
-  transform: translateY(0);
-}
+.eco-full-card[hidden], .news-full-card[hidden] { display: none; }
 
 /* Last updated badge */
 .last-updated {

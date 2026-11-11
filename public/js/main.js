@@ -2,6 +2,14 @@
 // PHAROS VIETNAM — MAIN JAVASCRIPT
 // =============================================
 
+// Lets the CSS apply the scroll-reveal start state. Set here (not in the CSS
+// default) so [data-aos] content stays visible if this script never runs.
+document.documentElement.classList.add('aos-ready');
+
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
@@ -51,6 +59,9 @@ function initCounters() {
     });
   }, { threshold: 0.5 });
 
+  // The HTML holds the final values (shown without JS or with reduced motion);
+  // reset to 0 only when the count-up animation will run.
+  if (!prefersReducedMotion()) counters.forEach(counter => { counter.textContent = '0'; });
   counters.forEach(counter => observer.observe(counter));
 }
 
@@ -59,16 +70,21 @@ function animateCounter(el) {
   const isDecimal = target % 1 !== 0;
   const duration = 2000;
   const start = performance.now();
+  const format = (value) => value.toLocaleString('vi-VN', {
+    minimumFractionDigits: isDecimal ? 1 : 0,
+    maximumFractionDigits: isDecimal ? 1 : 0
+  });
+
+  if (prefersReducedMotion()) {
+    el.textContent = format(target);
+    return;
+  }
 
   const update = (now) => {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    const value = target * eased;
-    el.textContent = value.toLocaleString('vi-VN', {
-      minimumFractionDigits: isDecimal ? 1 : 0,
-      maximumFractionDigits: isDecimal ? 1 : 0
-    });
+    el.textContent = format(target * eased);
     if (progress < 1) requestAnimationFrame(update);
   };
 
@@ -166,16 +182,3 @@ function highlightActiveNav() {
     else link.removeAttribute('aria-current');
   });
 }
-
-// ---- SMOOTH SCROLL ----
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', e => {
-    const targetId = anchor.getAttribute('href');
-    if (targetId === '#') return;
-    const target = document.querySelector(targetId);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
