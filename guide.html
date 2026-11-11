@@ -256,56 +256,31 @@
       <div class="section-label">Câu Hỏi Thường Gặp</div>
       <h2 class="section-title">FAQ</h2>
 
-      <div style="max-width:800px; display:flex; flex-direction:column; gap:16px;" id="faqContainer">
-        <div class="tech-card faq-item" style="cursor:pointer;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="font-size:1rem;">Pharos testnet có miễn phí tham gia không?</h3>
-            <span class="faq-arrow" style="color:var(--pharos-blue); font-size:1.2rem; transition:transform 0.3s;">▼</span>
-          </div>
-          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
-            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Có, Pharos testnet hoàn toàn miễn phí. Bạn chỉ cần ví MetaMask và kết nối với mạng testnet. Token testnet cũng được cung cấp miễn phí qua faucet.</p>
-          </div>
-        </div>
+      <div class="faq-list">
+        <details class="tech-card faq-item" name="faq">
+          <summary class="faq-question">Pharos testnet có miễn phí tham gia không?<span class="faq-arrow" aria-hidden="true">▼</span></summary>
+          <p class="faq-answer">Có, Pharos testnet hoàn toàn miễn phí. Bạn chỉ cần ví MetaMask và kết nối với mạng testnet. Token testnet cũng được cung cấp miễn phí qua faucet.</p>
+        </details>
 
-        <div class="tech-card faq-item" style="cursor:pointer;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="font-size:1rem;">Tham gia testnet có cơ hội nhận airdrop không?</h3>
-            <span class="faq-arrow" style="color:var(--pharos-blue); font-size:1.2rem; transition:transform 0.3s;">▼</span>
-          </div>
-          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
-            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Pharos chưa công bố chính sách airdrop chính thức. Tuy nhiên, tham gia testnet sớm và hoàn thành nhiều nhiệm vụ thường là cách tốt nhất để tích lũy điểm và có cơ hội nhận phần thưởng trong tương lai. Luôn cập nhật thông tin từ kênh chính thức.</p>
-          </div>
-        </div>
+        <details class="tech-card faq-item" name="faq">
+          <summary class="faq-question">Tham gia testnet có cơ hội nhận airdrop không?<span class="faq-arrow" aria-hidden="true">▼</span></summary>
+          <p class="faq-answer">Pharos chưa công bố chính sách airdrop chính thức. Tuy nhiên, tham gia testnet sớm và hoàn thành nhiều nhiệm vụ thường là cách tốt nhất để tích lũy điểm và có cơ hội nhận phần thưởng trong tương lai. Luôn cập nhật thông tin từ kênh chính thức.</p>
+        </details>
 
-        <div class="tech-card faq-item" style="cursor:pointer;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="font-size:1rem;">Pharos khác gì so với Ethereum và Solana?</h3>
-            <span class="faq-arrow" style="color:var(--pharos-blue); font-size:1.2rem; transition:transform 0.3s;">▼</span>
-          </div>
-          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
-            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Pharos kết hợp ưu điểm của cả hai: tương thích EVM như Ethereum (dễ dàng cho developer) nhưng với hiệu suất cao hơn nhiều. Dual VM (EVM+WASM), AsyncBFT consensus, và kiến trúc SPNs cho phép Pharos đạt finality dưới 1 giây và mở rộng linh hoạt — điều mà cả Ethereum và Solana hiện chưa đạt được đồng thời.</p>
-          </div>
-        </div>
+        <details class="tech-card faq-item" name="faq">
+          <summary class="faq-question">Pharos khác gì so với Ethereum và Solana?<span class="faq-arrow" aria-hidden="true">▼</span></summary>
+          <p class="faq-answer">Pharos kết hợp ưu điểm của cả hai: tương thích EVM như Ethereum (dễ dàng cho developer) nhưng với hiệu suất cao hơn nhiều. Dual VM (EVM+WASM), AsyncBFT consensus, và kiến trúc SPNs cho phép Pharos đạt finality dưới 1 giây và mở rộng linh hoạt — điều mà cả Ethereum và Solana hiện chưa đạt được đồng thời.</p>
+        </details>
 
-        <div class="tech-card faq-item" style="cursor:pointer;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="font-size:1rem;">Làm sao để trở thành developer trên Pharos?</h3>
-            <span class="faq-arrow" style="color:var(--pharos-blue); font-size:1.2rem; transition:transform 0.3s;">▼</span>
-          </div>
-          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
-            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Nếu đã biết viết hợp đồng thông minh Solidity cho Ethereum, bạn có thể triển khai trực tiếp lên Pharos nhờ khả năng tương thích EVM. Hãy dùng Foundry hoặc Hardhat, kết nối với RPC của mạng thử nghiệm và tham khảo Trung tâm Nhà phát triển cùng tài liệu kỹ thuật.</p>
-          </div>
-        </div>
+        <details class="tech-card faq-item" name="faq">
+          <summary class="faq-question">Làm sao để trở thành developer trên Pharos?<span class="faq-arrow" aria-hidden="true">▼</span></summary>
+          <p class="faq-answer">Nếu đã biết viết hợp đồng thông minh Solidity cho Ethereum, bạn có thể triển khai trực tiếp lên Pharos nhờ khả năng tương thích EVM. Hãy dùng Foundry hoặc Hardhat, kết nối với RPC của mạng thử nghiệm và tham khảo Trung tâm Nhà phát triển cùng tài liệu kỹ thuật.</p>
+        </details>
 
-        <div class="tech-card faq-item" style="cursor:pointer;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="font-size:1rem;">Khi nào Pharos mainnet ra mắt?</h3>
-            <span class="faq-arrow" style="color:var(--pharos-blue); font-size:1.2rem; transition:transform 0.3s;">▼</span>
-          </div>
-          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.4s ease;">
-            <p style="padding-top:16px; color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Mạng chính Pharos đã hoạt động và chính thức tích hợp USDC cùng Circle CCTP vào ngày 28/04/2026. Atlantic vẫn là môi trường thử nghiệm; token trên mạng thử nghiệm không có giá trị thực.</p>
-          </div>
-        </div>
+        <details class="tech-card faq-item" name="faq">
+          <summary class="faq-question">Khi nào Pharos mainnet ra mắt?<span class="faq-arrow" aria-hidden="true">▼</span></summary>
+          <p class="faq-answer">Mạng chính Pharos đã hoạt động và chính thức tích hợp USDC cùng Circle CCTP vào ngày 28/04/2026. Atlantic vẫn là môi trường thử nghiệm; token trên mạng thử nghiệm không có giá trị thực.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -314,6 +289,5 @@
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/guide.js"></script>
 </body>
 </html>
