@@ -55,7 +55,6 @@ these; that is expected and intended.)
   animations, active-nav highlight, and rendering of content from `PharosData`.
 - **`public/js/ecosystem.js`** — Filter/category logic and rendering for the ecosystem page.
 - **`public/js/news.js`** — News grid render + category filter (news page).
-- **`public/js/guide.js`** — FAQ accordion (guide page).
 - **`css/style.css`** — A single design-token system (CSS variables in `:root`)
   plus all component styles, ending with a "Page responsive overrides" section.
   Processed and hashed by Vite at build time.

@@ -1442,6 +1442,61 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
 }
 
+/* FAQ: native <details name="faq"> accordion */
+.faq-list {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-question {
+  list-style: none; /* drop the default disclosure triangle */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-arrow {
+  flex-shrink: 0;
+  color: var(--pharos-blue);
+  font-size: 1.2rem;
+}
+
+.faq-item[open] .faq-arrow { rotate: 180deg; }
+
+.faq-item .faq-answer {
+  padding-top: 16px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.faq-item::details-content {
+  /* Lets block-size transition to and from its intrinsic auto size */
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+}
+
+.faq-item:not([open])::details-content { block-size: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq-arrow { transition: rotate 0.3s; }
+
+  .faq-item::details-content {
+    transition: block-size 0.4s ease, content-visibility 0.4s ease;
+    transition-behavior: allow-discrete;
+  }
+}
+
 /* =============================================
    COMMUNITY PAGE
    ============================================= */
