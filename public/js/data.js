@@ -11,6 +11,8 @@ window.PharosData = {
     lastUpdated: "2026-11-08",
     version: "2.1.22",
     sources: [
+      "https://x.com/Farooxyz/status/2114945208580558858",
+      "https://x.com/sqrDAO/status/2114945193237684381",
       "https://x.com/pharos_network/status/2117512127523238290",
       "https://x.com/pharos_network/status/2117498279865061786",
       "https://x.com/pharos_network/status/2118644652085801379",
@@ -1362,6 +1364,16 @@ window.PharosData = {
       content: "Mainnet Pharos PacificOcean kích hoạt phần thưởng staking $PROS, bắt đầu từ Block #21499558 sau 6 tháng với lạm phát 0%.",
       link: "https://x.com/pharos_network/status/2115445990081831230",
       source: "Pharos Network"
+    },
+    {
+      id: "faroo-hop-tac-sqrdao-mo-rong-stpros",
+      title: "Faroo Hợp Tác Với sqrDAO Mở Rộng Staking Thanh Khoản stPROS",
+      category: "Hợp Tác",
+      date: "2026-10-27",
+      summary: "Faroo và sqrDAO hợp tác thúc đẩy staking thanh khoản và lợi suất kết hợp trên Pharos, đưa stPROS đến cộng đồng founder, nhà đầu tư và builder của sqrDAO tại Việt Nam và Đông Nam Á.",
+      content: "Faroo, giao thức staking thanh khoản trên Pharos, công bố hợp tác với sqrDAO nhằm hỗ trợ tăng trưởng staking thanh khoản và lợi suất kết hợp (hybrid yield) trong hệ sinh thái Pharos. sqrDAO có mạng lưới founder, nhà đầu tư và builder tại Việt Nam và Đông Nam Á. Hai bên sẽ đưa stPROS đến với nhiều cộng đồng hơn và giới thiệu các cơ hội staking mới cho người nắm giữ $PROS: stake $PROS để nhận stPROS, giữ tài sản thanh khoản trong khi vẫn nhận lợi suất.",
+      link: "https://x.com/Farooxyz/status/2114945208580558858",
+      source: "Faroo (X)"
     },
     {
       id: "pharos-prosper-tich-hop-ave-ai",
