@@ -14,11 +14,12 @@ function renderNewsFull() {
   const grid = document.getElementById('newsFullGrid');
   if (!grid || !window.PharosData) return;
 
-  const news = window.PharosData.news;
+  const news = orderedNews();
   grid.innerHTML = news.map(item => `
-    <article class="news-full-card" data-category="${item.category}" data-aos="fade-up">
+    <article class="news-full-card${item.pinned ? ' news-featured' : ''}" data-category="${item.category}" data-aos="fade-up">
+      ${newsImage(item)}
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <span class="news-category">${item.category}</span>
+        <span class="news-category">${newsPinnedBadge(item)}${item.category}</span>
         <span class="news-date">${item.date}</span>
       </div>
       <h3>${item.title}</h3>

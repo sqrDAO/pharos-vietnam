@@ -1524,6 +1524,30 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .news-full-card h3 { font-size: 1.0625rem; margin-bottom: 12px; }
+
+/* Optional news media + pinned ("Nổi bật") treatment, shared by both card types */
+.news-image {
+  display: block;
+  width: calc(100% + 56px);
+  max-width: none; /* bleed past the card padding; global img rule caps at 100% */
+  margin: -28px -28px 20px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.news-featured { border-color: var(--border-glow); }
+
+.news-pinned {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--pharos-blue);
+  color: #fff;
+  letter-spacing: 0.04em;
+}
 .news-full-card p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7; flex: 1; margin-bottom: 20px; }
 
 

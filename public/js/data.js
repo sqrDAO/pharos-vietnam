@@ -1373,7 +1373,10 @@ window.PharosData = {
       summary: "Faroo và sqrDAO hợp tác thúc đẩy staking thanh khoản và lợi suất kết hợp trên Pharos, đưa stPROS đến cộng đồng founder, nhà đầu tư và builder của sqrDAO tại Việt Nam và Đông Nam Á.",
       content: "Faroo, giao thức staking thanh khoản trên Pharos, công bố hợp tác với sqrDAO nhằm hỗ trợ tăng trưởng staking thanh khoản và lợi suất kết hợp (hybrid yield) trong hệ sinh thái Pharos. sqrDAO có mạng lưới founder, nhà đầu tư và builder tại Việt Nam và Đông Nam Á. Hai bên sẽ đưa stPROS đến với nhiều cộng đồng hơn và giới thiệu các cơ hội staking mới cho người nắm giữ $PROS: stake $PROS để nhận stPROS, giữ tài sản thanh khoản trong khi vẫn nhận lợi suất.",
       link: "https://x.com/Farooxyz/status/2114945208580558858",
-      source: "Faroo (X)"
+      source: "Faroo (X)",
+      image: "images/news/faroo-sqrdao.jpg",
+      imageAlt: "sqrDAO × Faroo: đưa stPROS đến cộng đồng — staking thanh khoản và lợi suất kết hợp trên Pharos Network",
+      pinned: true
     },
     {
       id: "pharos-prosper-tich-hop-ave-ai",
