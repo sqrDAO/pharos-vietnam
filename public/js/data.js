@@ -8,9 +8,15 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-11-08",
-    version: "2.1.22",
+    lastUpdated: "2026-11-15",
+    version: "2.1.23",
     sources: [
+      "https://port.pharos.xyz/ecosystem",
+      "https://cryptodaily.co.uk/2026/11/tokenized-high-yield-credit-moves-into-institutional-custody-as-pharos-connects-to-fireblocks",
+      "https://x.com/pharos_network/status/2120937042431655946",
+      "https://x.com/pharos_network/status/2121184957007855841",
+      "https://x.com/pharos_network/status/2121249616377373150",
+      "https://x.com/pharos_network/status/2121943814273401168",
       "https://x.com/Farooxyz/status/2114945208580558858",
       "https://x.com/sqrDAO/status/2114945193237684381",
       "https://x.com/pharos_network/status/2117512127523238290",
@@ -113,6 +119,76 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "accountable",
+      name: "Accountable",
+      category: "RWA",
+      icon: "✅",
+      description: "Tiêu chuẩn xác minh tài chính và hạ tầng để phát hành, vận hành các sản phẩm tài chính onchain, thuộc mảng RWA trên Pharos.",
+      tags: ["RWA", "Xác minh tài chính", "Hạ tầng"],
+      website: "https://yield.accountable.capital/vaults",
+      status: "Hoạt động"
+    },
+    {
+      id: "bifrost",
+      name: "Bifrost",
+      category: "DeFi, Liquid Staking",
+      icon: "🌈",
+      description: "Lớp lợi suất staking đa chuỗi, cung cấp phần thưởng liquid staking chuẩn hóa và lợi suất có thể kết hợp cho stablecoin, RWA và DeFi.",
+      tags: ["DeFi", "Liquid Staking", "LST"],
+      website: "https://bifrost.io/",
+      status: "Sắp ra mắt"
+    },
+    {
+      id: "bitgo",
+      name: "BitGo",
+      category: "Lưu ký, Hạ tầng",
+      icon: "🏦",
+      description: "Công ty tài sản số phục vụ riêng khách hàng tổ chức từ năm 2013, cung cấp dịch vụ lưu ký. Là đối tác lưu ký cho tổ chức trên Pharos.",
+      tags: ["Lưu ký", "Tổ chức", "Hạ tầng"],
+      website: "https://www.bitgo.com/",
+      status: "Sắp ra mắt"
+    },
+    {
+      id: "orbiter-finance",
+      name: "Orbiter Finance",
+      category: "Cầu nối, Hạ tầng",
+      icon: "🌉",
+      description: "Cầu nối cross-rollup phi trung gian, dùng để chuyển tài sản có nguồn gốc từ Ethereum. Đang tích hợp cầu nối trên Pharos.",
+      tags: ["Bridge", "Cross-rollup", "Hạ tầng"],
+      website: "https://www.orbiter.finance/",
+      status: "Sắp ra mắt"
+    },
+    {
+      id: "kaiju-finance",
+      name: "Kaiju Finance",
+      category: "DeFi, Thanh toán, Tín dụng",
+      icon: "🦖",
+      description: "Hệ thống cho vay phi tập trung có tài sản đảm bảo, kết nối thanh khoản số với chi tiêu thực tế, giúp tiếp cận tín dụng liên tục mà không cần vay.",
+      tags: ["DeFi", "Thanh toán", "Tín dụng"],
+      website: "https://www.kaiju.fi",
+      status: "Sắp ra mắt"
+    },
+    {
+      id: "stationx",
+      name: "StationX",
+      category: "DAO, Gọi vốn",
+      icon: "🚀",
+      description: "Giao thức giúp DAO và cộng đồng cùng quản lý, điều hành tài sản chung thông qua các \"station\" cấu hình từ mẫu có sẵn.",
+      tags: ["DAO", "Gọi vốn", "Công cụ DAO"],
+      website: "https://www.stationx.network/",
+      status: "Sắp ra mắt"
+    },
+    {
+      id: "layerhub",
+      name: "LayerHub",
+      category: "Phân tích, Hạ tầng",
+      icon: "📊",
+      description: "Nền tảng phân tích dữ liệu onchain, giúp nhà đầu tư và nhà nghiên cứu khám phá các mạng lưới và dự án tiền mã hóa.",
+      tags: ["Analytics", "Explorer", "Hạ tầng"],
+      website: "https://layerhub.xyz/",
+      status: "Sắp ra mắt"
+    },
     {
       id: "yuzu-money",
       name: "Yuzu Money",
@@ -1245,6 +1321,56 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "pharos-cap-nhat-he-sinh-thai-tuan-15-11",
+      title: "Cập Nhật Hệ Sinh Thái Pharos Tuần Này: stPROS, Validator Mới Và Chiến Dịch Cộng Đồng",
+      category: "Cập Nhật",
+      date: "2026-11-15",
+      summary: "Bản cập nhật hằng tuần nêu stPROS của Faroo, bảng điều khiển staking thanh khoản của OriginStake, validator mới, chiến dịch cộng đồng và tích hợp cổ phiếu token hóa vào CookFun.",
+      content: "Bản cập nhật hệ sinh thái Pharos hằng tuần ghi nhận: stPROS của Faroo tăng trưởng với 24,7 nghìn USD phần thưởng staking; OriginStake ra mắt bảng điều khiển staking thanh khoản; PodsAlpha của R25 được Top_nod đưa vào danh sách vault đề xuất; ProsperTicker giới thiệu Great Escape Vault và tổ chức tập 2 chương trình What's Cooking on Pharos; Pharos bổ sung các validator hinode_tech, SenseiNode và Meria_Finance; Pharos ra mắt chiến dịch cộng đồng cuối cùng của năm; stoveprotocol tích hợp cổ phiếu Mỹ và Hàn Quốc được token hóa vào CookFun.",
+      link: "https://x.com/pharos_network/status/2121943814273401168",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "luganodes-tro-thanh-validator-pharos",
+      title: "Luganodes Trở Thành Validator Của Pharos",
+      category: "Thông Báo",
+      date: "2026-11-13",
+      summary: "Luganodes đã bắt đầu tham gia xác thực trên mạng Pharos.",
+      content: "Pharos thông báo Luganodes hiện đã tham gia xác thực trên mạng Pharos với vai trò validator.",
+      link: "https://x.com/pharos_network/status/2121184957007855841",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-chien-dich-cong-dong-cuoi-nam-2026",
+      title: "Pharos Ra Mắt Chiến Dịch Cộng Đồng Cuối Cùng Của Năm 2026",
+      category: "Thông Báo",
+      date: "2026-11-13",
+      summary: "Chiến dịch cộng đồng diễn ra từ 13/11 đến 31/12 với quỹ thưởng 3.000 $PROS.",
+      content: "Pharos ra mắt chiến dịch cộng đồng cuối cùng của năm 2026, diễn ra từ ngày 13/11 đến 31/12 với tổng quỹ thưởng 3.000 $PROS.",
+      link: "https://x.com/pharos_network/status/2121249616377373150",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-them-validator-hinode-senseinode-meria",
+      title: "Pharos Chào Đón Hinode, SenseiNode Và Meria Finance Làm Validator",
+      category: "Thông Báo",
+      date: "2026-11-12",
+      summary: "Pharos chào đón hinode_tech (Nhật Bản), SenseiNode (Mỹ Latinh) và Meria_Finance (Pháp) tham gia mạng lưới với vai trò validator.",
+      content: "Pharos thông báo chào đón ba validator mới gồm hinode_tech đến từ Nhật Bản, SenseiNode đến từ khu vực Mỹ Latinh và Meria_Finance đến từ Pháp tham gia mạng lưới.",
+      link: "https://x.com/pharos_network/status/2120937042431655946",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-tich-hop-fireblocks-luu-ky-to-chuc",
+      title: "Pharos Tích Hợp Fireblocks Cho Lưu Ký Tín Dụng Token Hóa Cấp Tổ Chức",
+      category: "Hợp Tác",
+      date: "2026-11-10",
+      summary: "Pharos Network đã tích hợp nền tảng lưu ký Fireblocks, cho phép các tổ chức nắm giữ sản phẩm tín dụng lợi suất cao của Mỹ được token hóa trên Pharos.",
+      content: "Ngày 10/11/2026, Pharos Network thông báo đã tích hợp nền tảng lưu ký Fireblocks. Các tổ chức sử dụng Fireblocks hiện có thể nắm giữ các sản phẩm tín dụng lợi suất cao của Mỹ được token hóa phát hành trên Pharos. Các sản phẩm khả dụng ngay khi ra mắt gồm Raffaello NYLIM HYB Vault (pRNH), quỹ NYLIM Anemoy và Axil Prime Credit (APC) phát hành trên R25 Protocol; đồng PROS gốc cũng được hỗ trợ. Các quỹ, nhà quản lý tài sản, nhà cung cấp dịch vụ thanh toán và sàn giao dịch đã dùng Fireblocks có thể nắm giữ, chuyển và quản lý các tài sản này ngay trong không gian làm việc hiện có, theo quy trình phê duyệt và chính sách bảo mật riêng. Pharos cho biết tổng tài sản được tổng hợp trên nền tảng RWA của mạng vượt 241,64 triệu USD. Hai bên dự kiến triển khai hoạt động tiếp cận thị trường chung, gồm tham gia phối hợp các sự kiện ngành và giới thiệu chọn lọc giữa các nhà phát hành của Pharos với đối tượng tổ chức.",
+      link: "https://cryptodaily.co.uk/2026/11/tokenized-high-yield-credit-moves-into-institutional-custody-as-pharos-connects-to-fireblocks",
+      source: "Crypto Daily"
+    },
     {
       id: "pharos-anvitaflow-workshop-rwa-ai-hk-fintech-week",
       title: "Pharos Và AnvitaFlow Tổ Chức Workshop When RWA Meets AI Tại Hong Kong FinTech Week",
