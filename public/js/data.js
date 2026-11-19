@@ -211,7 +211,7 @@ window.PharosData = {
     {
       id: "vishwa-lab",
       name: "Vishwa Finance",
-      category: "RWA / DeFi",
+      category: "Hạ tầng",
       icon: "🤖",
       description: "Hạ tầng ngân hàng và tín dụng cho AI agent, cho phép agent chuyển vốn và truy cập tài nguyên tính toán với kiểm soát chính sách, quyền riêng tư và thực thi có thể xác minh. Vishwa định vị là hạ tầng tài chính cho agent tự hành, với các mảng Treasury, Payments, Credit và Vaults. Là thành viên RealFi Alliance thuộc nhóm hạ tầng ngân hàng cho agent.",
       tags: ["AI Agent", "Tín dụng", "Cho vay", "RealFi Alliance"],
@@ -231,7 +231,7 @@ window.PharosData = {
     {
       id: "newsight",
       name: "NewSight",
-      category: "NFT & Cộng đồng",
+      category: "RWA / DeFi",
       icon: "🔮",
       description: "NewSight là nền tảng tin tức và thị trường dự đoán tích hợp AI, chuyển đổi các tiêu đề thành các kết quả on-chain có thể giao dịch. Dự án được ươm tạo bởi Mạng lưới Pharos.",
       tags: ["Thị trường dự đoán", "AI", "dApp"],
@@ -341,7 +341,7 @@ window.PharosData = {
     {
       id: "web3caff-research",
       name: "Web3Caff Research",
-      category: "NFT & Cộng đồng",
+      category: "Đầu tư & Đối tác",
       icon: "🔬",
       description: "Web3Caff Research là đối tác trong việc xây dựng \"RealFi Research Framework\" của Pharos Network, cung cấp nghiên cứu chuyên sâu và thông tin tình báo cho nền kinh tế Web3 mới.",
       tags: ["Nghiên cứu", "RealFi", "Web3"],
@@ -361,7 +361,7 @@ window.PharosData = {
     {
       id: "tulipa-capital",
       name: "Tulipa Capital",
-      category: "RWA / DeFi",
+      category: "Đầu tư & Đối tác",
       icon: "💰",
       description: "Tulipa Capital là một người quản lý rủi ro DeFi và một quỹ đầu cơ chuyên về các chiến lược delta-neutral cho BTC, ETH và stablecoin. Nó tập trung vào quản lý rủi ro, minh bạch và bảo vệ vốn cho các nhà đầu tư tổ chức, cho phép họ triển khai vốn ở quy mô lớn. Đây là một đối tác chiến lược trong Liên minh RealFi.",
       tags: ["DeFi", "Đầu tư", "Quản lý rủi ro", "RealFi"],
@@ -381,7 +381,7 @@ window.PharosData = {
     {
       id: "amber-group",
       name: "Amber Group",
-      category: "RWA / DeFi",
+      category: "Đầu tư & Đối tác",
       icon: "💰",
       description: "Amber Group là một nền tảng dịch vụ tài chính tiền điện tử hàng đầu, chuyên về quản lý tài sản kỹ thuật số và các giải pháp thanh khoản tập trung vào tiền điện tử. Họ là thành viên của Liên minh RealFi của Pharos.",
       tags: ["Dịch vụ tài chính", "Thanh khoản", "Quản lý tài sản"],
@@ -471,7 +471,7 @@ window.PharosData = {
     {
       id: "flow-traders",
       name: "Flow Traders",
-      category: "RWA / DeFi",
+      category: "Đầu tư & Đối tác",
       icon: "📈",
       description: "Flow Traders là nhà đầu tư chiến lược và đối tác của Pharos Network. Họ là nhà cung cấp thanh khoản và nhà tạo lập thị trường toàn cầu, tập trung vào việc mang lại sự minh bạch và hiệu quả cho các thị trường tài chính.",
       tags: ["Thị trường vốn", "TradFi", "Cung cấp thanh khoản"],
@@ -1299,7 +1299,7 @@ window.PharosData = {
     {
       id: "nextmate-ai",
       name: "Nextmate.AI",
-      category: "NFT & Cộng đồng",
+      category: "RWA / DeFi",
       icon: "🤖",
       description: "Nextmate.AI là một nền tảng thị trường dự đoán phi tập trung, được hỗ trợ bởi AI, kết hợp giải trí, tương tác và cơ hội lợi nhuận. Nền tảng này cho phép tạo thị trường dự đoán cá nhân hóa, cung cấp thông tin chi tiết từ AI và tích hợp memecoin, hoạt động trên testnet của Pharos.",
       tags: ["AI", "Thị trường dự đoán", "dApp"],
@@ -1309,7 +1309,7 @@ window.PharosData = {
     {
       id: "buzzing-club",
       name: "Buzzing Club",
-      category: "NFT & Cộng đồng",
+      category: "RWA / DeFi",
       icon: "🐝",
       description: "Buzzing Club là nền tảng thị trường dự đoán dựa trên AI, xây dựng lớp dự đoán trên các mạng xã hội như X, cho phép người dùng đặt cược vào các chủ đề thịnh hành. Nền tảng này sử dụng tác nhân AI để tạo thị trường và oracle, nhằm tăng cường sự hấp dẫn và chân thực của mạng xã hội, hoạt động trên testnet của Pharos.",
       tags: ["AI", "Thị trường dự đoán", "SocialFi", "dApp"],
