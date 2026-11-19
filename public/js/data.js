@@ -16,7 +16,6 @@ window.PharosData = {
       "https://x.com/pharos_network/status/2120937042431655946",
       "https://x.com/pharos_network/status/2121184957007855841",
       "https://x.com/pharos_network/status/2121249616377373150",
-      "https://x.com/pharos_network/status/2121943814273401168",
       "https://x.com/Farooxyz/status/2114945208580558858",
       "https://x.com/sqrDAO/status/2114945193237684381",
       "https://x.com/pharos_network/status/2117512127523238290",
@@ -122,7 +121,7 @@ window.PharosData = {
     {
       id: "accountable",
       name: "Accountable",
-      category: "RWA",
+      category: "RWA / DeFi",
       icon: "✅",
       description: "Tiêu chuẩn xác minh tài chính và hạ tầng để phát hành, vận hành các sản phẩm tài chính onchain, thuộc mảng RWA trên Pharos.",
       tags: ["RWA", "Xác minh tài chính", "Hạ tầng"],
@@ -132,7 +131,7 @@ window.PharosData = {
     {
       id: "bifrost",
       name: "Bifrost",
-      category: "DeFi, Liquid Staking",
+      category: "RWA / DeFi",
       icon: "🌈",
       description: "Lớp lợi suất staking đa chuỗi, cung cấp phần thưởng liquid staking chuẩn hóa và lợi suất có thể kết hợp cho stablecoin, RWA và DeFi.",
       tags: ["DeFi", "Liquid Staking", "LST"],
@@ -142,7 +141,7 @@ window.PharosData = {
     {
       id: "bitgo",
       name: "BitGo",
-      category: "Lưu ký, Hạ tầng",
+      category: "Hạ tầng",
       icon: "🏦",
       description: "Công ty tài sản số phục vụ riêng khách hàng tổ chức từ năm 2013, cung cấp dịch vụ lưu ký. Là đối tác lưu ký cho tổ chức trên Pharos.",
       tags: ["Lưu ký", "Tổ chức", "Hạ tầng"],
@@ -152,7 +151,7 @@ window.PharosData = {
     {
       id: "orbiter-finance",
       name: "Orbiter Finance",
-      category: "Cầu nối, Hạ tầng",
+      category: "Hạ tầng",
       icon: "🌉",
       description: "Cầu nối cross-rollup phi trung gian, dùng để chuyển tài sản có nguồn gốc từ Ethereum. Đang tích hợp cầu nối trên Pharos.",
       tags: ["Bridge", "Cross-rollup", "Hạ tầng"],
@@ -162,9 +161,9 @@ window.PharosData = {
     {
       id: "kaiju-finance",
       name: "Kaiju Finance",
-      category: "DeFi, Thanh toán, Tín dụng",
+      category: "Ví & Thanh toán",
       icon: "🦖",
-      description: "Hệ thống cho vay phi tập trung có tài sản đảm bảo, kết nối thanh khoản số với chi tiêu thực tế, giúp tiếp cận tín dụng liên tục mà không cần vay.",
+      description: "Hệ thống cho vay phi tập trung có tài sản đảm bảo, kết nối thanh khoản số với chi tiêu thực tế.",
       tags: ["DeFi", "Thanh toán", "Tín dụng"],
       website: "https://www.kaiju.fi",
       status: "Sắp ra mắt"
@@ -172,7 +171,7 @@ window.PharosData = {
     {
       id: "stationx",
       name: "StationX",
-      category: "DAO, Gọi vốn",
+      category: "NFT & Cộng đồng",
       icon: "🚀",
       description: "Giao thức giúp DAO và cộng đồng cùng quản lý, điều hành tài sản chung thông qua các \"station\" cấu hình từ mẫu có sẵn.",
       tags: ["DAO", "Gọi vốn", "Công cụ DAO"],
@@ -182,7 +181,7 @@ window.PharosData = {
     {
       id: "layerhub",
       name: "LayerHub",
-      category: "Phân tích, Hạ tầng",
+      category: "Hạ tầng",
       icon: "📊",
       description: "Nền tảng phân tích dữ liệu onchain, giúp nhà đầu tư và nhà nghiên cứu khám phá các mạng lưới và dự án tiền mã hóa.",
       tags: ["Analytics", "Explorer", "Hạ tầng"],
@@ -1321,16 +1320,6 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
-    {
-      id: "pharos-cap-nhat-he-sinh-thai-tuan-15-11",
-      title: "Cập Nhật Hệ Sinh Thái Pharos Tuần Này: stPROS, Validator Mới Và Chiến Dịch Cộng Đồng",
-      category: "Cập Nhật",
-      date: "2026-11-15",
-      summary: "Bản cập nhật hằng tuần nêu stPROS của Faroo, bảng điều khiển staking thanh khoản của OriginStake, validator mới, chiến dịch cộng đồng và tích hợp cổ phiếu token hóa vào CookFun.",
-      content: "Bản cập nhật hệ sinh thái Pharos hằng tuần ghi nhận: stPROS của Faroo tăng trưởng với 24,7 nghìn USD phần thưởng staking; OriginStake ra mắt bảng điều khiển staking thanh khoản; PodsAlpha của R25 được Top_nod đưa vào danh sách vault đề xuất; ProsperTicker giới thiệu Great Escape Vault và tổ chức tập 2 chương trình What's Cooking on Pharos; Pharos bổ sung các validator hinode_tech, SenseiNode và Meria_Finance; Pharos ra mắt chiến dịch cộng đồng cuối cùng của năm; stoveprotocol tích hợp cổ phiếu Mỹ và Hàn Quốc được token hóa vào CookFun.",
-      link: "https://x.com/pharos_network/status/2121943814273401168",
-      source: "Pharos Network (X)"
-    },
     {
       id: "luganodes-tro-thanh-validator-pharos",
       title: "Luganodes Trở Thành Validator Của Pharos",
