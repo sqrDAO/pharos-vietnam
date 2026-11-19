@@ -1,6 +1,17 @@
 import { createHash } from 'node:crypto';
 
 /** Normalize source URLs for deduplication; reject non-HTTP URLs. */
+// Allowed ecosystem categories: exactly the filter buttons in ecosystem.html.
+// ecosystem.js filters on an exact category match, so any other value hides
+// the project from every filter except "Tất cả". Finer labels go in tags.
+export const ECOSYSTEM_CATEGORIES = [
+  "RWA / DeFi",
+  "Hạ tầng",
+  "Ví & Thanh toán",
+  "NFT & Cộng đồng",
+  "Đầu tư & Đối tác",
+];
+
 export function canonicalUrl(value) {
   const url = new URL(value);
   if (!['https:', 'http:'].includes(url.protocol)) throw new Error('Expected an HTTP source URL');
