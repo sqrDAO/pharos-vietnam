@@ -32,7 +32,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import vm from "node:vm";
 import Anthropic from "@anthropic-ai/sdk";
-import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from "./content-pipeline.js";
+import { ECOSYSTEM_CATEGORIES, canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from "./content-pipeline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..");
@@ -353,10 +353,10 @@ JSON shape:
     {
       "id": "kebab-case-unique-slug",
       "name": "Tên dự án",
-      "category": "vd: RWA / DeFi, Hạ tầng",
+      "category": one of ${JSON.stringify(ECOSYSTEM_CATEGORIES)},
       "icon": "một emoji",
       "description": "Mô tả tiếng Việt",
-      "tags": ["Tag1", "Tag2"],
+      "tags": ["Tag1", "Tag2"] (put finer labels here, e.g. "Liquid Staking", "Cầu nối", "DAO"),
       "website": "https://...",
       "status": "vd: Hoạt động, Tích hợp, Đối tác, Đang phát triển"
     }
@@ -596,7 +596,7 @@ function validate(payload, existing) {
       !existingEcoIds.has(e.id) &&
       !seenEco.has(e.id) &&
       nonEmptyStr(e.name) &&
-      nonEmptyStr(e.category) &&
+      ECOSYSTEM_CATEGORIES.includes(e.category) &&
       nonEmptyStr(e.icon) &&
       nonEmptyStr(e.description) &&
       Array.isArray(e.tags) &&
@@ -607,7 +607,7 @@ function validate(payload, existing) {
       !isExcludedEcosystem(e) &&
       nonEmptyStr(e.status);
     if (ok) seenEco.add(e.id);
-    else report.decisions.push({ candidate: e?.id, action: "reject", reason: "Ecosystem schema, website or ID validation failed" });
+    else report.decisions.push({ candidate: e?.id, action: "reject", reason: "Ecosystem schema, category, website or ID validation failed" });
     return ok;
   });
   if (ecosystem.length > MAX_NEW_PARTNERS_PER_RUN) {

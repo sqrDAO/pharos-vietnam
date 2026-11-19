@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from './content-pipeline.js';
+import { ECOSYSTEM_CATEGORIES, canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -108,6 +108,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
+test('ecosystem categories are exactly the filter buttons on the ecosystem page', () => {
+  // A category with no matching button hides the project from every filter but "Tất cả".
+  const html = readFileSync(new URL('../ecosystem.html', import.meta.url), 'utf8');
+  const buttons = [...html.matchAll(/data-filter="([^"]+)"/g)].map(m => m[1].replace(/&amp;/g, '&')).filter(v => v !== 'all');
+  assert.deepEqual([...buttons].sort(), [...ECOSYSTEM_CATEGORIES].sort());
+});
 test('full updater: missed launches, incomplete searches, dropped conversion, and recovery', () => {
   const root = mkdtempSync(join(tmpdir(), 'pharos-pipeline-'));
   try {
@@ -156,8 +162,8 @@ globalThis.fetch = async (url, options = {}) => {
       const items = JSON.parse(prompt.split('Candidates: ')[1].split('\\nPrevious')[0]);
       text = JSON.stringify({decisions: mode === 'drop' ? [] : items.map(c => ({candidateId:c.id,action:'include',item:{id:c.id,title:c.title,summary:c.summary,content:c.summary,link:c.url,date:c.date,category:'Thông Báo',source:'Official announcement'}}))});
     } else if (mode === 'eco-failure') return reply(null, 401);
-    else if (mode === 'cap' || mode === 'cap-invalid') {
-      text = prompt.startsWith('Convert') ? JSON.stringify({news:[],techSpecs:{},sources:[],ecosystem:Array.from({length:11},(_,i)=>({id:'project-'+i,name:'Project '+i,category:'DeFi',icon:'🌊',description:'Test project',tags:['DeFi'],website:(mode === 'cap-invalid' && i === 10) ? '' : 'https://example.org/'+i,status:'Active'}))}) : 'Eleven ecosystem projects found';
+    else if (mode === 'cap' || mode === 'cap-invalid' || mode === 'cap-category') {
+      text = prompt.startsWith('Convert') ? JSON.stringify({news:[],techSpecs:{},sources:[],ecosystem:Array.from({length:11},(_,i)=>({id:'project-'+i,name:'Project '+i,category:(mode === 'cap-category' && i === 10) ? 'DeFi, Liquid Staking' : 'RWA / DeFi',icon:'🌊',description:'Test project',tags:['DeFi'],website:(mode === 'cap-invalid' && i === 10) ? '' : 'https://example.org/'+i,status:'Active'}))}) : 'Eleven ecosystem projects found';
     } else text = 'NO NEW PARTNERS';
     return reply([...searched, {type:'text',text}]);
   }
@@ -215,7 +221,7 @@ globalThis.fetch = async (url, options = {}) => {
       assert.equal(state().lastCompletedDate, undefined);
       assert.equal(readFileSync(join(root, 'has-changes.txt'), 'utf8').trim(), 'false');
     }
-    for (const mode of ['redirect', 'cap', 'cap-invalid', 'invalid-pending', 'invalid-news']) {
+    for (const mode of ['redirect', 'cap', 'cap-invalid', 'cap-category', 'invalid-pending', 'invalid-news']) {
       writeFileSync(join(root, 'public/js/data.js'), mode === 'invalid-news' ? baseline.replace('news: [\n]', 'news: [\n{ id: "bad-news", link: "broken" }]') : baseline);
       rmSync(join(root, '.content-state'), { recursive:true, force:true });
       const invalid = {id:'bad-retained',url:'broken',title:'Keep this record'};
@@ -224,7 +230,7 @@ globalThis.fetch = async (url, options = {}) => {
         writeFileSync(join(root, '.content-state/state.json'), JSON.stringify({pending:[invalid]}));
       }
       const result = run(mode);
-      const passes = mode === 'cap' || mode === 'cap-invalid';
+      const passes = mode === 'cap' || mode === 'cap-invalid' || mode === 'cap-category';
       assert.equal(result.status, passes ? 0 : 1, mode + result.stderr);
       assert.equal(Boolean(state().lastCompletedDate), passes, mode);
       if (mode === 'invalid-pending') {
@@ -233,7 +239,7 @@ globalThis.fetch = async (url, options = {}) => {
       } else assert.equal(state().pending.length, 3, mode);
       if (mode === 'redirect') assert.equal(summary().accepted.news, 3);
       if (mode === 'cap') assert.equal(summary().accepted.ecosystem, 10);
-      if (mode === 'cap-invalid') {
+      if (mode === 'cap-invalid' || mode === 'cap-category') {
         assert.ok(summary().decisions.some(d => d.candidate === 'project-10' && d.action === 'reject'));
         assert.equal(summary().accepted.ecosystem, 10);
       }
