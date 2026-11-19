@@ -8,8 +8,8 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-11-15",
-    version: "2.1.23",
+    lastUpdated: "2026-11-19",
+    version: "2.1.24",
     sources: [
       "https://port.pharos.xyz/ecosystem",
       "https://cryptodaily.co.uk/2026/11/tokenized-high-yield-credit-moves-into-institutional-custody-as-pharos-connects-to-fireblocks",
@@ -191,7 +191,7 @@ window.PharosData = {
     {
       id: "yuzu-money",
       name: "Yuzu Money",
-      category: "DeFi / Lợi suất / Stablecoin",
+      category: "RWA / DeFi",
       icon: "🍋",
       description: "Giao thức stablecoin và lợi suất, gói các chiến lược DeFi lợi suất cao vào stablecoin yzUSD. Trên Pharos, Yuzu là thành viên RealFi Alliance thuộc nhóm Tín dụng, Tài sản và Ứng dụng (Credit, Assets & Apps), mang yzUSD và lợi suất DeFi có đòn bẩy vào hệ sinh thái.",
       tags: ["DeFi", "Lợi suất", "Stablecoin", "RealFi Alliance"],
@@ -201,7 +201,7 @@ window.PharosData = {
     {
       id: "pleasing-market",
       name: "Pleasing Market",
-      category: "RWA / Hàng hóa",
+      category: "RWA / DeFi",
       icon: "🥇",
       description: "Nền tảng RWA đưa kim loại quý lên on-chain. Token PGOLD được bảo chứng bằng vàng vật chất đạt chuẩn LBMA, đồng thời cung cấp dịch vụ Tokenization-as-a-Service. Trên Pharos, Pleasing Market là thành viên RealFi Alliance, chuyên về tài sản hàng hóa.",
       tags: ["RWA", "Vàng token hóa", "PGOLD", "RealFi Alliance"],
@@ -211,7 +211,7 @@ window.PharosData = {
     {
       id: "vishwa-lab",
       name: "Vishwa Finance",
-      category: "Hạ tầng / AI Agent / Tín dụng",
+      category: "RWA / DeFi",
       icon: "🤖",
       description: "Hạ tầng ngân hàng và tín dụng cho AI agent, cho phép agent chuyển vốn và truy cập tài nguyên tính toán với kiểm soát chính sách, quyền riêng tư và thực thi có thể xác minh. Vishwa định vị là hạ tầng tài chính cho agent tự hành, với các mảng Treasury, Payments, Credit và Vaults. Là thành viên RealFi Alliance thuộc nhóm hạ tầng ngân hàng cho agent.",
       tags: ["AI Agent", "Tín dụng", "Cho vay", "RealFi Alliance"],
@@ -221,7 +221,7 @@ window.PharosData = {
     {
       id: "prosper",
       name: "Prosper",
-      category: "DeFi, RWA, Nền tảng ra mắt",
+      category: "RWA / DeFi",
       icon: "🚀",
       description: "Prosper là nền tảng ra mắt token công khai, không cần cấp phép và không lưu ký trên Pharos, hỗ trợ các chiến lược giao dịch on-chain và token hóa hashrate Bitcoin thành RWA đa chuỗi.",
       tags: ["DeFi", "RWA", "Launchpad"],
@@ -231,7 +231,7 @@ window.PharosData = {
     {
       id: "newsight",
       name: "NewSight",
-      category: "Thị trường dự đoán, AI, dApp",
+      category: "NFT & Cộng đồng",
       icon: "🔮",
       description: "NewSight là nền tảng tin tức và thị trường dự đoán tích hợp AI, chuyển đổi các tiêu đề thành các kết quả on-chain có thể giao dịch. Dự án được ươm tạo bởi Mạng lưới Pharos.",
       tags: ["Thị trường dự đoán", "AI", "dApp"],
@@ -241,7 +241,7 @@ window.PharosData = {
     {
       id: "draper-dragon",
       name: "Draper Dragon",
-      category: "Quỹ đầu tư mạo hiểm, Nhà đầu tư",
+      category: "Đầu tư & Đối tác",
       icon: "🐉",
       description: "Draper Dragon là quỹ đầu tư mạo hiểm xuyên biên giới, là đối tác và nhà đầu tư trong chương trình ươm tạo \"Native to Pharos\" của Mạng lưới Pharos, chuyên đầu tư vào Web3 và công nghệ mới nổi.",
       tags: ["Quỹ đầu tư mạo hiểm", "Nhà đầu tư"],
@@ -251,7 +251,7 @@ window.PharosData = {
     {
       id: "htx",
       name: "HTX",
-      category: "Sàn giao dịch, Hạ tầng",
+      category: "RWA / DeFi",
       icon: "📈",
       description: "HTX (trước đây là Huobi Global) là sàn giao dịch tiền điện tử hàng đầu, hỗ trợ nâng cấp mainnet của Mạng lưới Pharos và cung cấp dịch vụ giao dịch cho các tài sản Pharos.",
       tags: ["Sàn giao dịch", "Hạ tầng"],
@@ -261,7 +261,7 @@ window.PharosData = {
     {
       id: "functionbtc",
       name: "FunctionBTC",
-      category: "DeFi, Cho vay, Bitcoin, RWA",
+      category: "RWA / DeFi",
       icon: "₿",
       description: "FunctionBTC (FBTC) cung cấp khả năng thanh khoản Bitcoin đáng tin cậy trên các chuỗi và giao thức, hỗ trợ thanh toán hiệu quả, tích hợp vào các thị trường cho vay và tham gia liền mạch vào các chiến lược tạo lợi nhuận và restaking. Nền tảng này biến BTC thụ động thành một tài sản hoạt động, tạo ra lợi nhuận, và là một cơ sở hạ tầng cho vay được hỗ trợ bởi Bitcoin.",
       tags: ["DeFi", "Cho vay", "Bitcoin", "RWA"],
@@ -271,7 +271,7 @@ window.PharosData = {
     {
       id: "anvita-flow",
       name: "Anvita Flow",
-      category: "AI, Hạ tầng, Thanh toán",
+      category: "Hạ tầng",
       icon: "🤖",
       description: "Anvita Flow là một cơ sở hạ tầng và thị trường tác nhân AI, cho phép các tác nhân AI tự chủ tương tác, cộng tác và giao dịch với nhau theo thời gian thực bằng cách sử dụng thanh toán tiền điện tử. Nền tảng này giúp các nhà phát triển chuyển đổi 'Pharos Skills' của họ thành 'Service Agents' có thể khám phá và gọi được, đồng thời tích hợp giao thức x402 để thực hiện các giao dịch nhỏ bằng stablecoin.",
       tags: ["AI", "Hạ tầng", "Thanh toán"],
@@ -281,7 +281,7 @@ window.PharosData = {
     {
       id: "rcade-co",
       name: "rcade_co",
-      category: "Gaming",
+      category: "NFT & Cộng đồng",
       icon: "🎮",
       description: "rcade_co là một dự án gaming hợp tác với Pharos cho các sự kiện gắn kết cộng đồng. Nền tảng này cung cấp một hệ điều hành tùy chỉnh cho game retro và phát lại media 4K.",
       tags: ["Gaming", "Giải trí"],
@@ -291,7 +291,7 @@ window.PharosData = {
     {
       id: "vizo-exchange",
       name: "VIZO Exchange",
-      category: "DeFi",
+      category: "RWA / DeFi",
       icon: "🔮",
       description: "VIZO Exchange là thị trường dự đoán đầu tiên trên chuỗi Pharos, cho phép người dùng giao dịch kết quả của các sự kiện trong thế giới thực, tiền điện tử và AI.",
       tags: ["Thị trường dự đoán", "DeFi", "AI"],
@@ -301,7 +301,7 @@ window.PharosData = {
     {
       id: "mexc",
       name: "MEXC",
-      category: "DeFi",
+      category: "RWA / DeFi",
       icon: "💰",
       description: "MEXC là một sàn giao dịch tiền điện tử đã niêm yết token PROS của Pharos Network, qua đó cung cấp thanh khoản và hỗ trợ giao dịch cho token này.",
       tags: ["Sàn giao dịch", "Thanh khoản"],
@@ -321,7 +321,7 @@ window.PharosData = {
     {
       id: "goplus",
       name: "Goplus",
-      category: "Bảo mật",
+      category: "Hạ tầng",
       icon: "🔒",
       description: "Goplus là nhà tài trợ cho hackathon và cung cấp các giải pháp bảo mật cho Web3 và tác nhân AI, đóng vai trò là hạ tầng bảo mật.",
       tags: ["Bảo mật", "Web3", "AI"],
@@ -341,7 +341,7 @@ window.PharosData = {
     {
       id: "web3caff-research",
       name: "Web3Caff Research",
-      category: "Nghiên cứu",
+      category: "NFT & Cộng đồng",
       icon: "🔬",
       description: "Web3Caff Research là đối tác trong việc xây dựng \"RealFi Research Framework\" của Pharos Network, cung cấp nghiên cứu chuyên sâu và thông tin tình báo cho nền kinh tế Web3 mới.",
       tags: ["Nghiên cứu", "RealFi", "Web3"],
@@ -351,7 +351,7 @@ window.PharosData = {
     {
       id: "yield-network",
       name: "Yield Network",
-      category: "DeFi",
+      category: "RWA / DeFi",
       icon: "📈",
       description: "Yield Network là đối tác trong việc xây dựng \"RealFi Research Framework\". Họ là một lớp vận hành cho thanh khoản on-chain, hỗ trợ khởi tạo TVL có cấu trúc, các vault pre-deposit và hợp vốn LP.",
       tags: ["DeFi", "Thanh khoản", "RealFi"],
@@ -361,7 +361,7 @@ window.PharosData = {
     {
       id: "tulipa-capital",
       name: "Tulipa Capital",
-      category: "DeFi / Đầu tư / RealFi",
+      category: "RWA / DeFi",
       icon: "💰",
       description: "Tulipa Capital là một người quản lý rủi ro DeFi và một quỹ đầu cơ chuyên về các chiến lược delta-neutral cho BTC, ETH và stablecoin. Nó tập trung vào quản lý rủi ro, minh bạch và bảo vệ vốn cho các nhà đầu tư tổ chức, cho phép họ triển khai vốn ở quy mô lớn. Đây là một đối tác chiến lược trong Liên minh RealFi.",
       tags: ["DeFi", "Đầu tư", "Quản lý rủi ro", "RealFi"],
@@ -371,7 +371,7 @@ window.PharosData = {
     {
       id: "avalon-labs",
       name: "Avalon Labs",
-      category: "DeFi / RWA / Bitcoin / AI",
+      category: "RWA / DeFi",
       icon: "₿",
       description: "Avalon Labs đang xây dựng một hệ sinh thái tài chính gốc Bitcoin, cung cấp các giải pháp thanh khoản và tín dụng cấp tổ chức thông qua mô hình kết hợp CeDeFi (Tài chính Tập trung-Phi tập trung). Các dịch vụ của nó bao gồm cho vay được hỗ trợ bởi BTC, một stablecoin được hỗ trợ bởi Bitcoin (USDa), tài khoản tạo lợi nhuận và thị trường tài sản thế giới thực được hỗ trợ bởi AI. Đây là một đối tác chiến lược trong Liên minh RealFi.",
       tags: ["DeFi", "RWA", "Hệ sinh thái Bitcoin", "Cho vay", "Stablecoin", "AI"],
@@ -381,7 +381,7 @@ window.PharosData = {
     {
       id: "amber-group",
       name: "Amber Group",
-      category: "Dịch vụ tài chính",
+      category: "RWA / DeFi",
       icon: "💰",
       description: "Amber Group là một nền tảng dịch vụ tài chính tiền điện tử hàng đầu, chuyên về quản lý tài sản kỹ thuật số và các giải pháp thanh khoản tập trung vào tiền điện tử. Họ là thành viên của Liên minh RealFi của Pharos.",
       tags: ["Dịch vụ tài chính", "Thanh khoản", "Quản lý tài sản"],
@@ -391,7 +391,7 @@ window.PharosData = {
     {
       id: "babylon",
       name: "Babylon",
-      category: "Staking",
+      category: "Hạ tầng",
       icon: "⛓️",
       description: "Babylon xây dựng cơ sở hạ tầng tài sản thế chấp Bitcoin, cho phép sử dụng Bitcoin nguyên bản làm tài sản thế chấp trên bất kỳ chuỗi nào. Dự án này cho phép staking Bitcoin nguyên bản để bảo mật các chuỗi PoS và dApp. Pharos tích hợp với Babylon để restaking nhằm tăng cường bảo mật và thanh khoản.",
       tags: ["Staking", "Cơ sở hạ tầng Bitcoin", "Restaking"],
@@ -401,7 +401,7 @@ window.PharosData = {
     {
       id: "dune-analytics",
       name: "Dune Analytics",
-      category: "Dữ liệu & Phân tích",
+      category: "Hạ tầng",
       icon: "📊",
       description: "Dune Analytics là một nền tảng dữ liệu tiền điện tử để truy vấn, trực quan hóa và chia sẻ dữ liệu on-chain trên nhiều blockchain. Dự án này sẽ xây dựng các bảng điều khiển thời gian thực để theo dõi dòng vốn trong hệ sinh thái Pharos với tư cách là một \"Đối tác Tình báo\" trong Liên minh RealFi.",
       tags: ["Dữ liệu & Phân tích", "Cơ sở hạ tầng"],
@@ -411,7 +411,7 @@ window.PharosData = {
     {
       id: "eigenlayer",
       name: "EigenLayer",
-      category: "Staking",
+      category: "Hạ tầng",
       icon: "🔄",
       description: "EigenLayer là một giao thức được xây dựng trên Ethereum giới thiệu \"Restaking\", cho phép ETH đã stake được sử dụng để bảo mật các mạng khác (AVS) để nhận thêm lợi nhuận. Pharos tích hợp với EigenLayer để restaking nhằm tăng cường bảo mật và thanh khoản.",
       tags: ["Staking", "Restaking", "Cơ sở hạ tầng"],
@@ -421,7 +421,7 @@ window.PharosData = {
     {
       id: "encapsulate",
       name: "Encapsulate",
-      category: "Cơ sở hạ tầng",
+      category: "Hạ tầng",
       icon: "🛡️",
       description: "Encapsulate cung cấp cơ sở hạ tầng staking blockchain, hoạt động như một trình xác thực. Dự án này là một phần của hệ sinh thái Pharos với vai trò là một trình xác thực.",
       tags: ["Cơ sở hạ tầng", "Trình xác thực", "Staking"],
@@ -431,7 +431,7 @@ window.PharosData = {
     {
       id: "four-pillars",
       name: "Four Pillars",
-      category: "Nghiên cứu",
+      category: "Hạ tầng",
       icon: "📚",
       description: "Four Pillars là một doanh nghiệp tập trung vào nghiên cứu, cung cấp nghiên cứu blockchain chuyên nghiệp, vận hành trình xác thực (FP Validated) và tư vấn Web3 cho các tổ chức (FP Institution). Đây là đối tác \"nghiên cứu\" trong Liên minh RealFi của Pharos.",
       tags: ["Nghiên cứu", "Trình xác thực", "Dịch vụ tổ chức", "Cơ sở hạ tầng"],
@@ -441,7 +441,7 @@ window.PharosData = {
     {
       id: "hackquest",
       name: "Hackquest",
-      category: "Giáo dục",
+      category: "NFT & Cộng đồng",
       icon: "🎓",
       description: "Hackquest là một nền tảng dành cho nhà phát triển và người sáng lập Web3, cung cấp giáo dục, sự kiện cộng đồng, hackathon và các chương trình tăng tốc, tập trung vào an ninh mạng và phát triển blockchain. Pharos đã hợp tác với Hackquest để ra mắt chương trình tài trợ hệ sinh thái Builder Base Camp.",
       tags: ["Giáo dục", "Công cụ phát triển", "Cộng đồng", "Cơ sở hạ tầng"],
@@ -451,7 +451,7 @@ window.PharosData = {
     {
       id: "kun",
       name: "KUN",
-      category: "Thanh toán",
+      category: "Ví & Thanh toán",
       icon: "💳",
       description: "KUN là một nhà cung cấp dịch vụ thanh toán kỹ thuật số toàn cầu tập trung vào thanh toán kỹ thuật số và tài chính nhúng, kết nối Châu Á với các thị trường mới nổi. KUN có quan hệ đối tác chiến lược với Pharos để thúc đẩy việc token hóa tài sản, thanh toán on-chain và các giải pháp thanh toán xuyên biên giới, đặc biệt là các tài sản tín dụng chuỗi cung ứng.",
       tags: ["Thanh toán", "RWA", "Thanh toán xuyên biên giới", "Cơ sở hạ tầng tài chính"],
@@ -461,7 +461,7 @@ window.PharosData = {
     {
       id: "gcl-new-energy",
       name: "GCL New Energy",
-      category: "RWA / Năng lượng",
+      category: "RWA / DeFi",
       icon: "⚡️",
       description: "GCL New Energy là đối tác chiến lược và nhà cung cấp tài sản trong lĩnh vực năng lượng thực tế (RWA). Họ đang hợp tác với Pharos Network trong một dự án thí điểm RWA được hỗ trợ bởi tài sản năng lượng.",
       tags: ["RWA", "Năng lượng"],
@@ -471,7 +471,7 @@ window.PharosData = {
     {
       id: "flow-traders",
       name: "Flow Traders",
-      category: "Thị trường vốn / TradFi",
+      category: "RWA / DeFi",
       icon: "📈",
       description: "Flow Traders là nhà đầu tư chiến lược và đối tác của Pharos Network. Họ là nhà cung cấp thanh khoản và nhà tạo lập thị trường toàn cầu, tập trung vào việc mang lại sự minh bạch và hiệu quả cho các thị trường tài chính.",
       tags: ["Thị trường vốn", "TradFi", "Cung cấp thanh khoản"],
@@ -481,7 +481,7 @@ window.PharosData = {
     {
       id: "sumitomo-corporation",
       name: "Sumitomo Corporation",
-      category: "Tập đoàn / TradFi",
+      category: "Đầu tư & Đối tác",
       icon: "🏢",
       description: "Sumitomo Corporation là nhà đầu tư chiến lược và đối tác của Pharos Network. Đây là một tập đoàn đa ngành Fortune 500 toàn cầu.",
       tags: ["Tập đoàn", "TradFi"],
@@ -491,7 +491,7 @@ window.PharosData = {
     {
       id: "hack-vc",
       name: "Hack VC",
-      category: "Đầu tư mạo hiểm",
+      category: "Đầu tư & Đối tác",
       icon: "💻",
       description: "Hack VC là nhà đầu tư và đối tác của Pharos Network, là một công ty đầu tư mạo hiểm tập trung vào Web3 và AI.",
       tags: ["Đầu tư mạo hiểm", "Web3", "AI"],
@@ -501,7 +501,7 @@ window.PharosData = {
     {
       id: "binance-wallet",
       name: "Binance Wallet",
-      category: "Ví",
+      category: "Ví & Thanh toán",
       icon: "👛",
       description: "Binance Wallet là một ví tiền điện tử tự quản lý được tích hợp vào ứng dụng Binance và có sẵn dưới dạng phiên bản web. Nó đóng vai trò là đối tác phân phối cho các sản phẩm như Axil Prime Credit Vault trên Pharos Network.",
       tags: ["Ví", "Web3"],
@@ -511,7 +511,7 @@ window.PharosData = {
     {
       id: "elfi-protocol",
       name: "ELFi Protocol",
-      category: "DeFi, Phái Sinh, Thanh Khoản",
+      category: "RWA / DeFi",
       icon: "📈",
       description: "ELFi Protocol là nền tảng giao dịch phái sinh phi tập trung, hỗ trợ các mô hình margin cô lập và chéo, cung cấp giao dịch đòn bẩy qua pool đa tài sản. Nền tảng này cho phép nhà cung cấp thanh khoản kiếm phí giao dịch và phí cho vay, đồng thời có chế độ margin danh mục đầu tư sáng tạo cùng các pool thanh khoản stablecoin không rủi ro và pool thanh khoản LSD tái thế chấp. Đây là một dự án hệ sinh thái sớm trên Pharos.",
       tags: ["DeFi", "Phái Sinh", "Thanh Khoản"],
@@ -1289,7 +1289,7 @@ window.PharosData = {
     {
       id: "faction-vc",
       name: "Faction VC",
-      category: "Đầu tư mạo hiểm",
+      category: "Đầu tư & Đối tác",
       icon: "💰",
       description: "Faction VC (còn được gọi là Lightspeed Faction) là một quỹ đầu tư mạo hiểm blockchain giai đoạn đầu, tập trung vào các dự án tiền mã hóa đột phá. Họ đã đồng dẫn đầu vòng cấp vốn hạt giống cho Pharos Network.",
       tags: ["Đầu tư mạo hiểm", "Web3"],
@@ -1299,7 +1299,7 @@ window.PharosData = {
     {
       id: "nextmate-ai",
       name: "Nextmate.AI",
-      category: "AI / Thị trường dự đoán / dApp",
+      category: "NFT & Cộng đồng",
       icon: "🤖",
       description: "Nextmate.AI là một nền tảng thị trường dự đoán phi tập trung, được hỗ trợ bởi AI, kết hợp giải trí, tương tác và cơ hội lợi nhuận. Nền tảng này cho phép tạo thị trường dự đoán cá nhân hóa, cung cấp thông tin chi tiết từ AI và tích hợp memecoin, hoạt động trên testnet của Pharos.",
       tags: ["AI", "Thị trường dự đoán", "dApp"],
@@ -1309,7 +1309,7 @@ window.PharosData = {
     {
       id: "buzzing-club",
       name: "Buzzing Club",
-      category: "AI / Thị trường dự đoán / SocialFi / dApp",
+      category: "NFT & Cộng đồng",
       icon: "🐝",
       description: "Buzzing Club là nền tảng thị trường dự đoán dựa trên AI, xây dựng lớp dự đoán trên các mạng xã hội như X, cho phép người dùng đặt cược vào các chủ đề thịnh hành. Nền tảng này sử dụng tác nhân AI để tạo thị trường và oracle, nhằm tăng cường sự hấp dẫn và chân thực của mạng xã hội, hoạt động trên testnet của Pharos.",
       tags: ["AI", "Thị trường dự đoán", "SocialFi", "dApp"],

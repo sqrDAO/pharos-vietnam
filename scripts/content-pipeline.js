@@ -9,6 +9,7 @@ export const ECOSYSTEM_CATEGORIES = [
   "Hạ tầng",
   "Ví & Thanh toán",
   "NFT & Cộng đồng",
+  "Đầu tư & Đối tác",
 ];
 
 export function canonicalUrl(value) {
