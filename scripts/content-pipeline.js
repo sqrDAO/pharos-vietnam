@@ -54,15 +54,34 @@ export function coverageStart(lastCompleted, today, lookback) {
  * reviewer; without this it would be re-proposed every week. A batch with
  * nothing landed is treated as unmerged and kept.
  */
-export function splitReviewedOut(pending, knownUrls) {
+export function splitReviewedOut(pending, knownUrls, reviewedOut = new Set()) {
   const landed = c => knownUrls.has(canonicalUrl(c.url));
   const merged = new Set(pending.filter(c => c?.proposedIn && landed(c)).map(c => c.proposedIn));
   const kept = [], removed = [];
   for (const c of pending) {
     if (landed(c)) continue;
-    (c?.proposedIn && merged.has(c.proposedIn) ? removed : kept).push(c);
+    // reviewedOut remembers earlier deletions: research re-finds a post for as
+    // long as it sits inside the lookback window, long after it left pending.
+    const deleted = (c?.proposedIn && merged.has(c.proposedIn)) || reviewedOut.has(canonicalUrl(c.url));
+    (deleted ? removed : kept).push(c);
   }
   return { kept, removed };
+}
+
+/**
+ * Deduplicate candidates by canonical URL. Research re-finds retained posts
+ * every run, untagged; a re-found copy keeps the batch tag of the retained one
+ * it replaces, or splitReviewedOut could not tell it was deleted in review.
+ */
+export function mergeByUrl(candidates) {
+  const byUrl = new Map(), invalid = [];
+  for (const c of candidates) {
+    let key;
+    try { key = canonicalUrl(c?.url); } catch { invalid.push(c); continue; }
+    const prev = byUrl.get(key);
+    byUrl.set(key, prev?.proposedIn && !c.proposedIn ? { ...c, proposedIn: prev.proposedIn } : c);
+  }
+  return { merged: [...byUrl.values()], invalid };
 }
 
 /** Validate dated research candidates and assign stable IDs from their URLs. */
