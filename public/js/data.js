@@ -8,9 +8,18 @@ window.PharosData = {
 
   // ---- METADATA ----
   meta: {
-    lastUpdated: "2026-11-19",
-    version: "2.1.24",
+    lastUpdated: "2026-11-22",
+    version: "2.1.25",
     sources: [
+      "https://cryptowisser.com/news/pharos-lets-pros-stakers-auto-compound-rewards-every-4-hours",
+      "https://x.com/pharos_network/status/2124167201817285103",
+      "https://x.com/pharos_network/status/2122978368744476707",
+      "https://x.com/pharos_network/status/2122192957185118222",
+      "https://x.com/pharos_eco/status/2123658429185265827",
+      "https://x.com/pharos_eco/status/2123658423548170727",
+      "https://x.com/pharos_eco/status/2123658425460793370",
+      "https://x.com/pharos_eco/status/2123658421656502632",
+      "https://x.com/Farooxyz/status/2123706364119908630",
       "https://port.pharos.xyz/ecosystem",
       "https://cryptodaily.co.uk/2026/11/tokenized-high-yield-credit-moves-into-institutional-custody-as-pharos-connects-to-fireblocks",
       "https://x.com/pharos_network/status/2120937042431655946",
@@ -118,6 +127,26 @@ window.PharosData = {
 
   // ---- ECOSYSTEM PROJECTS ----
   ecosystem: [
+    {
+      id: "fireblocks",
+      name: "Fireblocks",
+      category: "Hạ tầng",
+      icon: "🔐",
+      description: "Nhà cung cấp hạ tầng lưu ký và ví tài sản số cấp tổ chức. Pharos đã tích hợp Fireblocks để xây dựng quy trình lưu ký đạt chuẩn tổ chức, bao gồm cả tín dụng lợi suất cao được token hóa.",
+      tags: ["Lưu ký", "Hạ tầng ví", "Tổ chức"],
+      website: "https://www.fireblocks.com",
+      status: "Tích hợp"
+    },
+    {
+      id: "lightspeed-venture-partners",
+      name: "Lightspeed Venture Partners",
+      category: "Đầu tư & Đối tác",
+      icon: "💡",
+      description: "Quỹ đầu tư mạo hiểm đồng hành cùng Draper Dragon trong RealFi Incubator trị giá hơn 10 triệu USD do Pharos khởi động.",
+      tags: ["Đầu tư mạo hiểm", "RealFi Incubator"],
+      website: "https://lsvp.com",
+      status: "Đối tác"
+    },
     {
       id: "accountable",
       name: "Accountable",
@@ -1320,6 +1349,96 @@ window.PharosData = {
 
   // ---- NEWS & ANNOUNCEMENTS ----
   news: [
+    {
+      id: "realfi-alliance-cap-nhat-asseto-centrifuge-circle-lifi",
+      title: "Cập Nhật Hệ Sinh Thái RealFi Alliance: Asseto, Centrifuge, Circle Và LI.FI",
+      category: "Hợp Tác",
+      date: "2026-11-21",
+      summary: "RealFi Alliance có loạt cập nhật từ Asseto × AlfaR, Centrifuge × LayerZero, Circle × DBS và LI.FI.",
+      content: "Pharos công bố các diễn biến mới trong RealFi Alliance: AssetoFinance và AlfaR đưa hồ sơ sở hữu quỹ lên chuỗi; Centrifuge và LayerZero mở rộng hạ tầng vault tổ chức; Circle cùng DBS mở rộng thanh toán USDC 24/7; LI.FI kết nối cổ phiếu token hóa với thanh khoản onchain.",
+      link: "https://x.com/pharos_network/status/2124167201817285103",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "pharos-native-staking-workbench-anvita-mate-tu-dong-lai-kep",
+      title: "Pharos Ra Mắt Native Staking Workbench Qua Anvita Mate, Tự Động Lãi Kép Phần Thưởng PROS",
+      category: "Công Nghệ",
+      date: "2026-11-20",
+      summary: "Native Staking Workbench cho phép người stake PROS tự động tái đầu tư phần thưởng khoảng mỗi 4 giờ, không thu thêm phí khi ra mắt.",
+      content: "Ngày 20/11, Pharos công bố Native Staking Workbench thông qua Anvita Mate. Công cụ cho phép người stake PROS tự động cộng dồn phần thưởng staking khoảng bốn giờ một lần, theo các quy tắc thưởng hiện có của mạng và không tính thêm phí khi ra mắt. Phần thưởng staking của Pharos được tài trợ từ lạm phát giao thức và phí giao dịch mạng.",
+      link: "https://cryptowisser.com/news/pharos-lets-pros-stakers-auto-compound-rewards-every-4-hours",
+      source: "Cryptowisser"
+    },
+    {
+      id: "pbot-tich-hop-pharos-qua-prosperticker",
+      title: "$PBOT Có Mặt Trên Pharos Qua ProsperTicker",
+      category: "Thông Báo",
+      date: "2026-11-20",
+      summary: "$PBOT của pbotworld đã hoạt động trên Pharos qua ProsperTicker.",
+      content: "$PBOT từ pbotworld nay đã có mặt trên Pharos thông qua ProsperTicker, đưa thử nghiệm thế giới 3D tích hợp AI của Pbot vào hệ sinh thái.",
+      link: "https://x.com/pharos_eco/status/2123658429185265827",
+      source: "Pharos Ecosystem (X)"
+    },
+    {
+      id: "co-phieu-token-hoa-ra-mat-tren-cookfun",
+      title: "Cổ Phiếu Token Hóa Ra Mắt Trên CookFun",
+      category: "Thông Báo",
+      date: "2026-11-20",
+      summary: "Cổ phiếu Mỹ và Hàn Quốc token hóa đã có trên CookFun qua stoveprotocol.",
+      content: "Cổ phiếu Mỹ và Hàn Quốc được token hóa đã có mặt trên CookFun của cook_protocol thông qua stoveprotocol, cho phép giao dịch cổ phiếu onchain và tạo meme token được bảo chứng bằng cổ phiếu.",
+      link: "https://x.com/pharos_eco/status/2123658423548170727",
+      source: "Pharos Ecosystem (X)"
+    },
+    {
+      id: "newsight-pharos-tradathon-season-5",
+      title: "Tradathon Season 5 Của NewSight × Pharos Diễn Ra Từ 10 Đến 24/11",
+      category: "Cập Nhật",
+      date: "2026-11-20",
+      summary: "Tradathon Season 5 có 20.000 $PROS, 10 triệu điểm NSI và giải thưởng phần cứng.",
+      content: "Tradathon Season 5 do NewSightHQ và Pharos tổ chức diễn ra từ 10 đến 24/11, với phần thưởng gồm 20.000 $PROS, 10 triệu điểm NSI và các giải thưởng phần cứng.",
+      link: "https://x.com/pharos_eco/status/2123658425460793370",
+      source: "Pharos Ecosystem (X)"
+    },
+    {
+      id: "originstake-dashboard-faroo-staking",
+      title: "OriginStake Ra Mắt Dashboard Theo Dõi Staking Faroo",
+      category: "Công Nghệ",
+      date: "2026-11-20",
+      summary: "OriginStake ra mắt dashboard theo dõi hoạt động và chỉ số staking Faroo trên Pharos.",
+      content: "OriginStake đã ra mắt một dashboard để theo dõi hoạt động và các chỉ số staking của Faroo trên Pharos.",
+      link: "https://x.com/pharos_eco/status/2123658421656502632",
+      source: "Pharos Ecosystem (X)"
+    },
+    {
+      id: "faroo-nang-cap-nen-tang-stpros",
+      title: "Faroo Nâng Cấp Nền Tảng stPROS",
+      category: "Cập Nhật",
+      date: "2026-11-20",
+      summary: "Faroo bổ sung hỗ trợ WPROS, cảnh báo tác động giá, phân bổ staking theo validator và tích hợp PharosLens.",
+      content: "Faroo đã bổ sung hỗ trợ WPROS cho việc mint và hoán đổi stPROS, cảnh báo tác động giá, thông tin phân bổ staking theo validator, tích hợp PharosLens và các cập nhật hoạt động.",
+      link: "https://x.com/Farooxyz/status/2123706364119908630",
+      source: "Faroo (X)"
+    },
+    {
+      id: "pharos-tai-lieu-native-staking",
+      title: "Pharos Phát Hành Tài Liệu Kỹ Thuật Về Native Staking",
+      category: "Nhà phát triển",
+      date: "2026-11-18",
+      summary: "Hướng dẫn kỹ thuật đầy đủ về Pharos Native Staking đã được công bố cho validator, nhà phát triển và người ủy quyền.",
+      content: "Pharos đã phát hành tài liệu kỹ thuật đầy đủ về Native Staking, bao gồm đăng ký validator, ủy quyền, phần thưởng, lãi kép, các phương thức hợp đồng staking và chi tiết tích hợp dành cho validator, nhà phát triển và người ủy quyền.",
+      link: "https://x.com/pharos_network/status/2122978368744476707",
+      source: "Pharos Network (X)"
+    },
+    {
+      id: "season-of-ai-219-ban-build-duoc-duyet",
+      title: "Season of AI Của Pharos Đạt 219 Bản Build Được Duyệt",
+      category: "Nhà phát triển",
+      date: "2026-11-16",
+      summary: "Agent Arena trong Season of AI có 219 bản build được duyệt và 31 nhiệm vụ.",
+      content: "Agent Arena thuộc Pharos Season of AI hiện có 219 bản build được duyệt và 31 nhiệm vụ, giúp các builder triển khai tác nhân thực tế bằng Chain MCP, Developer Docs MCP và SkillEngine.",
+      link: "https://x.com/pharos_network/status/2122192957185118222",
+      source: "Pharos Network (X)"
+    },
     {
       id: "luganodes-tro-thanh-validator-pharos",
       title: "Luganodes Trở Thành Validator Của Pharos",
