@@ -11,7 +11,6 @@ window.PharosData = {
     lastUpdated: "2026-11-22",
     version: "2.1.25",
     sources: [
-      "https://x.com/pharos_network/status/2121943814273401168",
       "https://cryptowisser.com/news/pharos-lets-pros-stakers-auto-compound-rewards-every-4-hours",
       "https://x.com/pharos_network/status/2124167201817285103",
       "https://x.com/pharos_network/status/2122978368744476707",
@@ -20,7 +19,6 @@ window.PharosData = {
       "https://x.com/pharos_eco/status/2123658423548170727",
       "https://x.com/pharos_eco/status/2123658425460793370",
       "https://x.com/pharos_eco/status/2123658421656502632",
-      "https://x.com/manlike__ar/status/2123664974593851575",
       "https://x.com/Farooxyz/status/2123706364119908630",
       "https://port.pharos.xyz/ecosystem",
       "https://cryptodaily.co.uk/2026/11/tokenized-high-yield-credit-moves-into-institutional-custody-as-pharos-connects-to-fireblocks",
@@ -1412,16 +1410,6 @@ window.PharosData = {
       source: "Pharos Ecosystem (X)"
     },
     {
-      id: "faroo-hop-tac-originstake-stpros",
-      title: "Faroo Hợp Tác Với OriginStake Mở Rộng Staking Thanh Khoản Trên Pharos",
-      category: "Hợp Tác",
-      date: "2026-11-20",
-      summary: "Faroo hợp tác OriginStake bổ sung validator hiệu năng cao và bảo mật cấp doanh nghiệp cho người nắm giữ stPROS.",
-      content: "Faroo đã hợp tác với OriginStake để bổ sung các validator hiệu năng cao và bảo mật cấp doanh nghiệp cho người nắm giữ stPROS trên mạng Pharos.",
-      link: "https://x.com/manlike__ar/status/2123664974593851575",
-      source: "X (manlike__ar)"
-    },
-    {
       id: "faroo-nang-cap-nen-tang-stpros",
       title: "Faroo Nâng Cấp Nền Tảng stPROS",
       category: "Cập Nhật",
@@ -1449,16 +1437,6 @@ window.PharosData = {
       summary: "Agent Arena trong Season of AI có 219 bản build được duyệt và 31 nhiệm vụ.",
       content: "Agent Arena thuộc Pharos Season of AI hiện có 219 bản build được duyệt và 31 nhiệm vụ, giúp các builder triển khai tác nhân thực tế bằng Chain MCP, Developer Docs MCP và SkillEngine.",
       link: "https://x.com/pharos_network/status/2122192957185118222",
-      source: "Pharos Network (X)"
-    },
-    {
-      id: "pharos-mo-rong-validator-stove-cookfun-co-phieu-token-hoa",
-      title: "Pharos Mở Rộng Tập Validator Và Stove Tích Hợp Cổ Phiếu Token Hóa Vào CookFun",
-      category: "Thông Báo",
-      date: "2026-11-15",
-      summary: "Pharos bổ sung hinode_tech, SenseiNode và Meria_Finance vào tập validator, phủ Nhật Bản, Mỹ Latinh và Pháp; stoveprotocol đưa cổ phiếu Mỹ và Hàn Quốc token hóa vào CookFun.",
-      content: "Pharos đã thêm hinode_tech, SenseiNode và Meria_Finance vào tập validator, bao phủ Nhật Bản, Mỹ Latinh và Pháp. Pharos cũng khởi động chiến dịch cộng đồng cuối cùng của năm 2026, kéo dài đến ngày 31/12 với quỹ thưởng 3.000 $PROS. Ngoài ra, stoveprotocol đã tích hợp cổ phiếu Mỹ và Hàn Quốc được token hóa vào CookFun.",
-      link: "https://x.com/pharos_network/status/2121943814273401168",
       source: "Pharos Network (X)"
     },
     {
