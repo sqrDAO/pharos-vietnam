@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ECOSYSTEM_CATEGORIES, canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from './content-pipeline.js';
+import { ECOSYSTEM_CATEGORIES, canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, mergeByUrl, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from './content-pipeline.js';
 
 const candidates = parseCandidates({ candidates: [
   { title: 'NGI+ launch', summary: 'Asseto brings NGI+ to Pharos', date: '2026-08-18', url: 'https://x.com/pharos_network/status/2089547853781967127' },
@@ -157,7 +157,7 @@ globalThis.fetch = async (url, options = {}) => {
     }
     if (prompt.startsWith('Collect') && (mode === 'claude-empty' || (mode === 'claude-empty-once' && !emptied++))) return reply(searched);
     let text;
-    if (prompt.startsWith('Collect')) text = JSON.stringify({candidates:mode === 'redirect' ? [...fixtures, {...fixtures[0],url:'https://vertexaisearch.cloud.google.com/grounding-api-redirect/broken'}] : []});
+    if (prompt.startsWith('Collect')) text = JSON.stringify({candidates:mode === 'redirect' ? [...fixtures, {...fixtures[0],url:'https://vertexaisearch.cloud.google.com/grounding-api-redirect/broken'}] : mode === 'rediscover' ? fixtures : []});
     else if (prompt.startsWith('Write Vietnamese')) {
       const items = JSON.parse(prompt.split('Candidates: ')[1].split('\\nPrevious')[0]);
       text = JSON.stringify({decisions: mode === 'drop' ? [] : items.map(c => ({candidateId:c.id,action:'include',item:{id:c.id,title:c.title,summary:c.summary,content:c.summary,link:c.url,date:c.date,category:'Thông Báo',source:'Official announcement'}}))});
@@ -244,6 +244,27 @@ globalThis.fetch = async (url, options = {}) => {
         assert.equal(summary().accepted.ecosystem, 10);
       }
     }
+    {
+      // Replays #55 -> #58: a batch merged without one item; research then
+      // re-finds every post, untagged. The deleted one must stay out, both in
+      // the next run (still pending) and later (only remembered in state).
+      const [deleted, landed, fresh] = candidates;
+      writeFileSync(join(root, 'public/js/data.js'), baseline.replace('news: [\n]', `news: [\n{ id: "landed", link: "${landed.url}" }]`));
+      rmSync(join(root, '.content-state'), { recursive:true, force:true });
+      mkdirSync(join(root, '.content-state'));
+      writeFileSync(join(root, '.content-state/state.json'), JSON.stringify({ pending: [{ ...deleted, proposedIn: 'b1' }, { ...landed, proposedIn: 'b1' }] }));
+      const first = run('rediscover');
+      assert.equal(first.status, 0, first.stderr);
+      assert.ok(summary().decisions.some(d => d.url === deleted.url && d.reason === 'removed_in_review'), 'deleted item re-proposed');
+      assert.equal(summary().accepted.news, 1);
+      assert.deepEqual(state().reviewedOut, [canonicalUrl(deleted.url)]);
+      assert.ok(!state().pending.some(c => canonicalUrl(c.url) === canonicalUrl(deleted.url)));
+      // Next week: no longer pending, only remembered; research finds it again.
+      const second = run('rediscover');
+      assert.equal(second.status, 0, second.stderr);
+      assert.ok(summary().decisions.some(d => d.url === deleted.url && d.reason === 'removed_in_review'), 'deleted item came back');
+      assert.equal(summary().accepted.news, 0);
+    }
     for (const mode of ['dead-link', 'unreachable-link']) {
       writeFileSync(join(root, 'public/js/data.js'), baseline);
       rmSync(join(root, '.content-state'), { recursive:true, force:true });
@@ -306,6 +327,26 @@ test('legitimate copy using "Lưu ý", "không cung cấp thêm" or "Snippet" is
     'Pharos không cung cấp thêm phần thưởng cho ví bot.',
     'Dự án Snippet gia nhập Pharos.',
   ]) assert.equal(findMetaCommentary(text), null, text);
+});
+
+test('a re-found copy of a retained candidate keeps its batch tag', () => {
+  const url = n => `https://x.com/a/status/${n}`;
+  const { merged, invalid } = mergeByUrl([
+    { id: 'retained', url: url(1), proposedIn: 'w1' },
+    { id: 'other', url: url(2) },
+    { id: 'refound', url: `${url(1)}?s=20`, title: 'fresher copy' },
+    { id: 'broken', url: 'not a url' },
+  ]);
+  assert.deepEqual(merged.map(c => [c.id, c.proposedIn]), [['refound', 'w1'], ['other', undefined]]);
+  assert.equal(merged[0].title, 'fresher copy');
+  assert.deepEqual(invalid.map(c => c.id), ['broken']);
+});
+
+test('URLs deleted in an earlier review stay out even when re-found untagged', () => {
+  const url = n => `https://x.com/a/status/${n}`;
+  const { kept, removed } = splitReviewedOut([{ id: 'refound', url: url(2) }, { id: 'new', url: url(5) }], new Set(), new Set([url(2)]));
+  assert.deepEqual(removed.map(c => c.id), ['refound']);
+  assert.deepEqual(kept.map(c => c.id), ['new']);
 });
 
 test('drops candidates a reviewer deleted from a merged batch, keeps unmerged and untagged ones', () => {

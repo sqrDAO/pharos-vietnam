@@ -32,7 +32,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import vm from "node:vm";
 import Anthropic from "@anthropic-ai/sdk";
-import { ECOSYSTEM_CATEGORIES, canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from "./content-pipeline.js";
+import { ECOSYSTEM_CATEGORIES, canonicalUrl, coverageStart, findMetaCommentary, findSameEventFlags, isPharosHomepage, mergeByUrl, parseCandidates, reconcileDecisions, requestJson, splitReviewedOut } from "./content-pipeline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..");
@@ -264,7 +264,7 @@ Candidates: ${JSON.stringify(candidates)}`;
     try {
       const raw = await claudeCall(prompt + (attempt ? "\nPrevious response failed accounting checks. Account for EVERY candidate explicitly." : ""));
       const result = reconcileDecisions(candidates, parseJsonLoose(raw), existing.news);
-      report.decisions = result.decisions;
+      report.decisions.push(...result.decisions); // keep earlier removed_in_review exclusions
       return result.items;
     } catch (error) {
       artifact(`conversion-error-${attempt}.txt`, error.message);
@@ -809,17 +809,10 @@ async function main() {
         report.errors.push({ reason: result.reason.message });
       }
     });
-    const byUrl = new Map();
-    const invalid = [];
-    for (const candidate of collected) {
-      try { byUrl.set(canonicalUrl(candidate?.url), candidate); }
-      catch {
-        invalid.push(candidate);
-        report.errors.push({ phase: "state", candidate, reason: "Invalid retained candidate URL" });
-      }
-    }
+    const { merged, invalid } = mergeByUrl(collected);
+    for (const candidate of invalid) report.errors.push({ phase: "state", candidate, reason: "Invalid retained candidate URL" });
     // Preserve invalid records and newly collected candidates before any failure.
-    pending = [...invalid, ...byUrl.values()];
+    pending = [...invalid, ...merged];
     const known = new Set();
     let invalidNews = false;
     for (const item of current.news) {
@@ -830,12 +823,17 @@ async function main() {
       }
     }
     if (invalid.length || invalidNews) fail("Invalid candidate or news URLs; records retained for repair");
-    const reviewed = splitReviewedOut(pending, known);
+    // URLs deleted in review persist in state, so a later re-find stays excluded.
+    const reviewedOut = new Set(Array.isArray(state.reviewedOut) ? state.reviewedOut : []);
+    const reviewed = splitReviewedOut(pending, known, reviewedOut);
     pending = reviewed.kept;
     for (const c of reviewed.removed) {
-      console.error(`[update-pharos-content] DROPPED candidate ${c.url}: removed in review of batch ${c.proposedIn}`);
-      report.decisions.push({ candidateId: c.id, url: c.url, action: "exclude", reason: "removed_in_review", explanation: `Proposed in batch ${c.proposedIn}, which was merged without it` });
+      reviewedOut.add(canonicalUrl(c.url));
+      const why = c.proposedIn ? `Proposed in batch ${c.proposedIn}, which was merged without it` : "Deleted in an earlier review";
+      console.error(`[update-pharos-content] DROPPED candidate ${c.url}: ${why}`);
+      report.decisions.push({ candidateId: c.id, url: c.url, action: "exclude", reason: "removed_in_review", explanation: why });
     }
+    state.reviewedOut = [...reviewedOut];
     report.candidateCount = pending.length;
     artifact("candidates.json", pending);
     let news = [];
