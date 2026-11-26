@@ -106,7 +106,11 @@ The default lookback is 28 days. Manual workflow dispatch accepts `lookback_days
 (14–365); locally use `CONTENT_LOOKBACK_DAYS`. The updater also looks back to the
 last completed coverage date with an overlap, independently of content metadata.
 Pending news candidates remain in `.content-state/state.json` until excluded or
-present in the checked-out news feed. CI restores this state through its cache,
+present in the checked-out news feed. A candidate a reviewer deletes from a
+weekly PR that is then merged is recorded in the same file's `reviewedOut` list
+and never proposed again, even though research keeps finding it inside the
+lookback window. To publish such an item later, add it to `public/js/data.js` by
+hand. CI restores this state through its cache,
 with a fallback to the latest retained research artifact if the cache is evicted.
 Artifacts are retained for 90 days; after both stores expire, use a manual backfill.
 
